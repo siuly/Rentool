@@ -1,6 +1,9 @@
 // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+// import { initializeApp } from "firebase/app";
+// import { getAnalytics } from "firebase/analytics";
+
+import {initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js'
+import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,4 +21,25 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+const auth = getAuth();
+
+// Test user information. This information should be from user input
+const  email = 'test@gmail.com';
+const password = '12345678';
+
+createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in
+    const user = userCredential.user;
+    console.log('user: ', user);
+    console.log("uid = :", user.uid);
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    console.log('errorCode: ', errorCode);
+    const errorMessage = error.message;
+    console.log('errorMessage: ', errorMessage);
+    // ..
+  });
