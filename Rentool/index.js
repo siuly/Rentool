@@ -2,8 +2,8 @@
 // import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 
-import {initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-app.js'
-import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/9.6.6/firebase-auth.js';
+import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -18,6 +18,18 @@ const firebaseConfig = {
   appId: "1:357202195995:web:4a7e7342acf44dd4f4eabe",
   measurementId: "G-B5QXJNMD7M"
 };
+
+class User{
+  constructor(fname, lname, email, pswd){
+    this.fname = fname;
+    this.lname = lname;
+    this.email = email;
+    this.pswd = pswd;
+}
+toString(){
+  return `Name: ${this.fname}  ${this.lname}, Email: ${this.email}, Password: ${this.pswd}`;
+}
+}
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
@@ -43,3 +55,38 @@ createUserWithEmailAndPassword(auth, email, password)
     console.log('errorMessage: ', errorMessage);
     // ..
   });
+
+  let firestore = firebase.firestore()
+  //Variable to access database collection
+  const db = firestore.collection("Users")
+
+  //Get information from form
+  let submit = document.getElementById("sbtn")
+
+  //Create Event  Listener to allow form submission
+
+  submit.addEventListener("click", (e) =>{
+    //Prevent Default Form submission behavior
+    e.preventDefault()
+
+    //get values of the form
+    let firstName = submit.querySelector("#fname");
+    let lastName = submit.querySelector("#lname");
+    let email = submit.querySelector("#email");
+    let password = submit.querySelector("#pswd");
+
+    const user = new User(firstName.value, lastName.value, email.value, password.value);
+    
+    console.log(user.toString());//will print the  information that we get 
+    //save form data to firebase
+    db.doc().set({
+      fname: firstName,
+      lname: lastName,
+      email: email,
+      pswd: password
+    }).then(()=>{
+      console.log("Data saved")
+    }).catch((error)=>{
+      console.log(error)
+    })
+  } );
