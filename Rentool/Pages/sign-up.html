@@ -5,12 +5,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign up</title>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="../index.js" defer></script>
+    <link rel="stylesheet" href="../Style/sign-up.css">
 </head>
 <body>
-    <form action="">
-        <input type="text">
-        <label for=""></label>]
+    <img src="" alt="Rentool-logo">
+       <h1>Sign Up</h1>
+
+    <form id="sign-up">  <!-- the action will  connect to firebase?-->
+ 
+        <label for="first-name">First Name
+            <input type="type" placeholder="First Name" name="fname" id="fname" required>
+        </label>
+        <label for="last-name">Last Name
+            <input type="type" placeholder="Last Name" name="lname" id="lname" required>
+        </label>
+        <label for="email">Email
+            <input type="email" placeholder="Email" name="email" id="email" required>
+        </label>
+
+
+        <label for="pswd">Password
+            <input type="password" placeholder="Password" name="pswd" id="pswd" required><!-- Are we going to add the show password option? R.- Yes  -->
+        </label>
+
+        <label for="cnfrm-pswd">Confirm Password
+            <input type="password" placeholder="Confirm Password" name="cnfrm-pswd" id="cpswd" required>
+        </label>
+
+        <button type="button" id="cbtn">Cancel</button>
+        <button type="button" id="sbtn">Sign Up</button>
     </form>
-    <p>Hi :) </p>
 </body>
 </html>
