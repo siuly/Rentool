@@ -1,9 +1,7 @@
 // Import the functions you need from the SDKs you need
-// import { initializeApp } from "firebase/app";
-// import { getAnalytics } from "firebase/analytics";
 
-import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
-import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
+// import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
+// import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -32,58 +30,41 @@ toString(){
 }
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const auth = getAuth();
+const app = firebase.initializeApp(firebaseConfig);
 
 // Test user information. This information should be from user input
 const  email = 'test@gmail.com';
 const password = '12345678';
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in
-    const user = userCredential.user;
-    console.log('user: ', user);
-    console.log("uid = :", user.uid);
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    console.log('errorCode: ', errorCode);
-    const errorMessage = error.message;
-    console.log('errorMessage: ', errorMessage);
-    // ..
-  });
 
   let firestore = firebase.firestore()
   //Variable to access database collection
-  const db = firestore.collection("Users")
+  const db = firestore.collection("Users");
 
   //Get information from form
   let submit = document.getElementById("sbtn")
 
   //Create Event  Listener to allow form submission
-
   submit.addEventListener("click", (e) =>{
+
     //Prevent Default Form submission behavior
     e.preventDefault()
 
     //get values of the form
-    let firstName = submit.querySelector("#fname");
-    let lastName = submit.querySelector("#lname");
-    let email = submit.querySelector("#email");
-    let password = submit.querySelector("#pswd");
+    let firstName = document.querySelector("#fname");
+    let lastName = document.querySelector("#lname");
+    let email = document.querySelector("#email");
+    let password = document.querySelector("#pswd");
 
     const user = new User(firstName.value, lastName.value, email.value, password.value);
     
     console.log(user.toString());//will print the  information that we get 
     //save form data to firebase
-    db.doc().set({
-      fname: firstName,
-      lname: lastName,
-      email: email,
-      pswd: password
+    db.doc(firstName.value + lastName.value).set({
+      fstname: firstName.value,
+      lstname: lastName.value,
+      email: email.value,
+      pswd: password.value
     }).then(()=>{
       console.log("Data saved")
     }).catch((error)=>{
