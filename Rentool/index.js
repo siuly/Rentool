@@ -33,34 +33,35 @@ toString(){
 const app = firebase.initializeApp(firebaseConfig);
 
 // Test user information. This information should be from user input
-const  email = 'test@gmail.com';
-const password = '12345678';
+// const  email = 'test@gmail.com';
+// const password = '12345678';
 
 
   let firestore = firebase.firestore()
   //Variable to access database collection
   const db = firestore.collection("Users");
 
-  //Get information from form
-  let submit = document.getElementById("sbtn")
+  //Get information from for
+  let form = document.getElementById("sign-up");
+  let submitbtn = document.getElementById("sbtn")
 
   //Create Event  Listener to allow form submission
-  submit.addEventListener("click", (e) =>{
+  submitbtn.addEventListener("click", (event) =>{
 
     //Prevent Default Form submission behavior
-    e.preventDefault()
+    event.preventDefault();
 
     //get values of the form
-    let firstName = document.querySelector("#fname");
-    let lastName = document.querySelector("#lname");
-    let email = document.querySelector("#email");
-    let password = document.querySelector("#pswd");
+    let firstName = form.querySelector("#fname");
+    let lastName = form.querySelector("#lname");
+    let email = form.querySelector("#email");
+    let password = form.querySelector("#pswd");
 
-    const user = new User(firstName.value, lastName.value, email.value, password.value);
+    const user = new User (firstName.value, lastName.value, email.value, password.value);
     
     console.log(user.toString());//will print the  information that we get 
     //save form data to firebase
-    db.doc(firstName.value + lastName.value).set({
+    db.doc(firstName.value + Math.random()).set({
       fstname: firstName.value,
       lstname: lastName.value,
       email: email.value,
@@ -70,4 +71,6 @@ const password = '12345678';
     }).catch((error)=>{
       console.log(error)
     })
-  } );
+  });
+
+ 
