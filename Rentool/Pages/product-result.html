@@ -98,6 +98,7 @@
     width: 100%;
     display: flex;
     flex-flow: row nowrap;
+    align-items: center;
     gap: 1rem;
 
     grid-area: input;
@@ -113,6 +114,14 @@
     flex-flow: row nowrap;
   }
 
+  .input-container input {
+    flex: 1 0 40%;
+  }
+
+  .input-container input:focus {
+    outline: none;
+  }
+
   .input-row .icon {
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -121,7 +130,6 @@
   }
 
   .input-container .fa-microphone {
-    width: 100%;
     text-align: end;
     padding-right: 1rem;
     color: grey;
