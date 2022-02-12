@@ -1,4 +1,5 @@
 /// <reference path="../../firebase.d.ts" />
+
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
   authDomain: 'rentool-4a9e6.firebaseapp.com',
@@ -9,12 +10,12 @@ const firebaseConfig = {
   measurementId: 'G-B5QXJNMD7M'
 };
 
-
 const app = firebase.initializeApp(firebaseConfig);
 let db = firebase.default.firestore();
 
 /**
- *
+ * @description Sign-in with Email and Password
+ * @async
  * @param {string} email
  * @param {string} password
  * @returns {Promise}
@@ -36,11 +37,15 @@ export const signInEmailWithPassword = async (email, password) => {
 };
 
 /**
+ * @description Get tool information by Category
+ * @async
  * @param {string} category
+ * @return {[]}
  */
 export const getToolsByCategory = async (category = '') => {
   const toolsDoc = await db.collection('Tools').where('category', '==', category).get();
   const tools = [];
-  toolsDoc.forEach(doc => tools.push(doc.data()));
+  toolsDoc.forEach(doc => tools.push({ toolId: doc.id, ...doc.data(), }));
+
   return tools;
 };
