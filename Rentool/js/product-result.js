@@ -1,12 +1,19 @@
 import { ToolListItem } from './components/ToolListItem.js';
 import { getToolsByCategory } from './firebase.js';
-import { getDistanceFromUserLocation, getUrlParams, GET_PARAMS } from './util.js';
+import { getUrlParams, GET_PARAMS } from './util.js';
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const tools = await getToolsByCategory('category');
-  const toolListEl = document.getElementById('tool-list');
 
+  let tools = [];
+  if (getUrlParams()[GET_PARAMS.CATEGORY] !== null) {
+    tools = await getToolsByCategory(getUrlParams()[GET_PARAMS.CATEGORY]);
+  }
+  if (getUrlParams()[GET_PARAMS.KEYWORD] !== null) {
+    tools = await getToolsByCategory(getUrlParams()[GET_PARAMS.CATEGORY]);
+  }
+
+  const toolListEl = document.getElementById('tool-list');
   for (const tool of tools) {
     const toolListItem = new ToolListItem(tool);
     toolListEl.appendChild(toolListItem);
