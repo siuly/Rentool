@@ -12,10 +12,8 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <title>Product Result</title>
 </head>
-
 
 <body id="product-result">
   <div class="wrapper">
@@ -29,13 +27,12 @@
         <i class="fas fa-bars"></i>
       </div>
       <div class="input-row">
-        <form action="GET" class="input-container">
+        <form action="./product-result.html" method="get" class="input-container">
           <button class="icon"><i class="fa fa-search"></i></button>
-          <input type="text" placeholder="Search">
+          <input type="text" placeholder="Search" name="keyword">
           <i class="fa-solid fa-microphone"></i>
         </form>
         <i class="fa-solid fa-align-right"></i>
-
       </div>
     </header>
 
@@ -46,9 +43,6 @@
     <div class="loader-container">
       <div class="dot-elastic"></div>
     </div>
-
-
-
     <script src="../js/product-result.js" type="module" defer></script>
     <script src="../js/firebase.js" type="module" defer></script>
   </div>

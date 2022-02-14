@@ -40,12 +40,39 @@ export const signInEmailWithPassword = async (email, password) => {
  * @description Get tool information by Category
  * @async
  * @param {string} category
- * @return {[]}
+ * @return {object []}
  */
 export const getToolsByCategory = async (category = '') => {
   const toolsDoc = await db.collection('Tools').where('category', '==', category).get();
   const tools = [];
   toolsDoc.forEach(doc => tools.push({ toolId: doc.id, ...doc.data(), }));
+
+  return tools;
+};
+
+/**
+ * @description Get tool information by Keyword
+ * @async
+ * @param {string} keyword
+ * @return {object[]}
+ */
+export const getToolsByKeyword = async (keyword = '') => {
+  const toolsDoc = await db.collection('Tools').get();
+  let tools = [];
+  toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
+
+  // return all data when the keyword is empty
+  if (keyword === '') {
+    return tools;
+  }
+
+  tools = tools.filter(tool => {
+    // Search by each value
+    for (const key in tool) {
+      if (tool[key].includes(keyword)) { return true; }
+    }
+    return false;
+  });
 
   return tools;
 };
