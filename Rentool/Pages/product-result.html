@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css" integrity="sha512-NmLkDIU1C/C88wi324HBc+S2kLhi08PN5GDeUVVVC/BVt/9Izdsc9SVeVfA1UZbY3sHUlDSyRXhCzHfr6hmPPw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <title>Product Result</title>
+</head>
+
+<body id="product-result">
+  <div class="wrapper">
+    <header>
+      <span class="return-icon">
+        <i class="fa-solid fa-less-than"></i>
+      </span>
+      <h2>Products</h2>
+      <div class="header-right">
+        <i class="fa-solid fa-circle"></i>
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="input-row">
+        <form action="./product-result.html" method="get" class="input-container">
+          <button class="icon"><i class="fa fa-search"></i></button>
+          <input type="text" placeholder="Search" name="keyword">
+          <i class="fa-solid fa-microphone"></i>
+        </form>
+        <i class="fa-solid fa-align-right"></i>
+      </div>
+    </header>
+
+    <div class="product-number">
+      <span class="product-number__number"></span> <span>of products</span>
+    </div>
+    <div id="tool-list"></div>
+    <div class="loader-container">
+      <div class="dot-elastic"></div>
+    </div>
+    <script src="../js/product-result.js" type="module" defer></script>
+    <script src="../js/firebase.js" type="module" defer></script>
+  </div>
+</body>
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+
+  .wrapper {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+
+  #product-result header {
+    display: grid;
+    grid-template-areas:
+      "arrow heading heading menu"
+      "input input input input";
+
+    padding: 1rem;
+  }
+
+  .return-icon {
+    grid-area: arrow;
+    display: grid;
+    align-items: center;
+  }
+
+  h2 {
+    grid-area: heading;
+    text-align: center;
+    font-size: 2rem;
+  }
+
+  .header-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .input-row {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    gap: 1rem;
+
+    grid-area: input;
+    padding-top: .3rem;
+  }
+
+  .input-container {
+    flex: 1 0 30%;
+    background-color: rgba(125, 125, 125, .2);
+    border-radius: 10px;
+    padding: .3rem;
+    display: flex;
+    flex-flow: row nowrap;
+  }
+
+  .input-container input {
+    flex: 1 0 40%;
+  }
+
+  .input-container input:focus {
+    outline: none;
+  }
+
+  .input-row .icon {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    color: grey;
+  }
+
+  .input-container .fa-microphone {
+    text-align: end;
+    padding-right: 1rem;
+    color: grey;
+  }
+
+  .input-row input {
+    border: none;
+    background-color: unset;
+  }
+
+  .fa-circle {
+    color: grey;
+  }
+
+  #tool-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3vw;
+    padding: 0 5vw;
+    margin-top: 1rem;
+    max-width: 100vw;
+  }
+
+  .tool-list__item {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, .8);
+    padding: 1rem;
+    gap: .3rem;
+    border-radius: 5px;
+
+  }
+
+  .tool-item__image-container {
+    object-fit: cover;
+    padding-top: 1rem;
+  }
+
+  .tool-item__tool-name {
+    font-size: min(calc(1rem + 5vw), 10vw);
+  }
+
+  .tool-item__image {
+    height: 30vw;
+    width: 30vw;
+    display: block;
+    object-fit: fill;
+    border-radius: 100%;
+    border: 1px solid rgba(0, 0, 0, .2);
+  }
+
+  .tool-item__description {
+    font-size: min(calc(.4rem + 3vw), 5vw);
+    padding: 0 0.3rem;
+    overflow-wrap: anywhere;
+    min-height: 3rem;
+  }
+
+  .tool-item__submit {
+    margin-top: 1rem;
+    padding: .5rem;
+    background-color: rgba(0, 0, 0, 1);
+    color: white;
+  }
+
+
+  .tool-item__availability {
+    font-size: min(.8rem, 3vw);
+    display: flex;
+    flex-flow: row nowrap;
+    gap: .5rem;
+  }
+
+  .product-number {
+    padding-left: 1rem;
+  }
+
+  .loader-container {
+    width: fit-content;
+    margin: 0 auto;
+  }
+</style>
+
+</html>
