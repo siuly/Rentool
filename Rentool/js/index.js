@@ -26,7 +26,7 @@ class User{
     this.pswd = pswd;
 }
 toString(){
-  return `Name: ${this.fname}  ${this.lname}, Email: ${this.email}, Phone Number: ${this.phone}, Password: ${this.pswd}`;
+  return 'Name: ${this.fname}  ${this.lname}, Email: ${this.email}, Phone Number: ${this.phone}, Password: ${this.pswd}';
 }
 }
 
@@ -40,47 +40,47 @@ const app = firebase.initializeApp(firebaseConfig);
 
   let firestore = firebase.firestore();
   //Variable to access database collection
-  const db = firestore.collection(`Users`);
+  const db = firestore.collection('Users');
 
   //Get information from for
-  let form = document.getElementById(`sign-up`);
-  let submitbtn = document.getElementById(`sbtn`);
+  let form = document.getElementById('sign-up');
+  let submitbtn = document.getElementById('sbtn');
 
   //Create Event  Listener to allow form submission
-  submitbtn.addEventListener(`click`, (event) =>{
+  submitbtn.addEventListener('click', (event) =>{
 
     //Prevent Default Form submission behavior
     event.preventDefault();
 
     //get values of the form
-    let firstName = form.querySelector(`#fname`);
-    let lastName = form.querySelector(`#lname`);
-    let phone = form.querySelector(`#phone`);
-    let email = form.querySelector(`#email`);
-    let password = form.querySelector(`#pswd`);
+    let firstName = form.querySelector('#fname');
+    let lastName = form.querySelector('#lname');
+    let phonen = form.querySelector('#phone');
+    let email = form.querySelector('#email');
+    let password = form.querySelector('#pswd');
 
     const user = new User (firstName.value, lastName.value, email.value, password.value);
     
     console.log(user.toString());//will print the  information that we get 
     //save form data to firebase
-    db.doc(firstName.value + Math.random()).set({
+    db.doc(firstName.value + email.value).set({
       fstname: firstName.value,
       lstname: lastName.value,
-      phone: phone.value,
+      phone: phonen.value,
       email: email.value,
       pswd: password.value
     }).then(()=>{
-      console.log(`Data saved`);
+      console.log('Data saved')
     }).catch((error)=>{
       console.log(error);
-    });
+    })
 
-    document.getElementById(`fname`).value=``;
-    document.getElementById(`lname`).value=``;
-    document.getElementById(`email`).value=``;
-    document.getElementById(`phone`).value=``;
-    document.getElementById(`pswd`).value=``;
-    document.getElementById(`cpswd`).value=``;
+    document.getElementById('fname').value='';
+    document.getElementById('lname').value='';
+    document.getElementById('email').value='';
+    document.getElementById('phone').value='';
+    document.getElementById('pswd').value='';
+    document.getElementById('cpswd').value='';
 
   });
   
