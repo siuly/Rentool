@@ -32,7 +32,29 @@ toString(){
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
+function homePage(){
+  window.location.href = "../Pages/home.html";
+}
 
+function comparepswd() {
+  var pass = document.getElementById("pswd");
+    var pass2 = document.getElementById("cpswd");
+  
+    if(pass.value != pass2.value) {
+      alert("Yours passwords do not match");
+    }   
+    else{
+      document.getElementById('fname').value='';
+      document.getElementById('lname').value='';
+      document.getElementById('email').value='';
+      document.getElementById('phone').value='';
+      document.getElementById('pswd').value='';
+      document.getElementById('cpswd').value='';
+      alert(" good job");
+      
+      homePage();
+    }
+  }
 // Test user information. This information should be from user input
 // const  email = 'test@gmail.com';
 // const password = '12345678';
@@ -61,6 +83,8 @@ const app = firebase.initializeApp(firebaseConfig);
 
     const user = new User (firstName.value, lastName.value, email.value, password.value);
     
+    comparepswd();
+
     console.log(user.toString());//will print the  information that we get 
     //save form data to firebase
     db.doc(firstName.value + email.value).set({
@@ -74,15 +98,5 @@ const app = firebase.initializeApp(firebaseConfig);
     }).catch((error)=>{
       console.log(error);
     })
-
-    document.getElementById('fname').value='';
-    document.getElementById('lname').value='';
-    document.getElementById('email').value='';
-    document.getElementById('phone').value='';
-    document.getElementById('pswd').value='';
-    document.getElementById('cpswd').value='';
-
-  });
-  
-
  
+  });

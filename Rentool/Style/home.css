@@ -1,0 +1,100 @@
+header{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+}
+header h1{
+  grid-column: 2;
+  text-align: center
+}
+.header-right{
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.lockers-near{
+  border: thin solid black;
+  border-radius: 3px;
+  height: 15vw;
+  padding: 5px;
+}
+.lockers-near a{
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  margin: 5px;
+  line-height: 1.5;
+}
+.location-title{
+  font-weight: bold;
+  margin-left: 5px;
+  line-height: 1;
+}
+.active-rental {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 10px;
+}
+
+.active-title {
+  grid-column: 1/-1;
+  margin-top: 20px;
+  margin-bottom: 0;
+  padding: 0;
+}
+.user-tools{
+    border: thin solid black;
+    border-radius: 3px;
+    padding: 5px;
+    width: auto;
+    height: 55vw;
+    display: flex;
+    flex-flow: column nowrap;
+    grid-column: span 2;   
+}
+.user-tools img{
+  border: thin solid black;
+  border-radius: 50%;
+  height: 5rem;
+  width: 5rem;
+  align-self: center;
+}
+
+span.tool-name {
+  align-self: center;
+  line-height: 1.5;
+  font-weight: bold;
+}
+.user-tools span{
+  align-self: center;
+  line-height: 1.5;
+}
+.user-tools .expire-info{
+  font-size: 15px;
+  padding-bottom: 15px;
+}
+
+.user-tools a{
+  border: thin solid black;
+  border-radius: 10%;
+  text-align: center;
+  align-self: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-decoration: none;
+  color: white;
+  background-color: black;
+}
+.more-user-tools{
+  border: thin solid black;
+  border-radius: 3px;
+  width: 30px;
+  height: 35vw;
+  background-color: grey;
+}
+.more-user-tools span{
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
