@@ -69,3 +69,23 @@ export const getToolsByKeyword = async (keyword = '') => {
   tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
   return tools;
 };
+
+/**
+ * @description Set tool data into Tools collection, mostly for testing purposes
+ * @async
+ * @param {object[]} tool
+ */
+export const setToolData = async (tool) => {
+  const toolsDoc = await db.collection('Tools').add({ ...tool });
+};
+
+
+// @TODO: getToolsByReservationToolIndex
+
+// @TODO: addReservationData
+
+// @TODO: reservationRequest:
+
+// @TODO: returnTool: change flag of reservation data
+
+// @TODO: changeLocation of the returned tool: change location data of the tool by toolId

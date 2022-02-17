@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../Style/reset.min.css">
+  <link rel="stylesheet" href="../Style/view-product.css">;
+  <!-- CSS for loading animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>View Product</title>
+</head>
+
+<body id="product-result">
+  <div class="wrapper">
+    <header>
+      <span class="return-icon">
+        <i class="fa-solid fa-less-than"></i>
+      </span>
+      <h2 class="tool-name">Tool Name</h2>
+      <div class="header-right">
+        <i class="fa-solid fa-circle"></i>
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="input-row">
+        <form action="./product-result.html" method="get" class="input-container">
+          <button class="icon"><i class="fa fa-search"></i></button>
+          <input type="text" placeholder="Search" name="keyword">
+          <i class="fa-solid fa-microphone"></i>
+        </form>
+        <i class="fa-solid fa-align-right"></i>
+      </div>
+    </header>
+
+
+    <div id="product-detail">
+      <p>Product detail</p>
+    </div>
+
+    <!-- <div class="loader-container">
+      <div class="dot-elastic"></div>
+    </div> -->
+  </div>
+  <script src="../js/view-product.js" type="module" defer></script>
+</body>
+
+</html>
