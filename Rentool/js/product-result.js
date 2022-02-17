@@ -5,11 +5,14 @@ import { getUrlParams, GET_PARAMS } from './util.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   let tools = [];
+
   if (getUrlParams()[GET_PARAMS.CATEGORY] !== null) {
     tools = await getToolsByCategory(getUrlParams()[GET_PARAMS.CATEGORY]);
-  }
-  if (getUrlParams()[GET_PARAMS.KEYWORD] !== null) {
+  } else if (getUrlParams()[GET_PARAMS.KEYWORD] !== null) {
     tools = await getToolsByKeyword(getUrlParams()[GET_PARAMS.KEYWORD]);
+  } else {
+    // Gets all data
+    tools = await getToolsByKeyword('');
   }
 
   const toolListEl = document.getElementById('tool-list');

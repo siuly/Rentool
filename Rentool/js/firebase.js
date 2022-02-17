@@ -61,18 +61,11 @@ export const getToolsByKeyword = async (keyword = '') => {
   let tools = [];
   toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
 
-  // return all data when the keyword is empty
+  // Return all data when the keyword is empty
   if (keyword === '') {
     return tools;
   }
 
-  tools = tools.filter(tool => {
-    // Search by each value
-    for (const key in tool) {
-      if (tool[key].includes(keyword)) { return true; }
-    }
-    return false;
-  });
-
+  tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
   return tools;
 };
