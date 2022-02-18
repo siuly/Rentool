@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../Style/reset.min.css">
+  <link rel="stylesheet" href="../Style/reservation-request.css">
+  <!-- CSS for loading animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title>Product Result</title>
+</head>
+
+<body id="reservation-request">
+  <div class="wrapper">
+    <header>
+      <span class="return-icon">
+        <i class="fa-solid fa-less-than"></i>
+      </span>
+      <h2>Products</h2>
+      <div class="header-right">
+        <i class="fa-solid fa-circle"></i>
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="input-row">
+        <form action="./product-result.html" method="get" class="input-container">
+          <button class="icon"><i class="fa fa-search"></i></button>
+          <input type="text" placeholder="Search" name="keyword">
+          <i class="fa-solid fa-microphone"></i>
+        </form>
+        <i class="fa-solid fa-align-right"></i>
+      </div>
+    </header>
+
+    <main>
+      <div id="page1" class="page shown">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+          <button class="page-btn" id="page1-btn">Button</button>
+      </div>
+      <div id="page2"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page2-btn">Button</button>
+      </div>
+      <div id="page3"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page3-btn">Button</button>
+      </div>
+      <div id="page4"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page4-btn">Button</button>
+      </div>
+      <div id="page5"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page5-btn">Button</button>
+      </div>
+    </main>
+  </div>
+  <script src="../js/reservation-request.js" type="module" defer></script>
+</body>
+
+</html>
