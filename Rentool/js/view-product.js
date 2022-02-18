@@ -38,9 +38,16 @@ const sampleToolData = [{
   },
   size: 'small',
 }];
+const sampleNearestLocation = sampleToolData[0].location;
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  /**@type {[]} */
   const tools = sampleToolData;
+  console.log('tools: ', tools);
+  const tool = tools[0];
+  console.log('tool: ', tool);
+  const nearestLocation = sampleNearestLocation;
+  console.log('nearestLocation: ', nearestLocation);
+
 });
