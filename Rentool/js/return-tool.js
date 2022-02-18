@@ -24,7 +24,10 @@ const sampleLocationData = [{
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  /**@type {[]} */
   const reservationData = sampleReservationData;
   const locations = sampleLocationData;
+
+  // Write your code below-----------------------------------------
+
+
 });

@@ -1,6 +1,4 @@
-import { setToolData } from './firebase.js';
-
-// The differences are 'toolId' and 'location'
+// The differences of the two data are 'toolId' and 'location'
 const sampleToolData = [{
   toolId: '12345678',
   toolName: 'driver',
@@ -44,10 +42,12 @@ const sampleNearestLocation = sampleToolData[0].location;
 
 document.addEventListener('DOMContentLoaded', async () => {
   const tools = sampleToolData;
-  console.log('tools: ', tools);
   const tool = tools[0];
-  console.log('tool: ', tool);
   const nearestLocation = sampleNearestLocation;
-  console.log('nearestLocation: ', nearestLocation);
+
+
+  // Write your code below-----------------------------------------
+
+
 
 });
