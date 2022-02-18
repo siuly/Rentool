@@ -2,6 +2,26 @@
 	box-sizing: border-box;
 }
 
+:root {
+	--color-primary: #fab328;
+	--color-primary-variant: #ffc400;
+	--color-secondary: #70d0db;
+	--color-secondary-variant: #3ea8dd;
+	--color-error: #ff5757;
+	--color-typography-primary-light: #222222;
+	--color-typography-primary-light: #222222;
+	--color-typography-secondary-light: #d6d1d1;
+	--color-typography-primary-dark: #000000;
+	--color-typography-secondary-dark: #d6d1d1;
+	--color-background: #ffff;
+
+	--font-size-tagline-bold: 60px;
+	--font-size-heading-bold: 44px;
+	--font-size-headings-bold: 24px;
+	--font-size-body-text: 16px;
+	--font-size-secondary-text: 14px;
+}
+
 .wrapper {
 	width: 100%;
 	display: grid;
@@ -16,6 +36,7 @@ header {
 		"input input input input";
 
 	padding: 1rem;
+	background-color: var(--color-primary);
 }
 
 .return-icon {
@@ -62,7 +83,7 @@ header h2 {
 
 .input-container {
 	flex: 1 0 30%;
-	background-color: rgba(125, 125, 125, 0.2);
+	background-color: var(--color-background);
 	border-radius: 10px;
 	padding: 0.3rem;
 	display: flex;
