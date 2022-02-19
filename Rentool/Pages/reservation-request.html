@@ -11,7 +11,7 @@
   <!-- CSS -->
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
-  <link rel="stylesheet" href="../Style/product-result.css">
+  <link rel="stylesheet" href="../Style/reservation-request.css">
   <!-- CSS for loading animation -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Font awesome -->
@@ -20,7 +20,7 @@
   <title>Product Result</title>
 </head>
 
-<body id="product-result">
+<body id="reservation-request">
   <div class="wrapper">
     <header>
       <span class="return-icon">
@@ -41,15 +41,39 @@
       </div>
     </header>
 
-    <div class="product-number">
-      <span class="product-number__number"></span> <span>of products</span>
-    </div>
-    <div id="tool-list"></div>
-    <div class="loader-container">
-      <div class="dot-elastic"></div>
-    </div>
+    <main>
+      <div id="page1" class="page shown">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+          <button class="page-btn" id="page1-btn">Button</button>
+      </div>
+      <div id="page2"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page2-btn">Button</button>
+      </div>
+      <div id="page3"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page3-btn">Button</button>
+      </div>
+      <div id="page4"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page4-btn">Button</button>
+      </div>
+      <div id="page5"  class="page">
+        <input type="text" name="" id="">
+        <input type="text" name="" id="">
+        <button class="page-btn" id="page5-btn">Button</button>
+      </div>
+    </main>
   </div>
-  <script src="../js/product-result.js" type="module" defer></script>
+  <script src="../js/reservation-request.js" type="module" defer></script>
 </body>
 
 </html>

@@ -88,8 +88,8 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
 
 
       /**TODO: TEST => should be deleted */
-      targetLatitude = 9.23970770288139;
-      targetLongitude = -123.03182549147533;
+      // targetLatitude = 9.23970770288139;
+      // targetLongitude = -123.03182549147533;
 
       const dist = distance(userLatitude, userLongitude, targetLatitude, targetLongitude, 'm');
       console.log('dist: ', dist);
@@ -98,7 +98,17 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
     }, (error) => { console.error(error) });
   }
 };
-export function homePage(){
-  window.location.href = "../Pages/home.html";
-}
 
+
+/**
+ * @typedef location
+ * @property {float} latitude
+ * @property {float} longitude
+ */
+
+/**
+ * @description Get Location
+ * @param {location[]} locations
+ * @return {float} distance
+ */
+const getNearestLocation = (locations) => {};

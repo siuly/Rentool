@@ -1,0 +1,12 @@
+.page {
+	border: 1px solid grey;
+	margin: 1rem;
+}
+input {
+	display: block;
+	margin: 1rem;
+}
+
+.shown {
+	border: 1px solid red;
+}
