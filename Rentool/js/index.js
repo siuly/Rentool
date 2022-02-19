@@ -9,6 +9,8 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // import { homePage } from './util';
 
+import { homePage } from './util';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
   authDomain: 'rentool-4a9e6.firebaseapp.com',
@@ -32,9 +34,6 @@ toString(){
 }
 }
 
- function homePage(){
-  window.location.href = "../Pages/home.html";
-}
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);

@@ -98,3 +98,7 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
     }, (error) => { console.error(error) });
   }
 };
+export function homePage(){
+  window.location.href = "../Pages/home.html";
+}
+
