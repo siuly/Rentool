@@ -88,13 +88,21 @@ span.tool-name {
 }
 .more-user-tools{
   border: thin solid black;
-  border-radius: 3px;
-  width: 30px;
-  height: 35vw;
+  width: 50%;
+  height: 50%;
   background-color: grey;
+  text-align: center;
 }
 .more-user-tools span{
   color: white;
   font-weight: bold;
   text-align: center;
+}
+
+.recently-viewed {
+  grid: flex; 
+}
+.recently-title{
+
+
 }

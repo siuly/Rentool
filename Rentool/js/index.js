@@ -7,6 +7,8 @@
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+// import { homePage } from './util';
+
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
   authDomain: 'rentool-4a9e6.firebaseapp.com',
@@ -30,11 +32,12 @@ toString(){
 }
 }
 
-// Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
-function homePage(){
+ function homePage(){
   window.location.href = "../Pages/home.html";
 }
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
 
 function comparepswd() {
   var pass = document.getElementById("pswd");
@@ -53,6 +56,7 @@ function comparepswd() {
       alert(" good job");
       
       homePage();
+
     }
   }
 // Test user information. This information should be from user input
