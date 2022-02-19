@@ -4,13 +4,17 @@ import { getUrlParams, GET_PARAMS } from './util.js';
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  let tools = [];
+  /**@type {[] | undefined} */
+  let tools = undefined;
 
   if (getUrlParams()[GET_PARAMS.CATEGORY] !== null) {
     tools = await getToolsByCategory(getUrlParams()[GET_PARAMS.CATEGORY]);
-  } else if (getUrlParams()[GET_PARAMS.KEYWORD] !== null) {
+  }
+  if (getUrlParams()[GET_PARAMS.KEYWORD] !== null) {
     tools = await getToolsByKeyword(getUrlParams()[GET_PARAMS.KEYWORD]);
-  } else {
+  }
+
+  if (tools === undefined) {
     // Gets all data
     tools = await getToolsByKeyword('');
   }
