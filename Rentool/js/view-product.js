@@ -6,6 +6,7 @@ const sampleToolData = [{
   reservationToolIndex: 'driver-brand-small',
   brand: 'brand',
   location: {
+    lockerName: 'Locker Name',
     address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
     latitude: '49.225518864967654',
     longitude: '123.10776583584949',
@@ -24,6 +25,7 @@ const sampleToolData = [{
   reservationToolIndex: 'driver-brand-small',
   brand: 'brand',
   location: {
+    lockerName: 'Locker Name',
     address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
     latitude: '49.1967',
     longitude: '123.1815',
