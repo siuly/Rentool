@@ -75,7 +75,7 @@ span.tool-name {
   padding-bottom: 15px;
 }
 
-.user-tools a{
+.user-tools button{
   border: thin solid black;
   border-radius: 10%;
   text-align: center;
@@ -85,6 +85,11 @@ span.tool-name {
   text-decoration: none;
   color: white;
   background-color: black;
+}
+input{
+  background-color: unset;
+  color: white;
+  border: none;
 }
 .more-user-tools{
   border: thin solid black;
