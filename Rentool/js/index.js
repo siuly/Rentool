@@ -9,7 +9,7 @@
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 // import { homePage } from './util';
 
-import { homePage } from './util.js';
+
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
@@ -37,6 +37,10 @@ class User {
 
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
+
+function homePage(){
+  window.location.href = "../Pages/home.html";
+}
 
 function comparepswd() {
   let pass = document.getElementById('pswd');
