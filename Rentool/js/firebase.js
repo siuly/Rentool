@@ -1,4 +1,6 @@
 /// <reference path="../../firebase.d.ts" />
+import { Reservation } from './domain/Reservation.js';
+import { Location } from './domain/Location.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
@@ -89,3 +91,25 @@ export const setToolData = async (tool) => {
 // @TODO: returnTool: change flag of reservation data
 
 // @TODO: changeLocation of the returned tool: change location data of the tool by toolId
+
+
+
+/**
+ * @description Return tools, change reservation data and tool data
+ * @async
+ * @param {Reservation} reservation
+ * @param {Location} locationToReturn
+ */
+export const returnTool = async (reservation, locationToReturn) => {
+  const { reservationId, toolId } = reservation;
+
+  //@ TODO: change reservation data's isReturned by reservationId
+  //@ TODO: change toolId is isReserved:false by toolId, and location
+
+  // Mock Request
+  return setTimeout((() => {
+    console.log(`${reservationId}'s is returned, ToolId: ${toolId}'s isReserved will be false`);
+    console.log(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
+    console.log('return complete');
+  }), 500);
+};
