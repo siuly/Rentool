@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+
+
+  <!-- CSS for loading animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <title></title>
+</head>
+
+<body>
+  <label for="toolId">toolId</label>
+  <input type="text" name="toolId" id="toolId">
+  <label for="toolName">toolName</label>
+  <input type="text" name="toolName" id="toolName">
+  <h3>Location</h3>
+  <label for="lockerName">lockerName</label>
+  <input type="text" name="lockerName" id="lockerName">
+  <label for="address">address</label>
+  <input type="text" name="address" id="address">
+  <label for="latitude">latitude</label>
+  <input type="text" name="latitude" id="latitude">
+  <label for="longuitude">longuitude</label>
+  <input type="text" name="longuitude" id="longuitude">
+  <h3>Prices</h3>
+  <label for="hourlyPrice">hourlyPrice</label>
+  <input type="text" name="hourlyPrice" id="hourlyPrice">
+  <label for="dailyPrice">dailyPrice</label>
+  <input type="text" name="dailyPrice" id="dailyPrice">
+  <label for="weeklyPrice">weeklyPrice</label>
+  <input type="text" name="weeklyPrice" id="weeklyPrice">
+  <label for="category">category</label>
+  <input type="text" name="category" id="category">
+  <label for="size">size</label>
+  <input type="text" name="size" id="size">
+
+  <label for="brand">brand</label>
+  <input type="text" name="brand" id="brand">
+
+  <label for="imageUrl">imageUrl</label>
+  <input type="text" name="imageUrl" id="imageUrl">
+
+  <input type="submit" value="submit" id="submit">
+
+  <script src="../../js/firebase.js" type="module" defer></script>
+</body>
+
+<script type="module">
+  import { Location } from '../../js/domain/Location.js'
+  import { Tool } from '../../js/domain/Tool.js'
+  import {setToolData} from '../../js/firebase.js'
+
+
+
+
+
+
+
+document.getElementById('submit').addEventListener('click', async () => {
+
+const toolId = document.getElementById('toolId').value;
+const toolName = document.getElementById('toolName').value;
+const lockerName = document.getElementById('lockerName').value;
+const address = document.getElementById('address').value;
+const latitude = document.getElementById('latitude').value;
+const longuitude = document.getElementById('longuitude').value;
+const hourlyPrice = document.getElementById('hourlyPrice').value;
+const dailyPrice = document.getElementById('dailyPrice').value;
+const weeklyPrice = document.getElementById('weeklyPrice').value;
+const category = document.getElementById('category').value;
+const size = document.getElementById('size').value;
+const brand = document.getElementById('brand').value;
+const imageUrl = document.getElementById('imageUrl').value;
+const reservationToolIndex = `${toolName}-${brand}-${size}`;
+
+const tool = new Tool({
+  toolId,
+  toolName,
+  location:  {
+    lockerName,
+    address,
+    latitude,
+    longuitude,
+  },
+  category,
+  imageUrl,
+  reservationToolIndex,
+  size,
+  isReserved: false,
+  brand,
+  prices: {
+    hourlyPrice,
+    dailyPrice,
+    weeklyPrice,
+  }
+  });
+
+
+
+  console.log(tool);
+  setToolData(tool);
+
+});
+
+
+</script>
+
+
+<style>
+  input,
+  label {
+    display: block;
+  }
+</style>
+
+</html>
