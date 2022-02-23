@@ -81,18 +81,21 @@ export const setToolData = async (tool) => {
   const toolsDoc = await db.collection('Tools').add({ ...tool });
 };
 
+/**
+ * @description Get tool information by reservationToolIndex
+ * @async
+ * @param {string} reservationToolIndex
+ * @return {Tool[]}
+ */
+export const getToolsByReservationToolIndex = async (reservationToolIndex) => {
+  if (!reservationToolIndex) { return; }
 
-// @TODO: getToolsByReservationToolIndex
-
-// @TODO: addReservationData
-
-// @TODO: reservationRequest:
-
-// @TODO: returnTool: change flag of reservation data
-
-// @TODO: changeLocation of the returned tool: change location data of the tool by toolId
-
-
+  const toolsDoc = await db.collection('Tools').where('reservationToolIndex', '==', reservationToolIndex).get();
+  /**@type {Tool[]} */
+  let tools = [];
+  toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
+  return tools;
+};
 
 /**
  * @description Return tools, change reservation data and tool data
@@ -113,3 +116,17 @@ export const returnTool = async (reservation, locationToReturn) => {
     console.log('return complete');
   }), 500);
 };
+
+
+
+
+
+
+
+// @TODO: addReservationData
+
+// @TODO: reservationRequest:
+
+// @TODO: returnTool: change flag of reservation data
+
+// @TODO: changeLocation of the returned tool: change location data of the tool by toolId
