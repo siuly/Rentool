@@ -7,6 +7,8 @@
 export const GET_PARAMS = {
   CATEGORY: 'category',
   KEYWORD: 'keyword',
+  RESERVATION_ID: 'reservationId',
+  RESERVATION_TOOL_INDEX: 'reservationToolIndex'
 };
 
 
@@ -113,3 +115,8 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
  * @return {float} distance
  */
 const getNearestLocation = (locations) => {};
+
+
+//@TODO: save userId to localStorage
+//@TODO: remove userId from localStorage
+//@TODO: 
