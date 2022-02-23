@@ -1,0 +1,26 @@
+.location-item {
+	padding: 1rem;
+	border: 1px solid black;
+	width: 80%;
+}
+
+.return-request-btn {
+	border: 1px solid black;
+	padding: 1rem;
+
+	width: 300px;
+	margin: 1rem;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+	transform: translateY(0);
+	transition: all .1s;
+}
+
+.return-request-btn:hover {
+	transform: translateY(-2px);
+	box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
+}
+
+.return-request-btn:active {
+	transform: translateY(-1px);
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
+}
