@@ -55,7 +55,7 @@ function comparepswd() {
     document.getElementById('phone').value = '';
     document.getElementById('pswd').value = '';
     document.getElementById('cpswd').value = '';
-    alert(' good job');
+    alert('good job');
 
     homePage();
 

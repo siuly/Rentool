@@ -7,65 +7,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="../Style/home.css">
+  <script src="../js/home.js" defer></script>
+  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
   <title>Home</title>
+  
 </head>
 
 <body>
   <header>
-  <h1>Home</h1>
-  <div class="header-right">
-    <img src="" alt="profile-img">
-    <i class="fas fa-bars"></i>
+  <h1>Rentool</h1>
+  <div class="header-left">
+    <button id="toggle"><i class="fas fa-bars"></i><div>MENU</div></button>
+    <nav  id="menu">
+      <ul>
+        <li><a href="">My Account</a></li>
+        <li><a href="">Tool Catalogue</a></li>
+        <li><a href="">Locations</a></li>
+        <li><a href="">About Rentool</a></li>
+        <li><a href="">Contact Us</a></li>
+        <li id="sign-status"><a href="">Sign out</a></li>
+      </ul>
+    </nav>
   </div>
+
 </header>
 <main>
-  <div class="lockers-near">
-    <span class="location-title">Lockers Near You</span><br>
-    <a href=""><span class="direction">100 W 49th Ave, Vancouver, BC V5Y 2Z6</span></a>
+  <div class="carousel">
+    <img src="" alt="">
+    <img src="" alt="">
+    <img src="" alt="">
+  </div>
+
+  <div class="catalogues">
+    <article>
+      
+    </article>
+    <a href="catalogue.html">More Categories</a>
+  </div>
+
+  <div class="location">
+
+  </div>
+
+  <div class="service">
+
+  </div>
+</main>
+
+<footer>
+  <img src="" alt="">
+
+  <div class="social-media">
+    <nav>
+      <ul>
+        <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
+        <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></a></i></li>
+        <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+        <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+        <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
+      </ul>
+    </nav>
   </div>
 
   
-  <div class="active-rental">
-    <span class="active-title">Active Rental</span>
-    <article class="user-tools">
-        <img src="" alt="">
-        <span class="tool-name">Hammer</span>
-        <span>Expires in</span>
-        <span class="expire-info">2Days 3hrs 12mins</span>
-        <a href="return-tool.html"><button><input type="submit" value="Return" ></button></a>
-    </article>
-    <article class="user-tools">
-        <img src="" alt="">
-        <span class="tool-name">Hammer</span>
-        <span>Expires in</span>
-        <span class="expire-info">2Days 3hrs 12mins</span>
-        <a href="return-tool.html"><button><input type="submit" value="Return" ></button></a>
-    </article>
-    <article >
-      <div class="more-user-tools">
-        <span>+</span>
-      </div>
-    </article>
-  </div>
-
-  <div class="recently-viewed">
-    <span class="recently-title">Recently Viewed</span>
-    <article class="user-tools">
-        <img src="" alt="">
-        <span class="tool-name">Hammer</span>
-        <span>Available</span>
-        <span class="available-info">2Days 3hrs 12mins</span>
-    </article>
-    <article class="user-tools">
-        <img src="" alt="">
-        <span class="tool-name">Hammer</span>
-        <span>Available</span>
-        <span class="expire-info">2Days 3hrs 12mins</span>
-    </article>
-
-  </div>
-
-</main>
+  <p>© 2022 Rentool All Rights Reserved.</p>
+</footer>
 </body>
 
 </html>
