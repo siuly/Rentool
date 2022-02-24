@@ -83,13 +83,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   const locationItemElementList = document.getElementsByTagName('location-item');
   for (const locationItem of locationItemElementList) {
     locationItem.addEventListener('click', () => {
+      // Clear selected class up
       for (const locationItemEl of locationItemElementList) {
         locationItemEl.classList.remove('selected-location');
       }
+
       locationItem.classList.add('selected-location');
     });
   }
-
 
 });
 
@@ -105,6 +106,10 @@ document.getElementById('page1-btn').addEventListener('click', () => {
 
 
 document.getElementById('reservation-request-btn').addEventListener('click', () => {
+  if (selectedLocation === null) {
+    alert('Please select the location');
+    return;
+  }
 
 
   alert(`
