@@ -10,7 +10,7 @@ export const GET_PARAMS = {
   RESERVATION_ID: 'reservationId',
   RESERVATION_TOOL_INDEX: 'reservationToolIndex'
 };
-export const PATH_PAGE_TOP_DIRECTORY = `${window.location.host}Rentool/Pages`;
+export const PATH_PAGE_TOP_DIRECTORY = `/Rentool/Pages`;
 
 export const PATHS_PAGES = {
   // General
@@ -116,7 +116,7 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
  * @param {string} pagePath
  */
 export const movePageTo = (pagePath) => {
-  window.location.href = `../${pagePath}`;
+  window.location.href = `${PATH_PAGE_TOP_DIRECTORY}/${pagePath}`;
 }
 
 

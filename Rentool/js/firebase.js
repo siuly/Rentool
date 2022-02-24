@@ -239,7 +239,6 @@ export const returnTool = async (reservation, locationToReturn) => {
     console.log(`${reservationId}'s is returned, ToolId: ${toolId}'s isReserved will be false`);
     console.log(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
 
-    console.log('return complete');
     alert(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
 
     await setTimeout(movePageTo(PATHS_PAGES.RETURN_COMPLETE), 5000);
