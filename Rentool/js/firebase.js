@@ -224,21 +224,27 @@ export const updateReservationByReservationId = async (reservationId, params) =>
 export const returnTool = async (reservation, locationToReturn) => {
   const { reservationId, toolId } = reservation;
 
-  try {
-    // Change reservation data
-    updateReservationByReservationId(reservationId, { isReturned: true });
 
-    // Change tool data
-    updateTool(toolId, { isReserved: false, location: locationToReturn });
-
-  } catch (error) {
-    console.error(error);
-  }
-
+  //@ TODO: Delete
   // Mock Request
   return setTimeout((() => {
     console.log(`${reservationId}'s is returned, ToolId: ${toolId}'s isReserved will be false`);
     console.log(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
     console.log('return complete');
   }), 500);
+
+
+  try {
+    // Change reservation data
+    if (reservation.isReturned === false) {
+      updateReservationByReservationId(reservationId, { isReturned: true });
+    }
+
+    // Change tool data
+    updateToolByToolId(toolId, { isReserved: false, location: locationToReturn });
+
+  } catch (error) {
+    console.error(error);
+  }
+
 };
