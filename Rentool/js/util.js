@@ -10,7 +10,7 @@ export const GET_PARAMS = {
   RESERVATION_ID: 'reservationId',
   RESERVATION_TOOL_INDEX: 'reservationToolIndex'
 };
-export const PATH_PAGE_TOP_DIRECTORY = `/Rentool/Pages`;
+export const PATH_PAGE_TOP_DIRECTORY = `/Pages`;
 
 export const PATHS_PAGES = {
   // General
