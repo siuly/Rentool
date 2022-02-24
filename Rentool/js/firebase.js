@@ -80,11 +80,27 @@ export const getToolsByKeyword = async (keyword = '') => {
 /**
  * @description Set tool data into Tools collection, mostly for testing purposes
  * @async
- * @param {object[]} tool
+ * @param {Tool} tool
  */
 export const setToolData = async (tool) => {
   try {
-    await db.collection('Tools').add({ ...tool });
+    // await db.collection('Tools').add({ ...tool });
+    await setDataTo('Tools', tool);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * @description Set data to collection
+ * @async
+ * @param {string} collectionName
+ * @param {object} params
+ */
+const setDataTo = async (collectionName, params) => {
+
+  try {
+    await db.collection(collectionName).add({ ...params });
   } catch (error) {
     console.error(error);
   }
@@ -152,7 +168,7 @@ export const getReservationsByUserId = async (userId) => {
     const reservationsDoc = await db.collection('Reservations').where('userId', '==', userId).get();
     /**@type {Reservation[]} */
     let reservations = [];
-    reservationsDoc.forEach(doc => { reservations.push({ reservation: doc.id, ...doc.data() }); });
+    reservationsDoc.forEach(doc => { reservations.push({ reservationId: doc.id, ...doc.data() }); });
     return reservations;
   } catch (error) {
     console.error(error);
@@ -180,10 +196,19 @@ export const updateToolByToolId = async (toolId, params) => {
 
 
 
-// @TODO: addReservationData
+/**
+ * @description Set tool data into Tools collection, mostly for testing purposes
+ * @async
+ * @param {Reservation} reservation
+ */
+export const setReservationData = async (reservation) => {
+  try {
+    await setDataTo('Reservations', reservation);
 
-
-
+  } catch (error) {
+    console.error(error);
+  }
+};
 
 
 
