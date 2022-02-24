@@ -4,6 +4,10 @@ export class RentoolHeader extends HTMLElement {
   }
   connectedCallback() {
     this.render();
+    const sidemenu = document.getElementById('menu');
+    toggle.onclick = function() {
+      sidemenu.classList.toggle('active');
+    };
   }
   render() {
     const styles = `
@@ -29,118 +33,107 @@ export class RentoolHeader extends HTMLElement {
       /* Element selector  */
       rentool-header {}
 
-      header {
-        display: grid;
-        grid-template-areas:
-          "arrow heading heading menu"
-          "input input input input";
 
-        padding: 1rem;
-        background-color: var(--color-primary);
-      }
+header{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  background-color: #FAB328;
+  height: auto;  
+}
 
-      .return-icon {
-        grid-area: arrow;
-        display: grid;
-        align-items: center;
-      }
+header h1{
+  grid-column: 2;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  line-height: 20px;
+  font-size: 36px;
+}
 
-      h2 {
-        grid-area: heading;
-        text-align: center;
-        font-size: 2rem;
-      }
+.header-left {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  margin-left: 10px;
+}
 
-      .return-icon {
-        grid-area: arrow;
-        display: grid;
-        align-items: center;
-      }
 
-      header h2 {
-        grid-area: heading;
-        text-align: center;
-        font-size: 2rem;
-      }
+button{
+  border: none;
+  background-color: unset;
+}
 
-      .header-right {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: 1rem;
-      }
+button div{
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+}
 
-      .input-row {
-        width: 100%;
-        display: flex;
-        flex-flow: row nowrap;
-        align-items: center;
-        gap: 1rem;
+#menu{
+  position: absolute;
+  top: 70px;
+  height: 60%;
+  padding-top: 20px;
+  width: 50%;
+  left: -51%;
+  background-color: white;
+  transition: 0.5s;
+}
 
-        grid-area: input;
-        padding-top: 0.3rem;
-      }
+#menu.active{
+  left: 0;
+ }
 
-      .input-container {
-        flex: 1 0 30%;
-        background-color: var(--color-background);
-        border-radius: 10px;
-        padding: 0.3rem;
-        display: flex;
-        flex-flow: row nowrap;
-      }
+#menu li{
+  list-style: none;
+  color: black;
+  line-height: 2;
+  padding-left: 30px;
+  margin-right: 10px;
+  margin-top: 10px;
+  box-shadow: 0 7px 8px -7px #222;
+}
+#menu li:nth-of-type(6){
+  list-style: none;
+  color: black;
+  line-height: 2;
+  margin-right: 0;
+  margin-top: 15px;
+  box-shadow: none;
+  text-align: right;
+}
+#menu a{
+  text-decoration: none;
+  color: black;
+}
+#menu ul{
+  padding: 0;
+}
 
-      .input-container input {
-        flex: 1 0 40%;
-      }
 
-      .input-container input:focus {
-        outline: none;
-      }
 
-      .input-row .icon {
-        background-color: rgba(0, 0, 0, 0);
-        border: none;
-        outline: none;
-        color: grey;
-      }
 
-      .input-container .fa-microphone {
-        text-align: end;
-        padding-right: 1rem;
-        color: grey;
-      }
 
-      .input-row input {
-        border: none;
-        background-color: unset;
-      }
-
-      .fa-circle {
-        color: grey;
-      }
     `;
 
     this.innerHTML = `
-      <header>
-        <span class="return-icon">
-          <i class="fa-solid fa-less-than"></i>
-        </span>
-        <h2>Products</h2>
-        <div class="header-right">
-          <i class="fa-solid fa-circle"></i>
-          <i class="fas fa-bars"></i>
-        </div>
-        <div class="input-row">
-          <form action="./product-result.html" method="get" class="input-container">
-            <button class="icon"><i class="fa fa-search"></i></button>
-            <input type="text" placeholder="Search" name="keyword">
-            <i class="fa-solid fa-microphone"></i>
-          </form>
-          <i class="fa-solid fa-align-right"></i>
-        </div>
-      </header>
-
+        <header>
+          <h1>Rentool</h1>
+          <div class="header-left">
+            <button id="toggle"><i class="fas fa-bars"></i><div>MENU</div></button>
+            <nav  id="menu">
+              <ul>
+                <li><a href="">My Account</a></li>
+                <li><a href="">Tool Catalogue</a></li>
+                <li><a href="">Locations</a></li>
+                <li><a href="">About Rentool</a></li>
+                <li><a href="">Contact Us</a></li>
+                <li id="sign-status"><a href="">Sign out</a></li>
+              </ul>
+            </nav>
+          </div>
+        </header>
       <style>
         ${styles}
       </style>
