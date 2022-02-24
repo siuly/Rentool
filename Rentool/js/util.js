@@ -137,7 +137,13 @@ export const SaveUserId = (userId) => {
   window.localStorage.setItem('userId', userId);
 };
 
-
+/**
+ * @description Return user id from local storage
+ * @return {string} 
+ */
+export const readUserId = () => {
+  return window.localStorage.getItem('userId');
+};
 
 /**
  * @typedef location
@@ -152,10 +158,3 @@ export const SaveUserId = (userId) => {
  * @return {float} distance
  */
 const getNearestLocation = (locations) => {};
-
-
-
-
-//@TODO: save userId to localStorage
-//@TODO: remove userId from localStorage
-//@TODO: 
