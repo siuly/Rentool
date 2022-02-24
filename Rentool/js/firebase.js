@@ -37,13 +37,9 @@ export const signInEmailWithPassword = async (email, password) => {
       }
 
       userId && SaveUserId(userId);
-      // alert('SignIn Success');
-
-
+      alert('SignIn Success');
       // window.history.back();
-      // movePageTo(PATHS_PAGES.HOME);
-
-
+      movePageTo(PATHS_PAGES.HOME);
     })
     .catch((error) => {
       console.log('Error getting documents: ', error);
