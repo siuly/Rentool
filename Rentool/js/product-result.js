@@ -1,5 +1,5 @@
 import { ToolListItem } from './components/ToolListItem.js';
-import { getToolsByCategory, getToolsByKeyword } from './firebase.js';
+import { getToolsByCategory, getToolsByKeyword, getAllTools } from './firebase.js';
 import { getUrlParams, GET_PARAMS } from './util.js';
 
 
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (tools === undefined) {
     // Gets all data
-    tools = await getToolsByKeyword('');
+    tools = await getAllTools();
   }
 
   const toolListEl = document.getElementById('tool-list');
