@@ -59,17 +59,22 @@ export const getToolsByCategory = async (category = '') => {
  * @return {object[]}
  */
 export const getToolsByKeyword = async (keyword = '') => {
-  const toolsDoc = await db.collection('Tools').get();
   let tools = [];
-  toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
+  try {
+    const toolsDoc = await db.collection('Tools').get();
+    toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
 
-  // Return all data when the keyword is empty
-  if (keyword === '') {
+    // Return all data when the keyword is empty
+    if (keyword === '') {
+      return tools;
+    }
+
+    tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
     return tools;
-  }
 
-  tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
-  return tools;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -78,7 +83,11 @@ export const getToolsByKeyword = async (keyword = '') => {
  * @param {object[]} tool
  */
 export const setToolData = async (tool) => {
-  const toolsDoc = await db.collection('Tools').add({ ...tool });
+  try {
+    await db.collection('Tools').add({ ...tool });
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -90,11 +99,15 @@ export const setToolData = async (tool) => {
 export const getToolsByReservationToolIndex = async (reservationToolIndex) => {
   if (!reservationToolIndex) { return; }
 
-  const toolsDoc = await db.collection('Tools').where('reservationToolIndex', '==', reservationToolIndex).get();
   /**@type {Tool[]} */
   let tools = [];
-  toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
-  return tools;
+  try {
+    const toolsDoc = await db.collection('Tools').where('reservationToolIndex', '==', reservationToolIndex).get();
+    toolsDoc.forEach(doc => { tools.push({ toolId: doc.id, ...doc.data() }); });
+    return tools;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -106,10 +119,16 @@ export const getToolsByReservationToolIndex = async (reservationToolIndex) => {
 export const returnTool = async (reservation, locationToReturn) => {
   const { reservationId, toolId } = reservation;
 
-  //@ TODO: change reservation data's isReturned by reservationId
+  try {
 
-  // Change tool data
-  updateTool(toolId, { isReserved: false, location: locationToReturn });
+    //@ TODO: change reservation data's isReturned by reservationId
+
+    // Change tool data
+    updateTool(toolId, { isReserved: false, location: locationToReturn });
+
+  } catch (error) {
+    console.error(error);
+  }
 
   // Mock Request
   return setTimeout((() => {
@@ -129,11 +148,15 @@ export const returnTool = async (reservation, locationToReturn) => {
 export const getReservationsByUserId = async (userId) => {
   if (!userId) { return; }
 
-  const reservationsDoc = await db.collection('Reservations').where('userId', '==', userId).get();
-  /**@type {Reservation[]} */
-  let reservations = [];
-  reservationsDoc.forEach(doc => { reservations.push({ reservation: doc.id, ...doc.data() }); });
-  return reservations;
+  try {
+    const reservationsDoc = await db.collection('Reservations').where('userId', '==', userId).get();
+    /**@type {Reservation[]} */
+    let reservations = [];
+    reservationsDoc.forEach(doc => { reservations.push({ reservation: doc.id, ...doc.data() }); });
+    return reservations;
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 /**
@@ -145,7 +168,11 @@ export const getReservationsByUserId = async (userId) => {
 export const updateToolByToolId = async (toolId, params) => {
   if (!params) { return; }
 
-  await db.collection('Tools').doc(toolId).update(params);
+  try {
+    await db.collection('Tools').doc(toolId).update(params);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
 
