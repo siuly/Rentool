@@ -9,6 +9,8 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
 
+  <!-- <link rel="stylesheet" href="../../Style/common.css"> -->
+  <link rel="stylesheet" href="../../Style/reset.min.css">
 
   <!-- CSS for loading animation -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -19,8 +21,30 @@
 </head>
 
 <body>
-  <label for="toolId">toolId</label>
-  <input type="text" name="toolId" id="toolId">
+<rentool-header></rentool-header>
+  <!-- <header>
+    <span class="return-icon">
+      <i class="fa-solid fa-less-than"></i>
+    </span>
+    <h2>Products</h2>
+    <div class="header-right">
+      <i class="fa-solid fa-circle"></i>
+      <i class="fas fa-bars"></i>
+    </div>
+    <div class="input-row">
+      <form action="./product-result.html" method="get" class="input-container">
+        <button class="icon"><i class="fa fa-search"></i></button>
+        <input type="text" placeholder="Search" name="keyword">
+        <i class="fa-solid fa-microphone"></i>
+      </form>
+      <i class="fa-solid fa-align-right"></i>
+    </div>
+  </header> -->
+
+
+
+  <!-- <label for="toolId">toolId</label>
+  <input type="text" name="toolId" id="toolId"> -->
   <label for="toolName">toolName</label>
   <input type="text" name="toolName" id="toolName">
   <h3>Location</h3>
@@ -53,64 +77,84 @@
   <input type="submit" value="submit" id="submit">
 
   <script src="../../js/firebase.js" type="module" defer></script>
+  <script src="../../js/components/RentoolHeader.js" type="module" defer></script>
 </body>
 
 <script type="module">
   import { Location } from '../../js/domain/Location.js'
   import { Tool } from '../../js/domain/Tool.js'
-  import {setToolData} from '../../js/firebase.js'
+  import { Reservation } from '../../js/domain/Reservation.js'
+  import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData} from '../../js/firebase.js'
 
 
+document.addEventListener('DOMContentLoaded', async () => {
+//  console.log( await getToolsByReservationToolIndex('driver-brand-small'));
+// console.log( await getReservationsByUserId('test@mail.com'));
 
+// console.log( await getReservationsByUserId('test@mail.com'));
 
+// await updateToolByToolId('1IDJzk33zxgafzfegU0q', {size : 'small'});
 
+// const reservation =
+//   {
+//   duration: {
+//     endDate:"2022-02-28 13:30:00",
+//     startDate:"2022-02-20 13:30:00"
+//   },
+//   isReturned: true,
+//   reservationToolIndex: 'driver-brand-small',
+//   toolId: 'WEwfy9lVcUk6lXlJtYHj',
+//   userId: 'test@mail.com',
+// };
 
-
-document.getElementById('submit').addEventListener('click', async () => {
-
-const toolId = document.getElementById('toolId').value;
-const toolName = document.getElementById('toolName').value;
-const lockerName = document.getElementById('lockerName').value;
-const address = document.getElementById('address').value;
-const latitude = document.getElementById('latitude').value;
-const longuitude = document.getElementById('longuitude').value;
-const hourlyPrice = document.getElementById('hourlyPrice').value;
-const dailyPrice = document.getElementById('dailyPrice').value;
-const weeklyPrice = document.getElementById('weeklyPrice').value;
-const category = document.getElementById('category').value;
-const size = document.getElementById('size').value;
-const brand = document.getElementById('brand').value;
-const imageUrl = document.getElementById('imageUrl').value;
-const reservationToolIndex = `${toolName}-${brand}-${size}`;
-
-const tool = new Tool({
-  toolId,
-  toolName,
-  location:  {
-    lockerName,
-    address,
-    latitude,
-    longuitude,
-  },
-  category,
-  imageUrl,
-  reservationToolIndex,
-  size,
-  isReserved: false,
-  brand,
-  prices: {
-    hourlyPrice,
-    dailyPrice,
-    weeklyPrice,
-  }
-  });
-
-
-
-  console.log(tool);
-  setToolData(tool);
+// console.log('reservation: ', reservation);
+// setReservationData(reservation);
 
 });
+
+document.getElementById('submit').addEventListener('click', async () => {
+  // const toolId = document.getElementById('toolId').value;
+  const toolName = document.getElementById('toolName').value;
+  const lockerName = document.getElementById('lockerName').value;
+  const address = document.getElementById('address').value;
+  const latitude = document.getElementById('latitude').value;
+  const longuitude = document.getElementById('longuitude').value;
+  const hourlyPrice = document.getElementById('hourlyPrice').value;
+  const dailyPrice = document.getElementById('dailyPrice').value;
+  const weeklyPrice = document.getElementById('weeklyPrice').value;
+  const category = document.getElementById('category').value;
+  const size = document.getElementById('size').value;
+  const brand = document.getElementById('brand').value;
+  const imageUrl = document.getElementById('imageUrl').value;
+  const reservationToolIndex = `${toolName}-${brand}-${size}`;
+
+  const tool = new Tool({
+    // toolId,
+    toolName,
+    location:  {
+      lockerName,
+      address,
+      latitude,
+      longuitude,
+    },
+    category,
+    imageUrl,
+    reservationToolIndex,
+    size,
+    isReserved: false,
+    brand,
+    prices: {
+      hourlyPrice,
+      dailyPrice,
+      weeklyPrice,
+    }
+    });
+
+    console.log(tool);
+    setToolData(tool);
+});
+
+
 
 
 </script>
