@@ -10,3 +10,8 @@ input {
 .shown {
 	border: 1px solid red;
 }
+
+
+.selected-location .location-item {
+	border: 2px solid red;
+}

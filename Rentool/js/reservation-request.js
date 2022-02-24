@@ -78,6 +78,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     locationContainerEl.appendChild(locationItem);
   }
 
+
+  // Set click event
+  const locationItemElementList = document.getElementsByTagName('location-item');
+  for (const locationItem of locationItemElementList) {
+    locationItem.addEventListener('click', () => {
+      for (const locationItemEl of locationItemElementList) {
+        locationItemEl.classList.remove('selected-location');
+      }
+      locationItem.classList.add('selected-location');
+    });
+  }
+
+
 });
 
 
