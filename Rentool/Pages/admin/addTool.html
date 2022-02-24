@@ -84,7 +84,9 @@
   import { Location } from '../../js/domain/Location.js'
   import { Tool } from '../../js/domain/Tool.js'
   import { Reservation } from '../../js/domain/Reservation.js'
-  import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData} from '../../js/firebase.js'
+  import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData, signInEmailWithPassword} from '../../js/firebase.js'
+
+  signInEmailWithPassword('test@test.com', 'qwertyuiop');
 
 
 document.addEventListener('DOMContentLoaded', async () => {
