@@ -10,7 +10,7 @@ export const GET_PARAMS = {
   RESERVATION_ID: 'reservationId',
   RESERVATION_TOOL_INDEX: 'reservationToolIndex'
 };
-export const PATH_PAGE_TOP_DIRECTORY = `../Pages`;
+export const PATH_PAGE_TOP_DIRECTORY = `${window.location.host}Rentool/Pages`;
 
 export const PATHS_PAGES = {
   // General
@@ -111,10 +111,31 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
   }
 };
 
+/**
+ * @description move the page to the designated page
+ * @param {string} pagePath
+ */
 export const movePageTo = (pagePath) => {
-  window.location.href = `${PATH_PAGE_TOP_DIRECTORY}/${pagePath}`;
+  window.location.href = `../${pagePath}`;
 }
 
+
+/**
+ * @description Sign out and move the page to the Home page.
+ * @param {string} pagePath
+ */
+export const SignOut = () => {
+  window.localStorage.clear();
+  movePageTo(PATHS_PAGES.HOME);
+}
+
+/**
+ * @description Set user id into local storage
+ * @param {string} userId
+ */
+export const SaveUserId = (userId) => {
+  window.localStorage.setItem('userId', userId);
+};
 
 
 
