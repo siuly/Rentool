@@ -39,7 +39,7 @@ class User {
 const app = firebase.initializeApp(firebaseConfig);
 
 function homePage(){
-  window.location.href = "../Pages/home.html";
+  window.location.href = '../Pages/home.html';
 }
 
 function comparepswd() {
