@@ -11,4 +11,5 @@
 	"html.format.enable": true,
 	"html.format.wrapAttributes": "auto",
 	"liveServer.settings.port": 5501,
+	"liveServer.settings.root": "/Rentool",
 }

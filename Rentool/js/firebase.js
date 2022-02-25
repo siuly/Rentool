@@ -1,7 +1,7 @@
 /// <reference path="../../firebase.d.ts" />
 import { Reservation } from './domain/Reservation.js';
 import { Location } from './domain/Location.js';
-import { PATHS_PAGES, movePageTo } from './util.js';
+import { PATHS_PAGES, movePageTo, SaveUserId } from './util.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
@@ -24,14 +24,22 @@ let db = firebase.default.firestore();
  * @returns {Promise}
  */
 export const signInEmailWithPassword = async (email, password) => {
+  let userId = null;
   db.collection('Users')
     .where('email', '==', email).where('pswd', '==', password).get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
         console.log(doc.id, ' => ', doc.data());
+        userId = doc.id;
       });
-      if (querySnapshot.size > 0) {
-        alert('SignIn Success');
+      if (querySnapshot.size === 0) {
+        alert('SignIn failed');
+        return;
       }
+
+      userId && SaveUserId(userId);
+      alert('SignIn Success');
+      // window.history.back();
+      movePageTo(PATHS_PAGES.HOME);
     })
     .catch((error) => {
       console.log('Error getting documents: ', error);
@@ -231,7 +239,6 @@ export const returnTool = async (reservation, locationToReturn) => {
     console.log(`${reservationId}'s is returned, ToolId: ${toolId}'s isReserved will be false`);
     console.log(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
 
-    console.log('return complete');
     alert(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
 
     await setTimeout(movePageTo(PATHS_PAGES.RETURN_COMPLETE), 5000);

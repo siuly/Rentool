@@ -31,6 +31,8 @@ const sampleLocationData = [{
 }];
 
 
+
+
 document.addEventListener('DOMContentLoaded', async () => {
 
   /**@type {Location | null} */
@@ -45,7 +47,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const locationContainerEl = document.getElementById('locationContainer');
 
-
   // Generate locker section
   for (const location of locations) {
     const locationItem = new LocationItem(location);
@@ -54,6 +55,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log('returnLocation: ', returnLocation);
     });
     locationContainerEl.appendChild(locationItem);
+  }
+
+  // Set click event
+  const locationItemElementList = document.getElementsByTagName('location-item');
+  for (const locationItem of locationItemElementList) {
+    locationItem.addEventListener('click', () => {
+      for (const locationItemEl of locationItemElementList) {
+        locationItemEl.classList.remove('selected-location');
+      }
+      locationItem.classList.add('selected-location');
+    });
   }
 
 
