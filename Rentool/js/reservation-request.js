@@ -39,14 +39,31 @@ const sampleToolData = [{
 }];
 
 
+let sdate = document.getElementById('start-date');
+let stime = document.getElementById('start-time');
+let edate = document.getElementById('end-date');
+let etime = document.getElementById('end-time');
+
+
 document.getElementById('page1-btn').addEventListener('click', () => {
   console.log('Click');
   document.getElementById('page1').classList.remove('shown');
   document.getElementById('page2').classList.add('shown');
+  console.log(etime.value);
+  console.log(stime.value);
+  let rent = etime.value - stime.value;
+    console.log(rent);
+
+  if (sdate.value && edate.value == null){
+    rent = etime.value-stime.value;
+    console.log(rent);
+  }
 
   // Shown class will be set {display: block}, while others set {display: none}
 
 });
+
+
 
 
 

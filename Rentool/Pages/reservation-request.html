@@ -23,32 +23,33 @@
 <body id="reservation-request">
   <div class="wrapper">
     <header>
-      <span class="return-icon">
-        <i class="fa-solid fa-less-than"></i>
-      </span>
-      <h2>Products</h2>
-      <div class="header-right">
-        <i class="fa-solid fa-circle"></i>
-        <i class="fas fa-bars"></i>
+      <h1>Rentool</h1>
+      <div class="header-left">
+        <button id="toggle"><i class="fas fa-bars"></i><div>MENU</div></button>
+        <nav  id="menu">
+          <ul>
+            <li><a href="">My Account</a></li>
+            <li><a href="catalogue.html">Tool Catalogue</a></li>
+            <li><a href="">Locations</a></li>
+            <li><a href="">About Rentool</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li id="sign-status"><a href="">Sign out</a></li>
+          </ul>
+        </nav>
       </div>
-      <div class="input-row">
-        <form action="./product-result.html" method="get" class="input-container">
-          <button class="icon"><i class="fa fa-search"></i></button>
-          <input type="text" placeholder="Search" name="keyword">
-          <i class="fa-solid fa-microphone"></i>
-        </form>
-        <i class="fa-solid fa-align-right"></i>
-      </div>
+    
     </header>
 
     <main>
       <div id="page1" class="page shown">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
+
+        <input type="date" name="start-date" id="start-date">
+        <input type="time" name="start-time" id="start-time">
+        <input type="date" name="end-date" id="end-date">
+        <input type="time" name="end-time" id="end-time">
           <button class="page-btn" id="page1-btn">Button</button>
       </div>
+
       <div id="page2"  class="page">
         <input type="text" name="" id="">
         <input type="text" name="" id="">
