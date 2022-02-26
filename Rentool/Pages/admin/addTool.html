@@ -102,19 +102,21 @@
   <script src="../../js/common.js" type="module" defer></script>
 </body>
 
-<script type="module">
+<script type="module" defer>
   import { Location } from '../../js/domain/Location.js'
   import { Tool } from '../../js/domain/Tool.js'
   import { Reservation } from '../../js/domain/Reservation.js'
+  import {getDistanceFromUserLocation, getNearestLocation} from '../../js/util.js'
   import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData, signInEmailWithPassword, getAllLocations} from '../../js/firebase.js'
 
   // signInEmailWithPassword('test@test.com', 'qwertyuiop');
 
 let locations;
 document.addEventListener('DOMContentLoaded', async () => {
-  locations =await  getAllLocations();
-  console.log('locations: ', locations);
+  locations =await getAllLocations();
 
+  const nearestLocation = await getNearestLocation(locations);
+  console.log('nearestLocation: ', nearestLocation);
 });
 
 document.getElementById('submit').addEventListener('click', async () => {
@@ -162,7 +164,6 @@ document.getElementById('submit').addEventListener('click', async () => {
     console.log(tool);
     // setToolData(tool);
 });
-
 
 
 

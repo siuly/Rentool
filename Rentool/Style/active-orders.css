@@ -1,0 +1,15 @@
+main {
+	width: 80%;
+	display: grid;
+	justify-items: center;
+	align-items: center;
+}
+
+.active-container {
+	margin: 3rem;
+}
+
+.order {
+	padding: 3rem;
+	border: 1px solid grey;
+}

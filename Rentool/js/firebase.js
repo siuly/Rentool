@@ -278,3 +278,25 @@ export const getReservationDataByReservationId = async (reservationId) => {
     console.error(error);
   }
 };
+
+
+/**
+ * @description Get tool information by toolId
+ * @async
+ * @param {string} toolId
+ * @return {Tool | null}
+ */
+export const getToolByToolId = async (toolId) => {
+  if (!toolId) { return; }
+
+  try {
+    const toolDoc = await db.collection('Tools').doc(toolId).get();
+    if (toolDoc.data() === undefined) {
+      return null;
+    }
+
+    return { ...toolDoc.data(), toolId: toolDoc.id };;
+  } catch (error) {
+    console.error(error);
+  }
+};
