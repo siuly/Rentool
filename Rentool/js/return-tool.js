@@ -1,50 +1,31 @@
 import { Location } from './domain/Location.js';
-import { getUrlParams, GET_PARAMS } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
-import { returnTool } from './firebase.js';
-
-
-const sampleReservationData = {
-  reservationId: '1234556',
-  userId: '9sFhSueVxw3w8fniYAlE',
-  toolId: 'WEwfy9lVcUk6lXlJtYHj',
-  duration: {
-    startDate: '2022-02-20 13:30:00',
-    endDate: '2022-02-28 13:30:00'
-  },
-  isReturned: false,
-  reservationToolIndex: 'driver-brand-small',
-};
-
-const sampleLocationData = [{
-  locationId: '123456',
-  lockerName: 'Locker Name 1 ',
-  address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
-  latitude: '49.225518864967654',
-  longitude: '123.10776583584949',
-}, {
-  locationId: 'asdfgh',
-  lockerName: 'Locker Name 2',
-  address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
-  latitude: '49.1967',
-  longitude: '123.1815',
-}];
+import { getAllLocations, getReservationDataByReservationId, returnTool } from './firebase.js';
+import { Reservation } from './domain/Reservation.js';
 
 
 
+
+let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
+
+//@TODO: delete test code
+reservationId = reservationId || 'OQqN7llSDJbEjMDX10VZ';
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+  /**@type {Reservation} */
+  const reservationData = await getReservationDataByReservationId(reservationId);
+  /**@type {Location[]} */
+  const locations = await getAllLocations();
+
+
 
   /**@type {Location | null} */
   let returnLocation = null;
 
-  const reservationData = sampleReservationData;
-
-  /**@type {Location[]} */
-  const locations = sampleLocationData;
 
   // Write your code below-----------------------------------------
-
   const locationContainerEl = document.getElementById('locationContainer');
 
   // Generate locker section
@@ -77,11 +58,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
     returnRequestBtnEl.disabled = true;
-    returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    console.log('returnResult: ', returnResult);
+    if (returnResult === true) {
+      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+    }
   });
 });
-
-
-
-
-console.log(getUrlParams()[GET_PARAMS.RESERVATION_ID]);

@@ -115,8 +115,8 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
  * @description move the page to the designated page
  * @param {string} pagePath
  */
-export const movePageTo = (pagePath) => {
-  window.location.href = `${PATH_PAGE_TOP_DIRECTORY}/${pagePath}`;
+export const movePageTo = (pagePath, urlParameter = '') => {
+  window.location.href = `${PATH_PAGE_TOP_DIRECTORY}/${pagePath}${urlParameter}`;
 }
 
 
