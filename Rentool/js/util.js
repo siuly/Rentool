@@ -95,21 +95,31 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 
 /**
  * @description Get distance to the location of the tool (meter)
- * @param {float} targetLatitude
- * @param {float} targetLongitude
+ * @param {Location } location
  * @return {float} distance
+ * @async
  */
-export const getDistanceFromUserLocation = async (targetLatitude, targetLongitude) => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition((position) => {
-      const userLatitude = position.coords.latitude;
-      const userLongitude = position.coords.longitude;
-      const dist = distance(userLatitude, userLongitude, targetLatitude, targetLongitude, 'm');
+export const getDistanceFromUserLocation =
+  async ({ latitude: targetLatitude, longitude: targetLongitude }) => {
+    if (!navigator.geolocation) {
+      console.error('The device can not use location');
+      return;
+    }
 
-      return dist;
-    }, (error) => { console.error(error) });
-  }
-};
+    const position = await new Promise((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(resolve, reject);
+    });
+
+    const userLatitude = position.coords.latitude;
+    const userLongitude = position.coords.longitude;
+    return distance(
+      /* User's location */
+      Number.parseFloat(userLatitude), Number.parseFloat(userLongitude),
+      /* Locker's location */
+      Number.parseFloat(targetLatitude), Number.parseFloat(targetLongitude),
+      'K');
+  };
+
 
 /**
  * @description move the page to the designated page
@@ -139,7 +149,7 @@ export const SaveUserId = (userId) => {
 
 /**
  * @description Return user id from local storage
- * @return {string} 
+ * @return {string}
  */
 export const readUserId = () => {
   return window.localStorage.getItem('userId');
@@ -151,10 +161,20 @@ export const readUserId = () => {
  * @property {float} longitude
  */
 
-//@ TODO:
 /**
  * @description Get Location
  * @param {location[]} locations
  * @return {float} distance
  */
-const getNearestLocation = (locations) => {};
+export const getNearestLocation = async (locations) => {
+  /** Set distance start */
+  let distanceCallbacks = [];
+  for (let location of locations) {
+    distanceCallbacks.push(getDistanceFromUserLocation(location));
+  }
+  const distances = await Promise.all(distanceCallbacks);
+  const locationsWithDistance = locations.map((location, idx) => ({ distance: Number.parseFloat(distances[idx]), ...location, }));
+  /** Set distance end */
+
+  return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
+};
