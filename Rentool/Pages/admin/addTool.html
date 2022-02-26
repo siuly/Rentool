@@ -21,66 +21,75 @@
 </head>
 
 <body>
+
   <rentool-header></rentool-header>
-  <!-- <header>
-    <span class="return-icon">
-      <i class="fa-solid fa-less-than"></i>
-    </span>
-    <h2>Products</h2>
-    <div class="header-right">
-      <i class="fa-solid fa-circle"></i>
-      <i class="fas fa-bars"></i>
-    </div>
-    <div class="input-row">
-      <form action="./product-result.html" method="get" class="input-container">
-        <button class="icon"><i class="fa fa-search"></i></button>
-        <input type="text" placeholder="Search" name="keyword">
-        <i class="fa-solid fa-microphone"></i>
-      </form>
-      <i class="fa-solid fa-align-right"></i>
-    </div>
-  </header> -->
+  <main>
 
 
-
-  <!-- <label for="toolId">toolId</label>
+    <!-- <label for="toolId">toolId</label>
   <input type="text" name="toolId" id="toolId"> -->
-  <label for="toolName">toolName</label>
-  <input type="text" name="toolName" id="toolName">
-  <h3>Location</h3>
-  <label for="lockerName">lockerName</label>
-  <input type="text" name="lockerName" id="lockerName">
-  <label for="address">address</label>
-  <input type="text" name="address" id="address">
-  <label for="latitude">latitude</label>
-  <input type="text" name="latitude" id="latitude">
-  <label for="longuitude">longuitude</label>
-  <input type="text" name="longuitude" id="longuitude">
-  <h3>Prices</h3>
-  <label for="hourlyPrice">hourlyPrice</label>
-  <input type="text" name="hourlyPrice" id="hourlyPrice">
-  <label for="dailyPrice">dailyPrice</label>
-  <input type="text" name="dailyPrice" id="dailyPrice">
-  <label for="weeklyPrice">weeklyPrice</label>
-  <input type="text" name="weeklyPrice" id="weeklyPrice">
-  <label for="category">category</label>
-  <input type="text" name="category" id="category">
-  <label for="size">size</label>
-  <input type="text" name="size" id="size">
+    <label for="toolName">toolName</label>
+    <input type="text" name="toolName" id="toolName">
+    <label for="description">Description</label>
+    <input type="text" name="description" id="description">
+    <h3>Location</h3>
+    <label for="lockerName">lockerName</label>
+    <input type="text" name="lockerName" id="lockerName">
+    <label for="address">address</label>
+    <input type="text" name="address" id="address">
+    <label for="latitude">latitude</label>
+    <input type="text" name="latitude" id="latitude">
+    <label for="longuitude">longuitude</label>
+    <input type="text" name="longuitude" id="longuitude">
+    <h3>Prices</h3>
+    <label for="hourlyPrice">hourlyPrice</label>
+    <input type="text" name="hourlyPrice" id="hourlyPrice">
+    <label for="dailyPrice">dailyPrice</label>
+    <input type="text" name="dailyPrice" id="dailyPrice">
+    <label for="weeklyPrice">weeklyPrice</label>
+    <input type="text" name="weeklyPrice" id="weeklyPrice">
+    <label for="category">category</label>
+    <!-- <input type="text" name="category" id="category"> -->
 
-  <label for="brand">brand</label>
-  <input type="text" name="brand" id="brand">
 
-  <label for="imageUrl">imageUrl</label>
-  <input type="text" name="imageUrl" id="imageUrl">
+    <select name="category" id="category">
+      <option value="CleaningandFloorcare">Cleaning and Floorcare</option>
+      <option value="DrillingandBreaking">Drilling and Breaking</option>
+      <option value="FansandHeater">Fans and Heater</option>
+      <option value="LaddersandScaffold">Ladders and Scaffold</option>
+      <option value="LiftingandMoving">Lifting and Moving</option>
+      <option value="LightingandElectrical">Lighting & Electrical</option>
+      <option value="PaintingandDecorating">Painting and Decorating</option>
+      <option value="PumpsandPlumbing">Pumps and Plumbing</option>
+      <option value="Others">Others</option>
+      <option value=""></option>
+      <option value=""></option>
 
-  <input type="submit" value="submit" id="submit">
+    </select>
 
+
+    <label for="size">size</label>
+    <!-- <input type="text" name="size" id="size"> -->
+
+    <select name="size" id="size">
+      <option value="small">small</option>
+      <option value="medium ">medium </option>
+      <option value="large">large</option>
+    </select>
+
+    <label for="brand">brand</label>
+    <input type="text" name="brand" id="brand">
+
+    <label for="imageUrl">imageUrl</label>
+    <input type="text" name="imageUrl" id="imageUrl">
+
+    <input type="submit" value="submit" id="submit">
+  </main>
   <rentool-footer></rentool-footer>
 
   <script src="../../js/firebase.js" type="module" defer></script>
-  <!-- <script src="../../js/components/RentoolHeader.js" type="module" defer></script>
-  <script src="../../js/components/RentoolFooter.js" type="module" defer></script> -->
+  <!-- <script src="../../js/components/RentoolHeader.js" type="module" defer></script> -->
+  <!-- <script src="../../js/components/RentoolFooter.js" type="module" defer></script> -->
   <script src="../../js/common.js" type="module" defer></script>
 </body>
 
@@ -133,9 +142,10 @@ document.getElementById('submit').addEventListener('click', async () => {
   const brand = document.getElementById('brand').value;
   const imageUrl = document.getElementById('imageUrl').value;
   const reservationToolIndex = `${toolName}-${brand}-${size}`;
+  const description = document.getElementById('description').value
 
-  const tool = new Tool({
-    // toolId,
+  const tool = {
+    description,
     toolName,
     location:  {
       lockerName,
@@ -154,7 +164,7 @@ document.getElementById('submit').addEventListener('click', async () => {
       dailyPrice,
       weeklyPrice,
     }
-    });
+    };
 
     console.log(tool);
     setToolData(tool);
@@ -170,6 +180,12 @@ document.getElementById('submit').addEventListener('click', async () => {
   input,
   label {
     display: block;
+    padding-top: .2rem;
+  }
+
+  main {
+    margin-left: 3rem;
+    padding: 1rem;
   }
 </style>
 
