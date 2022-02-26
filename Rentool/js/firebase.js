@@ -259,3 +259,21 @@ export const returnTool = async (reservation, locationToReturn) => {
     console.error(error);
   }
 };
+
+
+/**
+ * @description Get all Location information
+ * @async
+ * @return {Location[]}
+ */
+ export const getAllLocations = async () => {
+  let locations = [];
+  try {
+    const locationsDoc = await db.collection('Locations').get();
+    locationsDoc.forEach(doc => { locations.push({ locationId: doc.id, ...doc.data() }); });
+    return locations;
+
+  } catch (error) {
+    console.error(error);
+  }
+};
