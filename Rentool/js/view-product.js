@@ -49,6 +49,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Write your code below-----------------------------------------
+const productChoosen = sampleToolData[0];
+// load picture
+  const productImage = document.querySelector('.product-image img');
+  productImage.setAttribute('src',`${productChoosen.imageUrl}`);
+// load alt atribute
+  productImage.setAttribute('alt',`${productChoosen.toolName}`);
+
+ const Description = document.querySelector('.product-description');
+ const ProductDescription = document.createElement('p');
+ 
+ 
+
+
+
 
 
 
