@@ -119,3 +119,17 @@ header h2 {
 .fa-circle {
 	color: grey;
 }
+
+.clickable {
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+	transition: all 0.1s;
+	transform: translateY(0px);
+}
+.clickable:hover {
+	transform: translateY(-2px);
+	box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.4);
+}
+.clickable:active {
+	transform: translateY(-1px);
+	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+}

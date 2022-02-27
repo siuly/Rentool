@@ -12,17 +12,8 @@
 .category-item {
 	width: fit-content;
 	border: 1px solid grey;
-	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
-	transition: all 0.1s;
 }
-.category-item:hover {
-	transform: translateY(-2px);
-	box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.4);
-}
-.category-item:active {
-	transform: translateY(-1px);
-	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
-}
+
 .category-link {
 	display: grid;
 	grid-template-columns: 1fr;
