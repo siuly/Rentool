@@ -1,3 +1,4 @@
+
 import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
@@ -44,6 +45,22 @@ const sampleToolData = [{
   size: 'small',
 }];
 
+console.log(sampleToolData());
+
+
+let sdate = document.getElementById('start-date');
+let stime = document.getElementById('start-time');
+let edate = document.getElementById('end-date');
+let etime = document.getElementById('end-time');
+let tname = document.getElementById('tool-name');
+
+// tname.innerHTML = sampleToolData.toolName;
+console.log(sampleToolData.toolName);
+
+if (sdate.value && edate.value == null){
+  rent = etime.value-stime.value;
+  console.log(rent);
+}
 
 let reservationRequestData = {
   toolId: '',
@@ -118,6 +135,8 @@ document.getElementById('reservation-request-btn').addEventListener('click', () 
   Selected Location: ${selectedLocation.lockerName}
   `);
 });
+
+
 
 
 
