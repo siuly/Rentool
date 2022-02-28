@@ -22,7 +22,7 @@ const sampleToolData = [{
   isReserved: true,
 }, {
   toolId: 'asdfghjkl',
-  toolName: 'driver2',
+  toolName: 'driver',
   description: 'This is a sample data for showing description of the tool users want to reserve@@@@@@@@@',
   reservationToolIndex: 'driver-brand-small',
   brand: 'brand',
