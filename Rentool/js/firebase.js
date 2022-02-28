@@ -300,3 +300,20 @@ export const getToolByToolId = async (toolId) => {
     console.error(error);
   }
 };
+
+/**
+ * @description Reservation request
+ * @async
+ * @param {Reservation} reservationRequest
+ * @returns {boolean} the result of the database interaction
+ */
+export const reservationRequest = async (reservationRequest) => {
+  try {
+    await setReservationData(reservationRequest);
+    await updateToolByToolId(reservationRequest.toolId, { isReserved: true });
+    return true;
+  } catch (error) {
+    console.log('error: ', error);
+    return false;
+  }
+};
