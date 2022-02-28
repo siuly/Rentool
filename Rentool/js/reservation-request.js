@@ -1,3 +1,4 @@
+
 import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
@@ -44,13 +45,23 @@ const sampleToolData = [{
   size: 'small',
 }];
 
+console.log(sampleToolData());
 
-<<<<<<< HEAD
+
 let sdate = document.getElementById('start-date');
 let stime = document.getElementById('start-time');
 let edate = document.getElementById('end-date');
 let etime = document.getElementById('end-time');
-=======
+let tname = document.getElementById('tool-name');
+
+// tname.innerHTML = sampleToolData.toolName;
+console.log(sampleToolData.toolName);
+
+if (sdate.value && edate.value == null){
+  rent = etime.value-stime.value;
+  console.log(rent);
+}
+
 let reservationRequestData = {
   toolId: '',
   duration: {
@@ -99,22 +110,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
 });
->>>>>>> 8715c2f491e9332ceaef713d38458c0ef0073177
 
 
 document.getElementById('page1-btn').addEventListener('click', () => {
   console.log('Click');
   document.getElementById('page1').classList.remove('shown');
   document.getElementById('page2').classList.add('shown');
-  console.log(etime.value);
-  console.log(stime.value);
-  let rent = etime.value - stime.value;
-    console.log(rent);
-
-  if (sdate.value && edate.value == null){
-    rent = etime.value-stime.value;
-    console.log(rent);
-  }
 
   // Shown class will be set {display: block}, while others set {display: none}
 
