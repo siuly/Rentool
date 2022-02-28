@@ -165,7 +165,10 @@ export const getReservationsByUserId = async (userId) => {
   if (!userId) { return; }
 
   try {
-    const reservationsDoc = await db.collection('Reservations').where('userId', '==', userId).get();
+    const reservationsDoc = await db.collection('Reservations')
+      .where('userId', '==', userId)
+      .where('isReturned', '==', false)
+      .get();
     /**@type {Reservation[]} */
     let reservations = [];
     reservationsDoc.forEach(doc => { reservations.push({ reservationId: doc.id, ...doc.data() }); });
@@ -235,11 +238,11 @@ export const returnTool = async (reservation, locationToReturn) => {
   try {
     // Change reservation data
     if (reservation.isReturned === false) {
-      updateReservationByReservationId(reservationId, { isReturned: true });
+      await updateReservationByReservationId(reservationId, { isReturned: true });
     }
 
     // Change tool data
-    updateToolByToolId(toolId, { isReserved: false, location: locationToReturn });
+    await updateToolByToolId(toolId, { isReserved: false, location: locationToReturn });
     return true;
   } catch (error) {
     console.error(error);
