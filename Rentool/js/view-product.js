@@ -1,3 +1,8 @@
+import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS } from './util.js';
+
+let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
+
+
 // The differences of the two data are 'toolId' and 'location'
 const sampleToolData = [{
   toolId: '12345678',
@@ -49,21 +54,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Write your code below-----------------------------------------
-const productChoosen = sampleToolData[0];
-// load picture
+  const productChoosen = sampleToolData[0];
+  // load picture
   const productImage = document.querySelector('.product-image img');
-  productImage.setAttribute('src',`${productChoosen.imageUrl}`);
-// load alt atribute
-  productImage.setAttribute('alt',`${productChoosen.toolName}`);
+  productImage.setAttribute('src', `${productChoosen.imageUrl}`);
+  // load alt atribute
+  productImage.setAttribute('alt', `${productChoosen.toolName}`);
 
- const Description = document.querySelector('.product-description');
- const ProductDescription = document.createElement('p');
- 
- 
+  const Description = document.querySelector('.product-description');
+  const ProductDescription = document.createElement('p');
 
 
 
 
 
 
+
+
+  document.getElementById('view-product-submit-btn').addEventListener('click', () => {
+    movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+  });
 });

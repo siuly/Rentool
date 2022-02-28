@@ -21,6 +21,7 @@ export const PATHS_PAGES = {
 
   // Reservation
   PRODUCT_RESULT: 'product-result.html',
+  RESERVATION_REQUEST: 'reservation-request.html',
 
   // Return
   RETURN_TOOL: 'return-tool.html',
