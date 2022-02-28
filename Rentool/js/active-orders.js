@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     /**@type {HTMLDivElement} */
     const returnItemEl = document.createElement('div');
-    returnItemEl.className = "order";
+    returnItemEl.className = 'order';
     returnItemEl.innerHTML = `
         <img src="${imageUrl}" alt="${toolName}" class="active-order__image">
         <div class="active-order__text">
