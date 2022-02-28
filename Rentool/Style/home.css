@@ -119,6 +119,9 @@ footer p {
   width: fit-content;
   border: 1px solid grey;
 }
+.category-item__image {
+  width: 100%;
+}
 
 .category-link {
   display: grid;
@@ -156,12 +159,8 @@ section {
   justify-content: center;
   align-items: flex-start;
   flex-flow: column nowrap;
-  padding-left: 5rem;
-
+  padding: 5vw;
   color: white;
-}
-
-.hero-container__heading {
 }
 
 .catalogue__more-btn--link {
