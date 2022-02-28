@@ -16,11 +16,13 @@ const sampleToolData = [{
     daily: 100,
     weekly: 1000,
   },
+  category: 'category1',
   size: 'small',
+  isReserved: true,
 }, {
   toolId: 'asdfghjkl',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve',
+  toolName: 'driver2',
+  description: 'This is a sample data for showing description of the tool users want to reserve@@@@@@@@@',
   reservationToolIndex: 'driver-brand-small',
   brand: 'brand',
   location: {
@@ -34,7 +36,9 @@ const sampleToolData = [{
     daily: 100,
     weekly: 1000,
   },
+  category: 'category2',
   size: 'small',
+  isReserved: false,
 }];
 const sampleNearestLocation = sampleToolData[0].location;
 
@@ -47,17 +51,98 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Write your code below-----------------------------------------
-const productChoosen = sampleToolData[0];
-// load picture
-  const productImage = document.querySelector('.product-image img');
-  productImage.setAttribute('src',`${productChoosen.imageUrl}`);
-// load alt atribute
-  productImage.setAttribute('alt',`${productChoosen.toolName}`);
 
+  const productSelected = sampleToolData[0];
+
+// ==============category section =============
+
+const categoryTitle = document.querySelector('.product-category');
+const categoryTitleH2 = document.createElement('h2');
+// print it
+categoryTitle.appendChild(categoryTitleH2).innerHTML = productSelected.category;
+
+// ==============picture section =============
+  const productImage = document.querySelector('.product-image img');
+  productImage.setAttribute('src',`${productSelected.imageUrl}`);
+// load alt atribute
+  productImage.setAttribute('alt',`${productSelected.toolName}`);
+
+// ===========title of product================= 
+
+const productTitle = document.querySelector('.product-title');
+const productTitleP = document.createElement('h3');
+//  print description text
+productTitle.appendChild(productTitleP).innerHTML = productSelected.toolName;
+
+
+// ===========avaliability of product================= 
+
+const productAvailable = document.querySelector('.available-status');
+const productAvailableP = document.createElement('p');
+//  loop for defining status
+let AvailableStatus = '';
+status();
+function status () {
+  if(productSelected.isReserved == true ){
+     AvailableStatus = 'Available';
+  } else {
+    AvailableStatus = 'Not available';
+  }
+}
+//  print description text
+productAvailable.appendChild(productAvailableP).innerHTML = AvailableStatus;
+
+
+
+
+
+
+  // ============== description section ===================
  const Description = document.querySelector('.product-description');
  const ProductDescription = document.createElement('p');
- 
- 
+ //  print description text
+ Description.appendChild(ProductDescription).innerHTML = productSelected.description;
+
+// ============ table section ====================
+
+// ==hourly==
+const price4Hours = document.querySelector('.price-table-four-hours');
+const price4HoursNewColumn = document.createElement('td');
+// result hourly
+price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${(productSelected.prices.hourly).toFixed(2)}`;
+
+
+// ==per day==
+const priceDay = document.querySelector('.price-table-per-day');
+const priceDayColumn = document.createElement('td');
+// result per day
+priceDay.appendChild(priceDayColumn).innerHTML = `$ ${(productSelected.prices.daily).toFixed(2)}`;
+
+
+// ==per week==
+const priceWeek = document.querySelector('.price-table-per-week');
+const priceWeekColumn = document.createElement('td');
+// result week
+priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${(productSelected.prices.weekly).toFixed(2)}`;
+
+// ============== location ================
+
+
+
+
+if ( navigator.geolocation ) {
+  	navigator.geolocation.getCurrentPosition( 
+           ( position ) => {  // success callback
+      	console.log( 'latitude = ' + position.coords.latitude);
+    		console.log( 'longitude = ' + position.coords.longitude);
+      	}, 
+      ( error ) => {    // failure callback
+        console.log( error );
+        if (	error.code == error.PERMISSION_DENIED ) {
+          window.alert('geolocation permission denied');
+        }
+       });
+      } 
 
 
 
