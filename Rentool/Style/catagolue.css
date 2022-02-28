@@ -13,6 +13,9 @@
 	width: fit-content;
 	border: 1px solid grey;
 }
+.category-image {
+	width: 100%;
+}
 
 .category-link {
 	display: grid;
