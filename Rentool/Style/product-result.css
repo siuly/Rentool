@@ -67,3 +67,14 @@
 	margin: 0 auto;
 	padding: 1rem 0;
 }
+
+.fa-circle {
+	color: var(--color-secondary-variant);
+}
+
+.reserved .fa-circle {
+	color: var(--color-primary);
+}
+input[type="submit"]:disabled {
+	background: grey;
+}

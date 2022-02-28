@@ -1,12 +1,13 @@
 import { Reservation } from './domain/Reservation.js';
+import { getReservationsByUserId, getToolByToolId } from './firebase.js';
 
 
 const PATH_RETURN_PAGE = './return-tool.html';
-const userId = 'test@mail.com';
+const userId = '9sFhSueVxw3w8fniYAlE';
 
 
 /** @type {Reservation[]} */
-const activeReservations = [new Reservation({
+let activeReservations = [new Reservation({
     reservationId: '123456',
     reservationToolIndex: 'driver-brand-small',
     duration: { startDate: '2022-02-12 13:00', endDate: '2022-02-13 13:00' },
@@ -28,14 +29,37 @@ const activeReservations = [new Reservation({
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  console.log(activeReservations);
 
+  activeReservations = await getReservationsByUserId(userId);
+
+  const reservationContainerEl = document.getElementById('reservation-container');
+  // HTML Generate iteration START================================
   for (const reservation of activeReservations) {
-    console.log(reservation);
-    /**@type {HTMLAnchorElement} */
-    const returnLinkEl = document.getElementsByClassName('return-link')[0];
-    returnLinkEl.href = `${PATH_RETURN_PAGE}?reservationId=${reservation.reservationId}`;
+    /** */
+    const tool = await getToolByToolId(reservation.toolId);
+    if (tool === null) { continue; }
 
-    document.getElementsByClassName('reservation__text')[0].textContent = reservation.toolName;
-  };
+    // Variables for HTML content
+    const { imageUrl, toolName } = tool;
+    const { reservationId } = reservation;
+    const { startDate, endDate } = reservation.duration;
+
+    /**@type {HTMLDivElement} */
+    const returnItemEl = document.createElement('div');
+    returnItemEl.className = "order";
+    returnItemEl.innerHTML = `
+        <img src="${imageUrl}" alt="${toolName}" class="active-order__image">
+        <div class="active-order__text">
+          <p class="active-order__text--toolName">${toolName}</p>
+          <p class="active-order__text--returnDate">Return Due: ${endDate}</p>
+          <p class="active-order__text--pickDate">Pick date:${startDate}</p>
+        </div>
+        <a href="${`${PATH_RETURN_PAGE}?reservationId=${reservationId}`}" class="active-order__return-link">
+          <div class="active-order__return-link--text">Return</div>
+        </a>
+    `;
+    reservationContainerEl.appendChild(returnItemEl);
+  }
+  //HTML Generate iteration  END================================
+
 });

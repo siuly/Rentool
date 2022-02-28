@@ -232,20 +232,6 @@ export const updateReservationByReservationId = async (reservationId, params) =>
  */
 export const returnTool = async (reservation, locationToReturn) => {
   const { reservationId, toolId } = reservation;
-
-
-  //@ TODO: Delete This Mock Request
-  return setTimeout((async () => {
-    console.log(`${reservationId}'s is returned, ToolId: ${toolId}'s isReserved will be false`);
-    console.log(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
-
-    alert(`ToolId: ${toolId} will be back to ${locationToReturn.address}`);
-
-    await setTimeout(movePageTo(PATHS_PAGES.RETURN_COMPLETE), 5000);
-
-  }), 500);
-
-
   try {
     // Change reservation data
     if (reservation.isReturned === false) {
@@ -254,7 +240,62 @@ export const returnTool = async (reservation, locationToReturn) => {
 
     // Change tool data
     updateToolByToolId(toolId, { isReserved: false, location: locationToReturn });
+    return true;
+  } catch (error) {
+    console.error(error);
+  }
+};
 
+
+/**
+ * @description Get all Location information
+ * @async
+ * @return {Location[]}
+ */
+export const getAllLocations = async () => {
+  let locations = [];
+  try {
+    const locationsDoc = await db.collection('Locations').get();
+    locationsDoc.forEach(doc => { locations.push({ locationId: doc.id, ...doc.data() }); });
+    return locations;
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/**
+ * @description Get reservation data by reservationId
+ * @async
+ * @param {string} reservationId
+ * @returns {Promise}
+ */
+export const getReservationDataByReservationId = async (reservationId) => {
+  try {
+    const reservationDoc = await db.collection('Reservations').doc(reservationId).get();
+    return { ...reservationDoc.data(), reservationId: reservationDoc.id };
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+
+/**
+ * @description Get tool information by toolId
+ * @async
+ * @param {string} toolId
+ * @return {Tool | null}
+ */
+export const getToolByToolId = async (toolId) => {
+  if (!toolId) { return; }
+
+  try {
+    const toolDoc = await db.collection('Tools').doc(toolId).get();
+    if (toolDoc.data() === undefined) {
+      return null;
+    }
+
+    return { ...toolDoc.data(), toolId: toolDoc.id };;
   } catch (error) {
     console.error(error);
   }

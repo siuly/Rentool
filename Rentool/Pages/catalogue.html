@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="../Style/reset.min.css">
+  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
+
+
+  <link rel="stylesheet" href="../Style/catagolue.css">
+  <script src="../js/catalogue.js" type="module" defer></script>
+  <title>Catalogue</title>
+
+</head>
+
+
+<body>
+  <header>
+  </header>
+  <main>
+
+    <!--
+        NOTE:
+        Each category item will be a link, should be inside <a> element
+        the "href" attribute will be ./product-result.html?category=[CATEGORY_NAME]
+        such as:
+
+        <a href="./product-result.html?category=CleaningandFloocare" >
+        <a href="./product-result.html?category=DrillingandBreaking" >
+
+        Most category links won't get tool items because there is no data in the database.
+        If you want to check every link, you need to change the data in database directory.
+        It does not matter.
+    -->
+
+
+    <!-- Sample  start-->
+    <div class="category-wrapper">
+      <div class="category-item">
+        <a href="./product-result.html?category=CleaningandFloorcare" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Cleaning and Floocare" class="category-item__image">
+          <span class="category-link__text">
+            Category: Cleaning and Floocare
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=DrillingandBreaking" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Drilling & Breaking" class="category-item__image">
+          <span class="category-link__text">
+            Category: Drilling & Breaking
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=FansandHeater" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Fans & Heater" class="category-item__image">
+          <span class="category-link__text">
+            Category: Fans & Heater
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=LightingandElectrical" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Lighting & Electrical" class="category-item__image">
+          <span class="category-link__text">
+            Category: Lighting & Electrical
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=PumpsandPlumbing" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Pumps & Plumbing" class="category-item__image">
+          <span class="category-link__text">
+            Category: Pumps & Plumbing
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=LaddersandScaffold" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Ladders & Scaffold" class="category-item__image">
+          <span class="category-link__text">
+            Category: Ladders & Scaffold
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=LiftingandMoving" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Lifting & Moving" class="category-item__image">
+          <span class="category-link__text">
+            Category: Lifting & Moving
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=PaintingandDecoration" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Painting & Decoration" class="category-item__image">
+          <span class="category-link__text">
+            Category: Painting & Decoration
+          </span>
+        </a>
+      </div>
+
+      <div class="category-item">
+        <a href="./product-result.html?category=Gardening" class="category-link">
+          <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Gardening" class="category-item__image">
+          <span class="category-link__text">
+            Category: Gardening
+          </span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Sample  end-->
+
+    <!-- <div class="active-rental">
+      <span class="active-title">Tools</span>
+      <article class="user-tools">
+        <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="">
+        <span class="tool-name">Hammer</span>
+        <span>Expires in</span>
+        <span class="expire-info">2Days 3hrs 12mins</span>
+        <a href="http://"><span>Return</span></a>
+      </article>
+      <article class="user-tools">
+        <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="">
+        <span class="tool-name">Hammer</span>
+        <span>Expires in</span>
+        <span class="expire-info">2Days 3hrs 12mins</span>
+        <a href="http://"><span>Return</span></a>
+      </article>
+
+    </div>
+ -->
+
+  </main>
+</body>
+
+</html>
