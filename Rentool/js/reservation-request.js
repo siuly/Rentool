@@ -1,49 +1,23 @@
 import { Location } from './domain/Location.js';
-import { getUrlParams, GET_PARAMS, readUserId } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
+import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
 
-const reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
+let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
+//@TODO: delete
+reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
-const sampleToolData = [{
-  toolId: 'R92ruT1ZA0vCV0w9B7aE',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve',
-  reservationToolIndex: 'driver-brand-small',
-  brand: 'brand',
-  location: {
-    lockerName: 'Locker Name 1',
-    address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
-    latitude: '49.225518864967654',
-    longitude: '123.10776583584949',
-  },
-  imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
-  prices: {
-    hourly: 10,
-    daily: 100,
-    weekly: 1000,
-  },
-  size: 'small',
-}, {
-  toolId: '1IDJzk33zxgafzfegU0q',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve',
-  reservationToolIndex: 'driver-brand-small',
-  brand: 'brand',
-  location: {
-    lockerName: 'Locker Name 2',
-    address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
-    latitude: '49.1967',
-    longitude: '123.1815',
-  },
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
-  prices: {
-    hourly: 10,
-    daily: 100,
-    weekly: 1000,
-  },
-  size: 'small',
-}];
 
+let startDate = document.getElementById('start-date');
+let startTime = document.getElementById('start-time');
+let endDate = document.getElementById('end-date');
+let endTime = document.getElementById('end-time');
+let toolName = document.getElementById('tool-name');
+
+if (startDate.value && endDate.value == null) {
+  rent = etime.value - stime.value;
+  console.log(rent);
+}
 
 let reservationRequestData = {
   toolId: '',
@@ -54,18 +28,59 @@ let reservationRequestData = {
   isReturned: false,
   reservationToolIndex: reservationToolIndex,
   userId: readUserId() || '',
+  createdAt: new Date()
 
   //You can add additional property
 };
-
-/**@type {Location[]} Location + correspondToolId*/
-const locations = sampleToolData.map(tool => {
-  return { ...tool.location, correspondToolId: tool.toolId };
-});
-
 let selectedLocation = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /*
+   * ============================================
+   * Page Initialization
+   * ============================================
+   */
+
+  //@TODO: change variable name, this data is no longer sample
+  const sampleToolData = await getToolsByReservationToolIndex(reservationToolIndex);
+
+  /**@type {Location[]} Location + correspondToolId*/
+  const locations = sampleToolData.map(tool => {
+    return { ...tool.location, correspondToolId: tool.toolId };
+  });
+
+
 
   const locationContainerEl = document.getElementById('locationContainer');
 
@@ -78,7 +93,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     locationContainerEl.appendChild(locationItem);
   }
 
-
   // Set click event
   const locationItemElementList = document.getElementsByTagName('location-item');
   for (const locationItem of locationItemElementList) {
@@ -87,49 +101,73 @@ document.addEventListener('DOMContentLoaded', async () => {
       for (const locationItemEl of locationItemElementList) {
         locationItemEl.classList.remove('selected-location');
       }
-
       locationItem.classList.add('selected-location');
     });
   }
 
-});
+  const pageSectionElementList = [...document.getElementsByClassName('page')];
+  const nextPageButtonList = [...document.getElementsByClassName('page-btn')];
+  // Page shift event
+  for (const nextPageButton of nextPageButtonList) {
+    /**@param {MouseEvent} e */
+    nextPageButton.addEventListener('click', (e) => {
+      const nextPageId = e.target.dataset.next;
+      // Remove shown class from all page
+      for (const page of pageSectionElementList) {
+        page.classList.remove('shown');
+      }
 
+      if (nextPageId === '') { /**@TODO: show the last page */ }
 
-document.getElementById('page1-btn').addEventListener('click', () => {
-  console.log('Click');
-  document.getElementById('page1').classList.remove('shown');
-  document.getElementById('page2').classList.add('shown');
-
-  // Shown class will be set {display: block}, while others set {display: none}
-
-});
-
-
-document.getElementById('reservation-request-btn').addEventListener('click', () => {
-  if (selectedLocation === null) {
-    alert('Please select the location');
-    return;
+      document.getElementById(nextPageId).classList.add('shown');
+    });
   }
 
-
-  alert(`
-  The data will be stored:
-  ToolId: ${reservationRequestData.toolId}
-  Selected Location: ${selectedLocation.lockerName}
-  `);
-});
-
+  // Location select event
+  document.getElementById('page1').addEventListener('click', () => {
+    if (selectedLocation === null) {
+      alert('Please select the location');
+      return;
+    }
 
 
+  });
 
-// IDEA to set toolId to Locker name
 
-// const page3El = document.getElementById('page3');
-// for (const tool of sampleToolData) {
-//   const cardEl = document.createElement('div');
-//   cardEl.textContent = tool.toolName;
-//   cardEl.addEventListener('click', () => {
-//     console.log(tool.toolId); // You can set toolId to each Element
-//   });
-//   page3El.appendChild(cardEl);
-// }
+  //@TODO: Delete
+  // TEST: for reservation submit
+  reservationRequestData = {
+    toolId: sampleToolData[0].toolId,
+    duration: {
+      endDate: '2023-03-01 13:00',
+      startDate: '2023-04-01 13:00',
+    },
+    isReturned: false,
+    reservationToolIndex: reservationToolIndex,
+    userId: readUserId() || '',
+    imageUrl: sampleToolData[0].imageUrl,
+    createdAt: new Date()
+  };
+
+
+  document.getElementById('reservation-request-btn').addEventListener('click', async () => {
+    console.log(`START`);
+    if (selectedLocation === null) {
+      return;
+    }
+    console.log(`MIDDLE`);
+    const reservationRequestResult = await reservationRequest(reservationRequestData);
+    console.log('reservationRequestResult: ', reservationRequestResult);
+    if (reservationRequestResult === true) {
+      console.log('reservationRequestResult === true: ', reservationRequestResult === true);
+      alert(`
+      The data will be stored:
+      ToolId: ${reservationRequestData.toolId}
+      Selected Location: ${selectedLocation.lockerName}
+      `);
+    }
+    console.log(`END`);
+  });
+
+
+}); //DOMContentLoaded

@@ -2,11 +2,6 @@
 	border: 1px solid grey;
 	margin: 1rem;
 }
-input {
-	display: block;
-	margin: 1rem;
-}
-
 .shown {
 	border: 1px solid red;
 }
@@ -14,4 +9,12 @@ input {
 
 .selected-location .location-item {
 	border: 2px solid green;
+}
+
+#reservation-time {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	margin-left: auto;
+	margin-right: auto;
+	width: 50%;
 }

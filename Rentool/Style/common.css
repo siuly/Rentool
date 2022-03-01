@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
 	box-sizing: border-box;
 }
@@ -22,6 +24,10 @@
 	--font-size-secondary-text: 14px;
 }
 
+body {
+	font-family: "Roboto", sans-serif;
+}
+
 .wrapper {
 	width: 100%;
 	display: grid;
@@ -29,7 +35,7 @@
 	overflow: hidden;
 }
 
-header {
+/* header {
 	display: grid;
 	grid-template-areas:
 		"arrow heading heading menu"
@@ -118,4 +124,40 @@ header h2 {
 
 .fa-circle {
 	color: grey;
+} */
+
+.clickable {
+	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
+	transition: all 0.1s;
+	transform: translateY(0px) scale(1);
+}
+.clickable:hover {
+	transform: translateY(-0.5px) scale(1.01);
+	box-shadow: 8px 8px 3px rgba(0, 0, 0, 0.4);
+}
+
+.clickable:active {
+	transform: translateY(-0.25px) scale(0.99);
+	box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.6);
+}
+
+.disabled-item a {
+	filter: blur(5px);
+}
+.disabled-item {
+	position: relative;
+}
+.disabled-item::after {
+	content: "COMING SOON";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	filter: unset;
+	z-index: 1;
+	top: 0%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 3rem;
+	color: white;
 }

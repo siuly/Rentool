@@ -16,44 +16,75 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- js -->
+  <script src="../js/r-request.js" defer></script>
 
-  <title>Product Result</title>
+  <title>Reservation Request</title>
+
 </head>
 
 <body id="reservation-request">
   <div class="wrapper">
+    <header>
+      <h1>Rentool</h1>
+      <div class="header-left">
+        <button id="toggle"><i class="fas fa-bars"></i>
+          <div>MENU</div>
+        </button>
+        <nav id="menu">
+          <ul>
+            <li><a href="">My Account</a></li>
+            <li><a href="catalogue.html">Tool Catalogue</a></li>
+            <li><a href="">Locations</a></li>
+            <li><a href="">About Rentool</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li id="sign-status"><a href="">Sign out</a></li>
+          </ul>
+        </nav>
+      </div>
 
+    </header>
 
     <main>
+      <h2>Reservation Request</h2>
+      <h3>Rental Duration</h3>
       <div id="page1" class="page shown">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
+        
+        <span id="tool-name"></span>
+        <div id="reservation-time" class="reservation-time">
+        <label for="">Pick-Up Date </label><input type="date" name="start-date" id="start-date" required>
+        <label for="">Pick-Up Time </label><input type="time" name="start-time" id="start-time" required>
+        <label>Return Date </label><input type="date" name="end-date" id="end-date" required>
+        <label for="">Return Time </label><input type="time" name="end-time" id="end-time" required>
+        </div> 
+
+        <span id="duration"></span><br>
+        <span id="price"></span><br>
+        <span id="deposit"></span><br>
         <div id="locationContainer"></div>
-        <button class="page-btn" id="page1-btn">Button</button>
+        <button class="page-btn" id="page1-btn" data-next="page2">Next</button>
       </div>
+
       <div id="page2" class="page">
         <input type="text" name="" id="">
         <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <button class="page-btn" id="page2-btn">Button</button>
+        <button class="page-btn" id="page2-btn" data-next="page3">Button</button>
       </div>
+
       <div id="page3" class="page">
         <input type="text" name="" id="">
         <input type="text" name="" id="">
-        <button class="page-btn" id="page3-btn">Button</button>
+        <button class="page-btn" id="page3-btn" data-next="page4">Button</button>
       </div>
       <div id="page4" class="page">
         <input type="text" name="" id="">
         <input type="text" name="" id="">
-        <button class="page-btn" id="page4-btn">Button</button>
+        <button class="page-btn" id="page4-btn" data-next="page5">Button</button>
       </div>
       <div id="page5" class="page">
         <input type="text" name="" id="">
         <input type="text" name="" id="">
-        <button class="page-btn" id="page5-btn">Button</button>
+        <button class="page-btn" id="page5-btn" data-next="page6">Button</button>
       </div>
     </main>
     <button type="submit" id="reservation-request-btn">Submit Reservation Request</button>

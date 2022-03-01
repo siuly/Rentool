@@ -1,3 +1,8 @@
+import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS } from './util.js';
+
+let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
+
+
 // The differences of the two data are 'toolId' and 'location'
 const sampleToolData = [{
   toolId: '12345678',
@@ -56,43 +61,46 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const productSelected = sampleToolData[0];
 
-// ==============category section =============
 
-const categoryTitle = document.querySelector('.product-category');
-const categoryTitleH2 = document.createElement('h2');
-// print it
-categoryTitle.appendChild(categoryTitleH2).innerHTML = productSelected.category;
+  // ==============category section =============
 
-// ==============picture section =============
+  const categoryTitle = document.querySelector('.product-category');
+  const categoryTitleH2 = document.createElement('h2');
+  // print it
+  categoryTitle.appendChild(categoryTitleH2).innerHTML = productSelected.category;
+
+  // ==============picture section =============
   const productImage = document.querySelector('.product-image img');
-  productImage.setAttribute('src',`${productSelected.imageUrl}`);
-// load alt atribute
-  productImage.setAttribute('alt',`${productSelected.toolName}`);
+  productImage.setAttribute('src', `${productSelected.imageUrl}`);
+  // load alt atribute
+  productImage.setAttribute('alt', `${productSelected.toolName}`);
 
-// ===========title of product================= 
+  // ===========title of product================= 
 
-const productTitle = document.querySelector('.product-title');
-const productTitleP = document.createElement('h3');
-//  print description text
-productTitle.appendChild(productTitleP).innerHTML = productSelected.toolName;
+  const productTitle = document.querySelector('.product-title');
+  const productTitleP = document.createElement('h3');
+  //  print description text
+  productTitle.appendChild(productTitleP).innerHTML = productSelected.toolName;
 
 
-// ===========avaliability of product================= 
+  // ===========avaliability of product================= 
 
-const productAvailable = document.querySelector('.available-status');
-const productAvailableP = document.createElement('p');
-//  loop for defining status
-let AvailableStatus = '';
-status();
-function status () {
-  if(productSelected.isReserved == true ){
-     AvailableStatus = 'Available';
-  } else {
-    AvailableStatus = 'Not available';
+  const productAvailable = document.querySelector('.available-status');
+  const productAvailableP = document.createElement('p');
+  //  loop for defining status
+  let AvailableStatus = '';
+  status();
+
+  function status() {
+    if (productSelected.isReserved == true) {
+      AvailableStatus = 'Available';
+    } else {
+      AvailableStatus = 'Not available';
+    }
   }
-}
-//  print description text
-productAvailable.appendChild(productAvailableP).innerHTML = AvailableStatus;
+  //  print description text
+  productAvailable.appendChild(productAvailableP).innerHTML = AvailableStatus;
+
 
 
 
@@ -151,4 +159,7 @@ if ( navigator.geolocation ) {
 
 
 
+  document.getElementById('view-product-submit-btn').addEventListener('click', () => {
+    movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+  });
 });
