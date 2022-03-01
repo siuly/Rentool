@@ -1,4 +1,5 @@
-import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS } from './util.js';
+import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation } from './util.js';
+import { getToolsByReservationToolIndex } from './firebase.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 
@@ -52,14 +53,20 @@ const sampleNearestLocation = sampleToolData[0].location;
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const tools = sampleToolData;
+
+
+  reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
+
+
+  // const tools = sampleToolData;
+  const tools = await getToolsByReservationToolIndex(reservationToolIndex);
   const tool = tools[0];
-  const nearestLocation = sampleNearestLocation;
+  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
 
 
   // Write your code below-----------------------------------------
 
-  const productSelected = sampleToolData[0];
+  const productSelected =tool;
 
   // ==============category section =============
 
@@ -117,7 +124,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const price4Hours = document.querySelector('.price-table-four-hours');
   const price4HoursNewColumn = document.createElement('td');
   // result hourly
-  price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${(productSelected.prices.hourly).toFixed(2)}`;
+  price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${Number.parseFloat((productSelected.prices.hourly)).toFixed(2)}`;
 
 
   // ==per day==

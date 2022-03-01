@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
 	box-sizing: border-box;
 }
@@ -22,6 +24,10 @@
 	--font-size-secondary-text: 14px;
 }
 
+body {
+	font-family: "Roboto", sans-serif;
+}
+
 .wrapper {
 	width: 100%;
 	display: grid;
@@ -29,96 +35,14 @@
 	overflow: hidden;
 }
 
-header {
-	display: grid;
-	grid-template-areas:
-		"arrow heading heading menu"
-		"input input input input";
+/* Header */
 
-	padding: 1rem;
-	background-color: var(--color-primary);
-}
 
-.return-icon {
-	grid-area: arrow;
-	display: grid;
-	align-items: center;
-}
+/* Footer */
 
-h2 {
-	grid-area: heading;
-	text-align: center;
-	font-size: 2rem;
-}
+/* Button */
 
-.return-icon {
-	grid-area: arrow;
-	display: grid;
-	align-items: center;
-}
 
-header h2 {
-	grid-area: heading;
-	text-align: center;
-	font-size: 2rem;
-}
-
-.header-right {
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	gap: 1rem;
-}
-
-.input-row {
-	width: 100%;
-	display: flex;
-	flex-flow: row nowrap;
-	align-items: center;
-	gap: 1rem;
-
-	grid-area: input;
-	padding-top: 0.3rem;
-}
-
-.input-container {
-	flex: 1 0 30%;
-	background-color: var(--color-background);
-	border-radius: 10px;
-	padding: 0.3rem;
-	display: flex;
-	flex-flow: row nowrap;
-}
-
-.input-container input {
-	flex: 1 0 40%;
-}
-
-.input-container input:focus {
-	outline: none;
-}
-
-.input-row .icon {
-	background-color: rgba(0, 0, 0, 0);
-	border: none;
-	outline: none;
-	color: grey;
-}
-
-.input-container .fa-microphone {
-	text-align: end;
-	padding-right: 1rem;
-	color: grey;
-}
-
-.input-row input {
-	border: none;
-	background-color: unset;
-}
-
-.fa-circle {
-	color: grey;
-}
 
 .clickable {
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
