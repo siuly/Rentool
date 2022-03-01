@@ -42,12 +42,13 @@ button div {
 #menu {
   position: absolute;
   top: 70px;
-  height: 60%;
+  height: 100%;
   padding-top: 20px;
   width: 50%;
   left: -51%;
   background-color: white;
   transition: 0.5s;
+  z-index: 10;
 }
 
 #menu.active {
