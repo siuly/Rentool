@@ -3,21 +3,54 @@ import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from '.
 import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
 
+const sampleToolData = [{
+  toolId: 'R92ruT1ZA0vCV0w9B7aE',
+  toolName: 'driver',
+  description: 'This is a sample data for showing description of the tool users want to reserve',
+  reservationToolIndex: 'driver-brand-small',
+  brand: 'brand',
+  location: {
+    lockerName: 'Locker Name 1',
+    address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
+    latitude: '49.225518864967654',
+    longitude: '123.10776583584949',
+  },
+  imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
+  prices: {
+    hourly: 10,
+    daily: 100,
+    weekly: 1000,
+  },
+  size: 'small',
+}, {
+  toolId: '1IDJzk33zxgafzfegU0q',
+  toolName: 'driver',
+  description: 'This is a sample data for showing description of the tool users want to reserve',
+  reservationToolIndex: 'driver-brand-small',
+  brand: 'brand',
+  location: {
+    lockerName: 'Locker Name 2',
+    address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
+    latitude: '49.1967',
+    longitude: '123.1815',
+  },
+  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
+  prices: {
+    hourly: 10,
+    daily: 100,
+    weekly: 1000,
+  },
+  size: 'small',
+}];
+
+
+
+
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
 
-let startDate = document.getElementById('start-date');
-let startTime = document.getElementById('start-time');
-let endDate = document.getElementById('end-date');
-let endTime = document.getElementById('end-time');
-let toolName = document.getElementById('tool-name');
-
-if (startDate.value && endDate.value == null) {
-  rent = etime.value - stime.value;
-  console.log(rent);
-}
 
 let reservationRequestData = {
   toolId: '',
@@ -32,39 +65,72 @@ let reservationRequestData = {
 
   //You can add additional property
 };
-let selectedLocation = null;
+  let selectedLocation = null;
+  let sdate = document.getElementById('start-date');
+  let stime = document.getElementById('start-time');
+  let edate = document.getElementById('end-date');
+  let etime = document.getElementById('end-time');
+  let tname = document.getElementById('tool-namepg1');
+  let tduration = document.getElementById('durationpg1');
+  let tprice = document.getElementById('price');
+  let tdepo = document.getElementById('deposit');
 
+tname.innerHTML = sampleToolData[0].toolName;
 document.addEventListener('DOMContentLoaded', async () => {
 
+  
+  // console.log(sampleToolData[0].toolName);
+
+  etime.addEventListener('change', (event) =>{
+    let dateinput1 = sdate.value + ' ' + stime.value;
+    let dateinput2 = edate.value + ' ' + etime.value;
+    console.log(dateinput1);
+    console.log(dateinput2);
+    
+    if (dateinput1 < dateinput2) {
+    
+    console.log(get_time_diff(dateinput1, dateinput2));
+    }else{
+      alert('incorrect date input');
+    }
+    
+  })
+
+  // with delta declare outside the function  I'll be able to use it for  other  sections
+  let delta = 0;
+
+  function get_time_diff( d1 , d2 )
+  {  
+      let datetime3 = new Date( d1 );
+      let datetime4 = new Date( d2 );
+      delta = datetime4 - datetime3;
+      console.log(delta);
+      let days = Math.floor(delta / 1000 / 60 / (60 * 24));
+      let date_diff = new Date(delta);
+
+      console.log(date_diff);
+      console.log(days.getHours());
+      tduration.innerHTML = `Duration: ${days} Days ${date_diff.getHours()} Hours`;
+      console.log(sampleToolData[0].prices.daily);
+      
+      let fprice = sampleToolData[0].prices.daily * days;
+
+      tprice.innerHTML = `Price: $ ${fprice}`;
+
+      let fdepo = fprice * 0.5;
+
+      tdepo.innerHTML = `Deposit: $ ${fdepo}`;
 
 
+      // console.log("-------------");
+      // console.log(date_diff.getHours());
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      return days + " Days "+ date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds";
+  
+      // return delta;
+  
+    }
 
   /*
    * ============================================
@@ -79,8 +145,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const locations = sampleToolData.map(tool => {
     return { ...tool.location, correspondToolId: tool.toolId };
   });
-
-
 
   const locationContainerEl = document.getElementById('locationContainer');
 
@@ -130,9 +194,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-
   });
-
 
   //@TODO: Delete
   // TEST: for reservation submit
