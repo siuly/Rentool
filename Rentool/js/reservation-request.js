@@ -2,7 +2,6 @@ import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
-
 const sampleToolData = [{
   toolId: 'R92ruT1ZA0vCV0w9B7aE',
   toolName: 'driver',
@@ -42,16 +41,9 @@ const sampleToolData = [{
   },
   size: 'small',
 }];
-
-
-
-
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
-
-
-
 let reservationRequestData = {
   toolId: '',
   duration: {
@@ -62,92 +54,73 @@ let reservationRequestData = {
   reservationToolIndex: reservationToolIndex,
   userId: readUserId() || '',
   createdAt: new Date()
-
   //You can add additional property
 };
-  let selectedLocation = null;
-  let sdate = document.getElementById('start-date');
-  let stime = document.getElementById('start-time');
-  let edate = document.getElementById('end-date');
-  let etime = document.getElementById('end-time');
-  let tname = document.getElementById('tool-namepg1');
-  let tduration = document.getElementById('durationpg1');
-  let tprice = document.getElementById('price');
-  let tdepo = document.getElementById('deposit');
-
+let selectedLocation = null;
+let sdate = document.getElementById('start-date');
+let stime = document.getElementById('start-time');
+let edate = document.getElementById('end-date');
+let etime = document.getElementById('end-time');
+let tname = document.getElementById('tool-namepg1');
+let tduration = document.getElementById('durationpg1');
+let tprice = document.getElementById('price');
+let tdepo = document.getElementById('deposit');
 tname.innerHTML = sampleToolData[0].toolName;
 document.addEventListener('DOMContentLoaded', async () => {
-
-  
+//@TODO: change variable name, this data is no longer sample
+const sampleToolData = await getToolsByReservationToolIndex(reservationToolIndex);
   // console.log(sampleToolData[0].toolName);
-
-  etime.addEventListener('change', (event) =>{
+  etime.addEventListener('change', (event) => {
     let dateinput1 = sdate.value + ' ' + stime.value;
     let dateinput2 = edate.value + ' ' + etime.value;
     console.log(dateinput1);
     console.log(dateinput2);
-    
     if (dateinput1 < dateinput2) {
-    
-    console.log(get_time_diff(dateinput1, dateinput2));
-    }else{
+      console.log(get_time_diff(dateinput1, dateinput2));
+    } else {
       alert('incorrect date input');
     }
-    
   })
-
+  
   // with delta declare outside the function  I'll be able to use it for  other  sections
   let delta = 0;
+  function get_time_diff(d1, d2) {
+    let datetime3 = new Date(d1);
+    let datetime4 = new Date(d2);
+    let delta = datetime4 - datetime3;
+    console.log(delta);
+    let days = Math.floor(delta / 1000 / 60 / (60 * 24));
+    console.log('days: ', days);
+    let date_diff = new Date(delta);
+    const diffMilliseconds = date_diff;
+    const diffHoursMilliseconds = Math.floor((diffMilliseconds - (days * 86400000))/3600000);
+    
 
-  function get_time_diff( d1 , d2 )
-  {  
-      let datetime3 = new Date( d1 );
-      let datetime4 = new Date( d2 );
-      delta = datetime4 - datetime3;
-      console.log(delta);
-      let days = Math.floor(delta / 1000 / 60 / (60 * 24));
-      let date_diff = new Date(delta);
+    tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
+    console.log(sampleToolData[0].prices.daily);
+    let fprice = sampleToolData[0].prices.daily * days + sampleToolData[0].prices.hourly * diffHoursMilliseconds;
+    let dailyp = sampleToolData[0].prices.daily * days;
+    let  hourlyp = sampleToolData[0].prices.hourly * diffHoursMilliseconds;
+    console.log(dailyp);
+    console.log(hourlyp);
+    tprice.innerHTML = `Price: $ ${fprice}`;
+    let fdepo = fprice * 0.5;
+    tdepo.innerHTML = `Deposit: $ ${fdepo}`;
 
-      console.log(date_diff);
-      console.log(days.getHours());
-      tduration.innerHTML = `Duration: ${days} Days ${date_diff.getHours()} Hours`;
-      console.log(sampleToolData[0].prices.daily);
-      
-      let fprice = sampleToolData[0].prices.daily * days;
-
-      tprice.innerHTML = `Price: $ ${fprice}`;
-
-      let fdepo = fprice * 0.5;
-
-      tdepo.innerHTML = `Deposit: $ ${fdepo}`;
-
-
-      // console.log("-------------");
-      // console.log(date_diff.getHours());
-  
-
-      return days + " Days "+ date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds";
-  
-      // return delta;
-  
-    }
-
+    return days + " Days " + date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds";
+    // return delta;
+  }
   /*
    * ============================================
    * Page Initialization
    * ============================================
    */
-
-  //@TODO: change variable name, this data is no longer sample
-  const sampleToolData = await getToolsByReservationToolIndex(reservationToolIndex);
-
+  
   /**@type {Location[]} Location + correspondToolId*/
   const locations = sampleToolData.map(tool => {
     return { ...tool.location, correspondToolId: tool.toolId };
   });
-
   const locationContainerEl = document.getElementById('locationContainer');
-
   for (const location of locations) {
     const locationItem = new LocationItem(location);
     locationItem.addEventListener('click', () => {
@@ -156,7 +129,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     locationContainerEl.appendChild(locationItem);
   }
-
   // Set click event
   const locationItemElementList = document.getElementsByTagName('location-item');
   for (const locationItem of locationItemElementList) {
@@ -168,7 +140,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       locationItem.classList.add('selected-location');
     });
   }
-
   const pageSectionElementList = [...document.getElementsByClassName('page')];
   const nextPageButtonList = [...document.getElementsByClassName('page-btn')];
   // Page shift event
@@ -180,22 +151,17 @@ document.addEventListener('DOMContentLoaded', async () => {
       for (const page of pageSectionElementList) {
         page.classList.remove('shown');
       }
-
       if (nextPageId === '') { /**@TODO: show the last page */ }
-
       document.getElementById(nextPageId).classList.add('shown');
     });
   }
-
   // Location select event
   document.getElementById('page1').addEventListener('click', () => {
     if (selectedLocation === null) {
       alert('Please select the location');
       return;
     }
-
   });
-
   //@TODO: Delete
   // TEST: for reservation submit
   reservationRequestData = {
@@ -210,8 +176,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     imageUrl: sampleToolData[0].imageUrl,
     createdAt: new Date()
   };
-
-
   document.getElementById('reservation-request-btn').addEventListener('click', async () => {
     console.log(`START`);
     if (selectedLocation === null) {
@@ -230,6 +194,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     console.log(`END`);
   });
-
-
 }); //DOMContentLoaded
+
+
+
+
+
+
+
+
+
