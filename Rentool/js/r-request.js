@@ -90,7 +90,7 @@ function get_time_diff( d1 , d2 )
     tduration.innerHTML = `Duration: ${days} Days ${date_diff.getHours()} Hours`;
     let fprice = sampleToolData[0].prices.daily * days;
     tprice.innerHTML = `Price: $ ${fprice}`;
-    let fdepo = fprice * 0.1;
+    let fdepo = fprice * 0.5;
     tdepo.innerHTML = `Deposit: $ ${fdepo}`;
 
     return days + " Days "+ date_diff.getHours() + " Hours " + date_diff.getMinutes() + " Minutes " + date_diff.getSeconds() + " Seconds";

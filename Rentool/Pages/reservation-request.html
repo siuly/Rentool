@@ -17,7 +17,7 @@
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- js -->
-  <script src="../js/r-request.js" defer></script>
+  <!-- <script src="../js/r-request.js" defer></script> -->
 
   <title>Reservation Request</title>
 
@@ -28,16 +28,17 @@
     <header>
       <h1>Rentool</h1>
       <div class="header-left">
-        <button id="toggle"><i class="fas fa-bars"></i>
-          <div>MENU</div>
-        </button>
-        <nav id="menu">
+        <button id="toggle"><i class="fas fa-bars"></i><div>MENU</div></button>
+        <nav  id="menu">
           <ul>
             <li><a href="">My Account</a></li>
             <li><a href="catalogue.html">Tool Catalogue</a></li>
+            <li><a href="./active-orders.html">My Active Orders</a></li>
+            <li><a href="./catalogue.html">Tool Catalogue</a></li>
             <li><a href="">Locations</a></li>
+            <li><a href="">User Profile</a></li>
             <li><a href="">About Rentool</a></li>
-            <li><a href="">Contact Us</a></li>
+            <li><a href="">Help</a></li>
             <li id="sign-status"><a href="">Sign out</a></li>
           </ul>
         </nav>
@@ -47,10 +48,10 @@
 
     <main>
       <h2>Reservation Request</h2>
-      <h3>Rental Duration</h3>
+      
       <div id="page1" class="page shown">
-        
-        <span id="tool-name"></span>
+        <h3>Rental Duration</h3>        
+        <span id="tool-namepg1" class="title"></span>
         <div id="reservation-time" class="reservation-time">
         <label for="">Pick-Up Date </label><input type="date" name="start-date" id="start-date" required>
         <label for="">Pick-Up Time </label><input type="time" name="start-time" id="start-time" required>
@@ -58,14 +59,37 @@
         <label for="">Return Time </label><input type="time" name="end-time" id="end-time" required>
         </div> 
 
-        <span id="duration"></span><br>
+        <span id="durationpg1"></span><br>
         <span id="price"></span><br>
         <span id="deposit"></span><br>
         <div id="locationContainer"></div>
+        <span id="terms-title" class="title">Pricing & Pick-up Term</span><br>
+        <span>Tools, vehicles and trailers all require a deposit. Deposits are payable at the store when you pick up. You will select a pick-up time when you fill out the online reservation. Small size: from $20.00 to $35.00, medium size: from $35.00 to $75.00, large size: from $75.00 to $100.00</span><br>
         <button class="page-btn" id="page1-btn" data-next="page2">Next</button>
       </div>
 
       <div id="page2" class="page">
+        <h3>Overview</h3>
+        <span id="tool-namepg2" class="title"></span><br>
+        <span id="pricepg2"></span><br>
+        <span>Rental duration</span>
+        <div>
+          <span id="durationpg2"></span><br>
+          <span id="rental-dates"></span>
+          <img src="" alt=""> <!-- verification mark-->
+        </div>
+        <span>Pick-Up Location</span>
+        <div>
+          <span id="tool-namepg2"></span><br>
+          <span id="location-selected"></span>
+          <img src="" alt=""> <!-- verification mark-->
+        </div>
+        <span>Payment Method</span>
+        <div>
+          <span id="method"></span><br>
+          <img src="" alt=""> <!-- verification mark-->
+        </div>
+
         <input type="text" name="" id="">
         <input type="text" name="" id="">
         <button class="page-btn" id="page2-btn" data-next="page3">Button</button>
