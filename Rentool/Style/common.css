@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
 * {
 	box-sizing: border-box;
 }
@@ -22,6 +24,10 @@
 	--font-size-secondary-text: 14px;
 }
 
+body {
+	font-family: "Roboto", sans-serif;
+}
+
 .wrapper {
 	width: 100%;
 	display: grid;
@@ -29,7 +35,7 @@
 	overflow: hidden;
 }
 
-header {
+/* header {
 	display: grid;
 	grid-template-areas:
 		"arrow heading heading menu"
@@ -118,7 +124,7 @@ header h2 {
 
 .fa-circle {
 	color: grey;
-}
+} */
 
 .clickable {
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);
