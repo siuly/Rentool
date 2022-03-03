@@ -150,7 +150,6 @@ priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${Number.parseFloat(produc
 
 
 
-
 // ===========================================
 
 
