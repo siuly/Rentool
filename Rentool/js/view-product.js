@@ -1,4 +1,5 @@
-import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS } from './util.js';
+import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation } from './util.js';
+import { getToolsByReservationToolIndex } from './firebase.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 
@@ -52,14 +53,20 @@ const sampleNearestLocation = sampleToolData[0].location;
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  const tools = sampleToolData;
+
+
+  reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
+
+
+  // const tools = sampleToolData;
+  const tools = await getToolsByReservationToolIndex(reservationToolIndex);
   const tool = tools[0];
-  const nearestLocation = sampleNearestLocation;
+  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
 
 
   // Write your code below-----------------------------------------
 
-  const productSelected = sampleToolData[0];
+  const productSelected = tool;
 
 
   // ==============category section =============
@@ -115,48 +122,36 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 // ============ table section ====================
 
-// ==hourly==
-const price4Hours = document.querySelector('.price-table-four-hours');
-const price4HoursNewColumn = document.createElement('td');
-// result hourly
-price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${(productSelected.prices.hourly).toFixed(2)}`;
+  // ==hourly==
+  const price4Hours = document.querySelector('.price-table-four-hours');
+  const price4HoursNewColumn = document.createElement('td');
+  // result hourly
+  price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${Number.parseFloat((productSelected.prices.hourly)).toFixed(2)}`;
 
 
 // ==per day==
 const priceDay = document.querySelector('.price-table-per-day');
 const priceDayColumn = document.createElement('td');
 // result per day
-priceDay.appendChild(priceDayColumn).innerHTML = `$ ${(productSelected.prices.daily).toFixed(2)}`;
+priceDay.appendChild(priceDayColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.daily).toFixed(2)}`;
 
 
 // ==per week==
 const priceWeek = document.querySelector('.price-table-per-week');
 const priceWeekColumn = document.createElement('td');
 // result week
-priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${(productSelected.prices.weekly).toFixed(2)}`;
+priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.weekly).toFixed(2)}`;
 
 // ============== location ================
 
 
 
-
-if ( navigator.geolocation ) {
-  	navigator.geolocation.getCurrentPosition( 
-           ( position ) => {  // success callback
-      	console.log( 'latitude = ' + position.coords.latitude);
-    		console.log( 'longitude = ' + position.coords.longitude);
-      	}, 
-      ( error ) => {    // failure callback
-        console.log( error );
-        if (	error.code == error.PERMISSION_DENIED ) {
-          window.alert('geolocation permission denied');
-        }
-       });
-      } 
+// add here destination calculation
 
 
 
 
+// ===========================================
 
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
