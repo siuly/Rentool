@@ -66,7 +66,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Write your code below-----------------------------------------
 
-  const productSelected =tool;
+  const productSelected = tool;
+
 
   // ==============category section =============
 
@@ -112,13 +113,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
 
-  // ============== description section ===================
-  const Description = document.querySelector('.product-description');
-  const ProductDescription = document.createElement('p');
-  //  print description text
-  Description.appendChild(ProductDescription).innerHTML = productSelected.description;
 
-  // ============ table section ====================
+  // ============== description section ===================
+ const Description = document.querySelector('.product-description');
+ const ProductDescription = document.createElement('p');
+ //  print description text
+ Description.appendChild(ProductDescription).innerHTML = productSelected.description;
+
+// ============ table section ====================
 
   // ==hourly==
   const price4Hours = document.querySelector('.price-table-four-hours');
@@ -127,44 +129,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${Number.parseFloat((productSelected.prices.hourly)).toFixed(2)}`;
 
 
-  // ==per day==
-  const priceDay = document.querySelector('.price-table-per-day');
-  const priceDayColumn = document.createElement('td');
-  // result per day
-  priceDay.appendChild(priceDayColumn).innerHTML = `$ ${(productSelected.prices.daily).toFixed(2)}`;
+// ==per day==
+const priceDay = document.querySelector('.price-table-per-day');
+const priceDayColumn = document.createElement('td');
+// result per day
+priceDay.appendChild(priceDayColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.daily).toFixed(2)}`;
 
 
-  // ==per week==
-  const priceWeek = document.querySelector('.price-table-per-week');
-  const priceWeekColumn = document.createElement('td');
-  // result week
-  priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${(productSelected.prices.weekly).toFixed(2)}`;
+// ==per week==
+const priceWeek = document.querySelector('.price-table-per-week');
+const priceWeekColumn = document.createElement('td');
+// result week
+priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.weekly).toFixed(2)}`;
 
-  // ============== location ================
-
-
+// ============== location ================
 
 
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (position) => { // success callback
-        console.log('latitude = ' + position.coords.latitude);
-        console.log('longitude = ' + position.coords.longitude);
-      },
-      (error) => { // failure callback
-        console.log(error);
-        if (error.code == error.PERMISSION_DENIED) {
-          window.alert('geolocation permission denied');
-        }
-      });
-  }
+
+// add here destination calculation
 
 
 
 
-
-
-
+// ===========================================
 
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
