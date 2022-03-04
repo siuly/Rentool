@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ./Rentool/js/*.js",
-    "lint:fix": "npm run lint -- --fix"
+    "lint:fix": "npm run lint -- --fix",
+    "cypress:open": "cypress open"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,8 @@
   "devDependencies": {
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0"
+  },
+  "dependencies": {
+    "cypress": "^9.5.0"
   }
 }

@@ -17,6 +17,8 @@
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+  <script src="../js/common.js" type="module" defer></script>
+  <script src="../js/view-product.js" type="module" defer></script>
   <title>View Product</title>
 </head>
 
@@ -42,15 +44,54 @@
     </header>
 
 
-    <div id="product-detail">
-      <p>Product detail</p>
-    </div>
+    <main id="product-detail">
+      <div class="view-product-first">
+        <div class="product-wrapper">
 
+          <div class="product-category">
+            <button>
+              <</button> </div> <div class="product-image">
+                <img src="" alt="">
+          </div>
+          <div class="product-title">
+          </div>
+          <div class="available-status"></div>
+          <div class="location">
+            <p>Nearest Locker location</p>
+          </div>
+        </div>
+        <div class="price-section">
+          <h3>Price</h3>
+          <table class="price-table">
+            <tr class="price-table-four-hours">
+              <td>4 Hours (minimum)</td>
+            </tr>
+            <tr class="price-table-per-day">
+              <td>Per Day</td>
+            </tr>
+            <tr class="price-table-per-week">
+              <td>Per Week</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="product-description">
+        </div>
+        <div class="product-request-button">
+          <button>Request reservation</button>
+        </div>
+
+        <button type="submit" id="view-product-submit-btn">Request</button>
+      </div>
+
+
+    </main>
+    <footer></footer>
     <!-- <div class="loader-container">
       <div class="dot-elastic"></div>
     </div> -->
   </div>
-  <script src="../js/view-product.js" type="module" defer></script>
+
 </body>
 
 </html>

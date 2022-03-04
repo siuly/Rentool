@@ -1,17 +1,376 @@
-.page {
-	border: 1px solid grey;
-	margin: 1rem;
+body {
+  margin: 0;
+}
+
+header {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 1rem;
+  background-color: #fab328;
+  height: auto;
+}
+
+header h1 {
+  grid-column: 2;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  line-height: 20px;
+  font-size: 36px;
+}
+
+.header-left {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  margin-left: 10px;
+}
+header button {
+  border: none;
+  background-color: unset;
+}
+
+header button div {
+  font-family: "Roboto", sans-serif;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+#menu {
+  position: absolute;
+  top: 70px;
+  height: 60%;
+  padding-top: 20px;
+  width: 50%;
+  left: -51%;
+  background-color: white;
+  transition: 0.5s;
+}
+
+#menu.active {
+  left: 0;
+}
+
+#menu li {
+  list-style: none;
+  color: black;
+  line-height: 2;
+  padding-left: 30px;
+  margin-right: 10px;
+  margin-top: 10px;
+  box-shadow: 0 7px 8px -7px #222;
+}
+#menu li:nth-of-type(6) {
+  list-style: none;
+  color: black;
+  line-height: 2;
+  margin-right: 0;
+  margin-top: 15px;
+  box-shadow: none;
+  text-align: right;
+}
+#menu a {
+  text-decoration: none;
+  color: black;
+}
+#menu ul {
+  padding: 0;
+}
+
+
+/* Main */
+h2{
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  margin-top: 22px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 120%;
+  text-align: center;
+  color: #222222;
+}
+h3{
+  margin-top: 29px;
+  margin-bottom: 19px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+}
+.tool-name{
+  margin-left: 40px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 120%;
+  text-align: center;
+  color: #222222;
+}
+.start-reservation{
+  margin-left:46px;
+}
+.start-reservation {
+	display: grid;
+	grid-template-columns: repeat(5 1fr);
+	margin-left: 46px;
+  margin-right: 46px;
+  margin-top: 23px;
+  gap: 8px;
 }
 input {
-	display: block;
-	margin: 1rem;
+  grid-column: 4/5;
 }
-
-.shown {
-	border: 1px solid red;
+span#durationpg1 {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: left;
+  color: #000000;
+  display: block;
+  margin-left: 49px;
+  margin-top: 39px;
+  margin-bottom: 12px;
 }
+span#price{
+  display: block;
+  margin-left: 49px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 10px;
+}
+span#deposit{
+  display: block;
+  margin-left: 49px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  text-align: left;
+  color: #000000;
+  margin-bottom: 25px;
+}
+.location-item{
+  margin-left: 46px;
+  margin-right: 46px;
+  border: solid black thin;
+  border-radius: 5px;
+  margin-bottom: 10px;
 
-
+}
 .selected-location .location-item {
-	border: 2px solid green;
+	border: 2px solid black ;
+  background-color: rgba(212, 211, 211, 0.562);
+  font-weight: bold;
+}
+.terms-title{
+  margin-top: 39px;
+}
+#page1 nav ul li{
+  margin-left: 44px;
+  margin-right: 44px;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  text-align: start;
+  color: #000000;
+  list-style: circle;
+}
+/* Check if there's a way to  fill the  circle from the list to black if not use this 
+#page1 nav ul li::before{
+  text-align: left;
+  content: "• "; 
+  color: black;
+} */
+.read-more {
+  position: absolute;
+  margin-right: 59px;
+  right: 0;
+}
+.read-more a{
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: right;
+  color: #000000;
+}
+.terms-agreement{
+  text-align: center;
+  margin-top: 28px;
+}
+input#agree-terms {
+  background: #3EA8DD;
+  border-radius: 2px;
+}
+.page1-btn{
+  margin-top: 45px;
+  margin-bottom: 45px;
+  margin-left: 18%;
+  width: 240px;
+  height: 43px;
+  border: 2px solid #3EA8DD;
+  box-sizing: border-box;
+  border-radius: 7px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  color: #3EA8DD;
+}
+.shown {
+	display: none;
+}
+/* Page 2 style */
+.title-rental{
+  margin-left: 53px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 4px;
+}
+span#pricepg2 {
+  display: block;
+  text-align: right;
+  margin-right: 49px;
+  margin-top: 8px;
+  margin-bottom: 76px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #000000;
+}
+.rental-duration{
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  color: #000000;
+}
+.rent-dates{
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #000000;
+}
+.rental-container{
+  position: relative;
+  margin-left: 28px;
+  margin-right: 46px;
+  border: solid black thin;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 27px;
+  padding-top: 8px;
+  padding-bottom: 7px;
+  min-height: 79px;
+}
+div#rental-container i {
+  position: absolute;
+  right: 20px;
+  top: 26px;
+  font-size: 21px;
+  color: #3EA8DD;
+}
+.pick-up-title{
+  margin-left: 53px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 4px;
+}
+.pick-up-container{
+  position: relative;
+  margin-left: 28px;
+  margin-right: 46px;
+  border: solid black thin;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 27px;
+  padding-top: 8px;
+  padding-bottom: 7px;
+  min-height: 79px;
+}
+div#pick-up-container i {
+  position: absolute;
+  right: 20px;
+  font-size: 21px;
+  color: #3EA8DD;
+}
+.pick-up-title{
+  margin-left: 53px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+  margin-top: 22px;
+  margin-bottom: 4px;
+}
+.payment-title{
+  margin-left: 53px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 120%;
+  text-align: center;
+  color: #000000;
+  margin-top: 23px;
+}
+div#payment-container i {
+  position: absolute;
+  right: 20px;
+  font-size: 21px;
+  color: #3EA8DD;
+}
+.payment-container{
+  position: relative;
+  margin-left: 28px;
+  margin-right: 46px;
+  border: solid black thin;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding-left: 27px;
+  padding-top: 8px;
+  padding-bottom: 7px;
+  min-height: 79px;
+}
+#page2-btn{
+  margin-top: 45px;
+  margin-bottom: 45px;
+  margin-left: 22%;
+  width: 240px;
+  height: 43px;
+  border: 2px solid #3EA8DD;
+  box-sizing: border-box;
+  border-radius: 7px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  color: #3EA8DD;
 }
