@@ -145,7 +145,7 @@ export const movePageTo = (pagePath, urlParameter = '') => {
  * @description Sign out and move the page to the Home page.
  * @param {string} pagePath
  */
-export const SignOut = () => {
+export const signOut = () => {
   window.localStorage.clear();
   movePageTo(PATHS_PAGES.HOME);
 }
