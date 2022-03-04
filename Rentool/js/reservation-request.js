@@ -163,7 +163,7 @@ etime.addEventListener('change', (event) => {
     }
     rentdays.innerHTML =  `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = sampleToolData[0].toolName;
-    locationpicked.innerHTML ='pending' ;  //pending  to see how to set the location
+    locationpicked.innerHTML =`${selectedLocation}` ;  //pending  to see how to set the location
     payment.innerHTML = 'pending' ; //how to show the payment
 
   })
@@ -171,7 +171,7 @@ etime.addEventListener('change', (event) => {
   reservebtn.addEventListener('click',()=>{
     page2.classList.add('shown');
     page3.classList.remove('shown');
-    
+
   })
 
   /*
