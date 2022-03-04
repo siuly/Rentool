@@ -2,45 +2,46 @@ import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
-const sampleToolData = [{
-  toolId: 'R92ruT1ZA0vCV0w9B7aE',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve',
-  reservationToolIndex: 'driver-brand-small',
-  brand: 'brand',
-  location: {
-    lockerName: 'Locker Name 1',
-    address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
-    latitude: '49.225518864967654',
-    longitude: '123.10776583584949',
-  },
-  imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
-  prices: {
-    hourly: 10,
-    daily: 100,
-    weekly: 1000,
-  },
-  size: 'small',
-}, {
-  toolId: '1IDJzk33zxgafzfegU0q',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve',
-  reservationToolIndex: 'driver-brand-small',
-  brand: 'brand',
-  location: {
-    lockerName: 'Locker Name 2',
-    address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
-    latitude: '49.1967',
-    longitude: '123.1815',
-  },
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
-  prices: {
-    hourly: 10,
-    daily: 100,
-    weekly: 1000,
-  },
-  size: 'small',
-}];
+// const sampleToolData = [{
+//   toolId: 'R92ruT1ZA0vCV0w9B7aE',
+//   toolName: 'driver',
+//   description: 'This is a sample data for showing description of the tool users want to reserve',
+//   reservationToolIndex: 'driver-brand-small',
+//   brand: 'brand',
+//   location: {
+//     lockerName: 'Locker Name 1',
+//     address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
+//     latitude: '49.225518864967654',
+//     longitude: '123.10776583584949',
+//   },
+//   imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
+//   prices: {
+//     hourly: 10,
+//     daily: 100,
+//     weekly: 1000,
+//   },
+//   size: 'small',
+// }, {
+//   toolId: '1IDJzk33zxgafzfegU0q',
+//   toolName: 'driver',
+//   description: 'This is a sample data for showing description of the tool users want to reserve',
+//   reservationToolIndex: 'driver-brand-small',
+//   brand: 'brand',
+//   location: {
+//     lockerName: 'Locker Name 2',
+//     address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
+//     latitude: '49.1967',
+//     longitude: '123.1815',
+//   },
+//   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
+//   prices: {
+//     hourly: 10,
+//     daily: 100,
+//     weekly: 1000,
+//   },
+//   size: 'small',
+// }];
+
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
@@ -75,9 +76,9 @@ let page5 = document.getElementById('page5');
 
 document.addEventListener('DOMContentLoaded', async () => {
   //@TODO: change variable name, this data is no longer sample
-  const sampleToolData = await getToolsByReservationToolIndex(reservationToolIndex);
+  const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
-  tname.innerHTML = sampleToolData[0].toolName;
+  tname.innerHTML = toolListForReservationSelection[0].toolName;
   let dateinput1 = 0;
   let dateinput2 = 0;
 
@@ -116,7 +117,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let fixedhours = 4;
     if (days == 0 && diffHoursMilliseconds < 4) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
-      fprice = sampleToolData[0].prices.hourly * fixedhours;
+      fprice = toolListForReservationSelection[0].prices.hourly * fixedhours;
       tprice.innerHTML = `Price: $ ${fprice}`;
       fdepo = fprice * 0.5;
       tdepo.innerHTML = `Deposit: $ ${fdepo}`;
@@ -124,7 +125,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (days <= 7) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
       totalHours = days * 24 + diffHoursMilliseconds;
-      fprice = sampleToolData[0].prices.hourly * totalHours * .9;
+      fprice = toolListForReservationSelection[0].prices.hourly * totalHours * .9;
       tprice.innerHTML = `Price: $ ${fprice}`;
       fdepo = fprice * 0.5;
       tdepo.innerHTML = `Deposit: $ ${fdepo}`;
@@ -132,7 +133,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else if (days >= 7) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
       totalHours = days * 24 + diffHoursMilliseconds;
-      fprice = sampleToolData[0].prices.hourly * totalHours * .8;
+      fprice = toolListForReservationSelection[0].prices.hourly * totalHours * .8;
       tprice.innerHTML = `Price: $ ${fprice}`;
       fdepo = fprice * 0.5;
       tdepo.innerHTML = `Deposit: $ ${fdepo}`;
@@ -143,7 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   nextbtn.addEventListener('click', () => {
     page1.classList.add('shown');
     page2.classList.remove('shown');
-    tname2.innerHTML = sampleToolData[0].toolName;
+    tname2.innerHTML = toolListForReservationSelection[0].toolName;
     totalprice.innerHTML = `Price: $${fprice}`;
     if (diffHoursMilliseconds != 0) {
       duration.innerHTML = `${days} days and ${diffHoursMilliseconds} hours`;
@@ -151,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       duration.innerHTML = `${days} days`;
     }
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
-    tnameloc.innerHTML = sampleToolData[0].toolName;
+    tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
     locationpicked.innerHTML = 'pending'; //pending  to see how to set the location
     payment.innerHTML = 'pending'; //how to show the payment
 
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
 
   /**@type {Location[]} Location + correspondToolId*/
-  const locations = sampleToolData.map(tool => {
+  const locations = toolListForReservationSelection.map(tool => {
     return { ...tool.location, correspondToolId: tool.toolId };
   });
   const locationContainerEl = document.getElementById('locationContainer');
@@ -230,10 +231,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       reservationToolIndex: reservationToolIndex,
       userId: readUserId(),
       createdAt: new Date(),
-      imageUrl: sampleToolData[0].imageUrl,
+      imageUrl: toolListForReservationSelection[0].imageUrl,
       location: selectedLocation,
 
-      // Add extra properties from user input
+      // @TODO:  Add extra properties from user input
     };
 
 
