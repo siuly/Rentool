@@ -23,17 +23,29 @@
 	--font-size-headings-bold: 24px;
 	--font-size-body-text: 16px;
 	--font-size-secondary-text: 14px;
+
+
+	--height-heading: 50px;
 }
 
 body {
 	font-family: "Roboto", sans-serif;
+	background-color: rgba(0, 0, 0, 0.05);
 }
 
 .wrapper {
-	width: 100%;
+	/* width: 100%; */
+	max-width: 800px;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr;
 	overflow: hidden;
+
+	/* Alpha */
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	box-shadow: 30px 0 30px -30px rgba(0, 0, 0, 0.8), -30px 0 30px -30px rgba(0, 0, 0, 0.8);
+	background-color: var(--color-background);
 }
 
 header {
@@ -41,15 +53,19 @@ header {
 	grid-template-columns: 1fr 1fr 1fr;
 	gap: 1rem;
 	background-color: #fab328;
-	height: auto;
+	height: var(--height-heading);
+	align-items: center;
+	padding: 0.5rem 0;
+	position: relative;
 }
 
 header h1 {
 	grid-column: 2;
 	text-align: center;
 	font-family: "Raleway", sans-serif;
+	height: 100%;
 	font-weight: 700;
-	line-height: 20px;
+	/* line-height: 20px; */
 	font-size: 36px;
 }
 
@@ -73,7 +89,7 @@ button div {
 
 #menu {
 	position: absolute;
-	top: 70px;
+	top: var(--height-heading);
 	height: 100%;
 	padding-top: 20px;
 	width: 50%;
@@ -96,7 +112,7 @@ button div {
 	margin-top: 10px;
 	box-shadow: 0 7px 8px -7px #222;
 }
-#menu li:nth-of-type(6) {
+/* #menu li:nth-of-type(6) {
 	list-style: none;
 	color: black;
 	line-height: 2;
@@ -104,13 +120,14 @@ button div {
 	margin-top: 15px;
 	box-shadow: none;
 	text-align: right;
-}
+} */
 #menu a {
 	text-decoration: none;
 	color: black;
 }
 #menu ul {
 	padding: 0;
+	background-color: white;
 }
 footer {
 	background-color: black;
