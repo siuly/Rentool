@@ -171,7 +171,9 @@ document.getElementById('submit').addEventListener('click', async () => {
     };
 
     console.log(tool);
-    setToolData(tool);
+    const result = await setToolData(tool);
+    result && alert(`Success`);
+
 });
 
 

@@ -113,8 +113,10 @@ export const setToolData = async (tool) => {
   try {
     // await db.collection('Tools').add({ ...tool });
     await setDataTo('Tools', tool);
+    return true;
   } catch (error) {
     console.error(error);
+    return false;
   }
 };
 
