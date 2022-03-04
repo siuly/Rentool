@@ -7,7 +7,25 @@
 export const GET_PARAMS = {
   CATEGORY: 'category',
   KEYWORD: 'keyword',
+  RESERVATION_ID: 'reservationId',
+  RESERVATION_TOOL_INDEX: 'reservationToolIndex'
 };
+export const PATH_PAGE_TOP_DIRECTORY = `/Pages`;
+
+export const PATHS_PAGES = {
+  // General
+  HOME: 'home.html',
+  ACTIVE_ORDERS: 'active-orders.html',
+  SIGN_IN: 'sign-in.html',
+  SIGN_UP: 'sign-up.html',
+
+  // Reservation
+  PRODUCT_RESULT: 'product-result.html',
+
+  // Return
+  RETURN_TOOL: 'return-tool.html',
+  RETURN_COMPLETE: 'return-complete.html',
+}
 
 
 /**
@@ -86,20 +104,46 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
     navigator.geolocation.getCurrentPosition((position) => {
       const userLatitude = position.coords.latitude;
       const userLongitude = position.coords.longitude;
-
-
-      /**TODO: TEST => should be deleted */
-      // targetLatitude = 9.23970770288139;
-      // targetLongitude = -123.03182549147533;
-
       const dist = distance(userLatitude, userLongitude, targetLatitude, targetLongitude, 'm');
-      console.log('dist: ', dist);
 
       return dist;
     }, (error) => { console.error(error) });
   }
 };
 
+/**
+ * @description move the page to the designated page
+ * @param {string} pagePath
+ */
+export const movePageTo = (pagePath) => {
+  window.location.href = `${PATH_PAGE_TOP_DIRECTORY}/${pagePath}`;
+}
+
+
+/**
+ * @description Sign out and move the page to the Home page.
+ * @param {string} pagePath
+ */
+export const SignOut = () => {
+  window.localStorage.clear();
+  movePageTo(PATHS_PAGES.HOME);
+}
+
+/**
+ * @description Set user id into local storage
+ * @param {string} userId
+ */
+export const SaveUserId = (userId) => {
+  window.localStorage.setItem('userId', userId);
+};
+
+/**
+ * @description Return user id from local storage
+ * @return {string} 
+ */
+export const readUserId = () => {
+  return window.localStorage.getItem('userId');
+};
 
 /**
  * @typedef location
@@ -107,6 +151,7 @@ export const getDistanceFromUserLocation = async (targetLatitude, targetLongitud
  * @property {float} longitude
  */
 
+//@ TODO:
 /**
  * @description Get Location
  * @param {location[]} locations
