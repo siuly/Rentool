@@ -179,3 +179,11 @@ export const getNearestLocation = async (locations) => {
 
   return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
 };
+
+/**
+ * @description Check whether the login user is admin
+ * @return {boolean}
+ */
+export const isAdminUser = () => {
+  return readUserId() === 'admin';
+};
