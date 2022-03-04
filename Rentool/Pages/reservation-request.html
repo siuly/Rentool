@@ -17,7 +17,7 @@
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- js -->
-  <script src="../js/common.js" defer></script>
+  <script src="../js/common.js" defer type="module"></script>
   <!-- <script src="../js/r-request.js" defer></script> -->
 
   <title>Reservation Request</title>
@@ -42,7 +42,7 @@
             <li><a href="">User Profile</a></li>
             <li><a href="">About Rentool</a></li>
             <li><a href="">Help</a></li>
-            <li id="sign-status"><a href="">Sign out</a></li>
+            <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
           </ul>
         </nav>
       </div>
@@ -50,12 +50,10 @@
     </header>
 
     <main>
-      
 
-
-        <div id="page1" class="page">
-          <h2>Reservation Request</h2>
-        <h3 >Rental Duration</h3>
+      <div id="page1" class="page">
+        <h2>Reservation Request</h2>
+        <h3>Rental Duration</h3>
         <span id="tool-namepg1" class="tool-name"></span>
         <div id="reservation-time" class="reservation-time start-reservation">
           <label for="">Pick-Up Date </label><input type="date" name="start-date" id="start-date" required>
@@ -63,7 +61,7 @@
           <label>Return Date </label><input type="date" name="end-date" id="end-date" required>
           <label for="">Return Time </label><input type="time" name="end-time" id="end-time" required>
         </div>
-      
+
 
         <span id="durationpg1"></span>
         <span id="price"></span>
@@ -79,13 +77,13 @@
         </nav>
         <span class="read-more"><a href="">Read more</a></span><br>
         <div class="terms-agreement">
-          <input type="checkbox" id="agree-terms" required >
-          <label >I have read and accept the terms.</label><br>
+          <input type="checkbox" id="agree-terms" required>
+          <label>I have read and accept the terms.</label><br>
         </div>
         <button class="page1-btn" id="page1-btn" data-next="page2">Next</button>
-        
+
       </div>
-      
+
       <div id="page2" class="page shown">
         <h2>Reservation Request</h2>
         <h3>Overview</h3>
@@ -110,48 +108,48 @@
         </div>
         <button class="page-btn" id="page2-btn" data-next="page3">Reserve</button>
       </div>
-      </div>
+  </div>
 
 
-      <div id="page3" class="page shown">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <button class="page-btn" id="page3-btn" data-next="page4">Button</button>
-        <button type="submit" id="reservation-request-btn">Submit Reservation Request</button>
-      </div>
-      <div id="page4" class="page shown">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        <button class="page-btn" id="page4-btn" data-next="page5">Button</button>
-      </div>
-      <div id="page5" class="page shown">
-        <input type="text" name="" id="">
-        <input type="text" name="" id="">
-        
-      </div>
+  <div id="page3" class="page shown">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <button class="page-btn" id="page3-btn" data-next="page4">Button</button>
+    <button type="submit" id="reservation-request-btn">Submit Reservation Request</button>
+  </div>
+  <div id="page4" class="page shown">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
+    <button class="page-btn" id="page4-btn" data-next="page5">Button</button>
+  </div>
+  <div id="page5" class="page shown">
+    <input type="text" name="" id="">
+    <input type="text" name="" id="">
 
-    </main>
+  </div>
 
-    <footer>
-      <img src="" alt="">
+  </main>
 
-      <div class="social-media">
-        <nav>
-          <ul>
-            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-                </i> </a></li>
-            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-          </ul>
-        </nav>
-      </div>
+  <footer>
+    <img src="" alt="">
+
+    <div class="social-media">
+      <nav>
+        <ul>
+          <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
+          <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
+              </i> </a></li>
+          <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+          <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+      </nav>
+    </div>
 
 
-      <p>© 2022 Rentool All Rights Reserved.</p>
-    </footer>
-    
+    <p>© 2022 Rentool All Rights Reserved.</p>
+  </footer>
+
   </div>
   <script src="../js/reservation-request.js" type="module" defer></script>
 </body>

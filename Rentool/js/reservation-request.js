@@ -44,21 +44,11 @@ const sampleToolData = [{
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
-let reservationRequestData = {
-  toolId: '',
-  duration: {
-    endDate: '',
-    startDate: '',
-  },
-  isReturned: false,
-  reservationToolIndex: reservationToolIndex,
-  userId: readUserId() || '',
-  createdAt: new Date()
-  //You can add additional property
-};
-//elements from HTML
+
+
 
 let selectedLocation = null;
+let selectedToolId = null;
 let page1 = document.getElementById('page1');
 let sdate = document.getElementById('start-date');
 let stime = document.getElementById('start-time');
@@ -84,14 +74,14 @@ let page5 = document.getElementById('page5');
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-//@TODO: change variable name, this data is no longer sample
-const sampleToolData = await getToolsByReservationToolIndex(reservationToolIndex);
+  //@TODO: change variable name, this data is no longer sample
+  const sampleToolData = await getToolsByReservationToolIndex(reservationToolIndex);
 
-tname.innerHTML = sampleToolData[0].toolName;
-let dateinput1 = 0;
-let dateinput2 = 0;
+  tname.innerHTML = sampleToolData[0].toolName;
+  let dateinput1 = 0;
+  let dateinput2 = 0;
 
-etime.addEventListener('change', (event) => {
+  etime.addEventListener('change', (event) => {
     dateinput1 = sdate.value + ' ' + stime.value;
     dateinput2 = edate.value + ' ' + etime.value;
     console.log(dateinput1);
@@ -101,15 +91,16 @@ etime.addEventListener('change', (event) => {
     } else {
       alert('incorrect date input');
     }
-    
-  })
-  
+
+  });
+
 
   let diffHoursMilliseconds = 0;
   let days = 0;
   let fprice = 0;
   let fdepo = 0;
   let delta = 0;
+
   function get_time_diff(d1, d2) {
     let datetime3 = new Date(d1);
     let datetime4 = new Date(d2);
@@ -119,67 +110,65 @@ etime.addEventListener('change', (event) => {
     console.log('days: ', days);
     let date_diff = new Date(delta);
     const diffMilliseconds = date_diff;
-    diffHoursMilliseconds = Math.floor((diffMilliseconds - (days * 86400000))/3600000);
-    
+    diffHoursMilliseconds = Math.floor((diffMilliseconds - (days * 86400000)) / 3600000);
+
     let totalHours = 0;
     let fixedhours = 4;
-    if (days == 0 && diffHoursMilliseconds < 4){
+    if (days == 0 && diffHoursMilliseconds < 4) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
       fprice = sampleToolData[0].prices.hourly * fixedhours;
       tprice.innerHTML = `Price: $ ${fprice}`;
       fdepo = fprice * 0.5;
       tdepo.innerHTML = `Deposit: $ ${fdepo}`;
-      console.log("4 hours charged",fprice);
-    }
-    else if(days <= 7){
+      console.log('4 hours charged', fprice);
+    } else if (days <= 7) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
-      totalHours = days*24 + diffHoursMilliseconds;
-      fprice = sampleToolData[0].prices.hourly * totalHours * .9 ;
+      totalHours = days * 24 + diffHoursMilliseconds;
+      fprice = sampleToolData[0].prices.hourly * totalHours * .9;
       tprice.innerHTML = `Price: $ ${fprice}`;
       fdepo = fprice * 0.5;
       tdepo.innerHTML = `Deposit: $ ${fdepo}`;
-      console.log("day price charged",fprice, "total hours:", totalHours, "hours", diffHoursMilliseconds);
-    }
-    else if(days >= 7){
+      console.log('day price charged', fprice, 'total hours:', totalHours, 'hours', diffHoursMilliseconds);
+    } else if (days >= 7) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
-      totalHours = days*24 + diffHoursMilliseconds;
-      fprice = sampleToolData[0].prices.hourly * totalHours * .8 ;
+      totalHours = days * 24 + diffHoursMilliseconds;
+      fprice = sampleToolData[0].prices.hourly * totalHours * .8;
       tprice.innerHTML = `Price: $ ${fprice}`;
       fdepo = fprice * 0.5;
       tdepo.innerHTML = `Deposit: $ ${fdepo}`;
-      console.log("week price charged",fprice);
+      console.log('week price charged', fprice);
     }
   }
 
-  nextbtn.addEventListener('click', ()=>{
+  nextbtn.addEventListener('click', () => {
     page1.classList.add('shown');
     page2.classList.remove('shown');
     tname2.innerHTML = sampleToolData[0].toolName;
     totalprice.innerHTML = `Price: $${fprice}`;
-    if (diffHoursMilliseconds != 0){
-    duration.innerHTML = `${days} days and ${diffHoursMilliseconds} hours`
-    }else{
-    duration.innerHTML = `${days} days`
+    if (diffHoursMilliseconds != 0) {
+      duration.innerHTML = `${days} days and ${diffHoursMilliseconds} hours`;
+    } else {
+      duration.innerHTML = `${days} days`;
     }
-    rentdays.innerHTML =  `${dateinput1} to <br> ${dateinput2}`;
+    rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = sampleToolData[0].toolName;
-    locationpicked.innerHTML ='pending' ;  //pending  to see how to set the location
-    payment.innerHTML = 'pending' ; //how to show the payment
+    locationpicked.innerHTML = 'pending'; //pending  to see how to set the location
+    payment.innerHTML = 'pending'; //how to show the payment
 
-  })
+  });
 
-  reservebtn.addEventListener('click',()=>{
+  reservebtn.addEventListener('click', () => {
     page2.classList.add('shown');
     page3.classList.remove('shown');
-    
-  })
+
+  });
 
   /*
    * ============================================
    * Page Initialization
    * ============================================
    */
-  
+
   /**@type {Location[]} Location + correspondToolId*/
   const locations = sampleToolData.map(tool => {
     return { ...tool.location, correspondToolId: tool.toolId };
@@ -188,7 +177,7 @@ etime.addEventListener('change', (event) => {
   for (const location of locations) {
     const locationItem = new LocationItem(location);
     locationItem.addEventListener('click', () => {
-      reservationRequestData.toolId = location.correspondToolId;
+      selectedToolId = location.correspondToolId;
       selectedLocation = location;
     });
     locationContainerEl.appendChild(locationItem);
@@ -226,28 +215,34 @@ etime.addEventListener('change', (event) => {
       return;
     }
   });
-  //@TODO: Delete
-  // TEST: for reservation submit
-  reservationRequestData = {
-    toolId: sampleToolData[0].toolId,
-    duration: {
-      endDate: '2023-03-01 13:00',
-      startDate: '2023-04-01 13:00',
-    },
-    isReturned: false,
-    reservationToolIndex: reservationToolIndex,
-    userId: readUserId() || '',
-    imageUrl: sampleToolData[0].imageUrl,
-    createdAt: new Date()
-  };
+
+
+
+  // Add reservation
   document.getElementById('reservation-request-btn').addEventListener('click', async () => {
-    console.log(`START`);
+    let reservationRequestData = {
+      toolId: selectedToolId,
+      duration: {
+        endDate: '', //@TODO:  Fill from user input
+        startDate: '', //@TODO:  Fill from user input
+      },
+      isReturned: false,
+      reservationToolIndex: reservationToolIndex,
+      userId: readUserId(),
+      createdAt: new Date(),
+      imageUrl: sampleToolData[0].imageUrl,
+      location: selectedLocation,
+
+      // Add extra properties from user input
+    };
+
+
     if (selectedLocation === null) {
       return;
     }
-    console.log(`MIDDLE`);
+
     const reservationRequestResult = await reservationRequest(reservationRequestData);
-    console.log('reservationRequestResult: ', reservationRequestResult);
+
     if (reservationRequestResult === true) {
       console.log('reservationRequestResult === true: ', reservationRequestResult === true);
       alert(`
@@ -255,16 +250,9 @@ etime.addEventListener('change', (event) => {
       ToolId: ${reservationRequestData.toolId}
       Selected Location: ${selectedLocation.lockerName}
       `);
+
+      // TODO: Show: reservation-complete
     }
-    console.log(`END`);
+
   });
 }); //DOMContentLoaded
-
-
-
-
-
-
-
-
-
