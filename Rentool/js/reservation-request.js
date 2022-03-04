@@ -220,6 +220,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Add reservation
   document.getElementById('reservation-request-btn').addEventListener('click', async () => {
+    const signInUserId = readUserId();
     let reservationRequestData = {
       toolId: selectedToolId,
       duration: {
@@ -228,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       },
       isReturned: false,
       reservationToolIndex: reservationToolIndex,
-      userId: readUserId(),
+      userId: signInUserId,
       createdAt: new Date(),
       imageUrl: toolListForReservationSelection[0].imageUrl,
       location: selectedLocation,
@@ -238,6 +239,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
     if (selectedLocation === null) {
+      alert('Please select location');
+      return;
+    }
+    if (signInUserId === null) {
+      alert('You should Sign In');
+      movePageTo(PATHS_PAGES.SIGN_IN);
       return;
     }
 
