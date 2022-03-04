@@ -1,11 +1,18 @@
-// Header components
-const headerScript = document.createElement('script');
-headerScript.setAttribute('src', `/js/components/RentoolHeader.js`);
-headerScript.setAttribute('type', 'module');
-document.head.appendChild(headerScript);
+import { signOut, movePageTo, PATHS_PAGES } from './util.js';
 
-// Footer components
-const footerScript = document.createElement('script');
-footerScript.setAttribute('src', `/js/components/RentoolFooter.js`);
-footerScript.setAttribute('type', 'module');
-document.head.appendChild(footerScript);
+
+
+// SIDE MENU
+const toggle = document.getElementById('toggle');
+const sidemenu = document.getElementById('menu');
+
+toggle.onclick = function() {
+  sidemenu.classList.toggle('active');
+};
+
+
+document.getElementById('sign-out').addEventListener('click', (e) => {
+  e.preventDefault();
+  signOut();
+  movePageTo(PATHS_PAGES.HOME);
+});

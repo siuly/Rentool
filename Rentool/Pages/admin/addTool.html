@@ -64,13 +64,13 @@
 
     <select name="category" id="category">
       <option value="Cleaning and Floocare">Cleaning and Floorcare</option>
-      <option value="Drilling & Breaking">Drilling and Breaking</option>
-      <option value="Fans & Heater">Fans and Heater</option>
-      <option value="Ladders & Scaffold">Ladders and Scaffold</option>
-      <option value="Lifting & Moving">Lifting and Moving</option>
-      <option value="Lighting & Electrical">Lighting & Electrical</option>
-      <option value="Painting & Decoration">Painting and Decorating</option>
-      <option value="Pumps & Plumbing">Pumps and Plumbing</option>
+      <option value="Drilling and Breaking">Drilling and Breaking</option>
+      <option value="Fans and Heater">Fans and Heater</option>
+      <option value="Ladders and Scaffold">Ladders and Scaffold</option>
+      <option value="Lifting and Moving">Lifting and Moving</option>
+      <option value="Lighting and Electrical">Lighting & Electrical</option>
+      <option value="Painting and Decoration">Painting and Decorating</option>
+      <option value="Pumps and Plumbing">Pumps and Plumbing</option>
       <option value="Gardening">Others</option>
       <option value=""></option>
       <option value=""></option>
@@ -106,17 +106,26 @@
   import { Location } from '../../js/domain/Location.js'
   import { Tool } from '../../js/domain/Tool.js'
   import { Reservation } from '../../js/domain/Reservation.js'
-  import {getDistanceFromUserLocation, getNearestLocation} from '../../js/util.js'
+  import {getDistanceFromUserLocation, getNearestLocation, isAdminUser} from '../../js/util.js'
   import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData, signInEmailWithPassword, getAllLocations} from '../../js/firebase.js'
 
   // signInEmailWithPassword('test@test.com', 'qwertyuiop');
 
 let locations;
 document.addEventListener('DOMContentLoaded', async () => {
+
+  if (isAdminUser() === false) {
+    alert('This page is for Admin User');
+    return;
+  }
+
+
   locations =await getAllLocations();
 
   const nearestLocation = await getNearestLocation(locations);
   console.log('nearestLocation: ', nearestLocation);
+
+
 });
 
 document.getElementById('submit').addEventListener('click', async () => {
@@ -162,7 +171,9 @@ document.getElementById('submit').addEventListener('click', async () => {
     };
 
     console.log(tool);
-    setToolData(tool);
+    const result = await setToolData(tool);
+    result && alert(`Success`);
+
 });
 
 

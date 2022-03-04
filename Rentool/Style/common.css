@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto&display=swap");
 
 * {
 	box-sizing: border-box;
@@ -22,27 +23,142 @@
 	--font-size-headings-bold: 24px;
 	--font-size-body-text: 16px;
 	--font-size-secondary-text: 14px;
+
+
+	--height-heading: 50px;
 }
 
 body {
 	font-family: "Roboto", sans-serif;
+	background-color: rgba(0, 0, 0, 0.05);
 }
 
 .wrapper {
-	width: 100%;
+	/* width: 100%; */
+	max-width: 800px;
+	margin: 0 auto;
 	display: grid;
 	grid-template-columns: 1fr;
 	overflow: hidden;
+
+	/* Alpha */
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	box-shadow: 30px 0 30px -30px rgba(0, 0, 0, 0.8), -30px 0 30px -30px rgba(0, 0, 0, 0.8);
+	background-color: var(--color-background);
+}
+
+header {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 1rem;
+	background-color: #fab328;
+	height: var(--height-heading);
+	align-items: center;
+	padding: 0.5rem 0;
+	position: relative;
+}
+
+header h1 {
+	grid-column: 2;
+	text-align: center;
+	font-family: "Raleway", sans-serif;
+	height: 100%;
+	font-weight: 700;
+	/* line-height: 20px; */
+	font-size: 36px;
+}
+
+.header-left {
+	grid-column: 1;
+	grid-row: 1;
+	align-self: center;
+	margin-left: 10px;
+}
+
+button {
+	border: none;
+	background-color: unset;
+}
+
+button div {
+	font-family: "Roboto", sans-serif;
+	font-size: 12px;
+	line-height: 20px;
+}
+
+#menu {
+	position: absolute;
+	top: var(--height-heading);
+	height: 100%;
+	padding-top: 20px;
+	width: 50%;
+	left: -51%;
+	background-color: white;
+	transition: 0.5s;
+	z-index: 10;
+}
+
+#menu.active {
+	left: 0;
+}
+
+#menu li {
+	list-style: none;
+	color: black;
+	line-height: 2;
+	padding-left: 30px;
+	margin-right: 10px;
+	margin-top: 10px;
+	box-shadow: 0 7px 8px -7px #222;
+}
+/* #menu li:nth-of-type(6) {
+	list-style: none;
+	color: black;
+	line-height: 2;
+	margin-right: 0;
+	margin-top: 15px;
+	box-shadow: none;
+	text-align: right;
+} */
+#menu a {
+	text-decoration: none;
+	color: black;
+}
+#menu ul {
+	padding: 0;
+	background-color: white;
+}
+footer {
+	background-color: black;
+	color: white;
+}
+footer .social-media ul li {
+	list-style: none;
+}
+footer .social-media ul li i {
+	color: white;
+}
+.social-media nav ul {
+	padding-left: 0;
+	margin: 0;
+	padding-bottom: 10px;
+	display: flex;
+	flex-flow: row nowrap;
+	gap: 1rem;
+	justify-content: center;
+}
+footer p {
+	margin: 0;
+	text-align: center;
+	padding-bottom: 10px;
 }
 
 /* Header */
 
-
 /* Footer */
 
 /* Button */
-
-
 
 .clickable {
 	box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.4);

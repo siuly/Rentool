@@ -3,7 +3,7 @@
 body {
   margin: 0;
 }
-
+/* 
 header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -103,7 +103,7 @@ footer p {
   margin: 0;
   text-align: center;
   padding-bottom: 10px;
-}
+} */
 
 .category-wrapper {
   padding-top: 3rem;

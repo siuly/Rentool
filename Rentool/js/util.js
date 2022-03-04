@@ -18,16 +18,26 @@ export const PATHS_PAGES = {
   ACTIVE_ORDERS: 'active-orders.html',
   SIGN_IN: 'sign-in.html',
   SIGN_UP: 'sign-up.html',
+  CATALOGUE: 'catalogue.html',
 
   // Reservation
   PRODUCT_RESULT: 'product-result.html',
   RESERVATION_REQUEST: 'reservation-request.html',
+  VIEW_PRODUCT: 'view-product.html',
 
   // Return
   RETURN_TOOL: 'return-tool.html',
   RETURN_COMPLETE: 'return-complete.html',
-}
 
+  // Admin
+  ADD_TOOL: 'admin/addTool.html',
+
+  // UPCOMMING
+  LOCATIONS: 'locations.html',
+  USER_PROFILE: 'user-profile.html',
+  ABOUT_RENTOOL: 'about-rentool.html',
+  HELP: 'help.html'
+}
 
 /**
  * @description Get an object includes URL parameters
@@ -135,7 +145,7 @@ export const movePageTo = (pagePath, urlParameter = '') => {
  * @description Sign out and move the page to the Home page.
  * @param {string} pagePath
  */
-export const SignOut = () => {
+export const signOut = () => {
   window.localStorage.clear();
   movePageTo(PATHS_PAGES.HOME);
 }
@@ -178,4 +188,12 @@ export const getNearestLocation = async (locations) => {
   /** Set distance end */
 
   return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
+};
+
+/**
+ * @description Check whether the login user is admin
+ * @return {boolean}
+ */
+export const isAdminUser = () => {
+  return readUserId() === 'admin';
 };
