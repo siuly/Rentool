@@ -1,21 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="../js/index.js" defer type="module"></script>
-    <link rel="stylesheet" href="../Style/sign-up.css">
-</head>
-<body>
-    <img src="" alt="Rentool-logo">
-       <h1>Sign Up</h1>
 
-    <form id="sign-up">
- 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign up</title>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+
+  <link rel="stylesheet" href="../Style/reset.min.css">
+  <link rel="stylesheet" href="../Style/common.css">
+  <link rel="stylesheet" href="../Style/sign-up.css">
+
+  <script src="../js/common.js" defer type="module"></script>
+  <script src="../js/index.js" defer type="module"></script>
+
+</head>
+
+<body id="sign-up-page">
+  <div class="wrapper">
+    <header></header>
+    <main>
+      <img src="" alt="Rentool-logo">
+      <h1>Sign Up</h1>
+
+      <form id="sign-up">
+
         <label for="first-name">First Name</label>
         <input type="type" placeholder="First Name" name="fname" id="fname" required>
 
@@ -33,6 +45,12 @@
 
         <button type="button" id="cbtn">Cancel</button>
         <button type="button" id="sbtn">Sign Up</button>
-    </form>
+      </form>
+    </main>
+    <footer>
+
+    </footer>
+  </div>
 </body>
+
 </html>
