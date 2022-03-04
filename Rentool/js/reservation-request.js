@@ -75,7 +75,6 @@ let page5 = document.getElementById('page5');
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
