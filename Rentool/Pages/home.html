@@ -5,74 +5,153 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="../app.webmanifest">
+
   <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="../Style/home.css">
   <link rel="stylesheet" href="../Style/reset.min.css">
-  <script src="../js/home.js" defer></script>
-  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="../Style/common.css">
+  <link rel="stylesheet" href="../Style/home.css">
+
+  <script src="../js/common.js" defer type="module"></script>
+  <script src="../js/home.js" defer type="module"></script>
   <title>Home</title>
-  
+
 </head>
 
-<body>
-  <header>
-  <h1>Rentool</h1>
-  <div class="header-left">
-    <button id="toggle"><i class="fas fa-bars"></i><div>MENU</div></button>
-    <nav  id="menu">
-      <ul>
-        <li><a href="">My Account</a></li>
-        <li><a href="">Tool Catalogue</a></li>
-        <li><a href="">Locations</a></li>
-        <li><a href="">About Rentool</a></li>
-        <li><a href="">Contact Us</a></li>
-        <li id="sign-status"><a href="">Sign out</a></li>
-      </ul>
-    </nav>
+<body id="home">
+  <div class="wrapper">
+    <header>
+      <h1>Rentool</h1>
+      <div class="header-left">
+        <button id="toggle"><i class="fas fa-bars"></i>
+          <div>MENU</div>
+        </button>
+        <nav id="menu">
+          <ul>
+            <li><a href="">My Account</a></li>
+            <li><a href="catalogue.html">Tool Catalogue</a></li>
+            <li><a href="./active-orders.html">My Active Orders</a></li>
+            <li><a href="./catalogue.html">Tool Catalogue</a></li>
+            <li><a href="">Locations</a></li>
+            <li><a href="">User Profile</a></li>
+            <li><a href="">About Rentool</a></li>
+            <li><a href="">Help</a></li>
+            <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
+          </ul>
+        </nav>
+      </div>
+
+    </header>
+    <main>
+      <section class="hero-container">
+
+        <h2 class="hero-container__heading">Contactless Tol Rental
+        </h2>
+        <p class="hero-container__text">
+          Rentool is a contactless tool rental service. You can rent and return tools at any location you want.
+        </p>
+      </section>
+
+      <section class="catalogue">
+        <h3 class="catalogue__heading">
+          Tool Catalogue
+        </h3>
+        <div class="category-wrapper">
+          <div class="category-item clickable">
+            <a href="./product-result.html?category=Cleaning and Floocare" class="category-link">
+              <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Cleaning and Floocare" class="category-item__image">
+              <span class="category-link__text">
+                Category: Cleaning and Floocare
+              </span>
+            </a>
+          </div>
+
+          <div class="category-item clickable">
+            <a href="./product-result.html?category=Drilling & Breaking" class="category-link">
+              <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Drilling & Breaking" class="category-item__image">
+              <span class="category-link__text">
+                Category: Drilling & Breaking
+              </span>
+            </a>
+          </div>
+
+          <div class="category-item clickable disabled-item">
+            <a href="./product-result.html?category=Fans & Heater" class="category-link">
+              <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Fans & Heater" class="category-item__image">
+              <span class="category-link__text">
+                Category: Fans & Heater
+              </span>
+            </a>
+          </div>
+        </div>
+        <button class="catalogue__more-btn">
+          <a href="./catalogue.html" class="catalogue__more-btn--link">
+            More Cagegories
+          </a>
+        </button>
+
+      </section>
+
+      <!-- <section class="location">
+      <div class="location-container"></div>
+    </section> -->
+
+      <section class="service">
+        <p class="service__description">
+          Rentool is a contactless tool rental service. Our service is for individuals or groups who may need a certain tool to complete a task but do not have access to that tool.
+        </p>
+        <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80" alt="Our Service" class="service-image">
+        <div class="learn-more">
+          <a href="" class="learn-more__link">Learn More</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <img src="" alt="">
+
+      <div class="social-media">
+        <nav>
+          <ul>
+            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
+                </i> </a></li>
+            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+
+
+      <p>© 2022 Rentool All Rights Reserved.</p>
+    </footer>
   </div>
+  <script>
+    // does the browser support service workers?
+    if ('serviceWorker' in navigator) {
+      // fires when the service worker is ready
+      navigator.serviceWorker.ready.then(reg => {
+        // we have an active service worker working for us
+        console.log(`Service Worker ready (Scope: ${reg.scope})`);
+        // do something interesting, if you want...
 
-</header>
-<main>
-  <div class="carousel">
-    <img src="" alt="">
-    <img src="" alt="">
-    <img src="" alt="">
-  </div>
-
-  <div class="catalogues">
-    <article>
-      
-    </article>
-    <a href="catalogue.html">More Categories</a>
-  </div>
-
-  <div class="location">
-
-  </div>
-
-  <div class="service">
-
-  </div>
-</main>
-
-<footer>
-  <img src="" alt="">
-
-  <div class="social-media">
-    <nav>
-      <ul>
-        <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-        <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></a></i></li>
-        <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-        <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-        <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-      </ul>
-    </nav>
-  </div>
-
-  
-  <p>© 2022 Rentool All Rights Reserved.</p>
-</footer>
+      });
+      // then register our service worker
+      navigator.serviceWorker.register('../../sw.js', { scope: '/' })
+        .then(function(reg) {
+          // display a success message
+          console.log(`Service Worker Registration (Scope: ${reg.scope})`);
+        })
+        .catch(function(error) {
+          // display an error message
+          console.log(`Service Worker Error (${error})`);
+        });
+    } else {
+      // happens when the app isn't served over a TLS connection (HTTPS)
+      console.warn('Service Worker not available');
+    }
+  </script>
 </body>
 
 </html>

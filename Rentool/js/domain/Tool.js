@@ -1,6 +1,6 @@
 export class Tool {
-  constructor({ toolId, toolName, location, prices, category, imageUrl, reservationToolIndex, size, isReserved, brand }) {
-    this.toolId = toolId;
+  constructor({ toolId, toolName, location, prices, category, imageUrl, reservationToolIndex, size, isReserved, brand, description }) {
+    // this.toolId = toolId;
     this.toolName = toolName;
     this.location = location;
     this.prices = prices;
@@ -10,5 +10,6 @@ export class Tool {
     this.size = size;
     this.isReserved = isReserved;
     this.brand = brand;
+    this.description = description;
   }
 }

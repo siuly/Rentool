@@ -1,21 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&family=Roboto&display=swap");
 
-body{
+body {
   margin: 0;
 }
-
-header{
+/* 
+header {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 1rem;
-  background-color: #FAB328;
-  height: auto;  
+  background-color: #fab328;
+  height: auto;
 }
 
-header h1{
+header h1 {
   grid-column: 2;
   text-align: center;
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   font-weight: 700;
   line-height: 20px;
   font-size: 36px;
@@ -28,34 +28,34 @@ header h1{
   margin-left: 10px;
 }
 
-
-button{
+button {
   border: none;
   background-color: unset;
 }
 
-button div{
-  font-family: 'Roboto', sans-serif;
+button div {
+  font-family: "Roboto", sans-serif;
   font-size: 12px;
   line-height: 20px;
 }
 
-#menu{
+#menu {
   position: absolute;
   top: 70px;
-  height: 60%;
+  height: 100%;
   padding-top: 20px;
   width: 50%;
   left: -51%;
   background-color: white;
   transition: 0.5s;
+  z-index: 10;
 }
 
-#menu.active{
+#menu.active {
   left: 0;
- }
+}
 
-#menu li{
+#menu li {
   list-style: none;
   color: black;
   line-height: 2;
@@ -64,7 +64,7 @@ button div{
   margin-top: 10px;
   box-shadow: 0 7px 8px -7px #222;
 }
-#menu li:nth-of-type(6){
+#menu li:nth-of-type(6) {
   list-style: none;
   color: black;
   line-height: 2;
@@ -73,24 +73,24 @@ button div{
   box-shadow: none;
   text-align: right;
 }
-#menu a{
+#menu a {
   text-decoration: none;
   color: black;
 }
-#menu ul{
+#menu ul {
   padding: 0;
 }
-footer{
+footer {
   background-color: black;
-  color:  white;
-}
-footer .social-media ul li{
-  list-style: none;
-}
-footer .social-media ul li i{
   color: white;
 }
-.social-media nav ul{
+footer .social-media ul li {
+  list-style: none;
+}
+footer .social-media ul li i {
+  color: white;
+}
+.social-media nav ul {
   padding-left: 0;
   margin: 0;
   padding-bottom: 10px;
@@ -103,4 +103,85 @@ footer p {
   margin: 0;
   text-align: center;
   padding-bottom: 10px;
+} */
+
+.category-wrapper {
+  padding-top: 3rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0 auto;
+  width: 80%;
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.category-item {
+  width: fit-content;
+  border: 1px solid grey;
+}
+.category-item__image {
+  width: 100%;
+}
+
+.category-link {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  align-items: center;
+}
+.category-link__text {
+  line-height: 2rem;
+  text-align: center;
+}
+
+section {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4), -3px -3px 5px rgba(0, 0, 0, 0.4);
+  margin: 5rem auto;
+
+  /* TODO: change */
+  max-width: 800px;
+}
+
+.hero-container {
+  background: url("https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80");
+  background-size: cover;
+  background-position: center;
+  height: 20vh;
+
+  margin-top: 0;
+  max-width: unset;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  padding: 5vw;
+  color: white;
+}
+
+.catalogue__more-btn--link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 1rem 2rem;
+  border: 3px solid currentColor;
+  border-radius: 10px;
+  font-size: 2rem;
+  color: var(--color-secondary-variant);
+}
+.service-image {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
+
+.learn-more__link {
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-secondary-variant);
 }

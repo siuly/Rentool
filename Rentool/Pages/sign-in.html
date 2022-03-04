@@ -1,32 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="../Style/sign-up.css">
-    <script src="../js/index.js" defer type="module"></script>
-    <title>Sign In</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <link rel="stylesheet" href="../Style/reset.min.css">
+  <link rel="stylesheet" href="../Style/common.css">
+  <link rel="stylesheet" href="../Style/sign-in.css">
+  <!-- <script src="../js/index.js" defer type="module"></script> -->
+  <script src="../js/common.js" defer type="module"></script>
+  <script src="../js/sign-in.js" defer type="module"></script>
+  <title>Sign In</title>
 </head>
-<body>
-    
-    <img src="" alt="Rentool-logo">
-    <h1>Welcome to Back! 
+
+<body id="sign-in">
+  <div class="wrapper">
+    <header></header>
+    <main>
+      <img src="" alt="Rentool-logo">
+      <h1>Welcome to Back!
         <span> Sign In</span>
-    </h1>
-    
-    <form action="" id="sign-in">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" placeholder="enter your email" required>
+      </h1>
 
-        <label for="password">Password</label>
-        <input type="password" name="pswd" id="pswd">
+      <!-- <form action="" id="sign-in"> -->
+      <label for="email">Email</label>
+      <input type="text" name="email" id="email" placeholder="enter your email" required>
 
-        <div><a href="#">Forgot Password?</a></div>
-        <button id="sign-in-btn">Login</button>
-        <button type="button" id="cbtn">Sign Up</button>
-    </form>
+      <label for="password">Password</label>
+      <input type="password" name="pswd" id="pswd">
+
+      <div><a href="#">Forgot Password?</a></div>
+      <button id="sign-in-btn">Login</button>
+      <button type="button" id="cbtn">Sign Up</button>
+      <!-- </form> -->
+    </main>
+    <footer>
+
+    </footer>
+
+
+
+
+  </div>
 </body>
+
 </html>
