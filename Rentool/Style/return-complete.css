@@ -1,0 +1,20 @@
+#return-complete .wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-flow: column nowrap;
+}
+
+#return-complete main {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: 3rem;
+}
+.find-more-button {
+	padding: 1rem;
+	width: 80%;
+	text-decoration: none;
+	text-align: center;
+}
