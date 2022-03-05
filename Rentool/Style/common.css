@@ -24,7 +24,6 @@
 	--font-size-body-text: 16px;
 	--font-size-secondary-text: 14px;
 
-
 	--height-heading: 50px;
 }
 
@@ -194,4 +193,9 @@ footer p {
 	align-items: center;
 	font-size: 3rem;
 	color: white;
+}
+
+.button-util {
+	color: var(--color-secondary-variant);
+	border: 3px solid currentColor;
 }

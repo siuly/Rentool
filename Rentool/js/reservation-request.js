@@ -223,6 +223,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const signInUserId = readUserId();
     let reservationRequestData = {
       toolId: selectedToolId,
+      toolName: toolListForReservationSelection[0].toolName,
       duration: {
         endDate: '', //@TODO:  Fill from user input
         startDate: '', //@TODO:  Fill from user input

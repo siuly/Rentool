@@ -29,7 +29,8 @@ export class LocationItem extends HTMLElement {
     .location-item {
       padding: 1rem;
       border: 1px solid black;
-      width: 80%;
+      width: 100%;
+      border-radius: var(--border-radius-return-tool);
     }
     </style>`;
 
