@@ -150,9 +150,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       duration.innerHTML = `${days} days`;
     }
+
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
-    tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
-    locationpicked.innerHTML = 'pending'; //pending  to see how to set the location
+    tnameloc.innerHTML = sampleToolData[0].toolName;
+    locationpicked.innerHTML = `${selectedLocation}`; //pending  to see how to set the location
     payment.innerHTML = 'pending'; //how to show the payment
 
   });
@@ -160,7 +161,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   reservebtn.addEventListener('click', () => {
     page2.classList.add('shown');
     page3.classList.remove('shown');
-
   });
 
   /*
