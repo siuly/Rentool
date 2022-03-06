@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+  <!-- CSS -->
+  <link rel="stylesheet" href="../Style/reset.min.css">
+  <link rel="stylesheet" href="../Style/common.css">
+  <link rel="stylesheet" href="../Style/reservation-complete.css">
+  <!-- CSS for loading animation -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Font awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <script src="../js/common.js" type="module" defer></script>
+  <script src="../js/reservation-complete.js" type="module" defer></script>
+
+  <title>Reservation Complete</title>
+</head>
+
+<body id="reservation-complete">
+  <div class="wrapper">
+    <header>
+      <span class="return-icon">
+        <i class="fa-solid fa-less-than"></i>
+      </span>
+      <h2 class="tool-name">Reservation Complete</h2>
+      <div class="header-right">
+        <i class="fa-solid fa-circle"></i>
+        <i class="fas fa-bars"></i>
+      </div>
+      <div class="input-row">
+        <form action="./product-result.html" method="get" class="input-container">
+          <button class="icon"><i class="fa fa-search"></i></button>
+          <input type="text" placeholder="Search" name="keyword">
+          <i class="fa-solid fa-microphone"></i>
+        </form>
+        <i class="fa-solid fa-align-right"></i>
+      </div>
+    </header>
+    <main>
+      <h3>Reservation Complete!</h3>
+      <img alt="" id="reservation-image">
+      <p class="thanks-message">
+        Thank you for renting tools from Rentool!
+      </p>
+      <p class="reservation-information" id="reservation-information"></p>
+
+      <a href="./product-result.html" class="find-more-button button-util clickable"> Find More Tools</a>
+    </main>
+    <footer>
+
+    </footer>
+  </div>
+
+</body>
+
+</html>

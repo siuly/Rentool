@@ -1,0 +1,22 @@
+#reservation-complete .wrapper {
+	display: flex;
+	flex-flow: column nowrap;
+	height: 100vh;
+}
+#reservation-complete main {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.find-more-button {
+	padding: 1rem;
+	width: 80%;
+	text-decoration: none;
+	text-align: center;
+}
+.reservation-date {
+	font-weight: bold;
+}
