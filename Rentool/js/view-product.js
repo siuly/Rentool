@@ -115,12 +115,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // ============== description section ===================
- const Description = document.querySelector('.product-description');
- const ProductDescription = document.createElement('p');
- //  print description text
- Description.appendChild(ProductDescription).innerHTML = productSelected.description;
+  const Description = document.querySelector('.product-description');
+  const ProductDescription = document.createElement('p');
+  //  print description text
+  Description.appendChild(ProductDescription).innerHTML = productSelected.description;
 
-// ============ table section ====================
+  // ============ table section ====================
 
   // ==hourly==
   const price4Hours = document.querySelector('.price-table-four-hours');
@@ -129,32 +129,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${Number.parseFloat((productSelected.prices.hourly)).toFixed(2)}`;
 
 
-// ==per day==
-const priceDay = document.querySelector('.price-table-per-day');
-const priceDayColumn = document.createElement('td');
-// result per day
-priceDay.appendChild(priceDayColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.daily).toFixed(2)}`;
+  // ==per day==
+  const priceDay = document.querySelector('.price-table-per-day');
+  const priceDayColumn = document.createElement('td');
+  // result per day
+  priceDay.appendChild(priceDayColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.daily).toFixed(2)}`;
 
 
-// ==per week==
-const priceWeek = document.querySelector('.price-table-per-week');
-const priceWeekColumn = document.createElement('td');
-// result week
-priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.weekly).toFixed(2)}`;
+  // ==per week==
+  const priceWeek = document.querySelector('.price-table-per-week');
+  const priceWeekColumn = document.createElement('td');
+  // result week
+  priceWeek.appendChild(priceWeekColumn).innerHTML = `$ ${Number.parseFloat(productSelected.prices.weekly).toFixed(2)}`;
 
-// ============== location ================
-
-
-
-// add here destination calculation
+  // ============== location ================
 
 
 
+  // add here destination calculation
 
-// ===========================================
+
+
+
+  // ===========================================
 
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
-    movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+    // movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+    movePageTo('reservation-request-test.html', `?reservationToolIndex=${reservationToolIndex}`);
   });
 });
