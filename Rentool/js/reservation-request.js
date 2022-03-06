@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
-    locationpicked.innerHTML = 'pending'; //pending  to see how to set the location
+    locationpicked.innerHTML = `${selectedLocation}`;
     payment.innerHTML = 'pending'; //how to show the payment
 
   });
