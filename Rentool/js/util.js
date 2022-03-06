@@ -23,6 +23,7 @@ export const PATHS_PAGES = {
   // Reservation
   PRODUCT_RESULT: 'product-result.html',
   RESERVATION_REQUEST: 'reservation-request.html',
+  RESERVATION_COMPLETE: 'reservation-complete.html',
   VIEW_PRODUCT: 'view-product.html',
 
   // Return
