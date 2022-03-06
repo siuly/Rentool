@@ -2,50 +2,11 @@ import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
-// const sampleToolData = [{
-//   toolId: 'R92ruT1ZA0vCV0w9B7aE',
-//   toolName: 'driver',
-//   description: 'This is a sample data for showing description of the tool users want to reserve',
-//   reservationToolIndex: 'driver-brand-small',
-//   brand: 'brand',
-//   location: {
-//     lockerName: 'Locker Name 1',
-//     address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
-//     latitude: '49.225518864967654',
-//     longitude: '123.10776583584949',
-//   },
-//   imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
-//   prices: {
-//     hourly: 10,
-//     daily: 100,
-//     weekly: 1000,
-//   },
-//   size: 'small',
-// }, {
-//   toolId: '1IDJzk33zxgafzfegU0q',
-//   toolName: 'driver',
-//   description: 'This is a sample data for showing description of the tool users want to reserve',
-//   reservationToolIndex: 'driver-brand-small',
-//   brand: 'brand',
-//   location: {
-//     lockerName: 'Locker Name 2',
-//     address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
-//     latitude: '49.1967',
-//     longitude: '123.1815',
-//   },
-//   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
-//   prices: {
-//     hourly: 10,
-//     daily: 100,
-//     weekly: 1000,
-//   },
-//   size: 'small',
-// }];
+
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
-
 
 
 let selectedLocation = null;
@@ -75,6 +36,16 @@ let page5 = document.getElementById('page5');
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+
+
+  // @TODO: test
+  sdate.value = '2022-03-09';
+  stime.value = '10:00';
+  etime.value = '16:00';
+  edate.value = '2022-03-10';
+  // @TODO: test
+
+
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
@@ -83,6 +54,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   etime.addEventListener('change', (event) => {
     dateinput1 = sdate.value + ' ' + stime.value;
+    console.log('stime.value: ', stime.value);
+    console.log(' sdate.value: ', sdate.value);
     dateinput2 = edate.value + ' ' + etime.value;
     console.log(dateinput1);
     console.log(dateinput2);
@@ -91,7 +64,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       alert('incorrect date input');
     }
-
   });
 
 
@@ -150,17 +122,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       duration.innerHTML = `${days} days`;
     }
+
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
-    locationpicked.innerHTML = `${selectedLocation}`;
+    locationpicked.innerHTML = `${selectedLocation}`; //pending  to see how to set the location
     payment.innerHTML = 'pending'; //how to show the payment
 
   });
 
-  reservebtn.addEventListener('click', () => {
-    page2.classList.add('shown');
-    page3.classList.remove('shown');
-  });
+  // reservebtn.addEventListener('click', () => {
+  //   page2.classList.add('shown');
+  //   page3.classList.remove('shown');
+  // });
 
   /*
    * ============================================
@@ -196,16 +169,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   const nextPageButtonList = [...document.getElementsByClassName('page-btn')];
   // Page shift event
   for (const nextPageButton of nextPageButtonList) {
-    /**@param {MouseEvent} e */
-    nextPageButton.addEventListener('click', (e) => {
-      const nextPageId = e.target.dataset.next;
-      // Remove shown class from all page
-      for (const page of pageSectionElementList) {
-        page.classList.remove('shown');
-      }
-      if (nextPageId === '') { /**@TODO: show the last page */ }
-      document.getElementById(nextPageId).classList.add('shown');
-    });
+    try {
+      /**@param {MouseEvent} e */
+      nextPageButton.addEventListener('click', (e) => {
+        const nextPageId = e.target.dataset.next;
+        // Remove shown class from all page
+        for (const page of pageSectionElementList) {
+          page.classList.remove('shown');
+        }
+        if (nextPageId === '') { /**@TODO: show the last page */ }
+        document.getElementById(nextPageId).classList.add('shown');
+      });
+    } catch (error) {
+      console.log('error: ', error);
+    }
   }
   // Location select event
   document.getElementById('page1').addEventListener('click', () => {
@@ -218,14 +195,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Add reservation
-  document.getElementById('reservation-request-btn').addEventListener('click', async () => {
+  document.getElementById('page2-btn').addEventListener('click', async () => {
     const signInUserId = readUserId();
+    console.log('signInUserId: ', signInUserId);
+
+
     let reservationRequestData = {
+
       toolId: selectedToolId,
       toolName: toolListForReservationSelection[0].toolName,
       duration: {
-        endDate: '', //@TODO:  Fill from user input
-        startDate: '', //@TODO:  Fill from user input
+        endDate: dateinput1,
+        startDate: dateinput2,
       },
       isReturned: false,
       reservationToolIndex: reservationToolIndex,
@@ -237,7 +218,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       // @TODO:  Add extra properties from user input
     };
 
-
     if (selectedLocation === null) {
       alert('Please select location');
       return;
@@ -248,17 +228,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    const reservationRequestResult = await reservationRequest(reservationRequestData);
+    const reservationId = await reservationRequest(reservationRequestData);
 
-    if (reservationRequestResult === true) {
-      console.log('reservationRequestResult === true: ', reservationRequestResult === true);
-      alert(`
-      The data will be stored:
-      ToolId: ${reservationRequestData.toolId}
-      Selected Location: ${selectedLocation.lockerName}
-      `);
-
-      // TODO: Show: reservation-complete
+    if (reservationId !== null) {
+      movePageTo(PATHS_PAGES.RESERVATION_COMPLETE, `?reservationId=${reservationId}`);
     }
 
   });

@@ -13,7 +13,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/Rentool/Pages/home.html",
+  "start_url": "/Pages/home.html",
   "display": "fullscreen",
   "background_color": "#ffffff",
   "theme_color": "#ffffff"

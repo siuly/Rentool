@@ -1,20 +1,22 @@
-#return-complete .wrapper {
-	min-height: 100vh;
+#reservation-complete .wrapper {
 	display: flex;
 	flex-flow: column nowrap;
+	height: 100vh;
 }
-
-#return-complete main {
+#reservation-complete main {
 	flex-grow: 1;
 	display: flex;
 	flex-flow: column nowrap;
+	justify-content: space-around;
 	align-items: center;
-	justify-content: space-between;
-	gap: 3rem;
 }
+
 .find-more-button {
 	padding: 1rem;
 	width: 80%;
 	text-decoration: none;
 	text-align: center;
+}
+.reservation-date {
+	font-weight: bold;
 }

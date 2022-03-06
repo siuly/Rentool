@@ -1,5 +1,29 @@
+:root {
+	--border-radius-return-tool: 5px;
+}
+
+img,
+.toggle-container,
+.return-container,
+.pick-up-details {
+	width: 100%;
+}
+
+main {
+	width: 90%;
+}
+.return-progress {
+	width: 100%;
+}
+
+#return-tool main {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	margin: 0 auto;
+}
+
 .return-request-btn {
-	border: 1px solid black;
 	padding: 1rem;
 
 	width: 300px;
@@ -18,7 +42,147 @@
 	transform: translateY(-1px);
 	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.5);
 }
-
+.location-item {
+	padding: 1rem;
+}
 .selected-location .location-item {
 	border: 2px solid red;
+}
+
+.return-container {
+	border: 1px solid black;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+	justify-items: center;
+	align-items: center;
+}
+
+.pick-up-details-container {
+	border: 1px solid black;
+}
+
+.toggle-container {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	background-color: var(--color-primary);
+	padding: 0.3rem 1rem;
+	border-radius: var(--border-radius-return-tool);
+}
+
+.toggle-switch {
+	content: "";
+	grid-column: 1 / -1;
+	grid-row: 1;
+	width: 50%;
+	background-color: #fff;
+	height: 100%;
+	transition: all 0.1s;
+	border-radius: var(--border-radius-return-tool);
+}
+.toggle-container__return {
+	grid-column: 1 / 2;
+	grid-row: 1;
+}
+
+.toggle-container__pick-up-details {
+	grid-column: 2 / 3;
+	grid-row: 1;
+}
+
+.toggle-item {
+	text-align: center;
+	padding: 0.3rem;
+	cursor: pointer;
+}
+
+.toggle-container__pick-up-details,
+.toggle-container__return {
+	z-index: 1;
+}
+
+#pickUpDetails {
+	display: none;
+}
+
+#pickUpDetails:checked + main .toggle-switch {
+	transform: translateX(100%);
+}
+
+.pick-up-details {
+	display: grid;
+	gap: 1rem;
+	padding: 3rem 0;
+	display: none;
+}
+
+/* Toggle  section [Return] to [Pick-Up Details]  */
+#pickUpDetails:checked + main .pick-up-details {
+	display: grid;
+}
+
+/* Toggle  section[Pick-Up Details] to  [Return]   */
+#pickUpDetails:checked + main .return-container {
+	display: none;
+}
+
+/* Return section */
+.return-time {
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+#areaLabel {
+	width: 100%;
+}
+
+#locationContainer {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 0.5rem;
+	width: 100%;
+}
+
+location-item {
+	width: 100%;
+}
+.location-selection {
+	width: 100%;
+}
+
+/* Pick-Up Details  section */
+.pick-up-details {
+	width: 100%;
+}
+.pick-up-details__duration {
+	border: 1px solid black;
+	border-radius: var(--border-radius-return-tool);
+	width: 100%;
+	padding: 1rem;
+}
+.return-confirmation {
+	display: grid;
+	gap: 2rem;
+	grid-template-columns: 1fr;
+	width: 100%;
+	justify-items: center;
+	align-items: center;
+	display: none;
+}
+
+.return-time__time-container {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+.return-confirmation__location-container,
+.return-confirmation__return-time-container {
+	width: 100%;
+}
+
+.confirm-btn {
+	margin: 5rem 0;
+	padding: 1rem;
+	width: 80%;
 }
