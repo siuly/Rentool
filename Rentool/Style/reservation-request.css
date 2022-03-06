@@ -77,9 +77,8 @@ header button div {
   padding: 0;
 }
 
-
 /* Main */
-h2{
+h2 {
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(0, 0, 0);
   margin-top: 22px;
@@ -91,7 +90,7 @@ h2{
   text-align: center;
   color: #222222;
 }
-h3{
+h3 {
   margin-top: 29px;
   margin-bottom: 19px;
   font-family: "Roboto", sans-serif;
@@ -102,7 +101,7 @@ h3{
   text-align: center;
   color: #000000;
 }
-.tool-name{
+.tool-name {
   margin-left: 40px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
@@ -112,13 +111,13 @@ h3{
   text-align: center;
   color: #222222;
 }
-.start-reservation{
-  margin-left:46px;
+.start-reservation {
+  margin-left: 46px;
 }
 .start-reservation {
-	display: grid;
-	grid-template-columns: repeat(5 1fr);
-	margin-left: 46px;
+  display: grid;
+  grid-template-columns: repeat(5 1fr);
+  margin-left: 46px;
   margin-right: 46px;
   margin-top: 23px;
   gap: 8px;
@@ -138,7 +137,7 @@ span#durationpg1 {
   margin-top: 39px;
   margin-bottom: 12px;
 }
-span#price{
+span#price {
   display: block;
   margin-left: 49px;
   font-family: "Roboto", sans-serif;
@@ -149,7 +148,7 @@ span#price{
   color: #000000;
   margin-bottom: 10px;
 }
-span#deposit{
+span#deposit {
   display: block;
   margin-left: 49px;
   font-family: "Roboto", sans-serif;
@@ -160,23 +159,23 @@ span#deposit{
   color: #000000;
   margin-bottom: 25px;
 }
-.location-item{
+.location-item {
   margin-left: 46px;
   margin-right: 46px;
   border: solid black thin;
   border-radius: 5px;
   margin-bottom: 10px;
-
+  padding: 1rem;
 }
 .selected-location .location-item {
-	border: 2px solid black ;
+  border: 2px solid black;
   background-color: rgba(212, 211, 211, 0.562);
   font-weight: bold;
 }
-.terms-title{
+.terms-title {
   margin-top: 39px;
 }
-#page1 nav ul li{
+#page1 nav ul li {
   margin-left: 44px;
   margin-right: 44px;
   font-family: "Roboto", sans-serif;
@@ -198,7 +197,7 @@ span#deposit{
   margin-right: 59px;
   right: 0;
 }
-.read-more a{
+.read-more a {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -206,34 +205,34 @@ span#deposit{
   text-align: right;
   color: #000000;
 }
-.terms-agreement{
+.terms-agreement {
   text-align: center;
   margin-top: 28px;
 }
 input#agree-terms {
-  background: #3EA8DD;
+  background: #3ea8dd;
   border-radius: 2px;
 }
-.page1-btn{
+.page1-btn {
   margin-top: 45px;
   margin-bottom: 45px;
   margin-left: 18%;
   width: 240px;
   height: 43px;
-  border: 2px solid #3EA8DD;
+  border: 2px solid #3ea8dd;
   box-sizing: border-box;
   border-radius: 7px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  color: #3EA8DD;
+  color: #3ea8dd;
 }
 .shown {
-	display: none;
+  display: none;
 }
 /* Page 2 style */
-.title-rental{
+.title-rental {
   margin-left: 53px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
@@ -256,21 +255,21 @@ span#pricepg2 {
   font-size: 15px;
   color: #000000;
 }
-.rental-duration{
+.rental-duration {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 15px;
   color: #000000;
 }
-.rent-dates{
+.rent-dates {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   color: #000000;
 }
-.rental-container{
+.rental-container {
   position: relative;
   margin-left: 28px;
   margin-right: 46px;
@@ -287,9 +286,9 @@ div#rental-container i {
   right: 20px;
   top: 26px;
   font-size: 21px;
-  color: #3EA8DD;
+  color: #3ea8dd;
 }
-.pick-up-title{
+.pick-up-title {
   margin-left: 53px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
@@ -300,7 +299,7 @@ div#rental-container i {
   color: #000000;
   margin-bottom: 4px;
 }
-.pick-up-container{
+.pick-up-container {
   position: relative;
   margin-left: 28px;
   margin-right: 46px;
@@ -316,9 +315,9 @@ div#pick-up-container i {
   position: absolute;
   right: 20px;
   font-size: 21px;
-  color: #3EA8DD;
+  color: #3ea8dd;
 }
-.pick-up-title{
+.pick-up-title {
   margin-left: 53px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
@@ -330,7 +329,7 @@ div#pick-up-container i {
   margin-top: 22px;
   margin-bottom: 4px;
 }
-.payment-title{
+.payment-title {
   margin-left: 53px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
@@ -345,9 +344,9 @@ div#payment-container i {
   position: absolute;
   right: 20px;
   font-size: 21px;
-  color: #3EA8DD;
+  color: #3ea8dd;
 }
-.payment-container{
+.payment-container {
   position: relative;
   margin-left: 28px;
   margin-right: 46px;
@@ -359,18 +358,18 @@ div#payment-container i {
   padding-bottom: 7px;
   min-height: 79px;
 }
-#page2-btn{
+#page2-btn {
   margin-top: 45px;
   margin-bottom: 45px;
   margin-left: 22%;
   width: 240px;
   height: 43px;
-  border: 2px solid #3EA8DD;
+  border: 2px solid #3ea8dd;
   box-sizing: border-box;
   border-radius: 7px;
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  color: #3EA8DD;
+  color: #3ea8dd;
 }
