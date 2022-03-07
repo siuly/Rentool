@@ -164,7 +164,10 @@ export const getToolsByReservationToolIndex = async (reservationToolIndex) => {
  * @return {Reservation[]}
  */
 export const getReservationsByUserId = async (userId) => {
-  if (!userId) { return; }
+  if (!userId) {
+    console.error('User ID is null.');
+    return;
+  }
 
   try {
     const reservationsDoc = await db.collection('Reservations')
