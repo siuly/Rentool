@@ -179,16 +179,22 @@ export const readUserId = () => {
  * @return {float} distance
  */
 export const getNearestLocation = async (locations) => {
-  /** Set distance start */
   let distanceCallbacks = [];
-  for (let location of locations) {
-    distanceCallbacks.push(getDistanceFromUserLocation(location));
-  }
-  const distances = await Promise.all(distanceCallbacks);
-  const locationsWithDistance = locations.map((location, idx) => ({ distance: Number.parseFloat(distances[idx]), ...location, }));
-  /** Set distance end */
 
-  return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
+  try {
+    /** Set distance start */
+    for (let location of locations) {
+      distanceCallbacks.push(getDistanceFromUserLocation(location));
+    }
+    const distances = await Promise.all(distanceCallbacks);
+    const locationsWithDistance = locations.map((location, idx) => ({ distance: Number.parseFloat(distances[idx]), ...location, }));
+    /** Set distance end */
+
+    return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
+  } catch (error) {
+    console.log(`ERROR: ${error}`);
+    return null;
+  }
 };
 
 /**
