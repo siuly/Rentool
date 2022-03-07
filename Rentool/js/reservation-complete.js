@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   reservationImageEl.src = reservation.imageUrl;
 
   reservationInformationEl.innerHTML = `
-  Kindly remained you that your rental duration is from <span class="reservation-date">
+  Kindly remaind you that your rental duration is from <span class="reservation-date">
   ${reservation.duration.startDate}</span>
    to  <span class="reservation-date">${reservation.duration.endDate}</span>.
   `;
