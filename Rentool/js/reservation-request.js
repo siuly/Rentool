@@ -159,38 +159,24 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       duration.innerHTML = `${days} days`;
     }
-<<<<<<< HEAD
+
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
     locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
 
   });
 
-=======
-<<<<<<< HEAD
-
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = sampleToolData[0].toolName;
     locationpicked.innerHTML = `${selectedLocation}`; //pending  to see how to set the location
-=======
-    rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
-    tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
-    locationpicked.innerHTML = `${selectedLocation}`;
->>>>>>> 87541325f59749c94b1624f6123320a098a7107e
-    payment.innerHTML = 'pending'; //how to show the payment
-
+    
   });
 
   reservebtn.addEventListener('click', () => {
     page2.classList.add('shown');
     page3.classList.remove('shown');
-<<<<<<< HEAD
-=======
-
->>>>>>> 87541325f59749c94b1624f6123320a098a7107e
   });
-
->>>>>>> 3e1b39a2e44d87beebd6a3bf0e2eb4b26ce95925
+ 
   /*
    * ============================================
    * Page Initialization
