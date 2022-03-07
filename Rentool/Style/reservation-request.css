@@ -184,13 +184,22 @@ span#deposit {
   font-size: 16px;
   text-align: start;
   color: #000000;
-  list-style: circle;
+  list-style: disc;
+
+}
+#page1 nav ul li::marker{
+  color: #3EA8DD;
 }
 /* Check if there's a way to  fill the  circle from the list to black if not use this 
 #page1 nav ul li::before{
   text-align: left;
-  content: "• "; 
-  color: black;
+  content: "• ";
+  font-size: 20px;
+  color: #3EA8DD;
+  font-weight: bold;
+  display: inline-block;
+  width: 22px;
+  margin-left: 0em;
 } */
 .read-more {
   position: absolute;
