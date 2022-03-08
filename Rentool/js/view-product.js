@@ -100,7 +100,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
-    // movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
-    movePageTo('reservation-request-test.html', `?reservationToolIndex=${reservationToolIndex}`);
+    movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+    // movePageTo('reservation-request.html', `?reservationToolIndex=${reservationToolIndex}`);
   });
 });
