@@ -43,6 +43,7 @@ export const PATHS_PAGES = {
 /**
  * @description Get an object includes URL parameters
  * @returns {URLSearchParams} params
+ * src: https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
  */
 export const getUrlParams = () => {
   const params = new Proxy(new URLSearchParams(window.location.search), {
