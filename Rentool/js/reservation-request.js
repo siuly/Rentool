@@ -47,7 +47,6 @@ let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
 
-
 let selectedLocation = null;
 let selectedToolId = null;
 let page1 = document.getElementById('page1');
@@ -67,14 +66,15 @@ let duration = document.getElementById('durationpg2');
 let rentdays = document.getElementById('rental-dates');
 let tnameloc = document.getElementById('tool-name-location');
 let locationpicked = document.getElementById('location-selected');
-let payment = document.getElementById('method');
 let reservebtn = document.getElementById('page2-btn');
-let page3 = document.getElementById('page3');
-let page4 = document.getElementById('page4');
-let page5 = document.getElementById('page5');
+let submitreservation = document.getElementById('reservation-request-btn');
 
+
+const signInUserId = readUserId();
+console.log('signInUserId: ', signInUserId);
 
 document.addEventListener('DOMContentLoaded', async () => {
+  
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
@@ -91,9 +91,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       alert('incorrect date input');
     }
-
+  
   });
-
 
   let diffHoursMilliseconds = 0;
   let days = 0;
@@ -140,7 +139,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
+  
   nextbtn.addEventListener('click', () => {
+  
     page1.classList.add('shown');
     page2.classList.remove('shown');
     tname2.innerHTML = toolListForReservationSelection[0].toolName;
@@ -150,29 +151,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       duration.innerHTML = `${days} days`;
     }
-<<<<<<< HEAD
 
-    rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
-    tnameloc.innerHTML = sampleToolData[0].toolName;
-    locationpicked.innerHTML = `${selectedLocation}`; //pending  to see how to set the location
-=======
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
-    locationpicked.innerHTML = `${selectedLocation}`;
->>>>>>> 87541325f59749c94b1624f6123320a098a7107e
-    payment.innerHTML = 'pending'; //how to show the payment
+    locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
 
   });
-
-  reservebtn.addEventListener('click', () => {
-    page2.classList.add('shown');
-    page3.classList.remove('shown');
-<<<<<<< HEAD
-=======
-
->>>>>>> 87541325f59749c94b1624f6123320a098a7107e
-  });
-
+ 
   /*
    * ============================================
    * Page Initialization
@@ -207,16 +192,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   const nextPageButtonList = [...document.getElementsByClassName('page-btn')];
   // Page shift event
   for (const nextPageButton of nextPageButtonList) {
-    /**@param {MouseEvent} e */
-    nextPageButton.addEventListener('click', (e) => {
-      const nextPageId = e.target.dataset.next;
-      // Remove shown class from all page
-      for (const page of pageSectionElementList) {
-        page.classList.remove('shown');
-      }
-      if (nextPageId === '') { /**@TODO: show the last page */ }
-      document.getElementById(nextPageId).classList.add('shown');
-    });
+    try {
+      /**@param {MouseEvent} e */
+      nextPageButton.addEventListener('click', (e) => {
+        const nextPageId = e.target.dataset.next;
+        // Remove shown class from all page
+        for (const page of pageSectionElementList) {
+          page.classList.remove('shown');
+        }
+        if (nextPageId === '') { /**@TODO: show the last page */ }
+        document.getElementById(nextPageId).classList.add('shown');
+      });
+    } catch (error) {
+      console.log('error: ', error);
+    }
   }
   // Location select event
   document.getElementById('page1').addEventListener('click', () => {
@@ -229,14 +218,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Add reservation
-  document.getElementById('reservation-request-btn').addEventListener('click', async () => {
-    const signInUserId = readUserId();
+  document.getElementById('page2-btn').addEventListener('click', async () => {
+    
     let reservationRequestData = {
+
       toolId: selectedToolId,
       toolName: toolListForReservationSelection[0].toolName,
       duration: {
-        endDate: '', //@TODO:  Fill from user input
-        startDate: '', //@TODO:  Fill from user input
+        endDate: dateinput1,
+        startDate: dateinput2,
       },
       isReturned: false,
       reservationToolIndex: reservationToolIndex,
@@ -247,30 +237,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // @TODO:  Add extra properties from user input
     };
-
-
-    if (selectedLocation === null) {
-      alert('Please select location');
-      return;
-    }
-    if (signInUserId === null) {
-      alert('You should Sign In');
-      movePageTo(PATHS_PAGES.SIGN_IN);
-      return;
+    if (reservationId !== null) {
+      movePageTo(PATHS_PAGES.RESERVATION_COMPLETE, `?reservationId=${reservationId}`);
     }
 
-    const reservationRequestResult = await reservationRequest(reservationRequestData);
-
-    if (reservationRequestResult === true) {
-      console.log('reservationRequestResult === true: ', reservationRequestResult === true);
-      alert(`
-      The data will be stored:
-      ToolId: ${reservationRequestData.toolId}
-      Selected Location: ${selectedLocation.lockerName}
-      `);
-
-      // TODO: Show: reservation-complete
-    }
+    const reservationId = await reservationRequest(reservationRequestData);
 
   });
-}); //DOMContentLoaded
+});  //DOMContentLoaded
