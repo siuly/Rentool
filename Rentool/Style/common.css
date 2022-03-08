@@ -145,6 +145,19 @@ footer p {
 }
 
 /* Header */
+header a {
+	text-decoration: none;
+	color: black;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	transition: all 0.1s;
+	transform: scale(1);
+}
+
+header a:hover {
+	transform: scale(1.02);
+}
 
 /* MAIN */
 .input-container {
