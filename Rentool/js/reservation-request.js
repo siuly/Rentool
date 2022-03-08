@@ -2,45 +2,6 @@ import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
-// const sampleToolData = [{
-//   toolId: 'R92ruT1ZA0vCV0w9B7aE',
-//   toolName: 'driver',
-//   description: 'This is a sample data for showing description of the tool users want to reserve',
-//   reservationToolIndex: 'driver-brand-small',
-//   brand: 'brand',
-//   location: {
-//     lockerName: 'Locker Name 1',
-//     address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
-//     latitude: '49.225518864967654',
-//     longitude: '123.10776583584949',
-//   },
-//   imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
-//   prices: {
-//     hourly: 10,
-//     daily: 100,
-//     weekly: 1000,
-//   },
-//   size: 'small',
-// }, {
-//   toolId: '1IDJzk33zxgafzfegU0q',
-//   toolName: 'driver',
-//   description: 'This is a sample data for showing description of the tool users want to reserve',
-//   reservationToolIndex: 'driver-brand-small',
-//   brand: 'brand',
-//   location: {
-//     lockerName: 'Locker Name 2',
-//     address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
-//     latitude: '49.1967',
-//     longitude: '123.1815',
-//   },
-//   imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
-//   prices: {
-//     hourly: 10,
-//     daily: 100,
-//     weekly: 1000,
-//   },
-//   size: 'small',
-// }];
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
@@ -74,6 +35,12 @@ const signInUserId = readUserId();
 console.log('signInUserId: ', signInUserId);
 
 document.addEventListener('DOMContentLoaded', async () => {
+  if (signInUserId === null) {
+    alert('You should Sign In');
+    movePageTo(PATHS_PAGES.SIGN_IN);
+    return;
+  }
+
   
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
@@ -218,7 +185,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   // Add reservation
-  document.getElementById('page2-btn').addEventListener('click', async () => {
+  reservebtn.addEventListener('click', async () => {
     
     let reservationRequestData = {
 
@@ -237,11 +204,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // @TODO:  Add extra properties from user input
     };
+    
+    const reservationId = await reservationRequest(reservationRequestData);
+
     if (reservationId !== null) {
       movePageTo(PATHS_PAGES.RESERVATION_COMPLETE, `?reservationId=${reservationId}`);
     }
-
-    const reservationId = await reservationRequest(reservationRequestData);
 
   });
 });  //DOMContentLoaded
