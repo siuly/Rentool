@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
 
   const reservationContainerEl = document.getElementById('reservation-container');
+  // HTML Generate iteration START================================
   try {
-    // HTML Generate iteration START================================
-    for (const reservation of activeRFeservations) {
+    for (const reservation of activeReservations) {
       /** */
       const tool = await getToolByToolId(reservation.toolId);
       if (tool === null) { continue; }
