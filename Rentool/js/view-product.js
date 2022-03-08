@@ -3,16 +3,17 @@ import { getToolsByReservationToolIndex } from './firebase.js';
 import { LocationItem } from './components/LocationItem.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
+//@TODO: Delete below, this is only for developmental purpose
+reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-  reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
   const tools = await getToolsByReservationToolIndex(reservationToolIndex);
-  const tool = tools[0];
-  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
-  const productSelected = tool;
+
+
+  const productSelected = tools[0];
 
 
   // ==============category section =============
@@ -46,9 +47,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function status() {
     if (productSelected.isReserved == true) {
-      AvailableStatus = 'Available';
-    } else {
       AvailableStatus = 'Not available';
+    } else {
+      AvailableStatus = 'Available';
     }
   }
   //  print description text
@@ -90,12 +91,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ============== location ================
 
+  // Pass an array of locations from the tool data
+  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
   document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
 
 
 
-
-  // ===========================================
 
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
