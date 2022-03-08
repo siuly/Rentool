@@ -66,23 +66,15 @@ let duration = document.getElementById('durationpg2');
 let rentdays = document.getElementById('rental-dates');
 let tnameloc = document.getElementById('tool-name-location');
 let locationpicked = document.getElementById('location-selected');
-let payment = document.getElementById('method');
 let reservebtn = document.getElementById('page2-btn');
-let page3 = document.getElementById('page3');
-let toolimage = document.getElementById('tool-img');
-let lastmessage = document.getElementById('message-dates');
 let submitreservation = document.getElementById('reservation-request-btn');
 
 
 const signInUserId = readUserId();
-  console.log('signInUserId: ', signInUserId);
+console.log('signInUserId: ', signInUserId);
 
 document.addEventListener('DOMContentLoaded', async () => {
-  if (signInUserId === null) {
-    alert('You should Sign In');
-    movePageTo(PATHS_PAGES.SIGN_IN);
-    return;
-  }
+  
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
@@ -99,7 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       alert('incorrect date input');
     }
-
+  
   });
 
   let diffHoursMilliseconds = 0;
@@ -164,17 +156,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
     locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
 
-  });
-
-    rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
-    tnameloc.innerHTML = sampleToolData[0].toolName;
-    locationpicked.innerHTML = `${selectedLocation}`; //pending  to see how to set the location
-    
-  });
-
-  reservebtn.addEventListener('click', () => {
-    page2.classList.add('shown');
-    page3.classList.remove('shown');
   });
  
   /*
@@ -256,8 +237,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // @TODO:  Add extra properties from user input
     };
-    
+    if (reservationId !== null) {
+      movePageTo(PATHS_PAGES.RESERVATION_COMPLETE, `?reservationId=${reservationId}`);
+    }
 
     const reservationId = await reservationRequest(reservationRequestData);
 
-}); //DOMContentLoaded
+  });
+});  //DOMContentLoaded
