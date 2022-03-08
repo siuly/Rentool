@@ -145,7 +145,7 @@
   import { Location } from '../../js/domain/Location.js'
   import { Tool } from '../../js/domain/Tool.js'
   import { Reservation } from '../../js/domain/Reservation.js'
-  import {getDistanceFromUserLocation, getNearestLocation, isAdminUser} from '../../js/util.js'
+  import {getDistanceFromUserLocation, getNearestLocation, isAdminUser, movePageTo, PATHS_PAGES} from '../../js/util.js'
   import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData, signInEmailWithPassword, getAllLocations} from '../../js/firebase.js'
 
   // signInEmailWithPassword('test@test.com', 'qwertyuiop');
@@ -155,6 +155,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (isAdminUser() === false) {
     alert('This page is for Admin User');
+    movePageTo(PATHS_PAGES.HOME);
     return;
   }
 
