@@ -158,13 +158,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-
   locations =await getAllLocations();
-
-  const nearestLocation = await getNearestLocation(locations);
-  console.log('nearestLocation: ', nearestLocation);
-
-
 });
 
 document.getElementById('submit').addEventListener('click', async () => {
@@ -208,15 +202,10 @@ document.getElementById('submit').addEventListener('click', async () => {
       weekly,
     }
     };
-
     console.log(tool);
     const result = await setToolData(tool);
     result && alert(`Success`);
-
 });
-
-
-
 </script>
 
 
