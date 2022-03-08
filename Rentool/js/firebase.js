@@ -78,7 +78,7 @@ export const getToolsByKeyword = async (keyword = '') => {
       return tools;
     }
 
-    tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
+    tools = tools.filter(tool => JSON.stringify(tool).toLowerCase().includes(keyword.toLowerCase()));
     return tools;
 
   } catch (error) {
