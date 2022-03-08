@@ -1,5 +1,6 @@
 import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation } from './util.js';
 import { getToolsByReservationToolIndex } from './firebase.js';
+import { LocationItem } from './components/LocationItem.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 
@@ -54,18 +55,11 @@ const sampleNearestLocation = sampleToolData[0].location;
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-
   reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
-
-  // const tools = sampleToolData;
   const tools = await getToolsByReservationToolIndex(reservationToolIndex);
   const tool = tools[0];
   const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
-
-
-  // Write your code below-----------------------------------------
-
   const productSelected = tool;
 
 
@@ -82,7 +76,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // load alt atribute
   productImage.setAttribute('alt', `${productSelected.toolName}`);
 
-  // ===========title of product================= 
+  // ===========title of product=================
 
   const productTitle = document.querySelector('.product-title');
   const productTitleP = document.createElement('h3');
@@ -90,7 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   productTitle.appendChild(productTitleP).innerHTML = productSelected.toolName;
 
 
-  // ===========avaliability of product================= 
+  // ===========avaliability of product=================
 
   const productAvailable = document.querySelector('.available-status');
   const productAvailableP = document.createElement('p');
@@ -144,9 +138,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ============== location ================
 
-
-
-  // add here destination calculation
+  document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
 
 
 
