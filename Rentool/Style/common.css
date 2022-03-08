@@ -64,7 +64,6 @@ header h1 {
 	font-family: "Raleway", sans-serif;
 	height: 100%;
 	font-weight: 700;
-	/* line-height: 20px; */
 	font-size: 36px;
 }
 
@@ -111,15 +110,7 @@ button div {
 	margin-top: 10px;
 	box-shadow: 0 7px 8px -7px #222;
 }
-/* #menu li:nth-of-type(6) {
-	list-style: none;
-	color: black;
-	line-height: 2;
-	margin-right: 0;
-	margin-top: 15px;
-	box-shadow: none;
-	text-align: right;
-} */
+
 #menu a {
 	text-decoration: none;
 	color: black;
@@ -154,6 +145,16 @@ footer p {
 }
 
 /* Header */
+
+/* MAIN */
+.input-container {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 1rem;
+}
+input[name="keyword"] {
+	flex: 1 0 30%;
+}
 
 /* Footer */
 
