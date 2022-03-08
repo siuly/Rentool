@@ -1,5 +1,7 @@
 'use strict';
 
+import { Location } from './domain/Location.js';
+
 /**
  * @description CONSTANT of for get parameters
  * @constant
@@ -84,6 +86,16 @@ export const getUrlParams = () => {
 //:::                                                                         :::
 //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+/**
+ * @description Calculate the distance between 2 location data
+ * @param {float} lat1
+ * @param {float} lon1
+ * @param {float} lat2
+ * @param {float} lon2
+ * @param {string} unit
+ * @return {float} distance
+ * @async
+ */
 function distance(lat1, lon1, lat2, lon2, unit) {
   if ((lat1 == lat2) && (lon1 == lon2)) {
     return 0;
@@ -108,7 +120,7 @@ function distance(lat1, lon1, lat2, lon2, unit) {
 
 /**
  * @description Get distance to the location of the tool (meter)
- * @param {Location } location
+ * @param {Location } location // will be destructuring into latitude and longitude
  * @return {float} distance
  * @async
  */
@@ -119,6 +131,7 @@ export const getDistanceFromUserLocation =
       return;
     }
 
+    // Get user's Geolocation
     const position = await new Promise((resolve, reject) => {
       navigator.geolocation.getCurrentPosition(resolve, reject);
     });
@@ -132,6 +145,32 @@ export const getDistanceFromUserLocation =
       Number.parseFloat(targetLatitude), Number.parseFloat(targetLongitude),
       'K');
   };
+
+
+/**
+ * @description Get Location
+ * @param {Location[]} locations
+ * @return {Location}
+ */
+export const getNearestLocation = async (locations) => {
+  let distanceCallbacks = [];
+
+  try {
+    /** Set distance start */
+    for (let location of locations) {
+      distanceCallbacks.push(getDistanceFromUserLocation(location));
+    }
+    const distances = await Promise.all(distanceCallbacks);
+    const locationsWithDistance = locations.map((location, idx) => ({ distance: Number.parseFloat(distances[idx]), ...location, }));
+    /** Set distance end */
+
+    return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
+  } catch (error) {
+    console.log(`ERROR: ${error}`);
+    return null;
+  }
+};
+
 
 
 /**
@@ -168,35 +207,8 @@ export const readUserId = () => {
   return window.localStorage.getItem('userId');
 };
 
-/**
- * @typedef location
- * @property {float} latitude
- * @property {float} longitude
- */
 
-/**
- * @description Get Location
- * @param {location[]} locations
- * @return {float} distance
- */
-export const getNearestLocation = async (locations) => {
-  let distanceCallbacks = [];
 
-  try {
-    /** Set distance start */
-    for (let location of locations) {
-      distanceCallbacks.push(getDistanceFromUserLocation(location));
-    }
-    const distances = await Promise.all(distanceCallbacks);
-    const locationsWithDistance = locations.map((location, idx) => ({ distance: Number.parseFloat(distances[idx]), ...location, }));
-    /** Set distance end */
-
-    return locationsWithDistance.reduce((a, b) => a.distance < b.distance ? a : b);
-  } catch (error) {
-    console.log(`ERROR: ${error}`);
-    return null;
-  }
-};
 
 /**
  * @description Check whether the login user is admin
