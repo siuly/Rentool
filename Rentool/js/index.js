@@ -40,9 +40,6 @@ class User {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-function homePage(){
-  window.location.href = 'home.html';
-}
 
 function comparepswd() {
   let pass = document.getElementById('pswd');
@@ -52,10 +49,8 @@ function comparepswd() {
     alert('Yours passwords do not match');
   } else {
     alert('Account created');
-
-   homePage();
-
   }
+
 }
 // Test user information. This information should be from user input
 // const  email = 'test@gmail.com';
@@ -89,15 +84,17 @@ submitbtn.addEventListener('click', (event) => {
   console.log(user.toString()); //will print the  information that we get 
   //save form data to firebase
   db.doc(firstName.value + email.value).set({
-    fstname: firstName.value,
-    lstname: lastName.value,
-    email: email.value,
-    pswd: password.value
+    Email: email.value,
+    FirstName: firstName.value,
+    LastName: lastName.value,
+    Password: password.value
   }).then(() => {
     console.log('Data saved');
+    movePageTo(PATHS_PAGES.HOME)
   }).catch((error) => {
     console.log(error);
   });
+  
   
 });
 let cancelBtn = document.getElementById('cbtn');
