@@ -51,14 +51,9 @@ function comparepswd() {
   if (pass.value != pass2.value) {
     alert('Yours passwords do not match');
   } else {
-    document.getElementById('fname').value = '';
-    document.getElementById('lname').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('pswd').value = '';
-    document.getElementById('cpswd').value = '';
     alert('Account created');
 
-    homePage();
+   homePage();
 
   }
 }
@@ -84,7 +79,6 @@ submitbtn.addEventListener('click', (event) => {
   //get values of the form
   let firstName = form.querySelector('#fname');
   let lastName = form.querySelector('#lname');
-  let phonen = form.querySelector('#phone');
   let email = form.querySelector('#email');
   let password = form.querySelector('#pswd');
 
@@ -97,7 +91,6 @@ submitbtn.addEventListener('click', (event) => {
   db.doc(firstName.value + email.value).set({
     fstname: firstName.value,
     lstname: lastName.value,
-    phone: phonen.value,
     email: email.value,
     pswd: password.value
   }).then(() => {
@@ -105,7 +98,7 @@ submitbtn.addEventListener('click', (event) => {
   }).catch((error) => {
     console.log(error);
   });
-
+  
 });
 let cancelBtn = document.getElementById('cbtn');
 
