@@ -192,8 +192,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       toolId: selectedToolId,
       toolName: toolListForReservationSelection[0].toolName,
       duration: {
-        endDate: dateinput1,
-        startDate: dateinput2,
+        endDate: dateinput2,
+        startDate: dateinput1,
       },
       isReturned: false,
       reservationToolIndex: reservationToolIndex,

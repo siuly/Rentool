@@ -13,3 +13,7 @@ label {
     white-space: nowrap;
     width: 1px;
 }
+main img {
+    margin-top: 20px;
+    width: 15%;
+}

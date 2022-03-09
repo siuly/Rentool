@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 
+import { GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
+
 // import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
 // import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
@@ -39,7 +41,7 @@ class User {
 const app = firebase.initializeApp(firebaseConfig);
 
 function homePage(){
-  window.location.href = '../Pages/home.html';
+  window.location.href = 'home.html';
 }
 
 function comparepswd() {
@@ -52,10 +54,9 @@ function comparepswd() {
     document.getElementById('fname').value = '';
     document.getElementById('lname').value = '';
     document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
     document.getElementById('pswd').value = '';
     document.getElementById('cpswd').value = '';
-    alert('good job');
+    alert('Account created');
 
     homePage();
 
@@ -104,5 +105,13 @@ submitbtn.addEventListener('click', (event) => {
   }).catch((error) => {
     console.log(error);
   });
+
+});
+let cancelBtn = document.getElementById('cbtn');
+
+cancelBtn.addEventListener('click', () =>{
+
+  console.log("you clicked");
+  movePageTo(PATHS_PAGES.SIGN_IN);
 
 });

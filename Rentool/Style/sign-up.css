@@ -18,3 +18,22 @@ label {
   white-space: nowrap;
   width: 1px;
 }
+form button{
+  width: 240px;
+  height: 43px;
+  border: 2px solid #3ea8dd;
+  box-sizing: border-box;
+  border-radius: 7px;
+  font-family: "Raleway", sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  color: #3ea8dd;
+}
+main img {
+  margin-top: 10px;
+  width: 15%;
+}
+footer{
+  margin-top: 1rem;
+}
