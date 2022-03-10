@@ -19,10 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     tools = await getAllTools();
   }
 
-
-  //@ TODO: Move to query when then number of data increases
-  tools = tools.filter(tool => tool.isReserved === false);
-
   const toolListEl = document.getElementById('tool-list');
   for (const tool of tools) {
     const toolListItem = new ToolListItem(tool);
