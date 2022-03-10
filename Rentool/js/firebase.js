@@ -15,7 +15,12 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 let db = firebase.default.firestore();
-const firebaseAuth = firebase.default.auth(app);
+let firebaseAuth;
+try {
+  firebaseAuth = firebase.default.auth(app);
+} catch (error) {
+  console.log('error: ', error);
+}
 
 
 /**
