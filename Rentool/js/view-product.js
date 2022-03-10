@@ -9,10 +9,7 @@ reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-
   const tools = await getToolsByReservationToolIndex(reservationToolIndex);
-
-
   const productSelected = tools[0];
 
 
@@ -40,25 +37,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ===========avaliability of product=================
 
   const productAvailable = document.querySelector('.available-status');
-  const productAvailableP = document.createElement('p');
+
   //  loop for defining status
-  let AvailableStatus = '';
-  status();
-
-  function status() {
-    if (productSelected.isReserved == true) {
-      AvailableStatus = 'Not available';
-    } else {
-      AvailableStatus = 'Available';
-    }
-  }
-  //  print description text
-  productAvailable.appendChild(productAvailableP).innerHTML = AvailableStatus;
-
-
-
-
-
+  const isAvailable = tools.find(tool => tool.isReserved === false);
+  productAvailable.textContent = isAvailable ? 'Available' : 'Not available';
 
 
   // ============== description section ===================
@@ -93,7 +75,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Pass an array of locations from the tool data
   const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
-  document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
+  // document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
+  document.getElementById('nearest-location').innerHTML = `
+    ${nearestLocation.address}
+  `;
 
 
 
