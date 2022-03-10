@@ -1,5 +1,7 @@
 // Import the functions you need from the SDKs you need
 
+import { GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
+
 // import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
 // import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
 // TODO: Add SDKs for Firebase products that you want to use
@@ -38,9 +40,6 @@ class User {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-function homePage(){
-  window.location.href = '../Pages/home.html';
-}
 
 function comparepswd() {
   let pass = document.getElementById('pswd');
@@ -49,17 +48,9 @@ function comparepswd() {
   if (pass.value != pass2.value) {
     alert('Yours passwords do not match');
   } else {
-    document.getElementById('fname').value = '';
-    document.getElementById('lname').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('phone').value = '';
-    document.getElementById('pswd').value = '';
-    document.getElementById('cpswd').value = '';
-    alert('good job');
-
-    homePage();
-
+    alert('Account created');
   }
+
 }
 // Test user information. This information should be from user input
 // const  email = 'test@gmail.com';
@@ -83,7 +74,6 @@ submitbtn.addEventListener('click', (event) => {
   //get values of the form
   let firstName = form.querySelector('#fname');
   let lastName = form.querySelector('#lname');
-  let phonen = form.querySelector('#phone');
   let email = form.querySelector('#email');
   let password = form.querySelector('#pswd');
 
@@ -94,15 +84,24 @@ submitbtn.addEventListener('click', (event) => {
   console.log(user.toString()); //will print the  information that we get 
   //save form data to firebase
   db.doc(firstName.value + email.value).set({
-    fstname: firstName.value,
-    lstname: lastName.value,
-    phone: phonen.value,
-    email: email.value,
-    pswd: password.value
+    Email: email.value,
+    FirstName: firstName.value,
+    LastName: lastName.value,
+    Password: password.value
   }).then(() => {
     console.log('Data saved');
+    movePageTo(PATHS_PAGES.HOME)
   }).catch((error) => {
     console.log(error);
   });
+  
+  
+});
+let cancelBtn = document.getElementById('cbtn');
+
+cancelBtn.addEventListener('click', () =>{
+
+  console.log("you clicked");
+  movePageTo(PATHS_PAGES.SIGN_IN);
 
 });
