@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const tools = await getToolsByReservationToolIndex(reservationToolIndex);
   const productSelected = tools[0];
+  const DESCRIPTION_SEPARATOR = '・';
 
 
   // ==============category section =============
@@ -45,9 +46,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ============== description section ===================
   const Description = document.querySelector('.product-description');
-  const ProductDescription = document.createElement('p');
+
   //  print description text
-  Description.appendChild(ProductDescription).innerHTML = productSelected.description;
+  Description.innerHTML = `
+  ${ productSelected.description.split(DESCRIPTION_SEPARATOR).map(
+      line =>
+        `<p class="product-description__line" >${DESCRIPTION_SEPARATOR}${line}</p>`)
+        .slice(1).join('') /// Join all p element
+  }`;
 
   // ============ table section ====================
 
@@ -80,12 +86,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     ${nearestLocation.address}
   `;
 
-
-
-
-
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
     movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
-    // movePageTo('reservation-request.html', `?reservationToolIndex=${reservationToolIndex}`);
   });
 });
