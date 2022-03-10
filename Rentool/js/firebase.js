@@ -15,6 +15,26 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 let db = firebase.default.firestore();
+const firebaseAuth = firebase.default.auth(app);
+
+
+/**
+ * @description Create user account in Firebase Authentication
+ * @async
+ * @param {string} email
+ * @param {string} password;
+ * @return {Promise<string | null>} uid (user id) of Firebase Authentication
+ */
+export const createUserAccountWithEmailAndPassword = async (email, password) => {
+  try {
+    return await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+  } catch (error) {
+    console.log('error: ', error);
+    alert(error);
+    return null;
+  }
+};
+
 
 /**
  * @description Sign-in with Email and Password

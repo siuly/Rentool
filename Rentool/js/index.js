@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 
-import { GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
+import { movePageTo, PATHS_PAGES, SaveUserId } from './util.js';
+import { createUserAccountWithEmailAndPassword } from './firebase.js';
 
 // import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
 // import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
@@ -38,7 +39,7 @@ class User {
 
 
 // Initialize Firebase
-const app = firebase.initializeApp(firebaseConfig);
+// const app = firebase.initializeApp(firebaseConfig);
 
 
 function comparepswd() {
@@ -66,7 +67,7 @@ let form = document.getElementById('sign-up');
 let submitbtn = document.getElementById('sbtn');
 
 //Create Event  Listener to allow form submission
-submitbtn.addEventListener('click', (event) => {
+submitbtn.addEventListener('click', async (event) => {
 
   //Prevent Default Form submission behavior
   event.preventDefault();
@@ -81,27 +82,31 @@ submitbtn.addEventListener('click', (event) => {
 
   comparepswd();
 
-  console.log(user.toString()); //will print the  information that we get 
+  console.log(user.toString()); //will print the  information that we get
   //save form data to firebase
-  db.doc(firstName.value + email.value).set({
-    Email: email.value,
+
+  const userId = await createUserAccountWithEmailAndPassword(email.value, password.value);
+
+
+  db.doc(userId).set({
     FirstName: firstName.value,
     LastName: lastName.value,
-    Password: password.value
+    createdAt: new Date()
   }).then(() => {
     console.log('Data saved');
-    movePageTo(PATHS_PAGES.HOME)
+    SaveUserId(userId);
+    movePageTo(PATHS_PAGES.HOME);
   }).catch((error) => {
     console.log(error);
   });
-  
-  
+
+
 });
 let cancelBtn = document.getElementById('cbtn');
 
-cancelBtn.addEventListener('click', () =>{
+cancelBtn.addEventListener('click', () => {
 
-  console.log("you clicked");
+  console.log('you clicked');
   movePageTo(PATHS_PAGES.SIGN_IN);
 
 });
