@@ -19,7 +19,7 @@
 
   <!-- Moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="../js/lib//html5-qrcode.min.js" defer></script>
   <script src="../js/common.js" type="module" defer></script>
   <script src="../js/return-tool.js" type="module" defer></script>
   <title>Return Tool</title>
@@ -51,6 +51,22 @@
     </header>
     <input type="checkbox" name="pickUpDetails" id="pickUpDetails">
     <main>
+
+      <!-- QR Code lock -->
+      <div class="qr-scan">
+        <div class="row">
+          <div class="col">
+            <div style="width:500px;" id="reader"></div>
+          </div>
+          <div class="col" style="padding:30px;">
+            <h4>SCAN RESULT</h4>
+            <div id="result">Result Here</div>
+          </div>
+          <button class="return-submit button-util clickable">Return Submit</button>
+        </div>
+      </div>
+      <!-- QR Code lock -->
+
       <div class="return-progress" id="return-progress">
         <h3>Return Tools</h3>
         <div class="return-tool" id="return-tool-name">Return Tool Name</div>
@@ -142,6 +158,16 @@
       <p>© 2022 Rentool All Rights Reserved.</p>
     </footer>
   </div>
+
+
+  <style>
+    .result {
+      background-color: green;
+      color: #fff;
+      padding: 20px;
+    }
+  </style>
+
 </body>
 
 </html>
