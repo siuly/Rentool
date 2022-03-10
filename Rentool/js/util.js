@@ -40,7 +40,8 @@ export const PATHS_PAGES = {
   LOCATIONS: 'locations.html',
   USER_PROFILE: 'user-profile.html',
   ABOUT_RENTOOL: 'about-rentool.html',
-  HELP: 'help.html'
+  HELP: 'help.html',
+  REFERENCE: 'reference.html'
 }
 
 /**
