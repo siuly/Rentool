@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     return;
   }
 
-  
+
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
@@ -58,7 +58,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       alert('incorrect date input');
     }
-  
   });
 
   let diffHoursMilliseconds = 0;
@@ -106,9 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  
   nextbtn.addEventListener('click', () => {
-  
     page1.classList.add('shown');
     page2.classList.remove('shown');
     tname2.innerHTML = toolListForReservationSelection[0].toolName;
@@ -124,7 +121,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
 
   });
- 
+
   /*
    * ============================================
    * Page Initialization
@@ -132,7 +129,7 @@ document.addEventListener('DOMContentLoaded', async () => {
    */
 
   /**@type {Location[]} Location + correspondToolId*/
-  const locations = toolListForReservationSelection.map(tool => {
+  const locations = toolListForReservationSelection.filter(tool => tool.isReserved === false).map(tool => {
     return { ...tool.location, correspondToolId: tool.toolId };
   });
   const locationContainerEl = document.getElementById('locationContainer');
@@ -186,7 +183,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Add reservation
   reservebtn.addEventListener('click', async () => {
-    
+
     let reservationRequestData = {
 
       toolId: selectedToolId,
@@ -204,7 +201,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // @TODO:  Add extra properties from user input
     };
-    
+
     const reservationId = await reservationRequest(reservationRequestData);
 
     if (reservationId !== null) {
@@ -212,4 +209,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
   });
-});  //DOMContentLoaded
+}); //DOMContentLoaded

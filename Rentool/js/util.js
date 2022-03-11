@@ -36,6 +36,7 @@ export const PATHS_PAGES = {
   ADD_TOOL: 'admin/addTool.html',
 
   // UPCOMMING
+  MY_ACCOUNT: 'my-account.html',
   LOCATIONS: 'locations.html',
   USER_PROFILE: 'user-profile.html',
   ABOUT_RENTOOL: 'about-rentool.html',
