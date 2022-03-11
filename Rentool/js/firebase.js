@@ -78,7 +78,7 @@ export const getToolsByKeyword = async (keyword = '') => {
       return tools;
     }
 
-    tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
+    tools = tools.filter(tool => JSON.stringify(tool).toLowerCase().includes(keyword.toLowerCase()));
     return tools;
 
   } catch (error) {
@@ -129,7 +129,7 @@ export const setToolData = async (tool) => {
 const setDataTo = async (collectionName, params) => {
 
   try {
-    await db.collection(collectionName).add({ ...params });
+    return await db.collection(collectionName).add({ ...params });
   } catch (error) {
     console.error(error);
   }
@@ -164,7 +164,10 @@ export const getToolsByReservationToolIndex = async (reservationToolIndex) => {
  * @return {Reservation[]}
  */
 export const getReservationsByUserId = async (userId) => {
-  if (!userId) { return; }
+  if (!userId) {
+    console.error('User ID is null.');
+    return;
+  }
 
   try {
     const reservationsDoc = await db.collection('Reservations')
@@ -204,8 +207,7 @@ export const updateToolByToolId = async (toolId, params) => {
  */
 export const setReservationData = async (reservation) => {
   try {
-    await setDataTo('Reservations', reservation);
-
+    return await setDataTo('Reservations', reservation);
   } catch (error) {
     console.error(error);
   }
@@ -310,13 +312,14 @@ export const getToolByToolId = async (toolId) => {
  * @description Reservation request
  * @async
  * @param {Reservation} reservationRequest
- * @returns {boolean} the result of the database interaction
+ * @returns {string} the result of the database interaction
  */
 export const reservationRequest = async (reservationRequest) => {
   try {
-    await setReservationData(reservationRequest);
+    const newReservationId = (await setReservationData(reservationRequest)).id;
+    console.log('newReservationId: ', newReservationId);
     await updateToolByToolId(reservationRequest.toolId, { isReserved: true });
-    return true;
+    return newReservationId;
   } catch (error) {
     console.log('error: ', error);
     return false;

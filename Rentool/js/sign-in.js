@@ -1,4 +1,5 @@
 import { signInEmailWithPassword } from './firebase.js';
+import { GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
 
 
 const login = document.getElementById('sign-in-btn');
@@ -21,4 +22,10 @@ login.addEventListener('click', (event) => {
   // singInEmailWithPassword(userEmail, userPassword);
 
   //  alert(`user email is ${userEmail} and user password is ${userPassword}`);
+});
+
+let signUp = document.getElementById('cbtn');
+signUp.addEventListener('click', () =>{
+  movePageTo(PATHS_PAGES.SIGN_UP);
+
 });

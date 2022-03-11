@@ -24,7 +24,6 @@
 	--font-size-body-text: 16px;
 	--font-size-secondary-text: 14px;
 
-
 	--height-heading: 50px;
 }
 
@@ -60,13 +59,11 @@ header {
 }
 
 header h1 {
-	margin-top: 22px;
 	grid-column: 2;
 	text-align: center;
 	font-family: "Raleway", sans-serif;
 	height: 100%;
 	font-weight: 700;
-	/* line-height: 20px; */
 	font-size: 36px;
 }
 
@@ -113,15 +110,7 @@ button div {
 	margin-top: 10px;
 	box-shadow: 0 7px 8px -7px #222;
 }
-/* #menu li:nth-of-type(6) {
-	list-style: none;
-	color: black;
-	line-height: 2;
-	margin-right: 0;
-	margin-top: 15px;
-	box-shadow: none;
-	text-align: right;
-} */
+
 #menu a {
 	text-decoration: none;
 	color: black;
@@ -156,6 +145,29 @@ footer p {
 }
 
 /* Header */
+header a {
+	text-decoration: none;
+	color: black;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	transition: all 0.1s;
+	transform: scale(1);
+}
+
+header a:hover {
+	transform: scale(1.02);
+}
+
+/* MAIN */
+.input-container {
+	display: flex;
+	flex-flow: row nowrap;
+	padding: 1rem;
+}
+input[name="keyword"] {
+	flex: 1 0 30%;
+}
 
 /* Footer */
 
@@ -195,4 +207,9 @@ footer p {
 	align-items: center;
 	font-size: 3rem;
 	color: white;
+}
+
+.button-util {
+	color: var(--color-secondary-variant);
+	border: 3px solid currentColor;
 }

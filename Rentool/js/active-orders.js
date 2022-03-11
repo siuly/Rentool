@@ -1,36 +1,17 @@
 import { Reservation } from './domain/Reservation.js';
 import { getReservationsByUserId, getToolByToolId } from './firebase.js';
-
+import { readUserId } from './util.js';
 
 const PATH_RETURN_PAGE = './return-tool.html';
-const userId = '9sFhSueVxw3w8fniYAlE';
 
-
-/** @type {Reservation[]} */
-let activeReservations = [new Reservation({
-    reservationId: '123456',
-    reservationToolIndex: 'driver-brand-small',
-    duration: { startDate: '2022-02-12 13:00', endDate: '2022-02-13 13:00' },
-    isReturned: false,
-    toolId: 'asdfghjkl',
-    userId: 'test@mail.com',
-    toolName: 'driver'
-  }),
-  new Reservation({
-    reservationId: 'asdfghj',
-    reservationToolIndex: 'driver-brand-small',
-    duration: { startDate: '2022-03-16 13:00', endDate: '2022-03-23 13:00' },
-    isReturned: false,
-    toolId: 'asdfghjkl',
-    userId: 'test@mail.com',
-    toolName: 'driver'
-  })
-];
 
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const userId = readUserId();
 
-  activeReservations = await getReservationsByUserId(userId);
+  /**@type {Reservation[]} */
+  const activeReservations = await getReservationsByUserId(userId);
+
 
   const reservationContainerEl = document.getElementById('reservation-container');
   // HTML Generate iteration START================================
