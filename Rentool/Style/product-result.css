@@ -90,6 +90,24 @@ main {
 input[type="submit"]:disabled {
 	background: grey;
 }
+.page-heading {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	height: var(--height-page-heading);
+}
+.page-heading__text {
+	grid-column: 2 / span 2;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 24px;
+	font-weight: bold;
+}
 
-#product-result .wrapper {
+.page-heading .page-return-button {
+	margin-left: calc(6px + var(--padding-menu-left));
+	font-size: 25px;
+	display: flex;
+	align-items: center;
 }

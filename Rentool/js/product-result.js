@@ -2,6 +2,8 @@ import { ToolListItem } from './components/ToolListItem.js';
 import { getToolsByCategory, getToolsByKeyword, getAllTools } from './firebase.js';
 import { getUrlParams, GET_PARAMS } from './util.js';
 
+const pageHeadingTextEl = document.getElementById('page-heading__text');
+pageHeadingTextEl.textContent = getUrlParams()[GET_PARAMS.CATEGORY] || getUrlParams()[GET_PARAMS.KEYWORD];
 
 document.addEventListener('DOMContentLoaded', async () => {
   /**@type {[] | undefined} */
