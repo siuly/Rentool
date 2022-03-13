@@ -217,5 +217,5 @@ export const readUserId = () => {
  * @return {boolean}
  */
 export const isAdminUser = () => {
-  return readUserId() === 'admin';
+  return readUserId() === '2pVebYD9LKZJF7rf0Io8Xpwclbs2';
 };
