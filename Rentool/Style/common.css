@@ -110,6 +110,9 @@ button div {
 	margin-top: 10px;
 	box-shadow: 0 7px 8px -7px #222;
 }
+#menu li:last-of-type {
+	text-align: right;
+}
 
 #menu a {
 	text-decoration: none;

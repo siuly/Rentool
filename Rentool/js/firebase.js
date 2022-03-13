@@ -15,36 +15,47 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 let db = firebase.default.firestore();
+let firebaseAuth;
+try {
+  firebaseAuth = firebase.default.auth(app);
+} catch (error) {
+  console.log('error: ', error);
+}
+
+
+/**
+ * @description Create user account in Firebase Authentication
+ * @async
+ * @param {string} email
+ * @param {string} password;
+ * @return {Promise<string | null>} uid (user id) of Firebase Authentication
+ */
+export const createUserAccountWithEmailAndPassword = async (email, password) => {
+  try {
+    return await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+  } catch (error) {
+    console.log('error: ', error);
+    alert(error);
+    return null;
+  }
+};
+
 
 /**
  * @description Sign-in with Email and Password
  * @async
  * @param {string} email
  * @param {string} password
- * @returns {Promise}
+ * @returns {Promise< String | null >} user id
  */
 export const signInEmailWithPassword = async (email, password) => {
-  let userId = null;
-  db.collection('Users')
-    .where('email', '==', email).where('pswd', '==', password).get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, ' => ', doc.data());
-        userId = doc.id;
-      });
-      if (querySnapshot.size === 0) {
-        alert('SignIn failed');
-        return;
-      }
+  try {
+    const userId = await (await firebaseAuth.signInWithEmailAndPassword(email, password)).user.uid;
 
-      userId && SaveUserId(userId);
-      alert('SignIn Success');
-      // window.history.back();
-      movePageTo(PATHS_PAGES.HOME);
-    })
-    .catch((error) => {
-      console.log('Error getting documents: ', error);
-      alert(`ERROR: ${error}`);
-    });
+  } catch (error) {
+    console.log('Error getting documents: ', error);
+    return null;
+  }
 };
 
 /**

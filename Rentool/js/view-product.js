@@ -9,11 +9,9 @@ reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-
   const tools = await getToolsByReservationToolIndex(reservationToolIndex);
-
-
   const productSelected = tools[0];
+  const DESCRIPTION_SEPARATOR = '・';
 
 
   // ==============category section =============
@@ -40,32 +38,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   // ===========avaliability of product=================
 
   const productAvailable = document.querySelector('.available-status');
-  const productAvailableP = document.createElement('p');
+
   //  loop for defining status
-  let AvailableStatus = '';
-  status();
-
-  function status() {
-    if (productSelected.isReserved == true) {
-      AvailableStatus = 'Not available';
-    } else {
-      AvailableStatus = 'Available';
-    }
-  }
-  //  print description text
-  productAvailable.appendChild(productAvailableP).innerHTML = AvailableStatus;
-
-
-
-
-
+  const isAvailable = tools.find(tool => tool.isReserved === false);
+  productAvailable.textContent = isAvailable ? 'Available' : 'Not available';
 
 
   // ============== description section ===================
   const Description = document.querySelector('.product-description');
-  const ProductDescription = document.createElement('p');
+
   //  print description text
-  Description.appendChild(ProductDescription).innerHTML = productSelected.description;
+  Description.innerHTML = `
+  ${ productSelected.description.split(DESCRIPTION_SEPARATOR).map(
+      line =>
+        `<p class="product-description__line" >${DESCRIPTION_SEPARATOR}${line}</p>`)
+        .slice(1).join('') /// Join all p element
+  }`;
 
   // ============ table section ====================
 
@@ -93,14 +81,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Pass an array of locations from the tool data
   const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
-  document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
-
-
-
-
+  // document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
+  document.getElementById('nearest-location').innerHTML = `
+    ${nearestLocation.address}
+  `;
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
     movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
-    // movePageTo('reservation-request.html', `?reservationToolIndex=${reservationToolIndex}`);
   });
 });
