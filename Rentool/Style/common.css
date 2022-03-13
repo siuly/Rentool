@@ -36,11 +36,14 @@ body {
 }
 
 .wrapper {
-	/* width: 100%; */
+	min-height: 100vh;
 	max-width: 800px;
 	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 1fr;
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
+
 	overflow: hidden;
 
 	/* Alpha */
@@ -244,6 +247,6 @@ header .fas.fa-bars {
 	font-size: 25px;
 }
 
-* {
-	/* outline: 1px solid grey; */
+main {
+	flex-grow: 1;
 }

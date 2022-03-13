@@ -61,9 +61,10 @@
 	align-self: end;
 }
 
-main {
-	display: grid;
-	grid-template-columns: 1fr;
+#product-result main {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
 }
 
 .product-number {
@@ -110,6 +111,7 @@ input[type="submit"]:disabled {
 }
 
 .result-container {
+	flex-grow: 1;
 	display: grid;
 	grid-template-columns: 1fr;
 	padding: 1rem;
