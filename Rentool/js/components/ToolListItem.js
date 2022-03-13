@@ -13,6 +13,7 @@ export class ToolListItem extends HTMLElement {
 
     this.classList.add('tool-list__item');
     this.innerHTML = `
+    <a href="./view-product.html?reservationToolIndex=${reservationToolIndex}" class="link-view-product">
       <div class="tool-item__image-container">
         <img src="${imageUrl}" alt="${toolName}" class="tool-item__image">
       </div>
@@ -24,10 +25,7 @@ export class ToolListItem extends HTMLElement {
           isReserved ? 'Unavailable at your location' : 'Available at your location'
         }</span>
       </div>
-      <form action="view-product.html" method="get">
-        <input type="hidden" name="reservationToolIndex" value="${reservationToolIndex}">
-        <input type="submit" value="Button" class="tool-item__submit" ${isReserved ? 'disabled' : ''}>
-      </form>
+      </a>
     `;
   }
 }
