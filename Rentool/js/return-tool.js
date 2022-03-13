@@ -38,134 +38,208 @@ document.addEventListener('DOMContentLoaded', async () => {
   /**@type {Location | null} */
   const pickedLocation = reservationData.location;
 
-  // Initial Render
-  renderLocationArea(locationsMaster);
+  // // Initial Render
+  // renderLocationArea(locationsMaster);
 
-  // Make areaLabels list without redundant data
-  const areaLabels = [...new Set(locationsMaster.map(location => location.areaLabel))];
-  for (const areaLabel of areaLabels) {
-    const optionEl = document.createElement('option');
-    optionEl.value = areaLabel;
-    optionEl.textContent = areaLabel;
-    selectBoxAreaLabelEl.appendChild(optionEl);
-  }
+  // // Make areaLabels list without redundant data
+  // const areaLabels = [...new Set(locationsMaster.map(location => location.areaLabel))];
+  // for (const areaLabel of areaLabels) {
+  //   const optionEl = document.createElement('option');
+  //   optionEl.value = areaLabel;
+  //   optionEl.textContent = areaLabel;
+  //   selectBoxAreaLabelEl.appendChild(optionEl);
+  // }
 
-  selectBoxAreaLabelEl.addEventListener('change', (event) => {
-    const selectedAreaLabel = event.target.value;
-    if (selectedAreaLabel === 'All') {
-      console.log(locationsMaster);
-      renderLocationArea(locationsMaster);
-      return;
-    }
+  // selectBoxAreaLabelEl.addEventListener('change', (event) => {
+  //   const selectedAreaLabel = event.target.value;
+  //   if (selectedAreaLabel === 'All') {
+  //     console.log(locationsMaster);
+  //     renderLocationArea(locationsMaster);
+  //     return;
+  //   }
 
-    renderLocationArea(locationsMaster.filter(location => location.areaLabel === selectedAreaLabel));
-  });
+  //   renderLocationArea(locationsMaster.filter(location => location.areaLabel === selectedAreaLabel));
+  // });
 
-  /** @type {HTMLImageElement} */
-  const returnToolImage = document.getElementById('return-tool-image');
-  returnToolImage.src = reservationData.imageUrl;
-  /** @type {HTMLDivElement} */
-  const returnToolName = document.getElementById('return-tool-name');
-  returnToolName.textContent = reservationData.toolName;
+  // /** @type {HTMLImageElement} */
+  // const returnToolImage = document.getElementById('return-tool-image');
+  // returnToolImage.src = reservationData.imageUrl;
+  // /** @type {HTMLDivElement} */
+  // const returnToolName = document.getElementById('return-tool-name');
+  // returnToolName.textContent = reservationData.toolName;
 
-  /** @type {HTMLSpanElement} */
-  const returnTime = document.getElementById('return-time__time');
-  returnTime.textContent = reservationData.duration.endDate;
+  // /** @type {HTMLSpanElement} */
+  // const returnTime = document.getElementById('return-time__time');
+  // returnTime.textContent = reservationData.duration.endDate;
 
-  const startDate = moment(reservationData.duration.startDate).locale('en_CA');
-  const endDate = moment(reservationData.duration.endDate).locale('en_CA');
+  // const startDate = moment(reservationData.duration.startDate).locale('en_CA');
+  // const endDate = moment(reservationData.duration.endDate).locale('en_CA');
 
-  const rentingDays = startDate.diff(endDate, 'days');
-  const rentingHours = startDate.diff(endDate, 'hours') - (rentingDays * 24);
+  // const rentingDays = startDate.diff(endDate, 'days');
+  // const rentingHours = startDate.diff(endDate, 'hours') - (rentingDays * 24);
 
-  document.getElementById('pick-up-details__duration').innerHTML = `
-    <div class="pick-up-details__duration--duration">
-      ${rentingDays} Day / ${rentingHours} Hours
-    </div>
-    <div class="pick-up-details__duration--startDate">
-      ${reservationData.duration.startDate} to
-    </div>
-    <div class="pick-up-details__duration--startDate">
-      ${reservationData.duration.endDate}
-    </div>`;
-  document.getElementById('pick-up-location').appendChild(new LocationItem(pickedLocation));
+  // document.getElementById('pick-up-details__duration').innerHTML = `
+  //   <div class="pick-up-details__duration--duration">
+  //     ${rentingDays} Day / ${rentingHours} Hours
+  //   </div>
+  //   <div class="pick-up-details__duration--startDate">
+  //     ${reservationData.duration.startDate} to
+  //   </div>
+  //   <div class="pick-up-details__duration--startDate">
+  //     ${reservationData.duration.endDate}
+  //   </div>`;
+  // document.getElementById('pick-up-location').appendChild(new LocationItem(pickedLocation));
 
-  returnRequestBtnEl.addEventListener('click', async () => {
-    if (returnLocation === null) {
-      alert('Please select the location to return');
-      return;
-    }
-    returnProgressEl.style.display = 'none';
-    returnConfirmSectionEl.style.display = 'grid';
-    document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
-    const endDate = moment(reservationData.duration.endDate).locale('en_CA');
-    document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
-    document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
-    document.getElementById('return-confirmation__location');
-  });
+  // returnRequestBtnEl.addEventListener('click', async () => {
+  //   if (returnLocation === null) {
+  //     alert('Please select the location to return');
+  //     return;
+  //   }
+  //   returnProgressEl.style.display = 'none';
+  //   returnConfirmSectionEl.style.display = 'grid';
+  //   document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
+  //   const endDate = moment(reservationData.duration.endDate).locale('en_CA');
+  //   document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
+  //   document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
+  //   document.getElementById('return-confirmation__location');
+  // });
 
-  confirmBtnEl.addEventListener('click', async () => {
-    returnRequestBtnEl.disabled = true;
-    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
-
-    if (returnResult === true) {
-      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
-    }
-  });
+  // let returnInstruction = document.getElementById("return-instruction");
+  // let returnConfirm = document.getElementById("return-confirmation");
+  
+  // confirmBtnEl.addEventListener('click', async () => {
+  //   returnRequestBtnEl.disabled = true;
+  //   const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+  //   console.log('clicked');
+  //   returnConfirm.classList.add("shown");
+  //   returnInstruction.classList.remove("shown");
+    
+  //   if (returnResult === true) {
+  //     movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+  //   }
+  // });
 
 
 
 
   // src: https://github.com/mebjas/html5-qrcode
-  // QR scanner ========================================================
-  function onScanSuccess(qrCodeMessage) {
-    // document.getElementById('result').innerHTML = '<span class="result">' + qrCodeMessage + '</span>';
-    alert('The locker will open');
-    console.log('qrCodeMessage: ', qrCodeMessage);
 
+  //=================QR Code=========================
+  let popupbtn = document.getElementById("pop-up");
+  let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+  let content = "";
+  let code =  document.getElementById("user-code");
+  var popup = document.getElementById("preview"); 
+  
+  popupbtn.addEventListener('click', () =>{
+      popup.classList.toggle("show");
+      Instascan.Camera.getCameras().then(function (cameras) {
+    if (cameras.length > 0) {
+      scanner.start(cameras[0]);
+    } else {
+      console.error('No cameras found.');
+    }
+    }).catch(function (e) {
+    console.error(e);
+    });
+    });
+  
+    scanner.addListener('scan', function (content) {
+       console.log(content);
+      if( content.indexOf('http://www.woschineserestaurant.com') > -1){
+      scanner.stop();
+      popup.classList.add("shown");
+      code.innerHTML = `Your code is <span class="code" >8765</span>`;
+    }
+  });
+});
+  //==============================================
 
-    // Enable the return-submit button
+  // ================Camera Code====================
+  const video = document.getElementById('video');
+
+// Elements for taking the snapshot
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+context.scale(0.5, 0.5);
+
+document.getElementById("start").addEventListener("click", function () {
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    // Not adding `{ audio: true }` since we only want video now
+    navigator.mediaDevices.getUserMedia({ video: true }).then( (stream) => {
+      //video.src = window.URL.createObjectURL(stream);
+      video.srcObject = stream;
+      // video.play();  // or autplay
+    });
+  } else {
+    console.log("media devices not available in this browser");
   }
 
-  function onScanError(errorMessage) {
-    console.log('errorMessage: ', errorMessage);
-  }
-
-  let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 });
-  html5QrcodeScanner.render(onScanSuccess, onScanError);
-  // QR scanner ========================================================
 });
 
+// Trigger photo take
+document.getElementById("snap").addEventListener("click",  () => {
+  //canvas.width = video.videoWidth; 
+  //canvas.height = video.videoHeight;
+  context.drawImage(video, 0, 0,);
+  const imageBlob = canvas.toBlob(handleBlob, 'image/jpeg');
+});
 
+document.getElementById("stop").addEventListener("click",  ()=> {
+  const tracks = video.srcObject.getTracks();
+  tracks.forEach(track => track.stop());
+  let videoContainer = document.getElementById("video");
+  videoContainer.classList.add("shown");
+});
 
-/**
- * @description Render location to return
- * @param {Location} locations
- * @returns {void};
- */
-const renderLocationArea = (locations) => {
-  locationContainerEl.innerHTML = '';
-
-  // Generate locker section
-  for (const location of locations) {
-    const locationItem = new LocationItem(location);
-    locationItem.addEventListener('click', () => {
-      returnLocation = location;
+function handleBlob(blob) {
+    // we can turn the blob into DOMString
+    const objectURL = window.URL.createObjectURL(blob);
+    //(objectURL is only contains the address of image object in browser memory)
+    //it is vaid for current browser session
+    //if we want to store the image into server, one way is to
+    //create the base64 rendition of the blob using FileReader
+    const reader = new FileReader();
+    reader.addEventListener('load', () => {
+      console.log(reader.result);
+      //also copy to image input
+      document.getElementById("image").value = reader.result;
     });
-    locationContainerEl.appendChild(locationItem);
+    reader.readAsDataURL(blob); // gives base64 version of the blob
+    //reader.readAsArrayBuffer(blob); // gives the ArrayBuffer version of the blob
+  
   }
 
-  // Set click event
-  const locationItemElementList = document.getElementsByTagName('location-item');
-  for (const locationItem of locationItemElementList) {
-    locationItem.addEventListener('click', () => {
-      for (const locationItemEl of locationItemElementList) {
-        locationItemEl.classList.remove('selected-location');
-      }
-      locationItem.classList.add('selected-location');
-    });
-  }
 
-  document.getElementsByClassName('loader-container')[0].style.display = 'none';
-};
+
+// /**
+//  * @description Render location to return
+//  * @param {Location} locations
+//  * @returns {void};
+//  */
+// const renderLocationArea = (locations) => {
+//   locationContainerEl.innerHTML = '';
+
+//   // Generate locker section
+//   for (const location of locations) {
+//     const locationItem = new LocationItem(location);
+//     locationItem.addEventListener('click', () => {
+//       returnLocation = location;
+//     });
+//     locationContainerEl.appendChild(locationItem);
+//   }
+
+//   // Set click event
+//   const locationItemElementList = document.getElementsByTagName('location-item');
+//   for (const locationItem of locationItemElementList) {
+//     locationItem.addEventListener('click', () => {
+//       for (const locationItemEl of locationItemElementList) {
+//         locationItemEl.classList.remove('selected-location');
+//       }
+//       locationItem.classList.add('selected-location');
+//     });
+//   }
+
+//   document.getElementsByClassName('loader-container')[0].style.display = 'none';
+// }
+// });
