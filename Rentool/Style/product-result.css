@@ -127,7 +127,7 @@ input[type="submit"]:disabled {
 	color: var(--color-secondary-variant);
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 500px) {
 	.tool-list {
 		max-width: 1000px;
 		grid-template-columns: repeat(3, 1fr);
