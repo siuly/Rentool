@@ -24,7 +24,10 @@
 	--font-size-body-text: 16px;
 	--font-size-secondary-text: 14px;
 
-	--height-heading: 50px;
+	--height-heading: 64px;
+	--height-header-input-form: 61px;
+	--height-page-heading: 61px;
+	--padding-menu-left: 15px;
 }
 
 body {
@@ -33,11 +36,14 @@ body {
 }
 
 .wrapper {
-	/* width: 100%; */
+	min-height: 100vh;
 	max-width: 800px;
 	margin: 0 auto;
-	display: grid;
-	grid-template-columns: 1fr;
+
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: start;
+
 	overflow: hidden;
 
 	/* Alpha */
@@ -71,7 +77,7 @@ header h1 {
 	grid-column: 1;
 	grid-row: 1;
 	align-self: center;
-	margin-left: 10px;
+	margin-left: var(--padding-menu-left);
 }
 
 button {
@@ -81,7 +87,7 @@ button {
 
 button div {
 	font-family: "Roboto", sans-serif;
-	font-size: 12px;
+	font-size: 12pxn;
 	line-height: 20px;
 }
 
@@ -215,4 +221,32 @@ input[name="keyword"] {
 .button-util {
 	color: var(--color-secondary-variant);
 	border: 3px solid currentColor;
+}
+
+.input-container {
+	padding: 0;
+	box-shadow: 0px 4px 4px 0px #00000040;
+}
+.input-container input[type="text"] {
+	border: none;
+	height: var(--height-header-input-form);
+	font-size: 1rem;
+}
+
+.input-container .icon {
+	display: inline-block;
+	padding-left: calc(6px + var(--padding-menu-left));
+}
+.fa.fa-search {
+	height: 25px;
+	width: 25px;
+	font-size: 25px;
+	color: var(--color-secondary-variant);
+}
+header .fas.fa-bars {
+	font-size: 25px;
+}
+
+main {
+	flex-grow: 1;
 }

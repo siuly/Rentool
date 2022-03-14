@@ -40,7 +40,8 @@ export const PATHS_PAGES = {
   LOCATIONS: 'locations.html',
   USER_PROFILE: 'user-profile.html',
   ABOUT_RENTOOL: 'about-rentool.html',
-  HELP: 'help.html'
+  HELP: 'help.html',
+  REFERENCE: 'reference.html'
 }
 
 /**
@@ -216,5 +217,5 @@ export const readUserId = () => {
  * @return {boolean}
  */
 export const isAdminUser = () => {
-  return readUserId() === 'admin';
+  return readUserId() === '2pVebYD9LKZJF7rf0Io8Xpwclbs2';
 };

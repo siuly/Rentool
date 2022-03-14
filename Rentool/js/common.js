@@ -6,19 +6,36 @@ import { signOut, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 const toggle = document.getElementById('toggle');
 const sidemenu = document.getElementById('menu');
 
-toggle.onclick = function() {
-  sidemenu.classList.toggle('active');
-};
+if (toggle !== null && sidemenu !== null) {
+  toggle.onclick = function() {
+    sidemenu.classList.toggle('active');
+  };
+}
 
-const signInOutMenuItemEl = document.getElementById('sign-status').children[0];
-if (readUserId() === null) {
-  signInOutMenuItemEl.textContent = 'Sign In';
-  signInOutMenuItemEl.href = `./${PATHS_PAGES.SIGN_IN}`;
-} else {
-  // Add sign-out function to sign-out menu
-  document.getElementById('sign-out').addEventListener('click', (e) => {
-    e.preventDefault();
-    signOut();
-    movePageTo(PATHS_PAGES.HOME);
-  });
+// Header Menu [Sign-in] [Sign-out]
+const signStatusEl = document.getElementById('sign-status');
+if (signStatusEl !== null) {
+
+  const signInOutMenuItemEl = signStatusEl.children[0];
+
+  if (readUserId() === null) {
+    signInOutMenuItemEl.textContent = 'Sign In';
+    signInOutMenuItemEl.href = `./${PATHS_PAGES.SIGN_IN}`;
+  } else {
+    // Add sign-out function to sign-out menu
+    document.getElementById('sign-out').addEventListener('click', (e) => {
+      e.preventDefault();
+      signOut();
+      movePageTo(PATHS_PAGES.HOME);
+    });
+  }
+
+}
+
+
+
+// Return page icon
+const pageReturnButtonEl = document.getElementById('page-return-button');
+if (pageReturnButtonEl !== null) {
+  pageReturnButtonEl.addEventListener('click', () => window.history.back());
 }
