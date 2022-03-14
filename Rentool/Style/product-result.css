@@ -117,6 +117,7 @@ input[type="submit"]:disabled {
 	padding: 1rem;
 }
 
-#more-tools-button {
+.load-more-button {
 	display: none;
+	color: var(--color-secondary-variant);
 }

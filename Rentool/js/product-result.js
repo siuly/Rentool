@@ -9,7 +9,7 @@ pageHeadingTextEl.textContent = getUrlParams()[GET_PARAMS.CATEGORY] || getUrlPar
 const toolListEl = document.getElementById('tool-list');
 
 /**@type {HTMLButtonElement} */
-const moreToolsButton = document.getElementById('more-tools-button');
+const loadMoreButton = document.getElementById('load-more-button');
 
 const NUMBER_FIRST_VIEW_TOOL_ITEM_COUNT = 3;
 
@@ -33,15 +33,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   const numToolsCount = tools.length;
   if (numToolsCount <= NUMBER_FIRST_VIEW_TOOL_ITEM_COUNT) {
     showAllTool(tools);
-    moreToolsButton.style.display = 'none';
+    loadMoreButton.style.display = 'none';
   }
 
   if (numToolsCount > NUMBER_FIRST_VIEW_TOOL_ITEM_COUNT) {
     showFirstViewTool(tools);
-    moreToolsButton.style.display = 'block';
-    moreToolsButton.addEventListener('click', () => {
+    loadMoreButton.style.display = 'block';
+    loadMoreButton.addEventListener('click', () => {
       showMoreTool(tools);
-      moreToolsButton.style.display = 'none';
+      loadMoreButton.style.display = 'none';
     });
   }
 
