@@ -10,7 +10,7 @@ import { Reservation } from './domain/Reservation.js';
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
 //@TODO: delete test code
-reservationId = reservationId || 'OQqN7llSDJbEjMDX10VZ';
+reservationId = reservationId || '0rC7o2t95GsnxuLd39CK';
 
 /**@type {HTMLSelectElement} */
 const selectBoxAreaLabelEl = document.getElementById('areaLabel');
@@ -38,86 +38,87 @@ document.addEventListener('DOMContentLoaded', async () => {
   /**@type {Location | null} */
   const pickedLocation = reservationData.location;
 
-  // // Initial Render
-  // renderLocationArea(locationsMaster);
+  // Initial Render
+  renderLocationArea(locationsMaster);
 
-  // // Make areaLabels list without redundant data
-  // const areaLabels = [...new Set(locationsMaster.map(location => location.areaLabel))];
-  // for (const areaLabel of areaLabels) {
-  //   const optionEl = document.createElement('option');
-  //   optionEl.value = areaLabel;
-  //   optionEl.textContent = areaLabel;
-  //   selectBoxAreaLabelEl.appendChild(optionEl);
-  // }
+  // Make areaLabels list without redundant data
+  const areaLabels = [...new Set(locationsMaster.map(location => location.areaLabel))];
+  for (const areaLabel of areaLabels) {
+    const optionEl = document.createElement('option');
+    optionEl.value = areaLabel;
+    optionEl.textContent = areaLabel;
+    selectBoxAreaLabelEl.appendChild(optionEl);
+  }
 
-  // selectBoxAreaLabelEl.addEventListener('change', (event) => {
-  //   const selectedAreaLabel = event.target.value;
-  //   if (selectedAreaLabel === 'All') {
-  //     console.log(locationsMaster);
-  //     renderLocationArea(locationsMaster);
-  //     return;
-  //   }
+  selectBoxAreaLabelEl.addEventListener('change', (event) => {
+    const selectedAreaLabel = event.target.value;
+    if (selectedAreaLabel === 'All') {
+      console.log(locationsMaster);
+      renderLocationArea(locationsMaster);
+      return;
+    }
 
-  //   renderLocationArea(locationsMaster.filter(location => location.areaLabel === selectedAreaLabel));
-  // });
+    renderLocationArea(locationsMaster.filter(location => location.areaLabel === selectedAreaLabel));
+  });
 
-  // /** @type {HTMLImageElement} */
-  // const returnToolImage = document.getElementById('return-tool-image');
-  // returnToolImage.src = reservationData.imageUrl;
-  // /** @type {HTMLDivElement} */
-  // const returnToolName = document.getElementById('return-tool-name');
-  // returnToolName.textContent = reservationData.toolName;
+  /** @type {HTMLImageElement} */
+  const returnToolImage = document.getElementById('return-tool-image');
+  returnToolImage.src = reservationData.imageUrl;
+  /** @type {HTMLDivElement} */
+  const returnToolName = document.getElementById('return-tool-name');
+  returnToolName.textContent = reservationData.toolName;
 
-  // /** @type {HTMLSpanElement} */
-  // const returnTime = document.getElementById('return-time__time');
-  // returnTime.textContent = reservationData.duration.endDate;
+  /** @type {HTMLSpanElement} */
+  const returnTime = document.getElementById('return-time__time');
+  returnTime.textContent = reservationData.duration.endDate;
 
-  // const startDate = moment(reservationData.duration.startDate).locale('en_CA');
-  // const endDate = moment(reservationData.duration.endDate).locale('en_CA');
+  const startDate = moment(reservationData.duration.startDate).locale('en_CA');
+  const endDate = moment(reservationData.duration.endDate).locale('en_CA');
 
-  // const rentingDays = startDate.diff(endDate, 'days');
-  // const rentingHours = startDate.diff(endDate, 'hours') - (rentingDays * 24);
+  const rentingDays = startDate.diff(endDate, 'days');
+  const rentingHours = startDate.diff(endDate, 'hours') - (rentingDays * 24);
 
-  // document.getElementById('pick-up-details__duration').innerHTML = `
-  //   <div class="pick-up-details__duration--duration">
-  //     ${rentingDays} Day / ${rentingHours} Hours
-  //   </div>
-  //   <div class="pick-up-details__duration--startDate">
-  //     ${reservationData.duration.startDate} to
-  //   </div>
-  //   <div class="pick-up-details__duration--startDate">
-  //     ${reservationData.duration.endDate}
-  //   </div>`;
-  // document.getElementById('pick-up-location').appendChild(new LocationItem(pickedLocation));
+  document.getElementById('pick-up-details__duration').innerHTML = `
+    <div class="pick-up-details__duration--duration">
+      ${rentingDays} Day / ${rentingHours} Hours
+    </div>
+    <div class="pick-up-details__duration--startDate">
+      ${reservationData.duration.startDate} to
+    </div>
+    <div class="pick-up-details__duration--startDate">
+      ${reservationData.duration.endDate}
+    </div>`;
+  document.getElementById('pick-up-location').appendChild(new LocationItem(pickedLocation));
 
-  // returnRequestBtnEl.addEventListener('click', async () => {
-  //   if (returnLocation === null) {
-  //     alert('Please select the location to return');
-  //     return;
-  //   }
-  //   returnProgressEl.style.display = 'none';
-  //   returnConfirmSectionEl.style.display = 'grid';
-  //   document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
-  //   const endDate = moment(reservationData.duration.endDate).locale('en_CA');
-  //   document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
-  //   document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
-  //   document.getElementById('return-confirmation__location');
-  // });
+  returnRequestBtnEl.addEventListener('click', async () => {
+    if (returnLocation === null) {
+      alert('Please select the location to return');
+      return;
+    }
+    returnProgressEl.style.display = 'none';
+    returnConfirmSectionEl.style.display = 'grid';
+    document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
+    const endDate = moment(reservationData.duration.endDate).locale('en_CA');
+    document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
+    document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
+    document.getElementById('return-confirmation__location');
+  });
 
-  // let returnInstruction = document.getElementById("return-instruction");
-  // let returnConfirm = document.getElementById("return-confirmation");
+  let returnInstruction = document.getElementById("return-instruction");
+  let returnConfirm = document.getElementById("return-confirmation");
+  let submitBtn =  document.getElementById("submit");
   
-  // confirmBtnEl.addEventListener('click', async () => {
-  //   returnRequestBtnEl.disabled = true;
-  //   const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
-  //   console.log('clicked');
-  //   returnConfirm.classList.add("shown");
-  //   returnInstruction.classList.remove("shown");
+  confirmBtnEl.addEventListener('click', async () => {
+    returnRequestBtnEl.disabled = true;
+    // const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    console.log('clicked');
+    returnConfirm.classList.add("shown");
+    returnInstruction.classList.remove("shown");
     
-  //   if (returnResult === true) {
-  //     movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
-  //   }
-  // });
+    // if (returnResult === true) {
+    //   movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+    // }
+  });
 
 
 
@@ -127,7 +128,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   //=================QR Code=========================
   let popupbtn = document.getElementById("pop-up");
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-  let content = "";
   let code =  document.getElementById("user-code");
   var popup = document.getElementById("preview"); 
   
@@ -156,7 +156,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   //==============================================
 
   // ================Camera Code====================
-  const video = document.getElementById('video');
+  const videos = document.getElementById('video');
 
 // Elements for taking the snapshot
 const canvas = document.getElementById('canvas');
@@ -168,7 +168,7 @@ document.getElementById("start").addEventListener("click", function () {
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices.getUserMedia({ video: true }).then( (stream) => {
       //video.src = window.URL.createObjectURL(stream);
-      video.srcObject = stream;
+      videos.srcObject = stream;
       // video.play();  // or autplay
     });
   } else {
@@ -178,11 +178,19 @@ document.getElementById("start").addEventListener("click", function () {
 });
 
 // Trigger photo take
+
 document.getElementById("snap").addEventListener("click",  () => {
   //canvas.width = video.videoWidth; 
   //canvas.height = video.videoHeight;
+  videos.classList.add("shown");
+  canvas.classList.remove("shown");
   context.drawImage(video, 0, 0,);
   const imageBlob = canvas.toBlob(handleBlob, 'image/jpeg');
+  const tracks = video.srcObject.getTracks();
+  tracks.forEach(track => track.stop());
+  let videoContainer = document.getElementById("video");
+  videoContainer.classList.add("shown");
+
 });
 
 document.getElementById("stop").addEventListener("click",  ()=> {
@@ -190,6 +198,7 @@ document.getElementById("stop").addEventListener("click",  ()=> {
   tracks.forEach(track => track.stop());
   let videoContainer = document.getElementById("video");
   videoContainer.classList.add("shown");
+  
 });
 
 function handleBlob(blob) {
@@ -211,35 +220,33 @@ function handleBlob(blob) {
   }
 
 
+/**
+ * @description Render location to return
+ * @param {Location} locations
+ * @returns {void};
+ */
+const renderLocationArea = (locations) => {
+  locationContainerEl.innerHTML = '';
 
-// /**
-//  * @description Render location to return
-//  * @param {Location} locations
-//  * @returns {void};
-//  */
-// const renderLocationArea = (locations) => {
-//   locationContainerEl.innerHTML = '';
+  // Generate locker section
+  for (const location of locations) {
+    const locationItem = new LocationItem(location);
+    locationItem.addEventListener('click', () => {
+      returnLocation = location;
+    });
+    locationContainerEl.appendChild(locationItem);
+  }
 
-//   // Generate locker section
-//   for (const location of locations) {
-//     const locationItem = new LocationItem(location);
-//     locationItem.addEventListener('click', () => {
-//       returnLocation = location;
-//     });
-//     locationContainerEl.appendChild(locationItem);
-//   }
+  // Set click event
+  const locationItemElementList = document.getElementsByTagName('location-item');
+  for (const locationItem of locationItemElementList) {
+    locationItem.addEventListener('click', () => {
+      for (const locationItemEl of locationItemElementList) {
+        locationItemEl.classList.remove('selected-location');
+      }
+      locationItem.classList.add('selected-location');
+    });
+  }
 
-//   // Set click event
-//   const locationItemElementList = document.getElementsByTagName('location-item');
-//   for (const locationItem of locationItemElementList) {
-//     locationItem.addEventListener('click', () => {
-//       for (const locationItemEl of locationItemElementList) {
-//         locationItemEl.classList.remove('selected-location');
-//       }
-//       locationItem.classList.add('selected-location');
-//     });
-//   }
-
-//   document.getElementsByClassName('loader-container')[0].style.display = 'none';
-// }
-// });
+  document.getElementsByClassName('loader-container')[0].style.display = 'none';
+}

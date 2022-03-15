@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Moment.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
   <script src="../js/common.js" type="module" defer></script>
@@ -54,7 +55,7 @@
 
       
 
-      <div class="return-progress shown " id="return-progress">
+      <div class="return-progress " id="return-progress">
         <h3>Return Tools</h3>
         <div class="return-tool" id="return-tool-name">Return Tool Name</div>
         <div class="loader-container">
@@ -101,7 +102,7 @@
         </section>
       </div>
 
-      <div class="return-confirmation shown" id="return-confirmation">
+      <div class="return-confirmation " id="return-confirmation">
         <h3 class="return-confirmation__heading">Return Confirmation</h3>
 
         <div class="return-confirmation__location-container">
@@ -125,7 +126,7 @@
       </div>
 
 
-      <div class="return-instruction page-3" id="return-instruction">
+      <div class="return-instruction page-3 shown" id="return-instruction">
         <h3>Return Instruction</h3>
         <div class="step-1">
           <h4>Step 1:</h4>
@@ -134,7 +135,7 @@
             <video id="preview" class="popuptext" ></video>
           </div>
           <p class="user-code" id="user-code"></p>
-          <div class="step-2">
+        <div class="step-2">
             <h4>Step 2:</h4>
             <p>Take a photo of the tool inside of the locker, add at least one  photo.</p>
             <button id="start">Open camera</button>
@@ -143,14 +144,14 @@
 
             <video id="video" width="320" height="240" autoplay></video>
             <br/>
-            <canvas id="canvas" width="320" height="240"></canvas>
-          </div>
+            <canvas id="canvas" class="shown" width="320" height="240"></canvas>
         </div>
         <div class="step-3">
           <h4>Step 3:</h4>
           <p>Close the lockers door.</p>
-          <button id="Submit">Submit</button>  
+          <button id="submit-btn">Submit</button>  
       </div>
+    </div>
 
     
     </div>
