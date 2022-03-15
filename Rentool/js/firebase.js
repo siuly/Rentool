@@ -32,7 +32,8 @@ try {
  */
 export const createUserAccountWithEmailAndPassword = async (email, password) => {
   try {
-    return await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+    const userId = await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+    return userId;
   } catch (error) {
     console.log('error: ', error);
     alert(error);
