@@ -35,7 +35,15 @@ let page4 = document.getElementById('page4');
 let page5 = document.getElementById('page5');
 
 
+const signInUserId = readUserId();
+
 document.addEventListener('DOMContentLoaded', async () => {
+
+  if (signInUserId === null) {
+    alert('You should Sign In');
+    movePageTo(PATHS_PAGES.SIGN_IN);
+    return;
+  }
 
 
   // @TODO: test
@@ -196,7 +204,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Add reservation
   document.getElementById('page2-btn').addEventListener('click', async () => {
-    const signInUserId = readUserId();
+
     console.log('signInUserId: ', signInUserId);
 
 

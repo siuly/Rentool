@@ -10,7 +10,7 @@ import { Reservation } from './domain/Reservation.js';
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
 //@TODO: delete test code
-reservationId = reservationId || 'OQqN7llSDJbEjMDX10VZ';
+reservationId = reservationId || '0rC7o2t95GsnxuLd39CK';
 
 /**@type {HTMLSelectElement} */
 const selectBoxAreaLabelEl = document.getElementById('areaLabel');
@@ -31,8 +31,6 @@ const confirmBtnEl = document.getElementById('confirm-btn');
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-
-
   /**@type {Reservation} */
   const reservationData = await getReservationDataByReservationId(reservationId);
   /**@type {Location[]} */
@@ -51,38 +49,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     optionEl.textContent = areaLabel;
     selectBoxAreaLabelEl.appendChild(optionEl);
   }
-
-  returnRequestBtnEl.addEventListener('click', async () => {
-    if (returnLocation === null) {
-      alert('Please select the location to return');
-      return;
-    }
-    returnProgressEl.style.display = 'none';
-    returnConfirmSectionEl.style.display = 'grid';
-
-    document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
- 
-    const endDate = moment(reservationData.duration.endDate).locale('en_CA');
-
-    document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
-    document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
-
-    document.getElementById('return-confirmation__location');
-
-
-  });
-
-
-  confirmBtnEl.addEventListener('click', async () => {
-    returnRequestBtnEl.disabled = true;
-    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
-    console.log('returnResult: ', returnResult);
-    if (returnResult === true) {
-      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
-    }
-  });
-
-
 
   selectBoxAreaLabelEl.addEventListener('change', (event) => {
     const selectedAreaLabel = event.target.value;
@@ -106,8 +72,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const returnTime = document.getElementById('return-time__time');
   returnTime.textContent = reservationData.duration.endDate;
 
-
-
   const startDate = moment(reservationData.duration.startDate).locale('en_CA');
   const endDate = moment(reservationData.duration.endDate).locale('en_CA');
 
@@ -124,9 +88,30 @@ document.addEventListener('DOMContentLoaded', async () => {
     <div class="pick-up-details__duration--startDate">
       ${reservationData.duration.endDate}
     </div>`;
-
-
   document.getElementById('pick-up-location').appendChild(new LocationItem(pickedLocation));
+
+  returnRequestBtnEl.addEventListener('click', async () => {
+    if (returnLocation === null) {
+      alert('Please select the location to return');
+      return;
+    }
+    returnProgressEl.style.display = 'none';
+    returnConfirmSectionEl.style.display = 'grid';
+    document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
+    const endDate = moment(reservationData.duration.endDate).locale('en_CA');
+    document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
+    document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
+    document.getElementById('return-confirmation__location');
+  });
+
+  confirmBtnEl.addEventListener('click', async () => {
+    returnRequestBtnEl.disabled = true;
+    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+
+    if (returnResult === true) {
+      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+    }
+  });
 });
 
 
@@ -137,7 +122,6 @@ document.addEventListener('DOMContentLoaded', async () => {
  * @returns {void};
  */
 const renderLocationArea = (locations) => {
-  console.log('locations: ', locations);
   locationContainerEl.innerHTML = '';
 
   // Generate locker section

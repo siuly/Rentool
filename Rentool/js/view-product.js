@@ -1,72 +1,17 @@
 import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation } from './util.js';
 import { getToolsByReservationToolIndex } from './firebase.js';
+import { LocationItem } from './components/LocationItem.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
-
-
-// The differences of the two data are 'toolId' and 'location'
-const sampleToolData = [{
-  toolId: '12345678',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve',
-  reservationToolIndex: 'driver-brand-small',
-  brand: 'brand',
-  location: {
-    lockerName: 'Locker Name',
-    address: '100 W 49th Ave Vancouver, BC V5Y 2Z6',
-    latitude: '49.225518864967654',
-    longitude: '123.10776583584949',
-  },
-  imageUrl: 'https://images.unsplash.com/photo-1566937169390-7be4c63b8a0e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=300&q=80',
-  prices: {
-    hourly: 10,
-    daily: 100,
-    weekly: 1000,
-  },
-  category: 'category1',
-  size: 'small',
-  isReserved: true,
-}, {
-  toolId: 'asdfghjkl',
-  toolName: 'driver',
-  description: 'This is a sample data for showing description of the tool users want to reserve@@@@@@@@@',
-  reservationToolIndex: 'driver-brand-small',
-  brand: 'brand',
-  location: {
-    lockerName: 'Locker Name',
-    address: ' 3211 Grant McConachie Way, Richmond, BC V7B 0A4',
-    latitude: '49.1967',
-    longitude: '123.1815',
-  },
-  imageUrl: 'https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/driverjpg.jpg?alt=media&token=8b461f3e-fc70-451f-a13b-1856702ea7cc',
-  prices: {
-    hourly: 10,
-    daily: 100,
-    weekly: 1000,
-  },
-  category: 'category2',
-  size: 'small',
-  isReserved: false,
-}];
-const sampleNearestLocation = sampleToolData[0].location;
-
+//@TODO: Delete below, this is only for developmental purpose
+reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
 
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-
-  reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
-
-
-  // const tools = sampleToolData;
   const tools = await getToolsByReservationToolIndex(reservationToolIndex);
-  const tool = tools[0];
-  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
-
-
-  // Write your code below-----------------------------------------
-
-  const productSelected = tool;
+  const productSelected = tools[0];
+  const DESCRIPTION_SEPARATOR = '・';
 
 
   // ==============category section =============
@@ -82,7 +27,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   // load alt atribute
   productImage.setAttribute('alt', `${productSelected.toolName}`);
 
-  // ===========title of product================= 
+  // ===========title of product=================
 
   const productTitle = document.querySelector('.product-title');
   const productTitleP = document.createElement('h3');
@@ -90,35 +35,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   productTitle.appendChild(productTitleP).innerHTML = productSelected.toolName;
 
 
-  // ===========avaliability of product================= 
+  // ===========avaliability of product=================
 
   const productAvailable = document.querySelector('.available-status');
-  const productAvailableP = document.createElement('p');
+
   //  loop for defining status
-  let AvailableStatus = '';
-  status();
-
-  function status() {
-    if (productSelected.isReserved == true) {
-      AvailableStatus = 'Available';
-    } else {
-      AvailableStatus = 'Not available';
-    }
-  }
-  //  print description text
-  productAvailable.appendChild(productAvailableP).innerHTML = AvailableStatus;
-
-
-
-
-
+  const isAvailable = tools.find(tool => tool.isReserved === false);
+  productAvailable.textContent = isAvailable ? 'Available' : 'Not available';
 
 
   // ============== description section ===================
   const Description = document.querySelector('.product-description');
-  const ProductDescription = document.createElement('p');
+
   //  print description text
-  Description.appendChild(ProductDescription).innerHTML = productSelected.description;
+  Description.innerHTML = `
+  ${ productSelected.description.split(DESCRIPTION_SEPARATOR).map(
+      line =>
+        `<p class="product-description__line" >${DESCRIPTION_SEPARATOR}${line}</p>`)
+        .slice(1).join('') /// Join all p element
+  }`;
 
   // ============ table section ====================
 
@@ -144,18 +79,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ============== location ================
 
-
-
-  // add here destination calculation
-
-
-
-
-  // ===========================================
-
+  // Pass an array of locations from the tool data
+  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
+  // document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
+  document.getElementById('nearest-location').innerHTML = `
+    ${nearestLocation.address}
+  `;
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
-    // movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
-    movePageTo('reservation-request-test.html', `?reservationToolIndex=${reservationToolIndex}`);
+    movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
   });
 });

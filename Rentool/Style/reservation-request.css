@@ -2,82 +2,12 @@ body {
   margin: 0;
 }
 
-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  background-color: #fab328;
-  height: auto;
-}
-
-header h1 {
-  grid-column: 2;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
-  line-height: 20px;
-  font-size: 36px;
-}
-
-.header-left {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: center;
-  margin-left: 10px;
-}
-header button {
-  border: none;
-  background-color: unset;
-}
-
-header button div {
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  line-height: 20px;
-}
-
-#menu {
-  position: absolute;
-  top: 70px;
-  height: 60%;
-  padding-top: 20px;
-  width: 50%;
-  left: -51%;
-  background-color: white;
-  transition: 0.5s;
-}
-
-#menu.active {
-  left: 0;
-}
-
-#menu li {
-  list-style: none;
-  color: black;
-  line-height: 2;
-  padding-left: 30px;
-  margin-right: 10px;
-  margin-top: 10px;
-  box-shadow: 0 7px 8px -7px #222;
-}
-#menu li:nth-of-type(6) {
-  list-style: none;
-  color: black;
-  line-height: 2;
-  margin-right: 0;
-  margin-top: 15px;
-  box-shadow: none;
-  text-align: right;
-}
-#menu a {
-  text-decoration: none;
-  color: black;
-}
-#menu ul {
-  padding: 0;
-}
-
 /* Main */
+.page {
+  max-width: 1000px;
+  padding: 0 2rem;
+}
+
 h2 {
   padding-bottom: 10px;
   border-bottom: 1px solid rgb(0, 0, 0);
@@ -102,7 +32,7 @@ h3 {
   color: #000000;
 }
 .tool-name {
-  margin-left: 40px;
+  display: inline-block;
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -110,21 +40,43 @@ h3 {
   line-height: 120%;
   text-align: center;
   color: #222222;
+  padding-bottom: 1rem;
 }
-.start-reservation {
-  margin-left: 46px;
-}
+
 .start-reservation {
   display: grid;
-  grid-template-columns: repeat(5 1fr);
-  margin-left: 46px;
-  margin-right: 46px;
-  margin-top: 23px;
-  gap: 8px;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 1rem;
 }
-input {
-  grid-column: 4/5;
+.date-container {
+  display: grid;
+
+  gap: 0.5rem;
 }
+
+.input-row {
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+.input-row label {
+  display: inline-block;
+  min-width: 100px;
+}
+.input-row input {
+  flex-grow: 1;
+}
+
+.duration-output {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
 span#durationpg1 {
   font-family: "Roboto", sans-serif;
   font-style: normal;
@@ -133,38 +85,29 @@ span#durationpg1 {
   text-align: left;
   color: #000000;
   display: block;
-  margin-left: 49px;
-  margin-top: 39px;
-  margin-bottom: 12px;
 }
 span#price {
   display: block;
-  margin-left: 49px;
+
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   text-align: left;
   color: #000000;
-  margin-bottom: 10px;
 }
 span#deposit {
   display: block;
-  margin-left: 49px;
+
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 15px;
   text-align: left;
   color: #000000;
-  margin-bottom: 25px;
 }
 .location-item {
-  margin-left: 46px;
-  margin-right: 46px;
-  border: solid black thin;
-  border-radius: 5px;
-  margin-bottom: 10px;
+  border-radius: 10px;
   padding: 1rem;
 }
 .selected-location .location-item {
@@ -175,23 +118,22 @@ span#deposit {
 .terms-title {
   margin-top: 39px;
 }
-#page1 nav ul li {
-  margin-left: 44px;
-  margin-right: 44px;
+.page1 nav ul li {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
   text-align: start;
   color: #000000;
-  list-style: circle;
+  list-style: disc;
+  
 }
-/* Check if there's a way to  fill the  circle from the list to black if not use this 
-#page1 nav ul li::before{
-  text-align: left;
-  content: "• "; 
-  color: black;
-} */
+.page1 nav ul li::marker {
+  color: #3ea8dd;
+}
+div.page1 {
+  position: relative;
+}
 .read-more {
   position: absolute;
   margin-right: 59px;
@@ -214,9 +156,6 @@ input#agree-terms {
   border-radius: 2px;
 }
 .page1-btn {
-  margin-top: 45px;
-  margin-bottom: 45px;
-  margin-left: 18%;
   width: 240px;
   height: 43px;
   border: 2px solid #3ea8dd;
@@ -231,6 +170,10 @@ input#agree-terms {
 .shown {
   display: none;
 }
+.empty {
+  border: thick red solid;
+}
+
 /* Page 2 style */
 .title-rental {
   margin-left: 53px;
@@ -358,7 +301,7 @@ div#payment-container i {
   padding-bottom: 7px;
   min-height: 79px;
 }
-#page2-btn {
+.page2-btn {
   margin-top: 45px;
   margin-bottom: 45px;
   margin-left: 22%;
