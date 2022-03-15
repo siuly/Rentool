@@ -131,9 +131,11 @@ input[type="submit"]:disabled {
 @media screen and (min-width: 500px) {
 	.tool-list {
 		max-width: 1000px;
+		width: 100%;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 1rem;
 	}
+
 	.page-heading .page-return-button {
 		display: none;
 	}
