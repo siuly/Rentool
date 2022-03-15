@@ -92,6 +92,7 @@ input[type="submit"]:disabled {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	height: var(--height-page-heading);
+	border-bottom: 1px solid #222222;
 }
 .page-heading__text {
 	grid-column: 2 / span 2;
