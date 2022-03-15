@@ -28,7 +28,7 @@ export class LocationItem extends HTMLElement {
     <style>
     .location-item {
       border: 1px solid black;
-      border-radius: 5px;
+      border-radius: var(--border-radius-return-tool);
     }
     </style>`;
 
