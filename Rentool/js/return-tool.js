@@ -10,7 +10,7 @@ import { Reservation } from './domain/Reservation.js';
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
 //@TODO: delete test code
-reservationId = reservationId || '0rC7o2t95GsnxuLd39CK';
+reservationId = reservationId || 'o6KChwOvpJnB7lwwyUww';
 
 /**@type {HTMLSelectElement} */
 const selectBoxAreaLabelEl = document.getElementById('areaLabel');
