@@ -30,6 +30,7 @@ let rentdays = document.getElementById('rental-dates');
 let tnameloc = document.getElementById('tool-name-location');
 let locationpicked = document.getElementById('location-selected');
 let reservebtn = document.getElementById('page2-btn');
+let allFields = document.querySelector('input');
 let submitreservation = document.getElementById('reservation-request-btn');
 
 
@@ -50,6 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   let dateinput1 = "";
   let dateinput2 = 0;
 
+
+
   etime.addEventListener('change', (event) => {
     sdate.style.border = "solid 1px black";
     dateinput1 = sdate.value + ' ' + stime.value;
@@ -60,13 +63,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log(get_time_diff(dateinput1, dateinput2));
     } else if(edate.value < sdate.value) {
       alert('Return date should happened after pick-up date');
-      sdate.value = "";
-      edate.value = "";
+      edate.style.border = "solid 1px red";
     } else if (sdate.value === edate.value){
       if (etime.value < stime.value){
         alert('Return time should happened after pick-up time');
       }
-
     }
   });
   sdate.addEventListener('change', () =>{
@@ -148,10 +149,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }else if(selectedLocation === null) {
     alert('Please select the location');
   }
-  else if(sdate.value<edate.value){
-    alert('Please choose a valid date');
+  // else if(sdate.value > edate.value){
+  //   alert('Please choose a valid date');
 
-  }
+  // }
   else if(!terms.checked) {
     termTxt.style.color = "red";
     alert('please check the terms');
@@ -234,6 +235,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // Add reservation
   reservebtn.addEventListener('click', async () => {
+    page1.style.display = 'none';
+    page2.classList.add('shown');
 
     let reservationRequestData = {
 
