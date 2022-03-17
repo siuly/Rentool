@@ -23,8 +23,14 @@ login.addEventListener('click', async (event) => {
 
   SaveUserId(userId);
   alert('SignIn Success');
-  // window.history.back();
-  movePageTo(PATHS_PAGES.HOME);
+  await window.history.back();
+  window.addEventListener("popstate", () =>{
+    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    if (!document.location.includes('view')){
+      movePageTo(PATHS_PAGES.HOME);
+    }
+  })
+    // movePageTo(PATHS_PAGES.HOME);
 });
 
 let signUp = document.getElementById('cbtn');

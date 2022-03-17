@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     scanner.addListener('scan', function (content) {
        console.log(content);
-      if( content.indexOf('http://www.woschineserestaurant.com') > -1){
+      if( content.includes('chinese')){
       scanner.stop();
       popup.classList.add("shown");
       code.innerHTML = `Your code is <span class="code" >8765</span>`;
