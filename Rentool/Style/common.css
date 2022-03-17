@@ -35,9 +35,16 @@ body {
 	background-color: rgba(0, 0, 0, 0.05);
 }
 
+h1,
+h2,
+h3,
+h4 {
+	font-family: "Raleway", sans-serif;
+}
+
 .wrapper {
 	min-height: 100vh;
-	max-width: 800px;
+	/* max-width: 800px; */
 	margin: 0 auto;
 
 	display: flex;

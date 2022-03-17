@@ -106,6 +106,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   nextbtn.addEventListener('click', () => {
+
+    if (selectedLocation === null) {
+      alert('Please select the location');
+      return;
+    }
+
     page1.classList.add('shown');
     page2.classList.remove('shown');
     tname2.innerHTML = toolListForReservationSelection[0].toolName;
@@ -171,13 +177,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log('error: ', error);
     }
   }
-  // Location select event
-  document.getElementById('page1').addEventListener('click', () => {
-    if (selectedLocation === null) {
-      alert('Please select the location');
-      return;
-    }
-  });
 
 
 

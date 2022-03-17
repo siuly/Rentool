@@ -10,7 +10,7 @@ import { Reservation } from './domain/Reservation.js';
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
 //@TODO: delete test code
-reservationId = reservationId || 'OQqN7llSDJbEjMDX10VZ';
+reservationId = reservationId || '0rC7o2t95GsnxuLd39CK';
 
 /**@type {HTMLSelectElement} */
 const selectBoxAreaLabelEl = document.getElementById('areaLabel');
@@ -112,29 +112,6 @@ document.addEventListener('DOMContentLoaded', async () => {
       movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
     }
   });
-
-
-
-
-  // src: https://github.com/mebjas/html5-qrcode
-  // QR scanner ========================================================
-  function onScanSuccess(qrCodeMessage) {
-    // document.getElementById('result').innerHTML = '<span class="result">' + qrCodeMessage + '</span>';
-    alert('The locker will open');
-    console.log('qrCodeMessage: ', qrCodeMessage);
-
-
-    // Enable the return-submit button
-  }
-
-  function onScanError(errorMessage) {
-    console.log('errorMessage: ', errorMessage);
-  }
-
-  let html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 });
-  html5QrcodeScanner.render(onScanSuccess, onScanError);
-  // QR scanner ========================================================
 });
 
 
