@@ -10,7 +10,7 @@ import { Reservation } from './domain/Reservation.js';
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
 //@TODO: delete test code
-reservationId = reservationId || 'o6KChwOvpJnB7lwwyUww';
+reservationId = reservationId || 'AMNl8Ow06mex9xVZfxLE';
 
 /**@type {HTMLSelectElement} */
 const selectBoxAreaLabelEl = document.getElementById('areaLabel');
@@ -106,20 +106,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   let returnInstruction = document.getElementById("return-instruction");
   let returnConfirm = document.getElementById("return-confirmation");
-  let submitBtn =  document.getElementById("submit");
+  let submitBtn =  document.getElementById("submit-btn");
   
   confirmBtnEl.addEventListener('click', async () => {
     returnRequestBtnEl.disabled = true;
-    // const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    
     console.log('clicked');
     returnConfirm.classList.add("shown");
     returnInstruction.classList.remove("shown");
-    
-    // if (returnResult === true) {
-    //   movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
-    // }
+
   });
 
+  
 
 
 
@@ -130,6 +128,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
   let code =  document.getElementById("user-code");
   var popup = document.getElementById("preview"); 
+  let contentinfo = "";
   
   popupbtn.addEventListener('click', () =>{
       popup.classList.toggle("show");
@@ -146,6 +145,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     scanner.addListener('scan', function (content) {
        console.log(content);
+       contentinfo = content;
       if( content.includes('chinese')){
       scanner.stop();
       popup.classList.add("shown");
@@ -219,6 +219,15 @@ function handleBlob(blob) {
   
   }
 
+  submitBtn.addEventListener('click', async ()=>{
+    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+   if (returnResult === true && contentinfo.inclued('rentool') ) {
+     movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+   }
+   else{
+     alert('please scan the QR code from the locker');
+   }
+ });
 
 /**
  * @description Render location to return
