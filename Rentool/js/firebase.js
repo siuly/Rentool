@@ -32,7 +32,8 @@ try {
  */
 export const createUserAccountWithEmailAndPassword = async (email, password) => {
   try {
-    return await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+    const userId = await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+    return userId;
   } catch (error) {
     console.log('error: ', error);
     alert(error);
@@ -51,7 +52,7 @@ export const createUserAccountWithEmailAndPassword = async (email, password) => 
 export const signInEmailWithPassword = async (email, password) => {
   try {
     const userId = await (await firebaseAuth.signInWithEmailAndPassword(email, password)).user.uid;
-
+    return userId;
   } catch (error) {
     console.log('Error getting documents: ', error);
     return null;

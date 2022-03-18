@@ -10,7 +10,7 @@ import { Reservation } from './domain/Reservation.js';
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
 //@TODO: delete test code
-reservationId = reservationId || 'AMNl8Ow06mex9xVZfxLE';
+reservationId = reservationId || '0rC7o2t95GsnxuLd39CK';
 
 /**@type {HTMLSelectElement} */
 const selectBoxAreaLabelEl = document.getElementById('areaLabel');
@@ -28,6 +28,8 @@ const returnProgressEl = document.getElementById('return-progress');
 const returnConfirmSectionEl = document.getElementById('return-confirmation');
 /**@type {HTMLButtonElement} */
 const confirmBtnEl = document.getElementById('confirm-btn');
+
+const locationSelectionDescriptionEl = document.getElementById('location-selection__description');
 
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -58,7 +60,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       return;
     }
 
-    renderLocationArea(locationsMaster.filter(location => location.areaLabel === selectedAreaLabel));
+    renderLocationArea(locationsMaster.filter(location => location.areaLabel === selectedAreaLabel), selectedAreaLabel);
   });
 
   /** @type {HTMLImageElement} */
@@ -75,8 +77,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const startDate = moment(reservationData.duration.startDate).locale('en_CA');
   const endDate = moment(reservationData.duration.endDate).locale('en_CA');
 
-  const rentingDays = startDate.diff(endDate, 'days');
-  const rentingHours = startDate.diff(endDate, 'hours') - (rentingDays * 24);
+  const rentingDays = endDate.diff(startDate, 'days');
+  const rentingHours = endDate.diff(startDate, 'hours') - (rentingDays * 24);
 
   document.getElementById('pick-up-details__duration').innerHTML = `
     <div class="pick-up-details__duration--duration">
@@ -85,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     <div class="pick-up-details__duration--startDate">
       ${reservationData.duration.startDate} to
     </div>
-    <div class="pick-up-details__duration--startDate">
+    <div class="pick-up-details__duration--endDate">
       ${reservationData.duration.endDate}
     </div>`;
   document.getElementById('pick-up-location').appendChild(new LocationItem(pickedLocation));
@@ -226,10 +228,11 @@ function handleBlob(blob) {
 
 /**
  * @description Render location to return
- * @param {Location} locations
+ * @param {Location[]} locations
+ * @param {String | null} areaLabel
  * @returns {void};
  */
-const renderLocationArea = (locations) => {
+const renderLocationArea = (locations, areaLabel = null) => {
   locationContainerEl.innerHTML = '';
 
   // Generate locker section
@@ -253,4 +256,10 @@ const renderLocationArea = (locations) => {
   }
 
   document.getElementsByClassName('loader-container')[0].style.display = 'none';
-}
+
+  if (areaLabel !== null) {
+    locationSelectionDescriptionEl.textContent = `${locations.length} lockers available in ${areaLabel}`;
+    locationSelectionDescriptionEl.style.textAlign = 'left';
+  }
+
+};

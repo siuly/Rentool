@@ -11,7 +11,7 @@ const toolListEl = document.getElementById('tool-list');
 /**@type {HTMLButtonElement} */
 const loadMoreButton = document.getElementById('load-more-button');
 
-const NUMBER_FIRST_VIEW_TOOL_ITEM_COUNT = 3;
+const NUMBER_FIRST_VIEW_TOOL_ITEM_COUNT = 2;
 
 document.addEventListener('DOMContentLoaded', async () => {
   /**@type {[] | undefined} */

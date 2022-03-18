@@ -52,10 +52,14 @@
     </header>
     <input type="checkbox" name="pickUpDetails" id="pickUpDetails">
     <main>
+<<<<<<< HEAD
 
       
 
       <div class="return-progress " id="return-progress">
+=======
+      <div class="return-progress" id="return-progress">
+>>>>>>> b6958e3c6e85453294535f32f60bf81da960b39d
         <h3>Return Tools</h3>
         <div class="return-tool" id="return-tool-name">Return Tool Name</div>
         <div class="loader-container">
@@ -77,16 +81,16 @@
             <h4 class="location-selection__heading">
               Select Return Location
             </h4>
-            <p class="location-selection__description">
+            <p class="location-selection__description" id="location-selection__description">
               Select a Rentool Locker's Location
             </p>
-            <select name="areaLabel" id="areaLabel">
+            <select name="areaLabel" class="areaLabel" id="areaLabel">
               <option value="All">All</option>
             </select>
-            <div id="locationContainer"></div>
+            <div id="locationContainer" class="locationContainer"></div>
           </div>
-          <button id="return-request-btn" class="return-request-btn button-util">
-            Return Request
+          <button id="return-request-btn" class="return-request-btn">
+            Return
           </button>
         </section>
         <section class="pick-up-details" id="pick-up-details">
@@ -97,7 +101,7 @@
 
           </div>
 
-          <h4 class="pick-up-details__heading"> </h4>
+          <h4 class="pick-up-details__heading">Pick-Up Location</h4>
           <div class="pick-up-location" id="pick-up-location"> </div>
         </section>
       </div>
