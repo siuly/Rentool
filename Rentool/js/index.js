@@ -48,8 +48,6 @@ function comparepswd() {
 
   if (pass.value != pass2.value) {
     alert('Yours passwords do not match');
-  } else {
-    alert('Account created');
   }
 
 }
