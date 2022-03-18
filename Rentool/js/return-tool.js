@@ -117,7 +117,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   });
 
-  
+  submitBtn.addEventListener('click', async ()=>{
+     const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    if (returnResult === true ) {
+      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+    }
+  });
+
 
 
 
@@ -128,13 +134,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
   let code =  document.getElementById("user-code");
   var popup = document.getElementById("preview"); 
-  let contentinfo = "";
   
   popupbtn.addEventListener('click', () =>{
       popup.classList.toggle("show");
       Instascan.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {
-      scanner.start(cameras[0]);
+      scanner.start(cameras[1]);
     } else {
       console.error('No cameras found.');
     }
@@ -145,7 +150,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   
     scanner.addListener('scan', function (content) {
        console.log(content);
-       contentinfo = content;
       if( content.includes('chinese')){
       scanner.stop();
       popup.classList.add("shown");
@@ -219,15 +223,6 @@ function handleBlob(blob) {
   
   }
 
-  submitBtn.addEventListener('click', async ()=>{
-    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
-   if (returnResult === true && contentinfo.inclued('rentool') ) {
-     movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
-   }
-   else{
-     alert('please scan the QR code from the locker');
-   }
- });
 
 /**
  * @description Render location to return
