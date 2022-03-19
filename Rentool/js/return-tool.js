@@ -40,6 +40,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   /**@type {Location | null} */
   const pickedLocation = reservationData.location;
 
+
+
+  // Desktop Layout
+  if (window.innerWidth > 500) {
+    const locationSelectionEl = document.querySelectorAll('.location-selection')[0];
+    const returnProgressEl = document.getElementById('return-progress');
+    returnProgressEl.appendChild(locationSelectionEl);
+  }
+
   // Initial Render
   renderLocationArea(locationsMaster);
 
