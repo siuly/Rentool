@@ -10,31 +10,51 @@ login.addEventListener('click', async (event) => {
   const userEmail = document.getElementById('email').value.trim();
   const userPassword = document.getElementById('pswd').value.trim();
   if (userEmail === '' || userPassword === '') {
-    alert('Please fill in both input fields');
+    Toastify({
+      text: 'Please fill in both input fields',
+      close: true,
+      gravity: 'top',
+      position: 'center',
+      className: 'error',
+      duration: 300000,
+    }).showToast();
     return;
   }
   /**@type {string | null} */
   const userId = await signInEmailWithPassword(userEmail, userPassword);
 
   if (userId === null) {
-    alert(`ERROR: ${error}`);
+    Toastify({
+      text: `ERROR: ${error}`,
+      close: true,
+      gravity: 'top',
+      position: 'center',
+      className: 'error',
+      duration: 300000,
+    }).showToast();
     return;
   }
 
   SaveUserId(userId);
-  alert('SignIn Success');
+  Toastify({
+    text: 'SignIn Success',
+    close: true,
+    gravity: 'top',
+    position: 'center',
+    className: 'info',
+    duration: 300000,
+  }).showToast();
   await window.history.back();
-  window.addEventListener("popstate", () =>{
-    console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-    if (!document.location.includes('view')){
+  window.addEventListener('popstate', () => {
+    console.log('location: ' + document.location + ', state: ' + JSON.stringify(event.state));
+    if (!document.location.includes('view')) {
       movePageTo(PATHS_PAGES.HOME);
     }
-  })
-    // movePageTo(PATHS_PAGES.HOME);
+  });
+  // movePageTo(PATHS_PAGES.HOME);
 });
 
 let signUp = document.getElementById('cbtn');
 signUp.addEventListener('click', () => {
   movePageTo(PATHS_PAGES.SIGN_UP);
-
 });

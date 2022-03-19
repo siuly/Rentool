@@ -257,3 +257,7 @@ header .fas.fa-bars {
 main {
 	flex-grow: 1;
 }
+
+.toastify.error {
+	background: linear-gradient(135deg, #ff8f73, #f5546a);
+}
