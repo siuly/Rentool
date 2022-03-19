@@ -27,6 +27,7 @@ h3 {
 
 main {
 	width: 90%;
+	max-width: 1000px;
 }
 .return-progress {
 	width: 100%;
