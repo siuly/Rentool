@@ -44,6 +44,10 @@ export const PATHS_PAGES = {
   REFERENCE: 'reference.html'
 }
 
+export const DURATION_TOAST_DISPLAY = 3000;
+
+
+
 /**
  * @description Get an object includes URL parameters
  * @returns {URLSearchParams} params

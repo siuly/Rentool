@@ -1,5 +1,5 @@
 import { signInEmailWithPassword } from './firebase.js';
-import { movePageTo, PATHS_PAGES, SaveUserId } from './util.js';
+import { movePageTo, PATHS_PAGES, SaveUserId, DURATION_TOAST_DISPLAY } from './util.js';
 
 
 const login = document.getElementById('sign-in-btn');
@@ -16,7 +16,7 @@ login.addEventListener('click', async (event) => {
       gravity: 'top',
       position: 'center',
       className: 'error',
-      duration: 300000,
+      duration: DURATION_TOAST_DISPLAY,
     }).showToast();
     return;
   }
@@ -42,7 +42,7 @@ login.addEventListener('click', async (event) => {
     gravity: 'top',
     position: 'center',
     className: 'info',
-    duration: 300000,
+    duration: 3000,
   }).showToast();
   await window.history.back();
   window.addEventListener('popstate', () => {
