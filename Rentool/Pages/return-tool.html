@@ -102,7 +102,9 @@
 
       <div class="return-confirmation hidden" id="return-confirmation">
         <h3 class="return-confirmation__heading">Return Confirmation</h3>
-
+        <div class="loader-container">
+          <div class="dot-elastic"></div>
+        </div>
         <div class="return-confirmation__location-container">
           <p class="return-confirmation__heading">
             Locker's Location
@@ -118,7 +120,10 @@
           </div>
 
         </div>
-        <button id="confirm-btn" class="confirm-btn button-util clickable ">
+        <button id="confirm-btn" class="confirm-btn mobile-confirm-btn button-util clickable">
+          Confirm
+        </button>
+        <button id="desktop-confirm-btn" class="confirm-btn desktop-confirm-btn button-util clickable">
           Confirm
         </button>
       </div><!-- return-confirmation -->

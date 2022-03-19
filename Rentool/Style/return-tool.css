@@ -345,3 +345,12 @@ div#return-instruction {
 	}
 }
 /*==============QR DESIGN END================ */
+
+@media screen and (min-width: 500px) {
+	.desktop-confirm-btn {
+		display: block;
+	}
+	.mobile-confirm-btn {
+		display: none;
+	}
+}

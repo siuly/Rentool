@@ -28,6 +28,8 @@ const returnProgressEl = document.getElementById('return-progress');
 const returnConfirmSectionEl = document.getElementById('return-confirmation');
 /**@type {HTMLButtonElement} */
 const confirmBtnEl = document.getElementById('confirm-btn');
+/**@type {HTMLButtonElement} */
+const desktopConfirmBtnEl = document.getElementById('desktop-confirm-btn');
 
 const locationSelectionDescriptionEl = document.getElementById('location-selection__description');
 
@@ -39,7 +41,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   const locationsMaster = await getAllLocations();
   /**@type {Location | null} */
   const pickedLocation = reservationData.location;
-
 
 
   // Desktop Layout
@@ -122,6 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     returnProgressEl.classList.toggle('hidden');
     returnConfirmSectionEl.classList.toggle('hidden');
+    document.getElementsByClassName('loader-container')[1].style.display = 'none';
   });
 
   let returnInstruction = document.getElementById('return-instruction');
@@ -140,6 +142,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     // }
   });
 
+
+  // @NOTE: Desktop version does not contain QR scan flow
+  desktopConfirmBtnEl.addEventListener('click', async () => {
+    document.getElementsByClassName('loader-container')[1].style.display = 'block';
+    console.log('returnLocation' + returnLocation);
+    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    if (returnResult === true) {
+      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+    }
+  });
 
 
 
