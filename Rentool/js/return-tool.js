@@ -106,16 +106,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('return-confirmation__location');
   });
 
-  let returnInstruction = document.getElementById("return-instruction");
-  let returnConfirm = document.getElementById("return-confirmation");
-  let submitBtn =  document.getElementById("submit");
+  let returnInstruction = document.getElementById('return-instruction');
+  let returnConfirm = document.getElementById('return-confirmation');
+  let submitBtn =  document.getElementById('submit');
   
   confirmBtnEl.addEventListener('click', async () => {
     returnRequestBtnEl.disabled = true;
     // const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
     console.log('clicked');
-    returnConfirm.classList.add("shown");
-    returnInstruction.classList.remove("shown");
+    returnConfirm.classList.add('shown');
+    returnInstruction.classList.remove('shown');
     
     // if (returnResult === true) {
     //   movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
@@ -128,13 +128,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   // src: https://github.com/mebjas/html5-qrcode
 
   //=================QR Code=========================
-  let popupbtn = document.getElementById("pop-up");
+  let popupbtn = document.getElementById('pop-up');
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-  let code =  document.getElementById("user-code");
-  var popup = document.getElementById("preview"); 
+  let code =  document.getElementById('user-code');
+  let popup = document.getElementById('preview'); 
   
   popupbtn.addEventListener('click', () =>{
-      popup.classList.toggle("show");
+      popup.classList.toggle('show');
       Instascan.Camera.getCameras().then(function (cameras) {
     if (cameras.length > 0) {
       scanner.start(cameras[0]);
@@ -150,7 +150,7 @@ document.addEventListener('DOMContentLoaded', async () => {
        console.log(content);
       if( content.includes('chinese')){
       scanner.stop();
-      popup.classList.add("shown");
+      popup.classList.add('shown');
       code.innerHTML = `Your code is <span class="code" >8765</span>`;
     }
   });
@@ -165,7 +165,7 @@ const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 context.scale(0.5, 0.5);
 
-document.getElementById("start").addEventListener("click", function () {
+document.getElementById('start').addEventListener('click', function () {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
     navigator.mediaDevices.getUserMedia({ video: true }).then( (stream) => {
@@ -174,32 +174,32 @@ document.getElementById("start").addEventListener("click", function () {
       // video.play();  // or autplay
     });
   } else {
-    console.log("media devices not available in this browser");
+    console.log('media devices not available in this browser');
   }
 
 });
 
 // Trigger photo take
 
-document.getElementById("snap").addEventListener("click",  () => {
+document.getElementById('snap').addEventListener('click',  () => {
   //canvas.width = video.videoWidth; 
   //canvas.height = video.videoHeight;
-  videos.classList.add("shown");
-  canvas.classList.remove("shown");
+  videos.classList.add('shown');
+  canvas.classList.remove('shown');
   context.drawImage(video, 0, 0,);
   const imageBlob = canvas.toBlob(handleBlob, 'image/jpeg');
   const tracks = video.srcObject.getTracks();
   tracks.forEach(track => track.stop());
-  let videoContainer = document.getElementById("video");
-  videoContainer.classList.add("shown");
+  let videoContainer = document.getElementById('video');
+  videoContainer.classList.add('shown');
 
 });
 
-document.getElementById("stop").addEventListener("click",  ()=> {
+document.getElementById('stop').addEventListener('click',  ()=> {
   const tracks = video.srcObject.getTracks();
   tracks.forEach(track => track.stop());
-  let videoContainer = document.getElementById("video");
-  videoContainer.classList.add("shown");
+  let videoContainer = document.getElementById('video');
+  videoContainer.classList.add('shown');
   
 });
 
@@ -214,7 +214,7 @@ function handleBlob(blob) {
     reader.addEventListener('load', () => {
       console.log(reader.result);
       //also copy to image input
-      document.getElementById("image").value = reader.result;
+      document.getElementById('image').value = reader.result;
     });
     reader.readAsDataURL(blob); // gives base64 version of the blob
     //reader.readAsArrayBuffer(blob); // gives the ArrayBuffer version of the blob
