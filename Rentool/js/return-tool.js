@@ -256,7 +256,6 @@ const renderLocationArea = (locations, areaLabel = null) => {
   }
 
   document.getElementsByClassName('loader-container')[0].style.display = 'none';
-
   if (areaLabel !== null) {
     locationSelectionDescriptionEl.textContent = `${locations.length} lockers available in ${areaLabel}`;
     locationSelectionDescriptionEl.style.textAlign = 'left';
