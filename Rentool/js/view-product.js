@@ -1,11 +1,11 @@
-import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation } from './util.js';
+import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation, readUserId } from './util.js';
 import { getToolsByReservationToolIndex } from './firebase.js';
 import { LocationItem } from './components/LocationItem.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: Delete below, this is only for developmental purpose
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
-
+const signInUserId = readUserId();
 
 document.addEventListener('DOMContentLoaded', async () => {
 
@@ -87,6 +87,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   `;
 
   document.getElementById('view-product-submit-btn').addEventListener('click', () => {
+    if (signInUserId === null) {
+      alert('You should Sign In');
+      movePageTo(PATHS_PAGES.SIGN_IN);
+    } else{
     movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+  }
   });
 });
