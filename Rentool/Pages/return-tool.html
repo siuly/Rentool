@@ -77,15 +77,15 @@
             <h4 class="location-selection__heading">
               Select Return Location
             </h4>
-            <p class="location-selection__description">
+            <p class="location-selection__description" id="location-selection__description">
               Select a Rentool Locker's Location
             </p>
-            <select name="areaLabel" id="areaLabel">
+            <select name="areaLabel" class="areaLabel" id="areaLabel">
               <option value="All">All</option>
             </select>
-            <div id="locationContainer"></div>
+            <div id="locationContainer" class="locationContainer"></div>
           </div>
-          <button id="return-request-btn" class="return-request-btn button-util">
+          <button id="return-request-btn" class="return-request-btn">
             Return
           </button>
         </section>
@@ -97,7 +97,7 @@
 
           </div>
 
-          <h4 class="pick-up-details__heading"> </h4>
+          <h4 class="pick-up-details__heading">Pick-Up Location</h4>
           <div class="pick-up-location" id="pick-up-location"> </div>
         </section>
       </div>
@@ -179,16 +179,6 @@
       <p>© 2022 Rentool All Rights Reserved.</p>
     </footer>
   </div>
-
-
-  <style>
-    .result {
-      background-color: green;
-      color: #fff;
-      padding: 20px;
-    }
-  </style>
-
 </body>
 
 </html>
