@@ -27,7 +27,6 @@ h3 {
 
 main {
 	width: 90%;
-	height: 800px;
 }
 .return-progress {
 	width: 100%;
@@ -230,7 +229,7 @@ location-item {
 	padding: 1rem;
 	width: 80%;
 }
-.shown {
+.hidden {
   display: none !important;
 }
 /*====================RETURN INSTRUCTION SCREEN========================*/

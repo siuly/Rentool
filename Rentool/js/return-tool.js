@@ -1,5 +1,5 @@
 import { Location } from './domain/Location.js';
-import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, DURATION_TOAST_DISPLAY } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 
 import { getAllLocations, getReservationDataByReservationId, returnTool } from './firebase.js';
@@ -94,29 +94,38 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   returnRequestBtnEl.addEventListener('click', async () => {
     if (returnLocation === null) {
-      alert('Please select the location to return');
+      Toastify({
+        text: 'Please select the location to return',
+        close: true,
+        gravity: 'top',
+        position: 'center',
+        className: 'error',
+        duration: DURATION_TOAST_DISPLAY,
+      }).showToast();
       return;
     }
-    returnProgressEl.style.display = 'none';
-    returnConfirmSectionEl.style.display = 'grid';
+
     document.getElementById('return-confirmation__location').appendChild(new LocationItem(returnLocation));
     const endDate = moment(reservationData.duration.endDate).locale('en_CA');
     document.getElementById('return-time__time-container__day').textContent = endDate.format('MMMM DD, YYYY');
     document.getElementById('return-time__time-container__date').textContent = endDate.format('hh:ssA');
     document.getElementById('return-confirmation__location');
+
+    returnProgressEl.classList.toggle('hidden');
+    returnConfirmSectionEl.classList.toggle('hidden');
   });
 
   let returnInstruction = document.getElementById('return-instruction');
   let returnConfirm = document.getElementById('return-confirmation');
-  let submitBtn =  document.getElementById('submit');
-  
+  let submitBtn = document.getElementById('submit');
+
   confirmBtnEl.addEventListener('click', async () => {
     returnRequestBtnEl.disabled = true;
     // const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
     console.log('clicked');
-    returnConfirm.classList.add('shown');
-    returnInstruction.classList.remove('shown');
-    
+    returnConfirm.classList.add('hidden');
+    returnInstruction.classList.remove('hidden');
+
     // if (returnResult === true) {
     //   movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
     // }
@@ -130,45 +139,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   //=================QR Code=========================
   let popupbtn = document.getElementById('pop-up');
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-  let code =  document.getElementById('user-code');
-  let popup = document.getElementById('preview'); 
-  
-  popupbtn.addEventListener('click', () =>{
-      popup.classList.toggle('show');
-      Instascan.Camera.getCameras().then(function (cameras) {
-    if (cameras.length > 0) {
-      scanner.start(cameras[0]);
-    } else {
-      console.error('No cameras found.');
-    }
-    }).catch(function (e) {
-    console.error(e);
+  let code = document.getElementById('user-code');
+  let popup = document.getElementById('preview');
+
+  popupbtn.addEventListener('click', () => {
+    popup.classList.toggle('show');
+    Instascan.Camera.getCameras().then(function(cameras) {
+      if (cameras.length > 0) {
+        scanner.start(cameras[0]);
+      } else {
+        console.error('No cameras found.');
+      }
+    }).catch(function(e) {
+      console.error(e);
     });
-    });
-  
-    scanner.addListener('scan', function (content) {
-       console.log(content);
-      if( content.includes('chinese')){
+  });
+
+  scanner.addListener('scan', function(content) {
+    console.log(content);
+    if (content.includes('chinese')) {
       scanner.stop();
-      popup.classList.add('shown');
+      popup.classList.add('hidden');
       code.innerHTML = `Your code is <span class="code" >8765</span>`;
     }
   });
 });
-  //==============================================
+//==============================================
 
-  // ================Camera Code====================
-  const videos = document.getElementById('video');
+// ================Camera Code====================
+const videos = document.getElementById('video');
 
 // Elements for taking the snapshot
 const canvas = document.getElementById('canvas');
 const context = canvas.getContext('2d');
 context.scale(0.5, 0.5);
 
-document.getElementById('start').addEventListener('click', function () {
+document.getElementById('start').addEventListener('click', function() {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
-    navigator.mediaDevices.getUserMedia({ video: true }).then( (stream) => {
+    navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
       //video.src = window.URL.createObjectURL(stream);
       videos.srcObject = stream;
       // video.play();  // or autplay
@@ -181,45 +190,45 @@ document.getElementById('start').addEventListener('click', function () {
 
 // Trigger photo take
 
-document.getElementById('snap').addEventListener('click',  () => {
+document.getElementById('snap').addEventListener('click', () => {
   //canvas.width = video.videoWidth; 
   //canvas.height = video.videoHeight;
-  videos.classList.add('shown');
-  canvas.classList.remove('shown');
-  context.drawImage(video, 0, 0,);
+  videos.classList.add('hidden');
+  canvas.classList.remove('hidden');
+  context.drawImage(video, 0, 0, );
   const imageBlob = canvas.toBlob(handleBlob, 'image/jpeg');
   const tracks = video.srcObject.getTracks();
   tracks.forEach(track => track.stop());
   let videoContainer = document.getElementById('video');
-  videoContainer.classList.add('shown');
+  videoContainer.classList.add('hidden');
 
 });
 
-document.getElementById('stop').addEventListener('click',  ()=> {
+document.getElementById('stop').addEventListener('click', () => {
   const tracks = video.srcObject.getTracks();
   tracks.forEach(track => track.stop());
   let videoContainer = document.getElementById('video');
-  videoContainer.classList.add('shown');
-  
+  videoContainer.classList.add('hidden');
+
 });
 
 function handleBlob(blob) {
-    // we can turn the blob into DOMString
-    const objectURL = window.URL.createObjectURL(blob);
-    //(objectURL is only contains the address of image object in browser memory)
-    //it is vaid for current browser session
-    //if we want to store the image into server, one way is to
-    //create the base64 rendition of the blob using FileReader
-    const reader = new FileReader();
-    reader.addEventListener('load', () => {
-      console.log(reader.result);
-      //also copy to image input
-      document.getElementById('image').value = reader.result;
-    });
-    reader.readAsDataURL(blob); // gives base64 version of the blob
-    //reader.readAsArrayBuffer(blob); // gives the ArrayBuffer version of the blob
-  
-  }
+  // we can turn the blob into DOMString
+  const objectURL = window.URL.createObjectURL(blob);
+  //(objectURL is only contains the address of image object in browser memory)
+  //it is vaid for current browser session
+  //if we want to store the image into server, one way is to
+  //create the base64 rendition of the blob using FileReader
+  const reader = new FileReader();
+  reader.addEventListener('load', () => {
+    console.log(reader.result);
+    //also copy to image input
+    document.getElementById('image').value = reader.result;
+  });
+  reader.readAsDataURL(blob); // gives base64 version of the blob
+  //reader.readAsArrayBuffer(blob); // gives the ArrayBuffer version of the blob
+
+}
 
 
 /**
