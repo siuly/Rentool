@@ -253,12 +253,35 @@ header .fas.fa-bars {
 footer {
 	background-color: black;
 	color: white;
+	display: grid;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-between;
 }
+
+.footer-logo {
+	max-width: 70px;
+}
+.social-media {
+	flex: 1 0 100%;
+	padding-top: 1rem;
+}
+.copyright {
+	flex: 1 0 100%;
+}
+.contact-information {
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: end;
+	align-items: center;
+}
+
 footer .social-media ul li {
 	list-style: none;
 }
 footer .social-media ul li i {
 	color: white;
+	font-size: calc(1rem + .3vw);
 }
 .social-media nav ul {
 	padding-left: 0;
