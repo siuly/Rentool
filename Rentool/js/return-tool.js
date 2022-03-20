@@ -126,20 +126,22 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementsByClassName('loader-container')[1].style.display = 'none';
   });
 
-  let returnInstruction = document.getElementById('return-instruction');
-  let returnConfirm = document.getElementById('return-confirmation');
-  let submitBtn = document.getElementById('submit');
+
+  let returnInstruction = document.getElementById("return-instruction");
+  let returnConfirm = document.getElementById("return-confirmation");
+  let submitBtn = document.getElementById("submit-btn");
 
   confirmBtnEl.addEventListener('click', async () => {
     returnRequestBtnEl.disabled = true;
-    // const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
-    console.log('clicked');
     returnConfirm.classList.add('hidden');
     returnInstruction.classList.remove('hidden');
+  });
 
-    // if (returnResult === true) {
-    //   movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
-    // }
+  submitBtn.addEventListener('click', async () => {
+    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+    if (returnResult === true) {
+      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+    }
   });
 
 
@@ -160,14 +162,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   //=================QR Code=========================
   let popupbtn = document.getElementById('pop-up');
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
-  let code = document.getElementById('user-code');
-  let popup = document.getElementById('preview');
+
+  let code = document.getElementById("user-code");
+  var popup = document.getElementById("preview");
 
   popupbtn.addEventListener('click', () => {
-    popup.classList.toggle('show');
+    popup.classList.toggle("show");
     Instascan.Camera.getCameras().then(function(cameras) {
       if (cameras.length > 0) {
-        scanner.start(cameras[0]);
+        scanner.start(cameras[1]);
       } else {
         console.error('No cameras found.');
       }
