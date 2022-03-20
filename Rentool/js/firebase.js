@@ -339,9 +339,9 @@ export const reservationRequest = async (reservationRequest) => {
 };
 
 /**
- * @description Upload file to cloud storage with path,
+ * @description Upload file or Blob to cloud storage with path,
  *              Path will be Root/[uploadDirectory]/[filename], ex) Root/tools/driver.png
- * @param {File} file
+ * @param {File | Blob} file
  * @param {String} filename
  * @param {string} uploadDirectory
  * @returns {Promise<String | null>} downloadUrl
