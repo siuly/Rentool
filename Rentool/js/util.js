@@ -154,9 +154,9 @@ export const getDistanceFromUserLocation =
 
 
 /**
- * @description Get Location
+ * @description Get nearest location
  * @param {Location[]} locations
- * @return {Location}
+ * @return {Promise<Location | null>}
  */
 export const getNearestLocation = async (locations) => {
   let distanceCallbacks = [];

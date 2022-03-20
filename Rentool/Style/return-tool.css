@@ -346,6 +346,10 @@ div#return-instruction {
 }
 /*==============QR DESIGN END================ */
 
+.desktop-confirm-btn {
+	display: none;
+}
+
 @media screen and (min-width: 500px) {
 	.desktop-confirm-btn {
 		display: block;
