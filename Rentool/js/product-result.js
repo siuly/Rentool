@@ -3,7 +3,7 @@ import { getToolsByCategory, getToolsByKeyword, getAllTools } from './firebase.j
 import { getUrlParams, GET_PARAMS } from './util.js';
 
 const pageHeadingTextEl = document.getElementById('page-heading__text');
-pageHeadingTextEl.textContent = getUrlParams()[GET_PARAMS.CATEGORY] || getUrlParams()[GET_PARAMS.KEYWORD] || "Our Products";
+pageHeadingTextEl.textContent = getUrlParams()[GET_PARAMS.CATEGORY] || getUrlParams()[GET_PARAMS.KEYWORD] || 'Our Products';
 
 /**@type {HTMLDivElement} */
 const toolListEl = document.getElementById('tool-list');
