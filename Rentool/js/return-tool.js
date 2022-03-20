@@ -127,9 +127,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
 
-  let returnInstruction = document.getElementById("return-instruction");
-  let returnConfirm = document.getElementById("return-confirmation");
-  let submitBtn = document.getElementById("submit-btn");
+  let returnInstruction = document.getElementById('return-instruction');
+  let returnConfirm = document.getElementById('return-confirmation');
+  let submitBtn = document.getElementById('submit-btn');
 
   confirmBtnEl.addEventListener('click', async () => {
     returnRequestBtnEl.disabled = true;
@@ -163,11 +163,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   let popupbtn = document.getElementById('pop-up');
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 
-  let code = document.getElementById("user-code");
-  var popup = document.getElementById("preview");
+  let code = document.getElementById('user-code');
+  let popup = document.getElementById('preview');
 
   popupbtn.addEventListener('click', () => {
-    popup.classList.toggle("show");
+    popup.classList.toggle('show');
     Instascan.Camera.getCameras().then(function(cameras) {
       if (cameras.length > 0) {
         scanner.start(cameras[1]);
