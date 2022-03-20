@@ -10,6 +10,6 @@
 	"html.completion.attributeDefaultValue": "doublequotes",
 	"html.format.enable": true,
 	"html.format.wrapAttributes": "auto",
-	"liveServer.settings.port": 5501,
+	"liveServer.settings.port": 5502,
 	"liveServer.settings.root": "/Rentool",
 }

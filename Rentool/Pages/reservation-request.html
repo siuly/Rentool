@@ -27,7 +27,7 @@
 <body id="reservation-request">
   <div class="wrapper">
     <header>
-      <h1>Rentool</h1>
+      <h1><a href="./home.html">Rentool</a></h1>
       <div class="header-left">
         <button id="toggle"><i class="fas fa-bars"></i>
           <div>MENU</div>
@@ -56,10 +56,10 @@
         <h3>Rental Duration</h3>
         <span id="tool-namepg1" class="tool-name"></span>
         <div id="reservation-time" class="reservation-time start-reservation">
-          <label for="">Pick-Up Date </label><input type="date" name="start-date" id="start-date" required>
-          <label for="">Pick-Up Time </label><input type="time" name="start-time" id="start-time" required>
-          <label>Return Date </label><input type="date" name="end-date" id="end-date" required>
-          <label for="">Return Time </label><input type="time" name="end-time" id="end-time" required>
+          <label for="">Pick-Up Date </label><input type="date" name="start-date" id="start-date" class="input" required>
+          <label for="">Pick-Up Time </label><input type="time" name="start-time" id="start-time" class="input" required>
+          <label>Return Date </label><input type="date" name="end-date" id="end-date" class="input" required>
+          <label for="">Return Time </label><input type="time" name="end-time" id="end-time" class="input" required>
         </div>
 
 
@@ -75,10 +75,9 @@
             <li>Small size: from $20.00 to $35.00, medium size: from $35.00 to $75.00, large size: from $75.00 to $100.00</li>
           </ul>
         </nav>
-        <span class="read-more"><a href="">Read more</a></span><br>
         <div class="terms-agreement">
           <input type="checkbox" id="agree-terms" required>
-          <label>I have read and accept the terms.</label><br>
+          <label id="terms-text">I have read and accept the terms.</label><br>
         </div>
         <button class="page1-btn" id="page1-btn" data-next="page2">Next</button>
 
@@ -101,34 +100,11 @@
           <span id="location-selected" class="location-selected"></span>
           <i class="fa-solid fa-circle-check"></i> <!-- verification mark-->
         </div>
-        <span class="payment-title">Payment Method</span>
-        <div id="payment-container" class="payment-container">
-          <span id="method"></span><br>
-          <i class="fa-solid fa-circle-check"></i> <!-- verification mark-->
+        <button class="page-btn" id="page2-btn" >Reserve</button>
         </div>
-        <button class="page-btn" id="page2-btn" data-next="page3">Reserve</button>
       </div>
-  </div>
 
-
-  <div id="page3" class="page shown">
-    <input type="text" name="" id="">
-    <input type="text" name="" id="">
-    <button class="page-btn" id="page3-btn" data-next="page4">Button</button>
-    <button type="submit" id="reservation-request-btn">Submit Reservation Request</button>
-  </div>
-  <div id="page4" class="page shown">
-    <input type="text" name="" id="">
-    <input type="text" name="" id="">
-    <button class="page-btn" id="page4-btn" data-next="page5">Button</button>
-  </div>
-  <div id="page5" class="page shown">
-    <input type="text" name="" id="">
-    <input type="text" name="" id="">
-
-  </div>
-
-  </main>
+    </main>
 
   <footer>
     <img src="" alt="">

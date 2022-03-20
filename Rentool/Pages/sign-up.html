@@ -6,7 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign up</title>
+  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
 
@@ -20,10 +22,10 @@
 </head>
 
 <body id="sign-up-page">
+  <main>
   <div class="wrapper">
-    <header></header>
     <main>
-      <img src="" alt="Rentool-logo">
+      <img src="../images/app_icon_801x801.png" alt="Rentool-logo">
       <h1>Sign Up</h1>
 
       <form id="sign-up">
@@ -38,17 +40,33 @@
         <input type="email" placeholder="Email" name="email" id="email" required>
 
         <label for="pswd">Password</label>
-        <input type="password" placeholder="Password" name="pswd" id="pswd" required><!-- Are we going to add the show password option? R.- Yes  -->
+        <input type="password" placeholder="Password" name="pswd" id="pswd" required>
 
         <label for="cnfrm-pswd">Confirm Password</label>
         <input type="password" placeholder="Confirm Password" name="cnfrm-pswd" id="cpswd" required>
 
         <button type="button" id="cbtn">Cancel</button>
         <button type="button" id="sbtn">Sign Up</button>
+
       </form>
     </main>
     <footer>
+      <img src="" alt="">
 
+      <div class="social-media">
+        <nav>
+          <ul>
+            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
+                </i> </a></li>
+            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <p>© 2022 Rentool All Rights Reserved.</p>
     </footer>
   </div>
 </body>

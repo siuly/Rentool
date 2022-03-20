@@ -15,36 +15,48 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig);
 let db = firebase.default.firestore();
+let firebaseAuth;
+try {
+  firebaseAuth = firebase.default.auth(app);
+} catch (error) {
+  console.log('error: ', error);
+}
+
+
+/**
+ * @description Create user account in Firebase Authentication
+ * @async
+ * @param {string} email
+ * @param {string} password;
+ * @return {Promise<string | null>} uid (user id) of Firebase Authentication
+ */
+export const createUserAccountWithEmailAndPassword = async (email, password) => {
+  try {
+    const userId = await (await firebaseAuth.createUserWithEmailAndPassword(email, password)).user.uid;
+    return userId;
+  } catch (error) {
+    console.log('error: ', error);
+    alert(error);
+    return null;
+  }
+};
+
 
 /**
  * @description Sign-in with Email and Password
  * @async
  * @param {string} email
  * @param {string} password
- * @returns {Promise}
+ * @returns {Promise< String | null >} user id
  */
 export const signInEmailWithPassword = async (email, password) => {
-  let userId = null;
-  db.collection('Users')
-    .where('email', '==', email).where('pswd', '==', password).get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.id, ' => ', doc.data());
-        userId = doc.id;
-      });
-      if (querySnapshot.size === 0) {
-        alert('SignIn failed');
-        return;
-      }
-
-      userId && SaveUserId(userId);
-      alert('SignIn Success');
-      // window.history.back();
-      movePageTo(PATHS_PAGES.HOME);
-    })
-    .catch((error) => {
-      console.log('Error getting documents: ', error);
-      alert(`ERROR: ${error}`);
-    });
+  try {
+    const userId = await (await firebaseAuth.signInWithEmailAndPassword(email, password)).user.uid;
+    return userId;
+  } catch (error) {
+    console.log('Error getting documents: ', error);
+    return null;
+  }
 };
 
 /**
@@ -78,7 +90,7 @@ export const getToolsByKeyword = async (keyword = '') => {
       return tools;
     }
 
-    tools = tools.filter(tool => JSON.stringify(tool).includes(keyword));
+    tools = tools.filter(tool => JSON.stringify(tool).toLowerCase().includes(keyword.toLowerCase()));
     return tools;
 
   } catch (error) {
@@ -164,7 +176,10 @@ export const getToolsByReservationToolIndex = async (reservationToolIndex) => {
  * @return {Reservation[]}
  */
 export const getReservationsByUserId = async (userId) => {
-  if (!userId) { return; }
+  if (!userId) {
+    console.error('User ID is null.');
+    return;
+  }
 
   try {
     const reservationsDoc = await db.collection('Reservations')
@@ -320,5 +335,26 @@ export const reservationRequest = async (reservationRequest) => {
   } catch (error) {
     console.log('error: ', error);
     return false;
+  }
+};
+
+/**
+ * @description Upload file or Blob to cloud storage with path,
+ *              Path will be Root/[uploadDirectory]/[filename], ex) Root/tools/driver.png
+ * @param {File | Blob} file
+ * @param {String} filename
+ * @param {string} uploadDirectory
+ * @returns {Promise<String | null>} downloadUrl
+ *
+ */
+export const uploadFileToCloudStorage = async (file, filename, uploadDirectory) => {
+  try {
+    const storageRef = firebase.default.storage().ref(`${uploadDirectory}/${filename}`);
+    const uploadTask = storageRef.put(file);
+    const downloadUrl = await (await uploadTask).ref.getDownloadURL();
+    return downloadUrl;
+  } catch (error) {
+    console.log('error: ', error);
+    return null;
   }
 };

@@ -25,22 +25,26 @@
 <body id="view-product">
   <div class="wrapper">
     <header>
-      <span class="return-icon">
-        <i class="fa-solid fa-less-than"></i>
-      </span>
-      <h2 class="tool-name">Tool Name</h2>
-      <div class="header-right">
-        <i class="fa-solid fa-circle"></i>
-        <i class="fas fa-bars"></i>
+      <h1><a href="./home.html">Rentool</a></h1>
+      <div class="header-left">
+        <button id="toggle"><i class="fas fa-bars"></i>
+          <div>MENU</div>
+        </button>
+        <nav id="menu">
+          <ul>
+            <li><a href="./my-account.html">My Account</a></li>
+            <li><a href="./catalogue.html">Tool Catalogue</a></li>
+            <li><a href="./active-orders.html">My Active Orders</a></li>
+            <li><a href="./catalogue.html">Tool Catalogue</a></li>
+            <li><a href="./locations.html">Locations</a></li>
+            <li><a href="./user-profile.html">User Profile</a></li>
+            <li><a href="./about-rentool.html">About Rentool</a></li>
+            <li><a href="./help.html">Help</a></li>
+            <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
+          </ul>
+        </nav>
       </div>
-      <div class="input-row">
-        <form action="./product-result.html" method="get" class="input-container">
-          <button class="icon"><i class="fa fa-search"></i></button>
-          <input type="text" placeholder="Search" name="keyword">
-          <i class="fa-solid fa-microphone"></i>
-        </form>
-        <i class="fa-solid fa-align-right"></i>
-      </div>
+
     </header>
 
 
@@ -57,7 +61,8 @@
           </div>
           <div class="available-status"></div>
           <div class="location">
-            <p>Nearest Locker location</p>
+            <div id="nearest-location" class="nearest-location"></div>
+            <p class="change-location">Change Location</p>
           </div>
         </div>
         <div class="price-section">
@@ -77,16 +82,34 @@
 
         <div class="product-description">
         </div>
-        <div class="product-request-button">
+        <!-- <div class="product-request-button">
           <button>Request reservation</button>
-        </div>
+        </div> -->
 
-        <button type="submit" id="view-product-submit-btn">Request</button>
+        <button type="submit" id="view-product-submit-btn" class="view-product-submit-btn button-util clickable">Request Reservation</button>
       </div>
 
 
     </main>
-    <footer></footer>
+    <footer>
+      <img src="" alt="">
+
+      <div class="social-media">
+        <nav>
+          <ul>
+            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
+            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
+                </i> </a></li>
+            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
+          </ul>
+        </nav>
+      </div>
+
+
+      <p>© 2022 Rentool All Rights Reserved.</p>
+    </footer>
     <!-- <div class="loader-container">
       <div class="dot-elastic"></div>
     </div> -->

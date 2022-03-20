@@ -184,14 +184,15 @@ span#deposit {
   font-size: 16px;
   text-align: start;
   color: #000000;
-  list-style: circle;
+  list-style: disc;
+
 }
-/* Check if there's a way to  fill the  circle from the list to black if not use this 
-#page1 nav ul li::before{
-  text-align: left;
-  content: "• "; 
-  color: black;
-} */
+#page1 nav ul li::marker{
+  color: #3EA8DD;
+}
+div#page1 {
+  position: relative;
+}
 .read-more {
   position: absolute;
   margin-right: 59px;
@@ -231,6 +232,10 @@ input#agree-terms {
 .shown {
   display: none;
 }
+.empty {
+  border: thick red solid;
+}
+
 /* Page 2 style */
 .title-rental {
   margin-left: 53px;
