@@ -226,11 +226,11 @@ export const isAdminUser = () => {
 
 /**
  * @description Change page to sign-in page if the user did not sign in.
- * @param {in PATHS_PAGES} pageMoveTo
  * @param {number} durationToSendPage
+ * @param {in PATHS_PAGES} pageMoveTo
  * @returns
  */
-export const filterNotSignedInUser = (pageMoveTo = PATHS_PAGES.SIGN_IN, durationToSendPage = 3000) => {
+export const filterNotSignedInUser = (durationToSendPage = 3000, pageMoveTo = PATHS_PAGES.SIGN_IN) => {
   if (readUserId() === null) {
     Toastify({
       text: 'Please Sign-in if you want to fully use this application',
