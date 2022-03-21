@@ -56,10 +56,10 @@
         <h3>Rental Duration</h3>
         <span id="tool-namepg1" class="tool-name"></span>
         <div id="reservation-time" class="reservation-time start-reservation">
-          <label for="">Pick-Up Date </label><input type="date" name="start-date" id="start-date" class="input" required>
-          <label for="">Pick-Up Time </label><input type="time" name="start-time" id="start-time" class="input" required>
-          <label>Return Date </label><input type="date" name="end-date" id="end-date" class="input" required>
-          <label for="">Return Time </label><input type="time" name="end-time" id="end-time" class="input" required>
+          <label for="start-date" id="start-date-label">Pick-Up Date </label><input type="text" name="start-date" id="start-date" class="input" onfocus="(this.type='date')" placeholder=" Date" required>
+          <label for="start-time" id="start-time-label">Pick-Up Time </label><input type="text" name="start-time" id="start-time" class="input"  onfocus="(this.type='time')" placeholder=" Time" required>
+          <label for="end-date">Return Date </label><input type="text" name="end-date" id="end-date" class="input"  onfocus="(this.type='date')" placeholder=" Date" required>
+          <label for="end-time">Return Time </label><input type="text" name="end-time" id="end-time" class="input"  onfocus="(this.type='time')" placeholder=" Time" required>
         </div>
 
 
@@ -86,8 +86,10 @@
       <div id="page2" class="page shown">
         <h2>Reservation Request</h2>
         <h3>Overview</h3>
-        <span id="tool-namepg2" class="tool-name"></span><br>
-        <span id="pricepg2" class="total-price"></span><br>
+        <div class="tool-name-price-container">
+          <span id="tool-namepg2" class="tool-name"></span>
+          <span id="pricepg2" class="total-price"></span>
+        </div>
         <span class="title-rental">Rental Duration</span>
         <div id="rental-container" class="rental-container">
           <span id="durationpg2" class="rental-duration"></span><br>
