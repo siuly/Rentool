@@ -1,0 +1,37 @@
+
+h1, h2, h3 {
+  font-family: 'Raleway';
+}
+
+.service__description {
+  font-family: 'Roboto';
+  padding:.5rem;
+}
+
+p:nth-child(1) {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+  padding: 1rem;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.service {
+  padding: 2rem;
+  padding-top: 0;
+}
+
+footer p {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+main {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
