@@ -1,6 +1,12 @@
 main{
 	padding-bottom: 2rem;
 }
+header{
+  height: 64px;
+}
+header #toggle div{
+	display: none;
+}
 .category-wrapper {
 	padding-top: 3rem;
 	display: grid;
@@ -11,10 +17,9 @@ main{
 	justify-items: center;
 	align-items: center;
 }
-
 .category-item {
-	width: fit-content;
 	border: 1px solid grey;
+	width: 358px;
 }
 .category-image {
 	width: 100%;
@@ -87,4 +92,36 @@ img.category-item__image {
 	width: 357px;
 	height: 149px;
 	border-bottom: 4px solid #FAB328;
+}
+
+@media screen and (min-width:500px) {
+	header{
+		height: 189px;
+	}
+	.logo{
+		margin-top: 20px;
+		width: 100%;
+	}
+	.title i{
+		display: none;
+	}
+	.title{
+		display: block;
+		border-bottom: none;
+		text-align: center;
+	}
+	h1.catalogue-title {
+    display: unset;
+		font-size: 46px;
+		margin-bottom: 30px;
+	}
+	.input-row{
+		margin-bottom: 46px;
+	}
+	.category-wrapper{
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(358px, 1fr));
+		width: 80%;
+	}
+	
 }
