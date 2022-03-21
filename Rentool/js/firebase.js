@@ -337,3 +337,24 @@ export const reservationRequest = async (reservationRequest) => {
     return false;
   }
 };
+
+/**
+ * @description Upload file or Blob to cloud storage with path,
+ *              Path will be Root/[uploadDirectory]/[filename], ex) Root/tools/driver.png
+ * @param {File | Blob} file
+ * @param {String} filename
+ * @param {string} uploadDirectory
+ * @returns {Promise<String | null>} downloadUrl
+ *
+ */
+export const uploadFileToCloudStorage = async (file, filename, uploadDirectory) => {
+  try {
+    const storageRef = firebase.default.storage().ref(`${uploadDirectory}/${filename}`);
+    const uploadTask = storageRef.put(file);
+    const downloadUrl = await (await uploadTask).ref.getDownloadURL();
+    return downloadUrl;
+  } catch (error) {
+    console.log('error: ', error);
+    return null;
+  }
+};

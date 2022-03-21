@@ -44,6 +44,10 @@ export const PATHS_PAGES = {
   REFERENCE: 'reference.html'
 }
 
+export const DURATION_TOAST_DISPLAY = 3000;
+
+
+
 /**
  * @description Get an object includes URL parameters
  * @returns {URLSearchParams} params
@@ -150,9 +154,9 @@ export const getDistanceFromUserLocation =
 
 
 /**
- * @description Get Location
+ * @description Get nearest location
  * @param {Location[]} locations
- * @return {Location}
+ * @return {Promise<Location | null>}
  */
 export const getNearestLocation = async (locations) => {
   let distanceCallbacks = [];

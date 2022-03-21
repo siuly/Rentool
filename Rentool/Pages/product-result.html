@@ -26,34 +26,31 @@
 
 <body id="product-result">
   <div class="wrapper">
-    <header>
+    <!-- <header>
+      <img src="../images/logo-full.svg" alt="rentool-logo" class="logo">
       <h1><a href="./home.html">Rentool</a></h1>
       <div class="header-left">
         <button id="toggle"><i class="fas fa-bars"></i>
         </button>
         <nav id="menu">
           <ul>
-            <li><a href="">My Account</a></li>
-            <li><a href="catalogue.html">Tool Catalogue</a></li>
             <li><a href="./active-orders.html">My Active Orders</a></li>
             <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="">Locations</a></li>
-            <li><a href="">User Profile</a></li>
-            <li><a href="">About Rentool</a></li>
-            <li><a href="">Help</a></li>
+            <li><a href="./user-profile.html">User Profile</a></li>
+            <li><a href="./help.html">Help</a></li>
             <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
           </ul>
         </nav>
       </div>
-
-    </header>
-    <main>
       <div class="input-row">
         <form action="./product-result.html" method="get" class="input-container">
           <button class="icon"><i class="fa fa-search"></i></button>
           <input type="text" placeholder="Search" name="keyword">
         </form>
       </div>
+    </header> -->
+    <rentool-header></rentool-header>
+    <main>
       <div class="page-heading">
         <i class="fa-solid fa-angle-left page-return-button" id="page-return-button"></i>
         <h2 class="page-heading__text" id="page-heading__text"></h2>
@@ -71,9 +68,12 @@
         </div>
       </div>
     </main>
-    <footer>
-      <img src="" alt="">
-
+    <!-- <footer>
+      <img src="../images/app_icon_80x80.png" alt="footer-logo" class="footer-logo">
+      <div class="contact-information">
+        <p>Get Help 24/7</p>
+        <p class="tell">1-800-657-5861</p>
+      </div>
       <div class="social-media">
         <nav>
           <ul>
@@ -86,11 +86,9 @@
           </ul>
         </nav>
       </div>
-
-
-
-      <p>© 2022 Rentool All Rights Reserved.</p>
-    </footer>
+      <p class="copyright">© 2022 Rentool All Rights Reserved.</p>
+    </footer> -->
+    <rentool-footer></rentool-footer>
   </div>
 
 </body>

@@ -48,13 +48,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
-  let dateinput1 = "";
+  let dateinput1 = '';
   let dateinput2 = 0;
 
 
 
   etime.addEventListener('change', (event) => {
-    sdate.style.border = "solid 1px black";
+    sdate.style.border = 'solid 1px black';
     dateinput1 = sdate.value + ' ' + stime.value;
     dateinput2 = edate.value + ' ' + etime.value;
     console.log(dateinput1);
@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log(get_time_diff(dateinput1, dateinput2));
     } else if(edate.value < sdate.value) {
       alert('Return date should happened after pick-up date');
-      edate.style.border = "solid 1px red";
+      edate.style.border = 'solid 1px red';
     } else if (sdate.value === edate.value){
       if (etime.value < stime.value){
         alert('Return time should happened after pick-up time');
@@ -71,19 +71,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
   sdate.addEventListener('change', () =>{
-    sdate.style.border = "solid 1px black";
+    sdate.style.border = 'solid 1px black';
   });
   edate.addEventListener('change', () =>{
-    edate.style.border = "solid 1px black";
+    edate.style.border = 'solid 1px black';
   });
   stime.addEventListener('change', () =>{
-    stime.style.border = "solid 1px black";
+    stime.style.border = 'solid 1px black';
   });
   etime.addEventListener('change', () =>{
-    etime.style.border = "solid 1px black";
+    etime.style.border = 'solid 1px black';
   });
   terms.addEventListener('change', () =>{
-    termTxt.style.color = "black";
+    termTxt.style.color = 'black';
   });
 
   let diffHoursMilliseconds = 0;
@@ -135,16 +135,16 @@ document.addEventListener('DOMContentLoaded', async () => {
   nextbtn.addEventListener('click', () => {
     console.log(dateinput1);
     if (sdate.value <= 0 ){
-    sdate.style.border = "solid 1px red";
+    sdate.style.border = 'solid 1px red';
     alert('Please select a pick-up date');
   }else if(stime.value <= 0 ) {
-    stime.style.border = "solid 1px red";
+    stime.style.border = 'solid 1px red';
     alert('Please select pick-up time');
   }else if(edate.value <= 0 ) {
-    edate.style.border = "solid 1px red";
+    edate.style.border = 'solid 1px red';
     alert('Please select a return date');
   }else if(etime.value <= 0 ) {
-    etime.style.border = "solid 1px red";
+    etime.style.border = 'solid 1px red';
     alert('Please select a return time');
   }else if(selectedLocation === null) {
     alert('Please select the location');
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // }
   else if(!terms.checked) {
-    termTxt.style.color = "red";
+    termTxt.style.color = 'red';
     alert('please check the terms');
   }
   else{
