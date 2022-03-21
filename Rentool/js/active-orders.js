@@ -1,10 +1,10 @@
 import { Reservation } from './domain/Reservation.js';
 import { getReservationsByUserId, getToolByToolId } from './firebase.js';
-import { readUserId } from './util.js';
+import { readUserId, filterNotSignedInUser } from './util.js';
+
+filterNotSignedInUser();
 
 const PATH_RETURN_PAGE = './return-tool.html';
-
-
 
 document.addEventListener('DOMContentLoaded', async () => {
   const userId = readUserId();
