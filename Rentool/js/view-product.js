@@ -1,10 +1,15 @@
-import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation } from './util.js';
+import { movePageTo, PATHS_PAGES, getUrlParams, GET_PARAMS, getNearestLocation, readUserId } from './util.js';
 import { getToolsByReservationToolIndex } from './firebase.js';
 import { LocationItem } from './components/LocationItem.js';
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
+/**@type {HTMLButtonElement} */
+const requestReservationButtonEl = document.getElementById('view-product-submit-btn');
+
+
 //@TODO: Delete below, this is only for developmental purpose
 reservationToolIndex = reservationToolIndex || '20 LB Demolition Hammer-LB-small';
+const signInUserId = readUserId();
 
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -35,13 +40,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   productTitle.appendChild(productTitleP).innerHTML = productSelected.toolName;
 
 
-  // ===========avaliability of product=================
+  // ===========availability of product=================
 
   const productAvailable = document.querySelector('.available-status');
 
   //  loop for defining status
   const isAvailable = tools.find(tool => tool.isReserved === false);
+  console.log('isAvailable: ', isAvailable);
   productAvailable.textContent = isAvailable ? 'Available' : 'Not available';
+  if (isAvailable === undefined) {
+    requestReservationButtonEl.disabled = 'true';
+    requestReservationButtonEl.innerText = 'Not available';
+  }
 
 
   // ============== description section ===================
@@ -82,11 +92,20 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Pass an array of locations from the tool data
   const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
   // document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
-  document.getElementById('nearest-location').innerHTML = `
-    ${nearestLocation.address}
-  `;
 
-  document.getElementById('view-product-submit-btn').addEventListener('click', () => {
+  if (nearestLocation === null) {
+    document.getElementsByClassName('change-location')[0].style.display = 'none';
+  } else {
+    document.getElementById('nearest-location').innerHTML = `${nearestLocation?.address}`;
+  }
+
+
+  requestReservationButtonEl.addEventListener('click', () => {
+    if (signInUserId === null) {
+      alert('You should Sign In');
+      movePageTo(PATHS_PAGES.SIGN_IN);
+    } else{
     movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+  }
   });
 });

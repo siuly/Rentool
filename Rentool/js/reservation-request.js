@@ -19,6 +19,8 @@ let tname = document.getElementById('tool-namepg1');
 let tduration = document.getElementById('durationpg1');
 let tprice = document.getElementById('price');
 let tdepo = document.getElementById('deposit');
+let terms = document.getElementById('agree-terms');
+let termTxt = document.getElementById('terms-text');
 let nextbtn = document.getElementById('page1-btn');
 let page2 = document.getElementById('page2');
 let tname2 = document.getElementById('tool-namepg2');
@@ -28,6 +30,7 @@ let rentdays = document.getElementById('rental-dates');
 let tnameloc = document.getElementById('tool-name-location');
 let locationpicked = document.getElementById('location-selected');
 let reservebtn = document.getElementById('page2-btn');
+let allFields = document.querySelector('input');
 let submitreservation = document.getElementById('reservation-request-btn');
 
 
@@ -45,19 +48,42 @@ document.addEventListener('DOMContentLoaded', async () => {
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
 
   tname.innerHTML = toolListForReservationSelection[0].toolName;
-  let dateinput1 = 0;
+  let dateinput1 = '';
   let dateinput2 = 0;
 
+
+
   etime.addEventListener('change', (event) => {
+    sdate.style.border = 'solid 1px black';
     dateinput1 = sdate.value + ' ' + stime.value;
     dateinput2 = edate.value + ' ' + etime.value;
     console.log(dateinput1);
     console.log(dateinput2);
     if (dateinput1 < dateinput2) {
       console.log(get_time_diff(dateinput1, dateinput2));
-    } else {
-      alert('incorrect date input');
+    } else if(edate.value < sdate.value) {
+      alert('Return date should happened after pick-up date');
+      edate.style.border = 'solid 1px red';
+    } else if (sdate.value === edate.value){
+      if (etime.value < stime.value){
+        alert('Return time should happened after pick-up time');
+      }
     }
+  });
+  sdate.addEventListener('change', () =>{
+    sdate.style.border = 'solid 1px black';
+  });
+  edate.addEventListener('change', () =>{
+    edate.style.border = 'solid 1px black';
+  });
+  stime.addEventListener('change', () =>{
+    stime.style.border = 'solid 1px black';
+  });
+  etime.addEventListener('change', () =>{
+    etime.style.border = 'solid 1px black';
+  });
+  terms.addEventListener('change', () =>{
+    termTxt.style.color = 'black';
   });
 
   let diffHoursMilliseconds = 0;
@@ -65,6 +91,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let fprice = 0;
   let fdepo = 0;
   let delta = 0;
+  let totalHours = 0;
 
   function get_time_diff(d1, d2) {
     let datetime3 = new Date(d1);
@@ -77,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const diffMilliseconds = date_diff;
     diffHoursMilliseconds = Math.floor((diffMilliseconds - (days * 86400000)) / 3600000);
 
-    let totalHours = 0;
+    
     let fixedhours = 4;
     if (days == 0 && diffHoursMilliseconds < 4) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
@@ -106,12 +133,31 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   nextbtn.addEventListener('click', () => {
+    console.log(dateinput1);
+    if (sdate.value <= 0 ){
+    sdate.style.border = 'solid 1px red';
+    alert('Please select a pick-up date');
+  }else if(stime.value <= 0 ) {
+    stime.style.border = 'solid 1px red';
+    alert('Please select pick-up time');
+  }else if(edate.value <= 0 ) {
+    edate.style.border = 'solid 1px red';
+    alert('Please select a return date');
+  }else if(etime.value <= 0 ) {
+    etime.style.border = 'solid 1px red';
+    alert('Please select a return time');
+  }else if(selectedLocation === null) {
+    alert('Please select the location');
+  }
+  // else if(sdate.value > edate.value){
+  //   alert('Please choose a valid date');
 
-    if (selectedLocation === null) {
-      alert('Please select the location');
-      return;
-    }
-
+  // }
+  else if(!terms.checked) {
+    termTxt.style.color = 'red';
+    alert('please check the terms');
+  }
+  else{
     page1.classList.add('shown');
     page2.classList.remove('shown');
     tname2.innerHTML = toolListForReservationSelection[0].toolName;
@@ -125,7 +171,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
     tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
     locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
-
+  }
   });
 
   /*
@@ -177,11 +223,20 @@ document.addEventListener('DOMContentLoaded', async () => {
       console.log('error: ', error);
     }
   }
+  // Location select event
+  // document.getElementById('page1').addEventListener('click', () => {
+  //   if (selectedLocation === null) {
+  //     alert('Please select the location');
+  //     return;
+  //   }
+  // });
 
 
 
   // Add reservation
   reservebtn.addEventListener('click', async () => {
+    page1.style.display = 'none';
+    page2.classList.add('shown');
 
     let reservationRequestData = {
 

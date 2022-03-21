@@ -1,4 +1,6 @@
 import { signOut, movePageTo, PATHS_PAGES, readUserId } from './util.js';
+import { RentoolHeader } from '../js/components/RentoolHeader.js';
+import { RentoolFooter } from '../js/components/RentoolFooter.js';
 
 
 
@@ -39,3 +41,8 @@ const pageReturnButtonEl = document.getElementById('page-return-button');
 if (pageReturnButtonEl !== null) {
   pageReturnButtonEl.addEventListener('click', () => window.history.back());
 }
+
+
+
+window.customElements.define('rentool-header', RentoolHeader);
+window.customElements.define('rentool-footer', RentoolFooter);
