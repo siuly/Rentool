@@ -24,11 +24,14 @@ export class RentoolHeader extends HTMLElement {
         </button>
         <nav id="menu">
           <ul>
-            <li><a href="./active-orders.html">My Active Orders</a></li>
-            <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="./user-profile.html">User Profile</a></li>
-            <li><a href="./help.html">Help</a></li>
+
+            <li><a href="./active-orders.html">My Active Orders <i class="fa-solid fa-caret-right"></i></a></li>
+            <li><a href="./catalogue.html">Tool Catalogue <i class="fa-solid fa-caret-right"></i></a></li>
+            <li><a href="./user-profile.html">User Profile <i class="fa-solid fa-caret-right"></i></a></li>
+            <li><a href="./services.html">Services <i class="fa-solid fa-caret-right"></i></a></li>
+            <li><a href="./reference.html">Reference <i class="fa-solid fa-caret-right"></i></a></li>
             <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
+
           </ul>
         </nav>
       </div>
