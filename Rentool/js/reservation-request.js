@@ -4,6 +4,7 @@ import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
 
 
+filterNotSignedInUser();
 
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
@@ -42,14 +43,7 @@ const signInUserId = readUserId();
 
 
 document.addEventListener('DOMContentLoaded', async () => {
-  filterNotSignedInUser();
 
-
-  // if (signInUserId === null) {
-  //   alert('You should Sign In');
-  //   movePageTo(PATHS_PAGES.SIGN_IN);
-  //   return;
-  // }
 
 
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
