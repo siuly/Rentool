@@ -58,3 +58,17 @@ let signUp = document.getElementById('cbtn');
 signUp.addEventListener('click', () => {
   movePageTo(PATHS_PAGES.SIGN_UP);
 });
+
+let rememberMyEmailCheckbox = document.getElementById('autocomplete');
+let emailFiled = document.getElementById('email');
+
+rememberMyEmailCheckbox.addEventListener('click', ()=>{
+  if (rememberMyEmailCheckbox.checked){
+      if( emailFiled.hasAttribute('autocomplete') == 'on'){  
+      } else{
+        emailFiled.setAttribute('autocomplete', 'on');
+      }
+  }else{
+    emailFiled.setAttribute('autocomplete', 'off');
+  }
+});

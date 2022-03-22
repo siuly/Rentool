@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
   <link rel="stylesheet" href="../Style/sign-in.css">
+  <script src="https://kit.fontawesome.com/5f54bf1d3b.js" crossorigin="anonymous"></script>
   <!-- <script src="../js/index.js" defer type="module"></script> -->
   
   <script src="../js/sign-in.js" defer type="module"></script>
@@ -43,26 +44,39 @@
 <body id="sign-in">
   <div class="wrapper">
     <main>
-<<<<<<< HEAD
-      <img src="" alt="Rentool-logo">
-      <h1>Welcome to Back!!
-=======
-      <img src="../images/app_icon_801x801.png" alt="Rentool-logo">
-      <h1>Welcome Back!
->>>>>>> 0f58364e8249e562c6bbbb7fd7dcb505ece4d73d
-        <span> Sign In</span>
-      </h1>
+     <div class="sign-in-left">
+       
+          <img src="../images/app_icon_801x801.png" alt="Rentool-logo">
+          <h1 id="sign-in-h1">Sign In</h1>
+          <!-- <form action="" id="sign-in"> -->
+          <label for="email">Email Address</label>
+          <input type="text" name="email" id="email" placeholder="Email Adress" autocomplete="off" required>
+          
+          <label for="autocomplete">
+            <input type="checkbox" id="autocomplete" >
+            Remember my email address
+          </label>
+          <label for="password">Password</label>
+          <input type="password" name="pswd" id="pswd"placeholder="Password">
+          <div><a href="#">Did you forget your password?</a></div>
+          <button id="sign-in-btn">Sign In</button>
+          <label for="cbtn">Don't Have An Account?</label>
+          <button type="button" id="cbtn">Create An Account</button>
+     </div>
+     <div class="sign-in-rigth">
 
-      <!-- <form action="" id="sign-in"> -->
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" placeholder="enter your email" required>
+      <h2>Rentool Features</h2>
+      <ul>
+        <li><i class="fa-solid fa-check"></i>Large tool variety</li>
+        <li><i class="fa-solid fa-check"></i>Mobile Version</li>
+        <li><i class="fa-solid fa-check"></i>Online Reservation</li>
+        <li><i class="fa-solid fa-check"></i>Multiple pickup and return locations</li>
+        <li><i class="fa-solid fa-check"></i>contact-less service</li>
+      </ul>
+      <img src="../images/app_icon_801x801.png" alt="Rentool-logo" id="main-image">
 
-      <label for="password">Password</label>
-      <input type="password" name="pswd" id="pswd">
 
-      <div><a href="#">Forgot Password?</a></div>
-      <button id="sign-in-btn">Login</button>
-      <button type="button" id="cbtn">Sign Up</button>
+     </div>
       <!-- </form> -->
     </main>
     <footer>
