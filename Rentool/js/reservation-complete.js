@@ -1,6 +1,9 @@
 import { getReservationDataByReservationId } from './firebase.js';
 import { Reservation } from './domain/Reservation.js';
-import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, filterNotSignedInUser } from './util.js';
+
+filterNotSignedInUser(1000);
+
 
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 reservationId = reservationId || '1cGPIZonW4hXzKLR8GV7';
@@ -10,6 +13,8 @@ const reservationImageEl = document.getElementById('reservation-image');
 
 /**@type {HTMLParagraphElement} */
 const reservationInformationEl = document.getElementById('reservation-information');
+
+
 
 
 document.addEventListener('DOMContentLoaded', async () => {

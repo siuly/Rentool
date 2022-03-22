@@ -1,7 +1,11 @@
 import { Location } from './domain/Location.js';
-import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, readUserId, filterNotSignedInUser } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 import { getToolsByReservationToolIndex, reservationRequest } from './firebase.js';
+
+
+filterNotSignedInUser();
+
 
 let reservationToolIndex = getUrlParams()[GET_PARAMS.RESERVATION_TOOL_INDEX];
 //@TODO: delete
@@ -35,14 +39,11 @@ let submitreservation = document.getElementById('reservation-request-btn');
 
 
 const signInUserId = readUserId();
-console.log('signInUserId: ', signInUserId);
+
+
 
 document.addEventListener('DOMContentLoaded', async () => {
-  if (signInUserId === null) {
-    alert('You should Sign In');
-    movePageTo(PATHS_PAGES.SIGN_IN);
-    return;
-  }
+
 
 
   const toolListForReservationSelection = await getToolsByReservationToolIndex(reservationToolIndex);
@@ -61,28 +62,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     console.log(dateinput2);
     if (dateinput1 < dateinput2) {
       console.log(get_time_diff(dateinput1, dateinput2));
-    } else if(edate.value < sdate.value) {
+    } else if (edate.value < sdate.value) {
       alert('Return date should happened after pick-up date');
       edate.style.border = 'solid 1px red';
-    } else if (sdate.value === edate.value){
-      if (etime.value < stime.value){
+    } else if (sdate.value === edate.value) {
+      if (etime.value < stime.value) {
         alert('Return time should happened after pick-up time');
       }
     }
   });
-  sdate.addEventListener('change', () =>{
+  sdate.addEventListener('change', () => {
     sdate.style.border = 'solid 1px black';
   });
-  edate.addEventListener('change', () =>{
+  edate.addEventListener('change', () => {
     edate.style.border = 'solid 1px black';
   });
-  stime.addEventListener('change', () =>{
+  stime.addEventListener('change', () => {
     stime.style.border = 'solid 1px black';
   });
-  etime.addEventListener('change', () =>{
+  etime.addEventListener('change', () => {
     etime.style.border = 'solid 1px black';
   });
-  terms.addEventListener('change', () =>{
+  terms.addEventListener('change', () => {
     termTxt.style.color = 'black';
   });
 
@@ -104,7 +105,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const diffMilliseconds = date_diff;
     diffHoursMilliseconds = Math.floor((diffMilliseconds - (days * 86400000)) / 3600000);
 
-    
+
     let fixedhours = 4;
     if (days == 0 && diffHoursMilliseconds < 4) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
@@ -134,44 +135,43 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   nextbtn.addEventListener('click', () => {
     console.log(dateinput1);
-    if (sdate.value <= 0 ){
-    sdate.style.border = 'solid 1px red';
-    alert('Please select a pick-up date');
-  }else if(stime.value <= 0 ) {
-    stime.style.border = 'solid 1px red';
-    alert('Please select pick-up time');
-  }else if(edate.value <= 0 ) {
-    edate.style.border = 'solid 1px red';
-    alert('Please select a return date');
-  }else if(etime.value <= 0 ) {
-    etime.style.border = 'solid 1px red';
-    alert('Please select a return time');
-  }else if(selectedLocation === null) {
-    alert('Please select the location');
-  }
-  // else if(sdate.value > edate.value){
-  //   alert('Please choose a valid date');
-
-  // }
-  else if(!terms.checked) {
-    termTxt.style.color = 'red';
-    alert('please check the terms');
-  }
-  else{
-    page1.classList.add('shown');
-    page2.classList.remove('shown');
-    tname2.innerHTML = toolListForReservationSelection[0].toolName;
-    totalprice.innerHTML = `Price: $${fprice}`;
-    if (diffHoursMilliseconds != 0) {
-      duration.innerHTML = `${days} days and ${diffHoursMilliseconds} hours`;
-    } else {
-      duration.innerHTML = `${days} days`;
+    if (sdate.value <= 0) {
+      sdate.style.border = 'solid 1px red';
+      alert('Please select a pick-up date');
+    } else if (stime.value <= 0) {
+      stime.style.border = 'solid 1px red';
+      alert('Please select pick-up time');
+    } else if (edate.value <= 0) {
+      edate.style.border = 'solid 1px red';
+      alert('Please select a return date');
+    } else if (etime.value <= 0) {
+      etime.style.border = 'solid 1px red';
+      alert('Please select a return time');
+    } else if (selectedLocation === null) {
+      alert('Please select the location');
     }
+    // else if(sdate.value > edate.value){
+    //   alert('Please choose a valid date');
 
-    rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
-    tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
-    locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
-  }
+    // }
+    else if (!terms.checked) {
+      termTxt.style.color = 'red';
+      alert('please check the terms');
+    } else {
+      page1.classList.add('shown');
+      page2.classList.remove('shown');
+      tname2.innerHTML = toolListForReservationSelection[0].toolName;
+      totalprice.innerHTML = `Price: $${fprice}`;
+      if (diffHoursMilliseconds != 0) {
+        duration.innerHTML = `${days} days and ${diffHoursMilliseconds} hours`;
+      } else {
+        duration.innerHTML = `${days} days`;
+      }
+
+      rentdays.innerHTML = `${dateinput1} to <br> ${dateinput2}`;
+      tnameloc.innerHTML = toolListForReservationSelection[0].toolName;
+      locationpicked.innerHTML = `${selectedLocation.lockerName} <br> ${selectedLocation.address} `;
+    }
   });
 
   /*

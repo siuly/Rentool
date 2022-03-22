@@ -223,3 +223,23 @@ export const readUserId = () => {
 export const isAdminUser = () => {
   return readUserId() === '2pVebYD9LKZJF7rf0Io8Xpwclbs2';
 };
+
+/**
+ * @description Change page to sign-in page if the user did not sign in.
+ * @param {number} durationToSendPage
+ * @param {in PATHS_PAGES} pageMoveTo
+ * @returns
+ */
+export const filterNotSignedInUser = (durationToSendPage = 3000, pageMoveTo = PATHS_PAGES.SIGN_IN) => {
+  if (readUserId() === null) {
+    Toastify({
+      text: 'Please Sign-in if you want to fully use this application',
+      close: true,
+      gravity: 'top',
+      position: 'center',
+      className: 'error',
+      duration: DURATION_TOAST_DISPLAY,
+    }).showToast();
+    setTimeout(() => { movePageTo(pageMoveTo); }, durationToSendPage);
+  }
+};
