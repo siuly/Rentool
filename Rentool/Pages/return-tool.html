@@ -33,6 +33,7 @@
   <div class="wrapper">
     <header>
       <h1><a href="./home.html">Rentool</a></h1>
+      <img src="../images/app_icon_801x801.png" alt="Rentool-logo" class="logo">
       <div class="header-left">
         <button id="toggle"><i class="fas fa-bars"></i>
           <div>MENU</div>
@@ -131,27 +132,29 @@
         <h3>Return Instruction</h3>
         <div class="step-1">
           <h4>Step 1:</h4>
-          <p>Scan the QR code</p>
+          <p>Click on the "Scan Code" button, scan the QR code and get the code for your locker</p>
           <div class="popup pop-up-btn" id="pop-up">Scan the QR
             <video id="preview" class="popuptext"></video>
           </div>
+          <!-- <div class="close-scanner" id="close-scanner">X</div> -->
           <p class="user-code" id="user-code"></p>
-          <div class="step-2">
+        </div>
+        <div class="step-2">
             <h4>Step 2:</h4>
-            <p>Take a photo of the tool inside of the locker, add at least one photo.</p>
+            <p>Put your tool into the locker and take a photo. At least one photo.</p>
             <button id="start">Open camera</button>
             <button id="snap">Take photo</button>
             <button id="stop">close Camera</button>
 
-            <video id="video" width="320" height="240" autoplay></video>
+            <video id="video" autoplay></video>
             <br />
-            <canvas id="canvas" class="shown" width="320" height="240"></canvas>
-          </div>
-          <div class="step-3">
+            <canvas id="canvas" class="shown"></canvas>
+        </div>
+        <div class="step-3">
             <h4>Step 3:</h4>
             <p>Close the lockers door.</p>
-            <button id="submit-btn">Submit</button>
-          </div>
+            <button id="submit-btn">Next</button>
+        </div>
         </div><!-- return-instruction -->
       </div>
     </main>

@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   //=================QR Code=========================
   let popupbtn = document.getElementById('pop-up');
+  let closescan = document.getElementById('close-scaner');
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 
   let code = document.getElementById('user-code');
@@ -168,9 +169,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   popupbtn.addEventListener('click', () => {
     popup.classList.toggle('show');
+    // closescan.classList.toggle('show');
+
     Instascan.Camera.getCameras().then(function(cameras) {
       if (cameras.length > 0) {
-        scanner.start(cameras[1]);
+        scanner.start(cameras[0]);
       } else {
         console.error('No cameras found.');
       }

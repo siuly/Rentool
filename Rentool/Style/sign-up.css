@@ -112,9 +112,7 @@ footer{
     justify-content: center;
     gap: 1rem;
   }
-  .sign-up-features nav ul li:before{
-    font-family: "Font Awesome 6 Brands";
-    content:"\f00c";
+  .sign-up-features nav ul li i{
     font-weight: 400;
     color: var(--color-secondary-variant);
 }
