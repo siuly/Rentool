@@ -14,6 +14,20 @@ if (toggle !== null && sidemenu !== null) {
   };
 }
 
+
+
+
+
+// Return page icon
+const pageReturnButtonEl = document.getElementById('page-return-button');
+if (pageReturnButtonEl !== null) {
+  pageReturnButtonEl.addEventListener('click', () => window.history.back());
+}
+
+
+window.customElements.define('rentool-header', RentoolHeader);
+window.customElements.define('rentool-footer', RentoolFooter);
+
 // Header Menu [Sign-in] [Sign-out]
 const signStatusEl = document.getElementById('sign-status');
 if (signStatusEl !== null) {
@@ -31,18 +45,4 @@ if (signStatusEl !== null) {
       movePageTo(PATHS_PAGES.HOME);
     });
   }
-
 }
-
-
-
-// Return page icon
-const pageReturnButtonEl = document.getElementById('page-return-button');
-if (pageReturnButtonEl !== null) {
-  pageReturnButtonEl.addEventListener('click', () => window.history.back());
-}
-
-
-
-window.customElements.define('rentool-header', RentoolHeader);
-window.customElements.define('rentool-footer', RentoolFooter);
