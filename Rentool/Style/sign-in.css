@@ -26,9 +26,7 @@
     display: unset;
     margin: 4rem 0 0 0;
 }
-.header-left {
-    display: none;
-}
+
 #sign-in-h1 {
     align-self: start;
     padding-left: 2rem;
