@@ -105,6 +105,7 @@ footer{
   }
   main h1{
     padding-top: 79px;
+    display: unset;
   }
   .wrapper{
     display: flex;
@@ -112,14 +113,18 @@ footer{
     justify-content: center;
     gap: 1rem;
   }
-  .sign-up-features nav ul li i{
-    font-weight: 400;
+  .sign-up-features nav ul li>i{
+    margin-right: 10px;
     color: var(--color-secondary-variant);
-}
+    font-size: 15px;
+  }
   nav ul li{
     font-family: "Roboto", sans-serif;
     font-size: 20px;
     font-weight: 300;
+  }
+  nav{
+    padding-bottom: 1rem;
   }
   img{
     width: 476px;
