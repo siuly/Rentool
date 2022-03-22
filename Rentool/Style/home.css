@@ -114,7 +114,9 @@ footer p {
   background-position: center;
   height: 20vh;
 
-  margin-top: 0;
+  border-radius: 5px;
+
+  margin-top: 2rem;
   max-width: unset;
   /* max-width: 800px; */
 
