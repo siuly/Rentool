@@ -336,6 +336,7 @@ div#rental-container i {
 div#pick-up-container i {
   position: absolute;
   right: 20px;
+  bottom: 40px;
   font-size: 21px;
   color: #3EA8DD;
 }
