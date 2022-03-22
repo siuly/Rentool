@@ -2,6 +2,7 @@
 	display: flex;
 	flex-flow: column nowrap;
 	height: 100vh;
+
 }
 #reservation-complete main {
 	flex-grow: 1;
@@ -9,14 +10,59 @@
 	flex-flow: column nowrap;
 	justify-content: space-around;
 	align-items: center;
-}
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 1000px;
+	/* min-width: 100vw; */
 
+}
+div.reservation-description {
+	padding: 1rem 5%;
+}
 .find-more-button {
 	padding: 1rem;
-	width: 80%;
+	width: 244px;
 	text-decoration: none;
 	text-align: center;
+	border-radius: 7px;
 }
 .reservation-date {
 	font-weight: bold;
+}
+h3 {
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+img {
+	display: flex;
+	max-width: 300px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+@media screen and (min-width: 500px){
+	div.result-conteiner {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+	img {
+		display: flex;
+		max-width: 250px;
+		grid-column: 1;
+		/* margin-left: auto;
+		margin-right: auto; */
+	}
+	div.reservation-description {
+		grid-column: 2;
+		grid-row: 1/auto;
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+	}
+}
+@media screen and (min-width: 800px){
+		img {
+			max-width: 400px;
+		}
 }
