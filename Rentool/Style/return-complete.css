@@ -8,9 +8,25 @@
 	flex-grow: 1;
 	display: flex;
 	flex-flow: column nowrap;
-	align-items: center;
-	justify-content: space-between;
 	gap: 3rem;
+}
+
+#return-complete h3 {
+	text-align: center;
+	font-size: 1.5rem;
+	font-family: "Raleway";
+	padding: 1rem;
+	font-size: 24px;
+	font-weight: 600;
+}
+
+.return-complete {
+	flex-grow: 1;
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	padding: 1rem;
+	gap: 2rem;
 }
 .find-more-button {
 	padding: 1rem;

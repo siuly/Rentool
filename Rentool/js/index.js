@@ -47,7 +47,14 @@ function comparepswd() {
   let pass2 = document.getElementById('cpswd');
 
   if (pass.value != pass2.value) {
-    alert('Yours passwords do not match');
+    Toastify({
+      text: 'Yours passwords do not match',
+      close: true,
+      gravity: 'top',
+      position: 'center',
+      className: 'error',
+      duration: DURATION_TOAST_DISPLAY,
+    }).showToast();
   }
 
 }

@@ -1,11 +1,11 @@
 import { Location } from './domain/Location.js';
-import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, DURATION_TOAST_DISPLAY } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, DURATION_TOAST_DISPLAY, filterNotSignedInUser } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 
 import { getAllLocations, getReservationDataByReservationId, returnTool } from './firebase.js';
 import { Reservation } from './domain/Reservation.js';
 
-
+filterNotSignedInUser(500);
 
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 
@@ -161,6 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   //=================QR Code=========================
   let popupbtn = document.getElementById('pop-up');
+  let closescan = document.getElementById('close-scaner');
   let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
 
   let code = document.getElementById('user-code');
@@ -168,9 +169,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   popupbtn.addEventListener('click', () => {
     popup.classList.toggle('show');
+    // closescan.classList.toggle('show');
+
     Instascan.Camera.getCameras().then(function(cameras) {
       if (cameras.length > 0) {
-        scanner.start(cameras[1]);
+        scanner.start(cameras[0]);
       } else {
         console.error('No cameras found.');
       }

@@ -117,8 +117,15 @@ button div {
 	margin-top: 10px;
 	box-shadow: 0 7px 8px -7px #222;
 }
+
 #menu li:last-of-type {
 	text-align: right;
+}
+#menu li:not(:last-of-type) a {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding-right: 1rem;
 }
 
 #menu a {
@@ -187,10 +194,14 @@ header .fas.fa-bars {
 @media screen and (min-width: 500px) {
 	header {
 		grid-template-columns: 60px 1fr 1fr;
-		max-height: 100px;
 		gap: 1rem 2rem;
 		padding: 1rem 2rem;
 	}
+
+	header .fa-solid.fa-caret-right {
+		display: none;
+	}
+
 	.input-container input[type="text"] {
 		height: 100%;
 	}
@@ -281,7 +292,7 @@ footer .social-media ul li {
 }
 footer .social-media ul li i {
 	color: white;
-	font-size: calc(1rem + .3vw);
+	font-size: calc(1rem + 0.3vw);
 }
 .social-media nav ul {
 	padding-left: 0;

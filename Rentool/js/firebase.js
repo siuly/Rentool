@@ -1,7 +1,7 @@
 /// <reference path="../../firebase.d.ts" />
 import { Reservation } from './domain/Reservation.js';
 import { Location } from './domain/Location.js';
-import { PATHS_PAGES, movePageTo, SaveUserId } from './util.js';
+import { DURATION_TOAST_DISPLAY } from './util.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
@@ -36,7 +36,15 @@ export const createUserAccountWithEmailAndPassword = async (email, password) => 
     return userId;
   } catch (error) {
     console.log('error: ', error);
-    alert(error);
+    // alert(error);
+    Toastify({
+      text: `${error}`,
+      close: true,
+      gravity: 'top',
+      position: 'center',
+      className: 'error',
+      duration: DURATION_TOAST_DISPLAY,
+    }).showToast();
     return null;
   }
 };

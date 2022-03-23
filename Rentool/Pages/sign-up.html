@@ -5,11 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign up</title>
   <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
+  <title>Sign up</title>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <!-- Toastify.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Toastify.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css" integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
   <link rel="stylesheet" href="../Style/reset.min.css">
@@ -22,60 +27,58 @@
 </head>
 
 <body id="sign-up-page">
-  <header>
-    <h1><a href="./home.html">Rentool</a></h1>
-    <div class="header-left">
-      <button id="toggle"><i class="fas fa-bars"></i>
-        <div>MENU</div>
-      </button>
-      <nav id="menu">
-        <ul>
-          <li><a href="./my-account.html">My Account</a></li>
-          <li><a href="./catalogue.html">Tool Catalogue</a></li>
-          <li><a href="./active-orders.html">My Active Orders</a></li>
-          <li><a href="./catalogue.html">Tool Catalogue</a></li>
-          <li><a href="./locations.html">Locations</a></li>
-          <li><a href="./user-profile.html">User Profile</a></li>
-          <li><a href="./about-rentool.html">About Rentool</a></li>
-          <li><a href="./help.html">Help</a></li>
-          <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
-        </ul>
-      </nav>
-    </div>
-
-  </header>
+  <rentool-header></rentool-header>
   <main>
-  <div class="wrapper">
+    <div class="wrapper">
       <div class="sign-up-left">
-      <h1>Create An Account</h1>
+        <h1>Create An Account</h1>
 
-      <p>Create an online profile to gain access to Rentool contactless powerful tool rental service.</p>
-      <p>You can rent and return tools at any time you want.</p>
+        <p>Create an online profile to gain access to Rentool contactless powerful tool rental service.</p>
+        <p>You can rent and return tools at any time you want.</p>
 
-      <form id="sign-up">
+        <form id="sign-up">
 
-        <label for="first-name">First Name *</label>
-        <input type="type"  name="fname" id="fname" required>
+          <label for="first-name">First Name *</label>
+          <input type="type" name="fname" id="fname" required>
 
-        <label for="last-name">Last Name *</label>
-        <input type="type"  name="lname" id="lname" required>
+          <label for="last-name">Last Name *</label>
+          <input type="type" name="lname" id="lname" required>
 
-        <label for="email">Email *</label>
-        <input type="email"  name="email" id="email" required>
+          <label for="email">Email *</label>
+          <input type="email" name="email" id="email" required>
 
-        <label for="pswd">Password *</label>
-        <input type="password"  name="pswd" id="pswd" required>
+          <label for="pswd">Password *</label>
+          <input type="password" name="pswd" id="pswd" required>
 
-        <label for="cnfrm-pswd">Confirm Password *</label>
-        <input type="password"  name="cnfrm-pswd" id="cpswd" required>
-        <p class="mandatory">* required fields</p>
-        <!-- <button type="button" id="cbtn">Cancel</button> -->
-        <button type="button" id="sbtn">Create Account</button>
+          <label for="cnfrm-pswd">Confirm Password *</label>
+          <input type="password" name="cnfrm-pswd" id="cpswd" required>
+          <p class="mandatory">* required fields</p>
+          <!-- <button type="button" id="cbtn">Cancel</button> -->
+          <button type="button" id="sbtn">Create Account</button>
 
-      </form>
+
+        </form>
+      </div>
+      <div class="sign-up-features">
+        <h2>Rentool Features</h2>
+        <nav>
+          <ul>
+            <li><i class="fas fa-check"></i>Large tool variety</li>
+            <li><i class="fas fa-check"></i>Mobile Version</li>
+            <li><i class="fas fa-check"></i>Online Reservation</li>
+            <li><i class="fas fa-check"></i>Multiple pickup and return locations</li>
+            <li><i class="fas fa-check"></i>contact-less service</li>
+          </ul>
+        </nav>
+        <img src="" alt="">
+      </div>
     </div>
-    <div class="sign-up-features">
-      <h2>Rentool Features</h2>
+  </main>
+
+  <footer>
+    <img src="" alt="">
+
+    <div class="social-media">
       <nav>
         <ul>
           <li>Large tool variety</li>
@@ -87,27 +90,11 @@
       </nav>
       <img src="" alt="">
     </div>
+    </div>
     </main>
 
-    <footer>
-      <img src="" alt="">
+    <rentool-footer></rentool-footer>
 
-      <div class="social-media">
-        <nav>
-          <ul>
-            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-                </i> </a></li>
-            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-          </ul>
-        </nav>
-      </div>
-
-      <p>© 2022 Rentool All Rights Reserved.</p>
-    </footer>
-  </div>
 </body>
 
 </html>
