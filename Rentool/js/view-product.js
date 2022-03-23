@@ -51,6 +51,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (isAvailable === undefined) {
     requestReservationButtonEl.disabled = 'true';
     requestReservationButtonEl.innerText = 'Not available';
+    requestReservationButtonEl.classList.add('not-available-button');
     document.getElementById('location-container').style.display = 'none';
   }
 

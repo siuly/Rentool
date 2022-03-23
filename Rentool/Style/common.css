@@ -353,6 +353,11 @@ footer p {
 	color: var(--color-secondary-variant);
 	border: 3px solid currentColor;
 }
+.not-available-button {
+	border-color: grey;
+	background-color: rgba(125, 125, 125, 0.3);
+	color: black;
+}
 
 main {
 	flex-grow: 1;
