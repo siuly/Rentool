@@ -22,88 +22,45 @@
   <script src="../js/sign-in.js" defer type="module"></script>
   <title>Sign In</title>
 </head>
-<header>
-  <h1><a href="./home.html">Rentool</a></h1>
-  <div class="header-left">
-    <button id="toggle"><i class="fas fa-bars"></i>
-      <div>MENU</div>
-    </button>
-    <nav id="menu" class="active">
-      <ul>
-        <li><a href="./active-orders.html">My Active Orders</a></li>
-        <li><a href="./catalogue.html">Tool Catalogue</a></li>
-        <li><a href="">Locations</a></li>
-        <li><a href="">User Profile</a></li>
-        <li><a href="">About Rentool</a></li>
-        <li><a href="">Help</a></li>
-        <li id="sign-status"><a href="./sign-in.html" id="sign-out">Sign In</a></li>
-      </ul>
-    </nav>
-  </div>
-
-</header>
+<rentool-header></rentool-header>
 
 <body id="sign-in">
   <div class="wrapper">
     <main>
-     <div class="sign-in-left">
-       
-          <img src="../images/app_icon_801x801.png" alt="Rentool-logo">
-          <h1 id="sign-in-h1">Sign In</h1>
-          <!-- <form action="" id="sign-in"> -->
-          <label for="email">Email Address</label>
-          <input type="text" name="email" id="email" placeholder="Email Adress" autocomplete="off" required>
-          
-          <label for="autocomplete">
-            <input type="checkbox" id="autocomplete" >
-            Remember my email address
-          </label>
-          <label for="password">Password</label>
-          <input type="password" name="pswd" id="pswd"placeholder="Password">
-          <div><a href="#">Did you forget your password?</a></div>
-          <button id="sign-in-btn">Sign In</button>
-          <label for="cbtn">Don't Have An Account?</label>
-          <button type="button" id="cbtn">Create An Account</button>
-     </div>
-     <div class="sign-in-rigth">
+      <div class="sign-in-left">
 
-      <h2>Rentool Features</h2>
-      <ul>
-        <li><i class="fa-solid fa-check"></i>Large tool variety</li>
-        <li><i class="fa-solid fa-check"></i>Mobile Version</li>
-        <li><i class="fa-solid fa-check"></i>Online Reservation</li>
-        <li><i class="fa-solid fa-check"></i>Multiple pickup and return locations</li>
-        <li><i class="fa-solid fa-check"></i>contact-less service</li>
-      </ul>
-      <img src="../images/app_icon_801x801.png" alt="Rentool-logo" id="main-image">
+        <img src="../images/app_icon_801x801.png" alt="Rentool-logo">
+        <h1 id="sign-in-h1">Sign In</h1>
+        <!-- <form action="" id="sign-in"> -->
+        <label for="email">Email Address</label>
+        <input type="text" name="email" id="email" placeholder="Email Adress" autocomplete="off" required>
 
+        <label for="autocomplete">
+          <input type="checkbox" id="autocomplete">
+          Remember my email address
+        </label>
+        <label for="password">Password</label>
+        <input type="password" name="pswd" id="pswd" placeholder="Password">
+        <div><a href="#">Did you forget your password?</a></div>
+        <button id="sign-in-btn">Sign In</button>
+        <label for="cbtn">Don't Have An Account?</label>
+        <button type="button" id="cbtn">Create An Account</button>
+      </div>
+      <div class="sign-in-rigth">
 
-     </div>
+        <h2>Rentool Features</h2>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Large tool variety</li>
+          <li><i class="fa-solid fa-check"></i>Mobile Version</li>
+          <li><i class="fa-solid fa-check"></i>Online Reservation</li>
+          <li><i class="fa-solid fa-check"></i>Multiple pickup and return locations</li>
+          <li><i class="fa-solid fa-check"></i>contact-less service</li>
+        </ul>
+        <img src="../images/app_icon_801x801.png" alt="Rentool-logo" id="main-image">
+      </div>
       <!-- </form> -->
     </main>
-    <footer>
-      <img src="" alt="">
-
-      <div class="social-media">
-        <nav>
-          <ul>
-            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-                </i> </a></li>
-            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-          </ul>
-        </nav>
-      </div>
-
-
-      <p>© 2022 Rentool All Rights Reserved.</p>
-    </footer>
-
-
-
-
+    <rentool-footer></rentool-footer>
   </div>
 </body>
 <script src="../js/common.js" defer type="module"></script>

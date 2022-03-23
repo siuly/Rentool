@@ -7,11 +7,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="manifest" href="../app.webmanifest">
 
-  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
   <link rel="stylesheet" href="../Style/home.css">
-
   <script src="../js/common.js" defer type="module"></script>
   <script src="../js/home.js" defer type="module"></script>
   <title>Home</title>
@@ -20,40 +19,18 @@
 
 <body id="home">
   <div class="wrapper">
-    <header>
-      <h1>Rentool</h1>
-      <div class="header-left">
-        <button id="toggle"><i class="fas fa-bars"></i>
-          <div>MENU</div>
-        </button>
-        <nav id="menu">
-          <ul>
-            <li><a href="./my-account.html">My Account</a></li>
-            <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="./active-orders.html">My Active Orders</a></li>
-            <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="./locations.html">Locations</a></li>
-            <li><a href="./user-profile.html">User Profile</a></li>
-            <li><a href="./about-rentool.html">About Rentool</a></li>
-            <li><a href="./help.html">Help</a></li>
-            <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
-          </ul>
-        </nav>
-      </div>
-
-    </header>
+    <rentool-header></rentool-header>
     <main>
       <div class="home-body">
-      <section class="hero-container">
+        <section class="hero-container">
 
-        <h2 class="hero-container__heading">Contactless Tool Rental
-        </h2>
-        <p class="hero-container__text">
-          Rentool is a contactless tool rental service. You can rent and return tools at any location you want.
-        </p>
-      </section>
+          <h2 class="hero-container__heading">Contactless Tool Rental
+          </h2>
+          <p class="hero-container__text">
+            Rentool is a contactless tool rental service. You can rent and return tools at any location you want.
+          </p>
+        </section>
 
-      
         <section class="catalogue">
           <h3 class="catalogue__heading">
             Tool Catalogue
@@ -108,25 +85,7 @@
       </div>
     </main>
 
-    <footer>
-      <img src="" alt="">
-
-      <div class="social-media">
-        <nav>
-          <ul>
-            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-                </i> </a></li>
-            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-          </ul>
-        </nav>
-      </div>
-
-
-      <p>© 2022 Rentool All Rights Reserved.</p>
-    </footer>
+    <rentool-footer></rentool-footer>
   </div>
   <script>
     // does the browser support service workers?

@@ -1,4 +1,4 @@
-body{
+body {
   font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -6,17 +6,16 @@ body{
 main {
   max-width: unset;
 }
-.sign-up-left{
+.sign-up-left {
   display: flex;
   flex-flow: column nowrap;
   padding: 61px 21px 0px 21px;
   gap: 1rem;
-
 }
-h1{
+h1 {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
-	font-size: 24px;
+  font-size: 24px;
 }
 form {
   display: flex;
@@ -28,7 +27,7 @@ input {
   line-height: 1;
   font-size: 17px;
 }
-form button{
+main form button {
   width: 240px;
   height: 43px;
   border: 2px solid #3ea8dd;
@@ -41,14 +40,14 @@ form button{
   color: #3ea8dd;
   align-self: center;
 }
-p.mandatory{
+p.mandatory {
   text-align: right;
 }
 
-footer{
+footer {
   margin-top: 1rem;
 }
-.sign-up-features{
+.sign-up-features {
   display: none;
 }
 
@@ -90,44 +89,46 @@ footer{
     height: 302px;  
   }
 } */
-@media screen and (min-width:800px) {
-  .sign-up-features{
+@media screen and (min-width: 800px) {
+  .sign-up-features {
     display: unset;
     padding-top: 208px;
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  .sign-up-features h2{
+  .sign-up-features h2 {
     font-family: "Raleway", sans-serif;
     font-weight: 700;
     font-size: 30px;
     padding-bottom: 1rem;
   }
-  main h1{
+  main h1 {
     padding-top: 79px;
     display: unset;
   }
-  .wrapper{
+  .wrapper {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     gap: 1rem;
   }
-  .sign-up-features nav ul li>i{
+
+  .sign-up-features nav ul li > i {
     margin-right: 10px;
     color: var(--color-secondary-variant);
     font-size: 15px;
   }
-  nav ul li{
+  nav ul li {
     font-family: "Roboto", sans-serif;
     font-size: 20px;
     font-weight: 300;
   }
-  nav{
+
+  nav {
     padding-bottom: 1rem;
   }
-  img{
+  main img {
     width: 476px;
-    height: 302px;  
+    height: 302px;
   }
 }
