@@ -105,6 +105,7 @@ h3.product-description-title {
 
 p.product-description__line {
   padding: 0.5rem 0rem;
+  line-height: 1.5;
 }
 
 @media screen and (min-width: 500px) {
