@@ -50,9 +50,10 @@
 
     <!-- <label for="toolId">toolId</label>
   <input type="text" name="toolId" id="toolId"> -->
-    <label for="toolName">toolName</label>
+    <label for="toolName">Tool Name</label>
     <input type="text" name="toolName" id="toolName">
     <label for="description">Description</label>
+    <p>Use "・" as bullet point character</p>
     <input type="text" name="description" id="description">
     <h3>Location</h3>
     <label for="lockerName">lockerName</label>
@@ -115,9 +116,10 @@
     <input type="text" name="imageUrl" id="imageUrl"> -->
 
     <label for="imageUrl">Image</label>
+    <p>*Image file name does not matter</p>
     <input type="file" name="imageFile" id="imageFile">
 
-    <input type="submit" value="submit" id="submit">
+    <input type="submit" value="submit" id="submit" class="clickable">
   </main>
   <footer>
     <img src="" alt="">
@@ -222,6 +224,10 @@ document.getElementById('submit').addEventListener('click', async () => {
   main {
     margin-left: 3rem;
     padding: 1rem;
+  }
+
+  input[type="submit"] {
+    margin: 1rem;
   }
 </style>
 
