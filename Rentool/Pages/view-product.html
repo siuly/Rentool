@@ -33,26 +33,51 @@
 
 
     <main id="product-detail">
+      <!-- page header -->
+      <div class="product-category">
+        <button>
+          <i class="fa-solid fa-chevron-left"></i>
+        </button> 
+      </div>
       <div class="view-product-first">
+        
         <div class="product-wrapper">
-
-          <div class="product-category">
-            <button>
-              <i class="fa-solid fa-chevron-left"></i>
-            </button> 
-          </div> 
+          <!-- product image -->
           <div class="product-image">
                 <img src="" alt="">
           </div>
-          <div class="product-title">
-          </div>
-          <div class="available-status"></div>
-          <div class="location" id="location-container">
-            <div id="nearest-location" class="nearest-location"></div>
-            <p class="change-location">Change Location</p>
+
+          
+          <div class="product-name-price">
+            <!-- product title, location and availability status -->
+            <div class="product-name-location-status">
+              <div class="product-title">
+              </div>
+              <div class="available-status"></div>
+              <div class="location" id="location-container">
+                <div id="nearest-location" class="nearest-location"></div>
+                <p class="change-location">Change Location</p>
+              </div>
+            </div>
+
+            <!-- product price -->
+            <div class="price-section">
+              <h3>Price</h3>
+              <table class="price-table">
+                <tr class="price-table-four-hours">
+                  <td>4 Hours (minimum)</td>
+                </tr>
+                <tr class="price-table-per-day">
+                  <td>Per Day</td>
+                </tr>
+                <tr class="price-table-per-week">
+                  <td>Per Week</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
-        <div class="price-section">
+        <!-- <div class="price-section">
           <h3>Price</h3>
           <table class="price-table">
             <tr class="price-table-four-hours">
@@ -65,15 +90,22 @@
               <td>Per Week</td>
             </tr>
           </table>
-        </div>
+        </div> -->
 
-        <div class="product-description">
+        <div class="product-description-section">
+          <h3 class="product-description-title"> Product Description</h3>
+          <div class="product-description">
+          </div>
         </div>
         <!-- <div class="product-request-button">
           <button>Request reservation</button>
         </div> -->
 
-        <button type="submit" id="view-product-submit-btn" class="view-product-submit-btn button-util clickable">Request Reservation</button>
+        <div class="reservation-btn">
+          <button type="submit" id="view-product-submit-btn" class="view-product-submit-btn button-util clickable">
+            Request Reservation
+          </button>
+        </div>
       </div>
 
 
