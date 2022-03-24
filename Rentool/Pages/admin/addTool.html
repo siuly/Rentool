@@ -167,7 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.getElementById('submit').addEventListener('click', async () => {
-
+  try {
   const toolName = document.getElementById('toolName').value;
   const lockerName = document.getElementById('lockerName').value;
   const hourlyPrice = document.getElementById('hourlyPrice').value;
@@ -186,32 +186,36 @@ document.getElementById('submit').addEventListener('click', async () => {
   console.log('imageUrl: ', imageUrl);
 
 
+    const tool = {
+      description,
+      toolName,
+      // location:  {
+      //   lockerName,
+      //   address,
+      //   latitude,
+      //   longuitude,
+      // },
+      location: {...locations.filter(location => location.lockerName === lockerName)[0]},
+      category,
+      imageUrl,
+      reservationToolIndex,
+      size,
+      isReserved: false,
+      brand,
+      prices: {
+        hourly: Number.parseFloat(hourlyPrice),
+        daily: Number.parseFloat(dailyPrice),
+        weekly : Number.parseFloat(weeklyPrice),
+      }
+      };
+      console.log(tool);
 
-  const tool = {
-    description,
-    toolName,
-    // location:  {
-    //   lockerName,
-    //   address,
-    //   latitude,
-    //   longuitude,
-    // },
-    location: {...locations.filter(location => location.lockerName === lockerName)[0]},
-    category,
-    imageUrl,
-    reservationToolIndex,
-    size,
-    isReserved: false,
-    brand,
-    prices: {
-      hourly: Number.parseFloat(hourlyPrice),
-      daily: Number.parseFloat(dailyPrice),
-      weekly : Number.parseFloat(weeklyPrice),
+      const result = await setToolData(tool);
+      result && alert(`Success`);
+    } catch (error) {
+      alert("Fails: " + error);
     }
-    };
-    console.log(tool);
-    const result = await setToolData(tool);
-    result && alert(`Success`);
+
 });
 </script>
 
