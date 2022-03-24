@@ -182,7 +182,7 @@ document.getElementById('submit').addEventListener('click', async () => {
 
   /** @type {File}*/
   const imageFile = document.getElementById("imageFile").files[0];
-  const imageUrl = await uploadFileToCloudStorage(imageFile, imageFile.name, 'tools');
+  const imageUrl = await uploadFileToCloudStorage(imageFile, `${new Date()}${imageFile.name}`, 'tools');
   console.log('imageUrl: ', imageUrl);
 
 
