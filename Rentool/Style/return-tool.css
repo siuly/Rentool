@@ -100,7 +100,6 @@ header #toggle div{
 	font-weight: bold;
 	font-size: 16px;
 }
-
 .return-request-btn:hover {
 	transform: translateY(-2px);
 	box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.5);
@@ -244,56 +243,115 @@ div#return-instruction h4{
 	font-size: 18px;
 	font-weight: 700;
 	margin-bottom: 5px;
+	margin-top: 1rem;
 }
 div#return-instruction p{
 	font-family: "Roboto", sans-serif;
 	font-size: 18px;
 	font-weight: 400;
 	margin-left: 13px;
+	margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 div#return-instruction .step-1 p:first-of-type:before{
 	content:"•";
 	margin-right: 10px;
 }
-.popup {
-	position: relative;
-	display: inline-block;
-	cursor: pointer;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
+button#btn-show-scanner {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	border: 2px solid #3EA8DD;
+	border-radius: 6px;
+	height: 43px;
+	width: 220px;
+	font-size: 1rem;
+	font-weight: 700;
+	color: #3EA8DD;
+}
+p#user-code {
+	background-color: #FFC400;
+	padding: 6px;
+	text-align: center;
+	font-weight: 700 !important;
+}
+div#return-instruction .step-2 p#step-2-info::before{
+	content:"•";
+	margin-right: 10px;
+}
+div#return-instruction .step-3 p:first-of-type:before{
+	content:"•";
+	margin-right: 10px;
+}
+p.no-files {
+	font-size: 12px !important;
+	background-color: #e6e6e6;
+	padding: 5px;
+	text-align: center;
+	font-weight: 700 !important;
+}
+button#submit-btn {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	border: 2px solid #3EA8DD;
+	border-radius: 6px;
+	height: 43px;
+	width: 220px;
+	font-size: 1rem;
+	font-weight: 700;
+	color: #3EA8DD;
+}
+#photo-btn {
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	border: 2px solid #3EA8DD;
+	border-radius: 6px;
+	height: 43px;
+	width: 220px;
+	font-size: 1rem;
+	font-weight: 700;
+	color: #3EA8DD;
+	text-align: center;
+  padding-top: 11px;
 }
 
-/* The actual popup */
-.popup .popuptext {
-	position: absolute;
-	top: -100px;
-	left: -101px;
+
+/* =============Scanner=========== */
+button.dce-btn-close {
+	background-color: orange;
+	margin: 5px;
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 50px;
+	height: 30px;
 }
-/* .close-scanner .show{
-	visibility: visible;
-	position: absolute;
-	top: 129px;
-	right: 50px;
-	color: black;
+button.dce-btn-close:before {
+	content: "Close";
 	font-weight: bold;
-} */
-video{
-	width: 320;
-	height: 240;
 }
-canvas{
-	width: 320;
-	height: 240;
+button.dce-btn-close svg {
+	display: none;
 }
-
+select.dce-sel-camera {
+	display: none;
+}
+select.dce-sel-resolution {
+	display: none;
+}
+.dbrScanner-scanlight {
+	display: none;
+}
+.dbrScanner-msg-poweredby {
+	display: none;
+}
 /* Toggle this class - hide and show the popup */
 .popup .show {
 	visibility: visible;
 	animation: fadeIn 5s;
-	height: 600px;
-	width: 400px;
+	height: auto;
+	width: auto;
 }
 .pop-up-btn {
 	background: white;
@@ -389,8 +447,6 @@ canvas{
 		opacity: 1;
 	}
 }
-/*==============QR DESIGN END================ */
-
 .desktop-confirm-btn {
 	display: none;
 }
