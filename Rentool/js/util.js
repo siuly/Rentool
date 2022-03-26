@@ -35,12 +35,10 @@ export const PATHS_PAGES = {
   // Admin
   ADD_TOOL: 'admin/addTool.html',
 
-  // UPCOMMING
-  MY_ACCOUNT: 'my-account.html',
-  LOCATIONS: 'locations.html',
+  // OTHERS
   USER_PROFILE: 'user-profile.html',
-  ABOUT_RENTOOL: 'about-rentool.html',
-  HELP: 'help.html',
+  USER_PROFILE_EDIT: 'user-profile-edit.html',
+  SERVICES: 'services.html',
   REFERENCE: 'reference.html'
 }
 
