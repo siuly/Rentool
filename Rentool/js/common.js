@@ -1,7 +1,7 @@
 import { signOut, movePageTo, PATHS_PAGES, readUserId } from './util.js';
 import { RentoolHeader } from '../js/components/RentoolHeader.js';
+import { RentoolHeaderNoSearch } from '../js/components/RentoolHeaderNoSearch.js';
 import { RentoolFooter } from '../js/components/RentoolFooter.js';
-
 
 
 // SIDE MENU
@@ -26,6 +26,7 @@ if (pageReturnButtonEl !== null) {
 
 
 window.customElements.define('rentool-header', RentoolHeader);
+window.customElements.define('rentool-header-no-search', RentoolHeaderNoSearch);
 window.customElements.define('rentool-footer', RentoolFooter);
 
 // Header Menu [Sign-in] [Sign-out]
