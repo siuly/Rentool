@@ -26,9 +26,9 @@
   <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
   <script src="../js/common.js" type="module" defer></script>
   <script src="../js/return-tool.js" type="module" defer></script>
-<!--QR  test  -->
+  <!--QR  test  -->
   <!-- Please visit https://www.dynamsoft.com/customer/license/trialLicense to get a trial license. -->
-<script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.8.3/dist/dbr.js" data-productKeys="PRODUCT-KEYS"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dynamsoft-javascript-barcode@8.8.3/dist/dbr.js" data-productKeys="PRODUCT-KEYS"></script>
 
 
   <title>Return Tool</title>
@@ -125,29 +125,29 @@
           <p class="user-code hidden" id="user-code"></p>
         </div>
         <div class="step-2">
-            <h4>Step 2:</h4>
-            <p id="step-2-info">Put your tool into the locker and take a photo. At least one photo.</p>
-            
-            <form method="post" enctype="multipart/form-data">
-             <div>
-               <label for="file-input" id="photo-btn">Take a photo</label>
-               <input type="file" accept="image/*" capture="camera" id="file-input" multiple> 
-             </div>
-             <div class="preview">
-               <p class="no-files">No files currently selected for upload</p>
-             </div>
-           </form>
+          <h4>Step 2:</h4>
+          <p id="step-2-info">Put your tool into the locker and take a photo. At least one photo.</p>
+
+          <form method="post" enctype="multipart/form-data">
+            <div>
+              <label for="file-input" id="photo-btn">Take a photo</label>
+              <input type="file" accept="image/*" capture="camera" id="file-input" multiple>
+            </div>
+            <div class="preview">
+              <p class="no-files">No files currently selected for upload</p>
+            </div>
+          </form>
 
         </div>
         <div class="step-3">
-            <h4>Step 3:</h4>
-            <p>Close the lockers door.</p>
-            <button id="submit-btn">Next</button>
+          <h4>Step 3:</h4>
+          <p>Close the lockers door.</p>
+          <button id="submit-btn">Next</button>
         </div>
-        </div><!-- return-instruction -->
-      </div>
-    </main>
-    <rentool-footer></rentool-footer>
+      </div><!-- return-instruction -->
+  </div>
+  </main>
+  <rentool-footer></rentool-footer>
   </div>
 </body>
 

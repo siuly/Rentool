@@ -187,7 +187,7 @@ document.getElementById('btn-show-scanner').addEventListener('click', async () =
             scanbtn.classList.add('hidden');
           }
           else{
-            alert('Incorrect QR code, please scan the code from the locker.')
+            alert('Incorrect QR code, please scan the code from the locker.');
           }
         };
 
@@ -198,16 +198,16 @@ document.getElementById('btn-show-scanner').addEventListener('click', async () =
     }
 });
       const fileTypes = [
-        "image/apng",
-        "image/bmp",
-        "image/gif",
-        "image/jpeg",
-        "image/pjpeg",
-        "image/png",
-        "image/svg+xml",
-        "image/tiff",
-        "image/webp",
-        "image/x-icon"
+        'image/apng',
+        'image/bmp',
+        'image/gif',
+        'image/jpeg',
+        'image/pjpeg',
+        'image/png',
+        'image/svg+xml',
+        'image/tiff',
+        'image/webp',
+        'image/x-icon'
       ];
 
       function validFileType(file) {
