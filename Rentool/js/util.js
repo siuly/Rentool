@@ -227,7 +227,7 @@ export const isAdminUser = () => {
 /**
  * @description Change page to sign-in page if the user did not sign in.
  * @param {number} durationToSendPage
- * @param {in PATHS_PAGES} pageMoveTo
+ * @param {typeof PATHS_PAGES[keyof typeof PATHS_PAGES]} pageMoveTo
  * @returns
  */
 export const filterNotSignedInUser = (durationToSendPage = 3000, pageMoveTo = PATHS_PAGES.SIGN_IN) => {
@@ -241,5 +241,20 @@ export const filterNotSignedInUser = (durationToSendPage = 3000, pageMoveTo = PA
       duration: DURATION_TOAST_DISPLAY,
     }).showToast();
     setTimeout(() => { movePageTo(pageMoveTo); }, durationToSendPage);
+  }
+};
+
+/**
+ * @description Set onDisplayPage class to the header item
+ * @param {typeof PATHS_PAGES[keyof typeof PATHS_PAGES]} pageName
+ * @returns {boolean}
+ */
+export const setOnPageClassToMenuItem = (page) => {
+  try {
+    document.querySelector(`a[href$="${page}"]`).classList.add('onDisplayPage');
+    return true;
+  } catch (error) {
+    console.log('error: ', error);
+    return false;
   }
 };

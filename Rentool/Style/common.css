@@ -259,6 +259,16 @@ header .fas.fa-bars {
 		margin: 0;
 		line-height: unset;
 	}
+	.onDisplayPage {
+		position: relative;
+	}
+	.onDisplayPage::after {
+		position: absolute;
+		content: "";
+		width: 100%;
+		bottom: -10px;
+		border-bottom: 2px solid var(--color-secondary-variant);
+	}
 }
 
 footer {
