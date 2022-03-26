@@ -1,6 +1,9 @@
 import { getReservationDataByReservationId } from './firebase.js';
 import { Reservation } from './domain/Reservation.js';
-import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES } from './util.js';
+import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, filterNotSignedInUser } from './util.js';
+
+filterNotSignedInUser(1000);
+
 
 let reservationId = getUrlParams()[GET_PARAMS.RESERVATION_ID];
 reservationId = reservationId || '1cGPIZonW4hXzKLR8GV7';
@@ -12,6 +15,8 @@ const reservationImageEl = document.getElementById('reservation-image');
 const reservationInformationEl = document.getElementById('reservation-information');
 
 
+
+
 document.addEventListener('DOMContentLoaded', async () => {
   /**@type {Reservation} */
   const reservation = await getReservationDataByReservationId(reservationId);
@@ -19,7 +24,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   reservationImageEl.src = reservation.imageUrl;
 
   reservationInformationEl.innerHTML = `
-  Kindly remained you that your rental duration is from <span class="reservation-date">
+  Kindly remaind you that your rental duration is from <span class="reservation-date">
   ${reservation.duration.startDate}</span>
    to  <span class="reservation-date">${reservation.duration.endDate}</span>.
   `;

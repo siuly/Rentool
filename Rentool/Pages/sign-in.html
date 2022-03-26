@@ -6,45 +6,63 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <!-- Toastify.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Toastify.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css" integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
   <link rel="stylesheet" href="../Style/sign-in.css">
+  <script src="https://kit.fontawesome.com/5f54bf1d3b.js" crossorigin="anonymous"></script>
   <!-- <script src="../js/index.js" defer type="module"></script> -->
-  <script src="../js/common.js" defer type="module"></script>
+
   <script src="../js/sign-in.js" defer type="module"></script>
   <title>Sign In</title>
 </head>
+<rentool-header></rentool-header>
 
 <body id="sign-in">
   <div class="wrapper">
-    <header></header>
     <main>
-      <img src="" alt="Rentool-logo">
-      <h1>Welcome to Back!
-        <span> Sign In</span>
-      </h1>
+      <div class="sign-in-left">
 
-      <!-- <form action="" id="sign-in"> -->
-      <label for="email">Email</label>
-      <input type="text" name="email" id="email" placeholder="enter your email" required>
+        <img src="../images/app_icon_801x801.png" alt="Rentool-logo">
+        <h1 id="sign-in-h1">Sign In</h1>
+        <!-- <form action="" id="sign-in"> -->
+        <label for="email">Email Address</label>
+        <input type="text" name="email" id="email" placeholder="Email Adress" autocomplete="off" required>
 
-      <label for="password">Password</label>
-      <input type="password" name="pswd" id="pswd">
+        <label for="autocomplete">
+          <input type="checkbox" id="autocomplete">
+          Remember my email address
+        </label>
+        <label for="password">Password</label>
+        <input type="password" name="pswd" id="pswd" placeholder="Password">
+        <div><a href="#">Did you forget your password?</a></div>
+        <button id="sign-in-btn">Sign In</button>
+        <label for="cbtn">Don't Have An Account?</label>
+        <button type="button" id="cbtn">Create An Account</button>
+      </div>
+      <div class="sign-in-rigth">
 
-      <div><a href="#">Forgot Password?</a></div>
-      <button id="sign-in-btn">Login</button>
-      <button type="button" id="cbtn">Sign Up</button>
+        <h2>Rentool Features</h2>
+        <ul>
+          <li><i class="fa-solid fa-check"></i>Large tool variety</li>
+          <li><i class="fa-solid fa-check"></i>Mobile Version</li>
+          <li><i class="fa-solid fa-check"></i>Online Reservation</li>
+          <li><i class="fa-solid fa-check"></i>Multiple pickup and return locations</li>
+          <li><i class="fa-solid fa-check"></i>contact-less service</li>
+        </ul>
+        <img src="../images/app_icon_801x801.png" alt="Rentool-logo" id="main-image">
+      </div>
       <!-- </form> -->
     </main>
-    <footer>
-
-    </footer>
-
-
-
-
+    <rentool-footer></rentool-footer>
   </div>
 </body>
+<script src="../js/common.js" defer type="module"></script>
 
 </html>

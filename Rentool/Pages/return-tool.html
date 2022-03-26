@@ -16,10 +16,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  <!-- Toastify.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Toastify.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css" integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- Moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
   <script src="../js/common.js" type="module" defer></script>
   <script src="../js/return-tool.js" type="module" defer></script>
   <title>Return Tool</title>
@@ -27,28 +31,8 @@
 
 <body id="return-tool">
   <div class="wrapper">
-    <header>
-      <h1>Rentool</h1>
-      <div class="header-left">
-        <button id="toggle"><i class="fas fa-bars"></i>
-          <div>MENU</div>
-        </button>
-        <nav id="menu">
-          <ul>
-            <li><a href="./my-account.html">My Account</a></li>
-            <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="./active-orders.html">My Active Orders</a></li>
-            <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="./locations.html">Locations</a></li>
-            <li><a href="./user-profile.html">User Profile</a></li>
-            <li><a href="./about-rentool.html">About Rentool</a></li>
-            <li><a href="./help.html">Help</a></li>
-            <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
-          </ul>
-        </nav>
-      </div>
+    <rentool-header></rentool-header>
 
-    </header>
     <input type="checkbox" name="pickUpDetails" id="pickUpDetails">
     <main>
       <div class="return-progress" id="return-progress">
@@ -58,7 +42,6 @@
           <div class="dot-elastic"></div>
         </div>
         <img alt="" class="return-tool-image" id="return-tool-image">
-
         <div class="toggle-container">
           <div class="toggle-switch"></div>
           <label for="pickUpDetails" class="toggle-container__return toggle-item">Return</label>
@@ -73,16 +56,16 @@
             <h4 class="location-selection__heading">
               Select Return Location
             </h4>
-            <p class="location-selection__description">
+            <p class="location-selection__description" id="location-selection__description">
               Select a Rentool Locker's Location
             </p>
-            <select name="areaLabel" id="areaLabel">
+            <select name="areaLabel" class="areaLabel" id="areaLabel">
               <option value="All">All</option>
             </select>
-            <div id="locationContainer"></div>
+            <div id="locationContainer" class="locationContainer"></div>
           </div>
-          <button id="return-request-btn" class="return-request-btn button-util">
-            Return Request
+          <button id="return-request-btn" class="return-request-btn">
+            Return
           </button>
         </section>
         <section class="pick-up-details" id="pick-up-details">
@@ -90,16 +73,17 @@
             Rental Duration
           </h4>
           <div class="pick-up-details__duration" id="pick-up-details__duration">
-
           </div>
-
-          <h4 class="pick-up-details__heading"> </h4>
+          <h4 class="pick-up-details__heading">Pick-Up Location</h4>
           <div class="pick-up-location" id="pick-up-location"> </div>
         </section>
       </div>
-      <div class="return-confirmation" id="return-confirmation">
 
+      <div class="return-confirmation hidden" id="return-confirmation">
         <h3 class="return-confirmation__heading">Return Confirmation</h3>
+        <div class="loader-container">
+          <div class="dot-elastic"></div>
+        </div>
         <div class="return-confirmation__location-container">
           <p class="return-confirmation__heading">
             Locker's Location
@@ -115,32 +99,45 @@
           </div>
 
         </div>
-        <button id="confirm-btn" class="confirm-btn button-util clickable">
+        <button id="confirm-btn" class="confirm-btn mobile-confirm-btn button-util clickable">
           Confirm
         </button>
+        <button id="desktop-confirm-btn" class="confirm-btn desktop-confirm-btn button-util clickable">
+          Confirm
+        </button>
+      </div><!-- return-confirmation -->
+
+      <div class="return-instruction page-3 hidden" id="return-instruction">
+        <h3>Return Instruction</h3>
+        <div class="step-1">
+          <h4>Step 1:</h4>
+          <p>Click on the "Scan Code" button, scan the QR code and get the code for your locker</p>
+          <div class="popup pop-up-btn" id="pop-up">Scan the QR
+            <video id="preview" class="popuptext"></video>
+          </div>
+          <!-- <div class="close-scanner" id="close-scanner">X</div> -->
+          <p class="user-code" id="user-code"></p>
+        </div>
+        <div class="step-2">
+            <h4>Step 2:</h4>
+            <p>Put your tool into the locker and take a photo. At least one photo.</p>
+            <button id="start">Open camera</button>
+            <button id="snap">Take photo</button>
+            <button id="stop">close Camera</button>
+
+            <video id="video" autoplay></video>
+            <br />
+            <canvas id="canvas" class="shown"></canvas>
+        </div>
+        <div class="step-3">
+            <h4>Step 3:</h4>
+            <p>Close the lockers door.</p>
+            <button id="submit-btn">Next</button>
+        </div>
+        </div><!-- return-instruction -->
       </div>
     </main>
-
-
-    <footer>
-      <img src="" alt="">
-
-      <div class="social-media">
-        <nav>
-          <ul>
-            <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-            <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-                </i> </a></li>
-            <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-            <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-            <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-          </ul>
-        </nav>
-      </div>
-
-
-      <p>© 2022 Rentool All Rights Reserved.</p>
-    </footer>
+    <rentool-footer></rentool-footer>
   </div>
 </body>
 

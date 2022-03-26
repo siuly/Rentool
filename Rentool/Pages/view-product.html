@@ -8,6 +8,11 @@
   <!-- Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+  <!-- Toastify.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Toastify.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css" integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
   <!-- CSS -->
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
@@ -24,43 +29,55 @@
 
 <body id="view-product">
   <div class="wrapper">
-    <header>
-      <span class="return-icon">
-        <i class="fa-solid fa-less-than"></i>
-      </span>
-      <h2 class="tool-name">Tool Name</h2>
-      <div class="header-right">
-        <i class="fa-solid fa-circle"></i>
-        <i class="fas fa-bars"></i>
-      </div>
-      <div class="input-row">
-        <form action="./product-result.html" method="get" class="input-container">
-          <button class="icon"><i class="fa fa-search"></i></button>
-          <input type="text" placeholder="Search" name="keyword">
-          <i class="fa-solid fa-microphone"></i>
-        </form>
-        <i class="fa-solid fa-align-right"></i>
-      </div>
-    </header>
+    <rentool-header></rentool-header>
 
 
     <main id="product-detail">
+      <!-- page header -->
+      <div class="product-category">
+        <button>
+          <i class="fa-solid fa-chevron-left"></i>
+        </button> 
+      </div>
       <div class="view-product-first">
+        
         <div class="product-wrapper">
-
-          <div class="product-category">
-            <button>
-              <</button> </div> <div class="product-image">
+          <!-- product image -->
+          <div class="product-image">
                 <img src="" alt="">
           </div>
-          <div class="product-title">
-          </div>
-          <div class="available-status"></div>
-          <div class="location">
-            <p>Nearest Locker location</p>
+
+          
+          <div class="product-name-price">
+            <!-- product title, location and availability status -->
+            <div class="product-name-location-status">
+              <div class="product-title">
+              </div>
+              <div class="available-status"></div>
+              <div class="location" id="location-container">
+                <div id="nearest-location" class="nearest-location"></div>
+                <p class="change-location">Change Location</p>
+              </div>
+            </div>
+
+            <!-- product price -->
+            <div class="price-section">
+              <h3>Price</h3>
+              <table class="price-table">
+                <tr class="price-table-four-hours">
+                  <td>4 Hours (minimum)</td>
+                </tr>
+                <tr class="price-table-per-day">
+                  <td>Per Day</td>
+                </tr>
+                <tr class="price-table-per-week">
+                  <td>Per Week</td>
+                </tr>
+              </table>
+            </div>
           </div>
         </div>
-        <div class="price-section">
+        <!-- <div class="price-section">
           <h3>Price</h3>
           <table class="price-table">
             <tr class="price-table-four-hours">
@@ -73,20 +90,27 @@
               <td>Per Week</td>
             </tr>
           </table>
-        </div>
+        </div> -->
 
-        <div class="product-description">
+        <div class="product-description-section">
+          <h3 class="product-description-title"> Product Details</h3>
+          <div class="product-description">
+          </div>
         </div>
-        <div class="product-request-button">
+        <!-- <div class="product-request-button">
           <button>Request reservation</button>
-        </div>
+        </div> -->
 
-        <button type="submit" id="view-product-submit-btn">Request</button>
+        <div class="reservation-btn">
+          <button type="submit" id="view-product-submit-btn" class="view-product-submit-btn button-util clickable">
+            Request Reservation
+          </button>
+        </div>
       </div>
 
 
     </main>
-    <footer></footer>
+    <rentool-footer></rentool-footer>
     <!-- <div class="loader-container">
       <div class="dot-elastic"></div>
     </div> -->

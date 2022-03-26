@@ -8,9 +8,10 @@
   <!-- Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
-
-  <link rel="stylesheet" href="../../Style/common.css">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js" defer></script>
   <link rel="stylesheet" href="../../Style/reset.min.css">
+  <link rel="stylesheet" href="../../Style/common.css">
+
 
   <!-- CSS for loading animation -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,15 +23,39 @@
 
 <body>
 
-  <rentool-header></rentool-header>
+  <header>
+    <a href="../home.html" class="logo"><img src="../../images/logo-full.svg" alt="rentool-logo" class="logo__image"></a>
+    <h1><a href="../home.html">Rentool</a></h1>
+    <div class="header-left">
+      <button id="toggle"><i class="fas fa-bars"></i>
+      </button>
+      <nav id="menu">
+        <ul>
+          <li><a href="../active-orders.html">My Active Orders <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../catalogue.html">Tool Catalogue <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../user-profile.html">User Profile <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../services.html">Services <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../reference.html">Reference <i class="fa-solid fa-caret-right"></i></a></li>
+          <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="input-row">
+      <form action="./product-result.html" method="get" class="input-container">
+        <button class="icon"><i class="fa fa-search"></i></button>
+        <input type="text" placeholder="Search" name="keyword">
+      </form>
+    </div>
+  </header>
   <main>
 
 
     <!-- <label for="toolId">toolId</label>
   <input type="text" name="toolId" id="toolId"> -->
-    <label for="toolName">toolName</label>
+    <label for="toolName">Tool Name</label>
     <input type="text" name="toolName" id="toolName">
     <label for="description">Description</label>
+    <p>Use "・" as bullet point character</p>
     <input type="text" name="description" id="description">
     <h3>Location</h3>
     <label for="lockerName">lockerName</label>
@@ -63,8 +88,8 @@
 
 
     <select name="category" id="category">
-      <option value="Cleaning and Floocare">Cleaning and Floorcare</option>
-      <option value="Drilling and Breaking">Drilling and Breaking</option>
+      <option value="Power Tools">Power Tools</option>
+      <option value="Cleaning and Floorcare">Cleaning and Floorcare</option>
       <option value="Fans and Heater">Fans and Heater</option>
       <option value="Ladders and Scaffold">Ladders and Scaffold</option>
       <option value="Lifting and Moving">Lifting and Moving</option>
@@ -89,16 +114,34 @@
     <label for="brand">brand</label>
     <input type="text" name="brand" id="brand">
 
-    <label for="imageUrl">imageUrl</label>
-    <input type="text" name="imageUrl" id="imageUrl">
+    <!-- <label for="imageUrl">imageUrl</label>
+    <input type="text" name="imageUrl" id="imageUrl"> -->
 
-    <input type="submit" value="submit" id="submit">
+    <label for="imageUrl">Image</label>
+    <p>*Image file name does not matter</p>
+    <input type="file" name="imageFile" id="imageFile">
+
+    <input type="submit" value="submit" id="submit" class="clickable">
   </main>
-  <rentool-footer></rentool-footer>
+  <footer>
+    <img src="" alt="">
+
+    <div class="social-media">
+      <nav>
+        <ul>
+          <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
+          <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
+              </i> </a></li>
+          <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
+          <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+          <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
+        </ul>
+      </nav>
+    </div>
+    <p>© 2022 Rentool All Rights Reserved.</p>
+  </footer>
 
   <script src="../../js/firebase.js" type="module" defer></script>
-  <!-- <script src="../../js/components/RentoolHeader.js" type="module" defer></script> -->
-  <!-- <script src="../../js/components/RentoolFooter.js" type="module" defer></script> -->
   <script src="../../js/common.js" type="module" defer></script>
 </body>
 
@@ -106,8 +149,8 @@
   import { Location } from '../../js/domain/Location.js'
   import { Tool } from '../../js/domain/Tool.js'
   import { Reservation } from '../../js/domain/Reservation.js'
-  import {getDistanceFromUserLocation, getNearestLocation, isAdminUser} from '../../js/util.js'
-  import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData, signInEmailWithPassword, getAllLocations} from '../../js/firebase.js'
+  import {getDistanceFromUserLocation, getNearestLocation, isAdminUser, movePageTo, PATHS_PAGES} from '../../js/util.js'
+  import {setToolData, getToolsByReservationToolIndex, getReservationsByUserId, updateToolByToolId, setReservationData, signInEmailWithPassword, getAllLocations, uploadFileToCloudStorage} from '../../js/firebase.js'
 
   // signInEmailWithPassword('test@test.com', 'qwertyuiop');
 
@@ -116,68 +159,64 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   if (isAdminUser() === false) {
     alert('This page is for Admin User');
+    movePageTo(PATHS_PAGES.HOME);
     return;
   }
 
-
   locations =await getAllLocations();
-
-  const nearestLocation = await getNearestLocation(locations);
-  console.log('nearestLocation: ', nearestLocation);
-
-
 });
 
 document.getElementById('submit').addEventListener('click', async () => {
-  // const toolId = document.getElementById('toolId').value;
+  try {
   const toolName = document.getElementById('toolName').value;
   const lockerName = document.getElementById('lockerName').value;
-
-  // const address = document.getElementById('address').value;
-  // const latitude = document.getElementById('latitude').value;
-  // const longuitude = document.getElementById('longuitude').value;
-
   const hourlyPrice = document.getElementById('hourlyPrice').value;
   const dailyPrice = document.getElementById('dailyPrice').value;
   const weeklyPrice = document.getElementById('weeklyPrice').value;
   const category = document.getElementById('category').value;
   const size = document.getElementById('size').value;
   const brand = document.getElementById('brand').value;
-  const imageUrl = document.getElementById('imageUrl').value;
+  // const imageUrl = document.getElementById('imageUrl').value;
   const reservationToolIndex = `${toolName}-${brand}-${size}`;
   const description = document.getElementById('description').value
 
-  const tool = {
-    description,
-    toolName,
-    // location:  {
-    //   lockerName,
-    //   address,
-    //   latitude,
-    //   longuitude,
-    // },
-    location: {...locations.filter(location => location.lockerName === lockerName)[0]},
-    category,
-    imageUrl,
-    reservationToolIndex,
-    size,
-    isReserved: false,
-    brand,
-    prices: {
-      hourlyPrice,
-      dailyPrice,
-      weeklyPrice,
-    }
-    };
+  /** @type {File}*/
+  const imageFile = document.getElementById("imageFile").files[0];
+  const imageUrl = await uploadFileToCloudStorage(imageFile, `${new Date()}${imageFile.name}`, 'tools');
+  console.log('imageUrl: ', imageUrl);
 
-    console.log(tool);
-    const result = await setToolData(tool);
-    result && alert(`Success`);
+
+    const tool = {
+      description,
+      toolName,
+      // location:  {
+      //   lockerName,
+      //   address,
+      //   latitude,
+      //   longuitude,
+      // },
+      location: {...locations.filter(location => location.lockerName === lockerName)[0]},
+      category,
+      imageUrl,
+      reservationToolIndex,
+      size,
+      isReserved: false,
+      brand,
+      prices: {
+        hourly: Number.parseFloat(hourlyPrice),
+        daily: Number.parseFloat(dailyPrice),
+        weekly : Number.parseFloat(weeklyPrice),
+      }
+      };
+      console.log(tool);
+
+      const result = await setToolData(tool);
+      result && alert(`Success`);
+    } catch (error) {
+      alert("Fails: " + error);
+    }
 
 });
-
-
-
 </script>
 
 
@@ -191,6 +230,10 @@ document.getElementById('submit').addEventListener('click', async () => {
   main {
     margin-left: 3rem;
     padding: 1rem;
+  }
+
+  input[type="submit"] {
+    margin: 1rem;
   }
 </style>
 

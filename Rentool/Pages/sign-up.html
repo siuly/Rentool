@@ -5,9 +5,16 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
   <title>Sign up</title>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <!-- Toastify.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Toastify.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css" integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
   <link rel="stylesheet" href="../Style/reset.min.css">
@@ -20,37 +27,74 @@
 </head>
 
 <body id="sign-up-page">
-  <div class="wrapper">
-    <header></header>
-    <main>
-      <img src="" alt="Rentool-logo">
-      <h1>Sign Up</h1>
+  <rentool-header></rentool-header>
+  <main>
+    <div class="wrapper">
+      <div class="sign-up-left">
+        <h1>Create An Account</h1>
 
-      <form id="sign-up">
+        <p>Create an online profile to gain access to Rentool contactless powerful tool rental service.</p>
+        <p>You can rent and return tools at any time you want.</p>
 
-        <label for="first-name">First Name</label>
-        <input type="type" placeholder="First Name" name="fname" id="fname" required>
+        <form id="sign-up">
 
-        <label for="last-name">Last Name</label>
-        <input type="type" placeholder="Last Name" name="lname" id="lname" required>
+          <label for="first-name">First Name *</label>
+          <input type="type" name="fname" id="fname" required>
 
-        <label for="email">Email</label>
-        <input type="email" placeholder="Email" name="email" id="email" required>
+          <label for="last-name">Last Name *</label>
+          <input type="type" name="lname" id="lname" required>
 
-        <label for="pswd">Password</label>
-        <input type="password" placeholder="Password" name="pswd" id="pswd" required><!-- Are we going to add the show password option? R.- Yes  -->
+          <label for="email">Email *</label>
+          <input type="email" name="email" id="email" required>
 
-        <label for="cnfrm-pswd">Confirm Password</label>
-        <input type="password" placeholder="Confirm Password" name="cnfrm-pswd" id="cpswd" required>
+          <label for="pswd">Password *</label>
+          <input type="password" name="pswd" id="pswd" required>
 
-        <button type="button" id="cbtn">Cancel</button>
-        <button type="button" id="sbtn">Sign Up</button>
-      </form>
+          <label for="cnfrm-pswd">Confirm Password *</label>
+          <input type="password" name="cnfrm-pswd" id="cpswd" required>
+          <p class="mandatory">* required fields</p>
+          <!-- <button type="button" id="cbtn">Cancel</button> -->
+          <button type="button" id="sbtn">Create Account</button>
+
+
+        </form>
+      </div>
+      <div class="sign-up-features">
+        <h2>Rentool Features</h2>
+        <nav>
+          <ul>
+            <li><i class="fas fa-check"></i>Large tool variety</li>
+            <li><i class="fas fa-check"></i>Mobile Version</li>
+            <li><i class="fas fa-check"></i>Online Reservation</li>
+            <li><i class="fas fa-check"></i>Multiple pickup and return locations</li>
+            <li><i class="fas fa-check"></i>contact-less service</li>
+          </ul>
+        </nav>
+        <img src="" alt="">
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <img src="" alt="">
+
+    <div class="social-media">
+      <nav>
+        <ul>
+          <li>Large tool variety</li>
+          <li>Mobile Version</li>
+          <li>Online Reservation</li>
+          <li>Multiple pickup and return locations</li>
+          <li>contact-less service</li>
+        </ul>
+      </nav>
+      <img src="" alt="">
+    </div>
+    </div>
     </main>
-    <footer>
 
-    </footer>
-  </div>
+    <rentool-footer></rentool-footer>
+
 </body>
 
 </html>

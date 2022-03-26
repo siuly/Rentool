@@ -8,6 +8,10 @@
   <!-- Firebase scripts -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+  <!-- Toastify.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.js" integrity="sha512-79j1YQOJuI8mLseq9icSQKT6bLlLtWknKwj1OpJZMdPt2pFBry3vQTt+NZuJw7NSd1pHhZlu0s12Ngqfa371EA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- Toastify.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastify-js/1.6.1/toastify.min.css" integrity="sha512-UiKdzM5DL+I+2YFxK+7TDedVyVm7HMp/bN85NeWMJNYortoll+Nd6PU9ZDrZiaOsdarOyk9egQm6LOJZi36L2g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <!-- CSS -->
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
@@ -25,37 +29,21 @@
 
 <body id="return-complete">
   <div class="wrapper">
-    <header>
-      <span class="return-icon">
-        <i class="fa-solid fa-less-than"></i>
-      </span>
-      <h2 class="tool-name">Return Complete</h2>
-      <div class="header-right">
-        <i class="fa-solid fa-circle"></i>
-        <i class="fas fa-bars"></i>
-      </div>
-      <div class="input-row">
-        <form action="./product-result.html" method="get" class="input-container">
-          <button class="icon"><i class="fa fa-search"></i></button>
-          <input type="text" placeholder="Search" name="keyword">
-          <i class="fa-solid fa-microphone"></i>
-        </form>
-        <i class="fa-solid fa-align-right"></i>
-      </div>
-    </header>
+    <rentool-header></rentool-header>
+
     <main>
       <h3>Return Complete!</h3>
-      <img alt="" src="https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/return-complete.png?alt=media&token=9363cedc-38c2-40bd-9a3d-2f80f2ba213c" height="164" width="168">
-      <p class="return-complete__thanks"> Thanks for choosing Rentool!</p>
-      <p class="return-complete__message">
-        After two days inspection, deposit will directly back to your card.
-      </p>
+      <div class="return-complete">
+        <img alt="" src="https://firebasestorage.googleapis.com/v0/b/rentool-4a9e6.appspot.com/o/return-complete.png?alt=media&token=9363cedc-38c2-40bd-9a3d-2f80f2ba213c" height="164" width="168">
+        <p class="return-complete__thanks"> Thanks for choosing Rentool!</p>
+        <p class="return-complete__message">
+          After two days inspection, deposit will directly back to your card.
+        </p>
 
-      <a href="./product-result.html" class="find-more-button button-util clickable"> Find More Tools</a>
+        <a href="./product-result.html" class="find-more-button button-util clickable"> Find More Tools</a>
+      </div>
     </main>
-    <footer>
-
-    </footer>
+    <rentool-footer></rentool-footer>
   </div>
 
 </body>

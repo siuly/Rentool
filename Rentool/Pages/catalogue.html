@@ -10,11 +10,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
-  <link rel="stylesheet" href="../Style/catagolue.css">
+  <link rel="stylesheet" href="../Style/catalogue.css">
 
-
-  <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <script src="../js/common.js" type="module" defer></script>
   <script src="../js/catalogue.js" type="module" defer></script>
@@ -25,50 +23,36 @@
 
 <body id="catalogue">
   <div class="wrapper">
-    <header>
-      <h1>Rentool</h1>
-      <div class="header-left">
-        <button id="toggle"><i class="fas fa-bars"></i>
-          <div>MENU</div>
-        </button>
-        <nav id="menu">
-          <ul>
-            <li><a href="">My Account</a></li>
-            <li><a href="catalogue.html">Tool Catalogue</a></li>
-            <li><a href="./active-orders.html">My Active Orders</a></li>
-            <li><a href="./catalogue.html">Tool Catalogue</a></li>
-            <li><a href="">Locations</a></li>
-            <li><a href="">User Profile</a></li>
-            <li><a href="">About Rentool</a></li>
-            <li><a href="">Help</a></li>
-            <li id="sign-status"><a href="">Sign out</a></li>
-          </ul>
-        </nav>
-      </div>
-
-    </header>
+    <rentool-header></rentool-header>
     <main>
+      <div class="title">
+        <i class="fas fa-chevron-left"></i>
+        <h1 class="catalogue-title">Tool Catalogue</h1>
+      </div>
       <div class="category-wrapper">
+
         <div class="category-item clickable">
-          <a href="./product-result.html?category=Cleaning and Floocare" class="category-link">
-            <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Cleaning and Floocare" class="category-item__image">
+          <a href="./product-result.html?category=Power Tools" class="category-link">
+            <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Power Tools" class="category-item__image">
             <span class="category-link__text">
-              Cleaning and Floocare
+              Power Tools
             </span>
           </a>
         </div>
 
         <div class="category-item clickable">
-          <a href="./product-result.html?category=Drilling & Breaking" class="category-link">
-            <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Drilling & Breaking" class="category-item__image">
+          <a href="./product-result.html?category=Cleaning and Floorcare" class="category-link">
+            <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Cleaning and Floorcare" class="category-item__image">
             <span class="category-link__text">
-              Drilling & Breaking
+              Cleaning and Floorcare
             </span>
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
-          <a href="./product-result.html?category=Fans & Heater" class="category-link">
+
+
+        <div class="category-item clickable">
+          <a href="./product-result.html?category=Fans and Heater" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Fans & Heater" class="category-item__image">
             <span class="category-link__text">
               Fans & Heater
@@ -76,8 +60,8 @@
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
-          <a href="./product-result.html?category=Lighting & Electrical" class="category-link">
+        <div class="category-item clickable">
+          <a href="./product-result.html?category=Lighting and Electrical" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Lighting & Electrical" class="category-item__image">
             <span class="category-link__text">
               Lighting & Electrical
@@ -85,8 +69,8 @@
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
-          <a href="./product-result.html?category=Pumps & Plumbing" class="category-link">
+        <div class="category-item clickable">
+          <a href="./product-result.html?category=Pumps and Plumbing" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Pumps & Plumbing" class="category-item__image">
             <span class="category-link__text">
               Pumps & Plumbing
@@ -94,8 +78,8 @@
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
-          <a href="./product-result.html?category=Ladders & Scaffold" class="category-link">
+        <div class="category-item clickable">
+          <a href="./product-result.html?category=Ladders and Scaffold" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Ladders & Scaffold" class="category-item__image">
             <span class="category-link__text">
               Ladders & Scaffold
@@ -103,8 +87,8 @@
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
-          <a href="./product-result.html?category=Lifting & Moving" class="category-link">
+        <div class="category-item clickable">
+          <a href="./product-result.html?category=Lifting and Moving" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Lifting & Moving" class="category-item__image">
             <span class="category-link__text">
               Lifting & Moving
@@ -112,8 +96,8 @@
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
-          <a href="./product-result.html?category=Painting & Decoration" class="category-link">
+        <div class="category-item clickable">
+          <a href="./product-result.html?category=Painting and Decoration" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Painting & Decoration" class="category-item__image">
             <span class="category-link__text">
               Painting & Decoration
@@ -121,7 +105,7 @@
           </a>
         </div>
 
-        <div class="category-item clickable disabled-item">
+        <div class="category-item clickable">
           <a href="./product-result.html?category=Gardening" class="category-link">
             <img src="https://images.unsplash.com/photo-1510808718278-4419aba7dc9e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80" alt="Gardening" class="category-item__image">
             <span class="category-link__text">
@@ -132,24 +116,10 @@
 
       </div>
 
-      <footer>
-        <img src="" alt="">
 
-        <div class="social-media">
-          <nav>
-            <ul>
-              <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-              <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-                  </i> </a></li>
-              <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-              <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-              <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-            </ul>
-          </nav>
-        </div>
-        <p>© 2022 Rentool All Rights Reserved.</p>
-      </footer>
     </main>
+
+    <rentool-footer></rentool-footer>
   </div>
 </body>
 

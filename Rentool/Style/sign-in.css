@@ -1,10 +1,15 @@
-main {
+.sign-in-left {
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: column nowrap;
     align-items: center;
+    justify-content: center;
     gap: 1rem;
 }
-label {
+#sign-in div main div.sign-in-left img {
+    display: none;
+}
+
+/* label {
     clip: rect(0 0 0 0);
     clip-path: inset(50%);
     height: 1px;
@@ -12,4 +17,120 @@ label {
     position: absolute;
     white-space: nowrap;
     width: 1px;
+} */
+.sign-in-left img {
+    margin-top: 20px;
+    width: 15%;
+}
+#sign-in-h1 {
+    display: unset;
+    margin: 4rem 0 0 0;
+}
+
+#sign-in-h1 {
+    align-self: start;
+    padding-left: 2rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: unset;
+}
+
+#sign-in div main div.sign-in-left label:nth-child(3),
+#sign-in div main div.sign-in-left label:nth-child(6) {
+    align-self: start;
+    padding-left: 2rem;
+    font-weight: bold;
+    font-size: 1rem;
+    font-family: "Raleway", sans-serif;
+}
+
+#email,
+#pswd {
+    flex: 1 0 100%;
+    max-height: 2rem;
+    min-width: 90vw;
+    margin: 0 2rem;
+}
+
+#sign-in div main div.sign-in-left label:nth-child(5),
+#sign-in div main div.sign-in-left div {
+    align-self: start;
+    padding-left: 2rem;
+    font-size: 0.8rem;
+}
+
+#sign-in div main div.sign-in-left div a {
+    color: black;
+}
+#sign-in-btn,
+#cbtn {
+    font-family: "Raleway", sans-serif;
+    font-size: 1.2rem;
+    margin: 2rem auto;
+    border: 2px solid #3ea8dd;
+    padding: 12px 28px;
+    border-radius: 5px;
+    color: #3ea8dd;
+    font-weight: bold;
+}
+#cbtn {
+    margin: 0.5rem auto;
+    padding: 12px 36px;
+}
+
+#sign-in div main div.sign-in-left label:nth-child(10) {
+    line-height: 0;
+    font-family: "Raleway", sans-serif;
+    color: #d6d1d1;
+}
+.sign-in-rigth {
+    display: none;
+}
+
+@media screen and (min-width: 800px) {
+    main {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 4fr 1fr;
+        padding-bottom: 2rem;
+    }
+    #email,
+    #pswd {
+        flex: 1 0 50%;
+        min-width: 45vw;
+    }
+    .sign-in-left {
+        grid-column: 1;
+        grid-row: 1/-1;
+    }
+    .sign-in-rigth {
+        display: flex;
+        flex-flow: column nowrap;
+        grid-column: 2;
+        grid-row: 2;
+        justify-content: center;
+        align-items: center;
+    }
+    .sign-in-rigth h2 {
+        font-weight: bold;
+    }
+
+    .fa-check {
+        color: #3ea8dd;
+        padding-right: 1rem;
+    }
+
+    #main-image {
+        max-width: 40%;
+        height: auto;
+    }
+    #sign-in-h1 {
+        font-size: 3rem;
+    }
+    #main-image {
+        margin-top: 0.5rem;
+    }
+    #sign-in div main div.sign-in-rigth ul {
+        line-height: 1.5rem;
+    }
 }

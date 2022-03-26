@@ -1,31 +1,122 @@
-
 img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  border-radius: 5px;
 }
-#product-detail {
-  margin-left: auto;
-  margin-right: auto;
-  /* text-align: center; */
-}
+
+
 #product-detail div {
   margin-top: 1rem;
-  text-align: center;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
 }
 .product-category {
-  display: grid;
-  grid-template-columns: 1fr 9fr;
-  grid-template-rows: 1fr;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  
+  padding: 0 2rem 1rem 2rem;
+  border-bottom: 1px solid black;
 }
-.product-category div {
-  grid-column: 1;
-  grid-row: 1;
-}
+
+
 .product-category h2 {
-  grid-column: 2;
-  grid-row: 1;
-} 
+  grid-column: 2/-1;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.product-category button i.fa-chevron-left {
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-start;
+  text-align: left;
+  font-size: 1.5rem;
+}
+
+.available-status::before{
+  font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free";
+  content: '\f058';
+  padding-right: 2rem;
+  color: var(--color-secondary-variant);
+}
+
+div#location-container{
+  font-family: "Font Awesome 6 Brands", "Font Awesome 6 Free";
+  content: '\f3c5';
+  padding-right: 2rem;
+  color: var(--color-secondary-variant);
+}
+
+.reservation-btn {
+  text-align: center;
+}
+
+.view-product-submit-btn {
+  padding: 1rem;
+  margin: 1rem;
+
+  border-radius: 5px;
+  font-size: 1rem;
+  box-shadow: 2px 2px 5px rgb(122 121 121 / 40%);
+
+}
+
+.nearest-location {
+  width: 90%;
+  margin: 0 auto;
+}
+
+
+.view-product-first{
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.product-name-location-status {
+  margin-bottom: 3rem;
+}
+
+
+table.price-table {
+  margin-right: 0;
+  margin-top: 1rem;
+  width: -webkit-fill-available;
+}
+
+tr {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0rem;
+  gap: 1rem;
+}
+
+h3.product-description-title {
+  margin-top: 3rem;
+}
+
+p.product-description__line {
+  padding: 0.5rem 0rem;
+  line-height: 1.5;
+}
+
+@media screen and (min-width: 500px) {
+  .product-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1rem;
+  }
+
+  .product-name-price h3 {
+    text-align: left;
+  }
+  
+}
