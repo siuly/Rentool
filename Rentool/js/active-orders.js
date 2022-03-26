@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           <div class="active-order__text">
             <p class="active-order__text--toolName">${toolName}</p>
             <p class="active-order__text--returnDate">Return Due: ${endDate}</p>
-            <p class="active-order__text--pickDate">Pick date:${startDate}</p>
+            <p class="active-order__text--pickDate">Pick date: ${startDate}</p>
           </div>
           <a href="${`${PATH_RETURN_PAGE}?reservationId=${reservationId}`}" class="active-order__return-link">
             <div class="active-order__return-link--text">Return</div>
