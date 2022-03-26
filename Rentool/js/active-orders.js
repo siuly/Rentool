@@ -1,12 +1,14 @@
 import { Reservation } from './domain/Reservation.js';
 import { getReservationsByUserId, getToolByToolId } from './firebase.js';
-import { readUserId, filterNotSignedInUser } from './util.js';
+import { readUserId, filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES } from './util.js';
 
 filterNotSignedInUser();
 
 const PATH_RETURN_PAGE = './return-tool.html';
 
 document.addEventListener('DOMContentLoaded', async () => {
+  setOnPageClassToMenuItem(PATHS_PAGES.ACTIVE_ORDERS);
+
   const userId = readUserId();
 
   /**@type {Reservation[]} */
