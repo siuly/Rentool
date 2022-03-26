@@ -301,6 +301,7 @@ button#submit-btn {
 	font-size: 1rem;
 	font-weight: 700;
 	color: #3EA8DD;
+	margin-bottom: 1rem;
 }
 #photo-btn {
 	margin-left: auto;
