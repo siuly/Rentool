@@ -50,6 +50,13 @@ h3 {
 .profile-pic .edit {
   padding: 2rem;
   text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 .edit-profile,
@@ -131,6 +138,13 @@ form .address label {
   background-color: white;
   align-self: center;
   text-align: center;
+}
+
+.edit label {
+  text-decoration: underline;
+}
+input[type="file" i]::-webkit-file-upload-button {
+  display: none;
 }
 
 @media screen and (min-width: 800px) {
