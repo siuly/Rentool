@@ -1,6 +1,6 @@
 import { User } from './domain/User.js';
-import { fetchUserByUserId, updateUserByUserId, uploadFileToCloudStorage } from './firebase.js';
-import { filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES, readUserId } from './util.js';
+import { fetchUserByUserId, updateUserByUserId, updateUserEmail, uploadFileToCloudStorage } from './firebase.js';
+import { filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES, readUserId, movePageTo } from './util.js';
 
 filterNotSignedInUser();
 setOnPageClassToMenuItem(PATHS_PAGES.USER_PROFILE);
@@ -26,6 +26,9 @@ const submitButtonEl = document.getElementById('submit-button');
 /**@type {File | null} */
 let updatedImage = null;
 
+/**@type {User} */
+let oldUser = null;
+
 (async () => {
   const user = await fetchUserByUserId(readUserId());
   if (user === null) {
@@ -40,6 +43,8 @@ let updatedImage = null;
   if (user.profileUrl !== '') {
     profileImageEl.src = user.profileUrl;
   }
+
+  oldUser = user;
 })();
 
 imageInputEl.addEventListener('change', (event) => {
@@ -67,11 +72,25 @@ submitButtonEl.addEventListener('click', async (event) => {
       profileUrl: '',
     });
 
+    if (user.email !== oldUser.email) {
+      await updateUserEmail(user.email);
+    }
+
     if (updatedImage !== null) {
       user.profileUrl = await uploadFileToCloudStorage(updatedImage, `${new Date()}${updatedImage.name}`, 'users');
     }
-    const updateResult = await updateUserByUserId(readUserId(), user);
+    await updateUserByUserId(readUserId(), user);
+    movePageTo(PATHS_PAGES.USER_PROFILE);
+
   } catch (error) {
+    Toastify({
+      text: `${error}`,
+      close: true,
+      gravity: 'top',
+      position: 'center',
+      className: 'error',
+      duration: DURATION_TOAST_DISPLAY,
+    }).showToast();
     console.log('error: ', error);
   }
 });

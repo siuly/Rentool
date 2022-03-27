@@ -263,3 +263,4 @@ export const setOnPageClassToMenuItem = (page) => {
     return false;
   }
 };
+

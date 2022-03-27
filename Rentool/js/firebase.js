@@ -405,3 +405,20 @@ export const updateUserByUserId = async (userId, user) => {
     return false;
   }
 };
+
+
+/**
+ * @description Update sign-in email
+ * @async
+ * @param {string} newEmail
+ * @returns {Promise<boolean>}
+ */
+export const updateUserEmail = async (newEmail) => {
+  try {
+    await firebaseAuth.currentUser.updateEmail(newEmail);
+    return true;
+  } catch (error) {
+    console.log('error: ', error);
+    return error;
+  }
+};
