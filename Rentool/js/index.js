@@ -1,18 +1,5 @@
-// Import the functions you need from the SDKs you need
-
 import { movePageTo, PATHS_PAGES, SaveUserId } from './util.js';
 import { createUserAccountWithEmailAndPassword } from './firebase.js';
-
-// import {initializeApp } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js';
-// import { getAuth, createUserWithEmailAndPassword  } from 'https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js';
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-// import { homePage } from './util';
-
-
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
@@ -38,10 +25,6 @@ class User {
 }
 
 
-// Initialize Firebase
-// const app = firebase.initializeApp(firebaseConfig);
-
-
 function comparepswd() {
   let pass = document.getElementById('pswd');
   let pass2 = document.getElementById('cpswd');
@@ -56,11 +39,7 @@ function comparepswd() {
       duration: DURATION_TOAST_DISPLAY,
     }).showToast();
   }
-
 }
-// Test user information. This information should be from user input
-// const  email = 'test@gmail.com';
-// const password = '12345678';
 
 
 let firestore = firebase.firestore();
@@ -92,7 +71,6 @@ submitbtn.addEventListener('click', async (event) => {
 
   const userId = await createUserAccountWithEmailAndPassword(email.value, password.value);
 
-
   db.doc(userId).set({
     FirstName: firstName.value,
     LastName: lastName.value,
@@ -111,8 +89,6 @@ submitbtn.addEventListener('click', async (event) => {
 let cancelBtn = document.getElementById('cbtn');
 
 cancelBtn.addEventListener('click', () => {
-
   console.log('you clicked');
   movePageTo(PATHS_PAGES.SIGN_IN);
-
 });
