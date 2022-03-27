@@ -259,6 +259,9 @@ header .fas.fa-bars {
 		margin: 0;
 		line-height: unset;
 	}
+	#menu li:not(:last-of-type) a {
+		padding: 0;
+	}
 	.onDisplayPage {
 		position: relative;
 	}
