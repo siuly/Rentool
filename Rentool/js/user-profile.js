@@ -1,5 +1,5 @@
 import { fetchUserByUserId } from './firebase.js';
-import { filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES, readUserId } from './util.js';
+import { filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES, readUserId, RANDOM_IMAGE_URL } from './util.js';
 
 filterNotSignedInUser();
 setOnPageClassToMenuItem(PATHS_PAGES.USER_PROFILE);
@@ -23,8 +23,7 @@ const profileImage = document.getElementById('profile-image');
   emailEl.textContent = user.email === '' ? '-' : user.email;
   phoneNumberEl.textContent = user.phone === '' ? '-' : user.phone;
   addressEl.textContent = user.address === '' ? '-' : user.address;
-  if (user.profileUrl !== '') {
-    profileImage.src = user.profileUrl;
-  }
+
+  profileImage.src = user.profileUrl === '' ? RANDOM_IMAGE_URL : user.profileUrl;
 
 })();
