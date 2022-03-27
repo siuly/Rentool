@@ -96,7 +96,8 @@ submitbtn.addEventListener('click', async (event) => {
   db.doc(userId).set({
     FirstName: firstName.value,
     LastName: lastName.value,
-    createdAt: new Date()
+    createdAt: new Date(),
+    email: email.value,
   }).then(() => {
     console.log('Data saved');
     SaveUserId(userId);

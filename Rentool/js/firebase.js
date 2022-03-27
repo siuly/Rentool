@@ -2,6 +2,7 @@
 import { Reservation } from './domain/Reservation.js';
 import { Location } from './domain/Location.js';
 import { DURATION_TOAST_DISPLAY } from './util.js';
+import { User } from './domain/User.js';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyA7JwpO8rrYXgeKfiokAoymg2vJia3h7Nc',
@@ -363,6 +364,24 @@ export const uploadFileToCloudStorage = async (file, filename, uploadDirectory) 
     return downloadUrl;
   } catch (error) {
     console.log('error: ', error);
+    return null;
+  }
+};
+
+/**
+ * @description Fetch user data by user id
+ * @param {string} userId
+ * @returns {Promise<User | null>} downloadUrl
+ *
+ */
+export const fetchUserByUserId = async (userId) => {
+  if (userId === null) { return; }
+  try {
+    const userDoc = await db.collection('Users').doc(userId).get();
+    //@NOTE: User can contain undefined values. To avoid error, explicitly instantiate
+    return new User({ ...userDoc.data() });
+  } catch (error) {
+    console.error(error);
     return null;
   }
 };
