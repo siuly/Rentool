@@ -385,3 +385,23 @@ export const fetchUserByUserId = async (userId) => {
     return null;
   }
 };
+
+
+/**
+ * @description Update user data
+ * @async
+ * @param {string} userId
+ * @param {User} user
+ * @returns {Promise<boolean>}
+ */
+export const updateUserByUserId = async (userId, user) => {
+  if (!user) { return; }
+
+  try {
+    await db.collection('Users').doc(userId).update({ ...user });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};

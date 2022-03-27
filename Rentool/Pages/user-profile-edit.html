@@ -6,13 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <!-- Firebase scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js" defer></script>
   <link rel="stylesheet" href="../Style/reset.min.css">
   <link rel="stylesheet" href="../Style/common.css">
   <script src="https://kit.fontawesome.com/6a7644190b.js" crossorigin="anonymous"></script>
   <script src="../js/common.js" defer type="module"></script>
-  <script src="../js/user-profile.js" defer type="module"></script>
+  <script src="../js/user-profile-edit.js" defer type="module"></script>
 
   <!-- Import your own css -->
   <link rel="stylesheet" href="../Style/user-profile.css">
@@ -28,8 +31,9 @@
     <main>
       <h2>User Profile</h2>
       <div class="profile-pic">
-        <img src="https://picsum.photos/300/300?rand" alt="user profile picture">
+        <img src="https://picsum.photos/300/300?rand" alt="user profile picture" id="profile-image">
         <div class="edit">
+          <input type="file" id="img-file" accept="image/*">
           <a href="#">Update Profile Picture</a>
         </div>
       </div>
@@ -37,7 +41,7 @@
       <div class="line"></div>
 
       <div class="edit-profile">
-        <form>
+        <form id="form-profile">
 
           <div class="fname">
             <label for="fname">First name:</label>
@@ -62,7 +66,7 @@
         </form>
       </div>
       <div class="submit">
-        <a href="user-profile.html"><input type="submit" class="save-changes" value="Save Changes"></a>
+        <a href="user-profile.html" id="submit-button"><input type="submit" class="save-changes" value="Save Changes"></a>
       </div>
 
     </main>
