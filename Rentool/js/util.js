@@ -229,18 +229,25 @@ export const isAdminUser = () => {
  * @returns
  */
 export const filterNotSignedInUser = (durationToSendPage = 3000, pageMoveTo = PATHS_PAGES.SIGN_IN) => {
+
   if (readUserId() === null) {
-    Toastify({
-      text: 'Please Sign-in if you want to fully use this application',
-      close: true,
-      gravity: 'top',
-      position: 'center',
-      className: 'error',
-      duration: DURATION_TOAST_DISPLAY,
-    }).showToast();
+    try {
+      Toastify({
+        text: 'Please Sign-in if you want to fully use this application',
+        close: true,
+        gravity: 'top',
+        position: 'center',
+        className: 'error',
+        duration: DURATION_TOAST_DISPLAY,
+      }).showToast();
+    } catch (error) {
+      console.log('error: ', error);
+    }
+
     setTimeout(() => { movePageTo(pageMoveTo); }, durationToSendPage);
   }
 };
+
 
 /**
  * @description Set onDisplayPage class to the header item
