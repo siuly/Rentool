@@ -59,6 +59,8 @@ export const getUrlParams = () => {
 };
 
 
+export const RANDOM_IMAGE_URL = 'https://picsum.photos/300/300?rand';
+
 
 
 /** src: https://www.geodatasource.com/developers/javascript */
@@ -263,4 +265,3 @@ export const setOnPageClassToMenuItem = (page) => {
     return false;
   }
 };
-

@@ -1,6 +1,6 @@
 import { User } from './domain/User.js';
 import { fetchUserByUserId, updateUserByUserId, updateUserEmail, uploadFileToCloudStorage } from './firebase.js';
-import { filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES, readUserId, movePageTo } from './util.js';
+import { filterNotSignedInUser, setOnPageClassToMenuItem, PATHS_PAGES, readUserId, movePageTo, RANDOM_IMAGE_URL } from './util.js';
 
 filterNotSignedInUser();
 setOnPageClassToMenuItem(PATHS_PAGES.USER_PROFILE);
@@ -39,11 +39,7 @@ let oldUser = null;
   emailInputEl.value = user.email;
   phoneInputEl.value = user.phone;
   addressInputEl.value = user.address;
-
-  if (user.profileUrl !== '') {
-    profileImageEl.src = user.profileUrl;
-  }
-
+  profileImageEl.src = user.profileUrl === '' ? RANDOM_IMAGE_URL : user.profileUrl;
   oldUser = user;
 })();
 
