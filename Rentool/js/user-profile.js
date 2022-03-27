@@ -9,6 +9,8 @@ const fullNameEl = document.getElementById('full-name');
 const emailEl = document.getElementById('email');
 const phoneNumberEl = document.getElementById('phone-number');
 const addressEl = document.getElementById('address');
+/**@type {HTMLImageElement} */
+const profileImage = document.getElementById('profile-image');
 
 
 (async () => {
@@ -21,6 +23,8 @@ const addressEl = document.getElementById('address');
   emailEl.textContent = user.email;
   phoneNumberEl.textContent = user.phone;
   addressEl.textContent = user.address;
-
+  if (user.profileUrl !== '') {
+    profileImage.src = user.profileUrl;
+  }
 
 })();
