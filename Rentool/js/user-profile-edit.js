@@ -36,7 +36,7 @@ let oldUser = null;
   }
   firstNameInputEl.value = user.firstName;
   lastNameInputEl.value = user.lastName;
-  emailInputEl.value = user.email;
+  emailInputEl.value = user.email === '' ? firebase.auth().currentUser.email : user.email;
   phoneInputEl.value = user.phone;
   addressInputEl.value = user.address;
   profileImageEl.src = user.profileUrl === '' ? RANDOM_IMAGE_URL : user.profileUrl;

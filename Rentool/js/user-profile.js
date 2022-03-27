@@ -20,10 +20,10 @@ const profileImage = document.getElementById('profile-image');
   }
 
   fullNameEl.textContent = user.fullName();
-  emailEl.textContent = user.email === '' ? '-' : user.email;
   phoneNumberEl.textContent = user.phone === '' ? '-' : user.phone;
   addressEl.textContent = user.address === '' ? '-' : user.address;
 
   profileImage.src = user.profileUrl === '' ? RANDOM_IMAGE_URL : user.profileUrl;
 
+  emailEl.textContent = user.email === '' ? firebase.auth().currentUser.email : user.email;
 })();
