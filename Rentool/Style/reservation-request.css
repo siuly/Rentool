@@ -2,82 +2,9 @@ body {
   margin: 0;
 }
 
-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1rem;
-  background-color: #fab328;
-  height: auto;
-}
-
-header h1 {
-  grid-column: 2;
-  text-align: center;
-  font-family: "Raleway", sans-serif;
-  font-weight: 700;
-  line-height: 20px;
-  font-size: 36px;
-}
-
-.header-left {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: center;
-  margin-left: 10px;
-}
-header button {
-  border: none;
-  background-color: unset;
-}
-
-header button div {
-  font-family: "Roboto", sans-serif;
-  font-size: 12px;
-  line-height: 20px;
-}
 div #reservation-time label{
   font-family: "Roboto", sans-serif;
   align-self: center;
-}
-#menu {
-  position: absolute;
-  top: 70px;
-  height: 60%;
-  padding-top: 20px;
-  width: 50%;
-  left: -51%;
-  background-color: white;
-  transition: 0.5s;
-}
-
-#menu.active {
-  left: 0;
-}
-
-#menu li {
-  list-style: none;
-  color: black;
-  line-height: 2;
-  padding-left: 30px;
-  margin-right: 10px;
-  margin-top: 10px;
-  box-shadow: 0 7px 8px -7px #222;
-}
-#menu li:nth-of-type(6) {
-  list-style: none;
-  color: black;
-  line-height: 2;
-  margin-right: 0;
-  margin-top: 15px;
-  box-shadow: none;
-  text-align: right;
-}
-#menu a {
-  text-decoration: none;
-  color: black;
-}
-#menu ul {
-  padding: 0;
 }
 
 /* Main */

@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (signInUserId === null) {
       filterNotSignedInUser(1000);
     } else {
-      movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${reservationToolIndex}`);
+      movePageTo(PATHS_PAGES.RESERVATION_REQUEST, `?reservationToolIndex=${encodeURIComponent(reservationToolIndex)}`);
     }
   });
 });

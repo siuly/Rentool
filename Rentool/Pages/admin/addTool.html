@@ -9,9 +9,9 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js" defer></script>
-
-  <link rel="stylesheet" href="../../Style/common.css">
   <link rel="stylesheet" href="../../Style/reset.min.css">
+  <link rel="stylesheet" href="../../Style/common.css">
+
 
   <!-- CSS for loading animation -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/three-dots/0.2.3/three-dots.min.css" integrity="sha512-phLdfZOlarjP3HG/eEMoFHm4ZJ6P4LQJUWgAiTVuvE0hh2UEGIm10jfxYROhWDdd/LrTkGPd0jSx3bACtl9gBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,35 +24,38 @@
 <body>
 
   <header>
+    <a href="../home.html" class="logo"><img src="../../images/logo-full.svg" alt="rentool-logo" class="logo__image"></a>
     <h1><a href="../home.html">Rentool</a></h1>
     <div class="header-left">
       <button id="toggle"><i class="fas fa-bars"></i>
-        <div>MENU</div>
       </button>
       <nav id="menu">
         <ul>
-          <li><a href="./my-account.html">My Account</a></li>
-          <li><a href="./catalogue.html">Tool Catalogue</a></li>
-          <li><a href="./active-orders.html">My Active Orders</a></li>
-          <li><a href="./catalogue.html">Tool Catalogue</a></li>
-          <li><a href="./locations.html">Locations</a></li>
-          <li><a href="./user-profile.html">User Profile</a></li>
-          <li><a href="./about-rentool.html">About Rentool</a></li>
-          <li><a href="./help.html">Help</a></li>
+          <li><a href="../active-orders.html">My Active Orders <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../catalogue.html">Tool Catalogue <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../user-profile.html">User Profile <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../services.html">Services <i class="fa-solid fa-caret-right"></i></a></li>
+          <li><a href="../reference.html">Reference <i class="fa-solid fa-caret-right"></i></a></li>
           <li id="sign-status"><a href="" id="sign-out">Sign out</a></li>
         </ul>
       </nav>
     </div>
-
+    <div class="input-row">
+      <form action="./product-result.html" method="get" class="input-container">
+        <button class="icon"><i class="fa fa-search"></i></button>
+        <input type="text" placeholder="Search" name="keyword">
+      </form>
+    </div>
   </header>
   <main>
 
 
     <!-- <label for="toolId">toolId</label>
   <input type="text" name="toolId" id="toolId"> -->
-    <label for="toolName">toolName</label>
+    <label for="toolName">Tool Name</label>
     <input type="text" name="toolName" id="toolName">
     <label for="description">Description</label>
+    <p>Use "・" as bullet point character</p>
     <input type="text" name="description" id="description">
     <h3>Location</h3>
     <label for="lockerName">lockerName</label>
@@ -85,8 +88,8 @@
 
 
     <select name="category" id="category">
-      <option value="Cleaning and Floocare">Cleaning and Floorcare</option>
-      <option value="Drilling and Breaking">Drilling and Breaking</option>
+      <option value="Power Tools">Power Tools</option>
+      <option value="Cleaning and Floorcare">Cleaning and Floorcare</option>
       <option value="Fans and Heater">Fans and Heater</option>
       <option value="Ladders and Scaffold">Ladders and Scaffold</option>
       <option value="Lifting and Moving">Lifting and Moving</option>
@@ -115,9 +118,10 @@
     <input type="text" name="imageUrl" id="imageUrl"> -->
 
     <label for="imageUrl">Image</label>
+    <p>*Image file name does not matter</p>
     <input type="file" name="imageFile" id="imageFile">
 
-    <input type="submit" value="submit" id="submit">
+    <input type="submit" value="submit" id="submit" class="clickable">
   </main>
   <footer>
     <img src="" alt="">
@@ -163,7 +167,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 document.getElementById('submit').addEventListener('click', async () => {
-
+  try {
   const toolName = document.getElementById('toolName').value;
   const lockerName = document.getElementById('lockerName').value;
   const hourlyPrice = document.getElementById('hourlyPrice').value;
@@ -178,36 +182,40 @@ document.getElementById('submit').addEventListener('click', async () => {
 
   /** @type {File}*/
   const imageFile = document.getElementById("imageFile").files[0];
-  const imageUrl = await uploadFileToCloudStorage(imageFile, imageFile.name, 'tools');
+  const imageUrl = await uploadFileToCloudStorage(imageFile, `${new Date()}${imageFile.name}`, 'tools');
   console.log('imageUrl: ', imageUrl);
 
 
+    const tool = {
+      description,
+      toolName,
+      // location:  {
+      //   lockerName,
+      //   address,
+      //   latitude,
+      //   longuitude,
+      // },
+      location: {...locations.filter(location => location.lockerName === lockerName)[0]},
+      category,
+      imageUrl,
+      reservationToolIndex,
+      size,
+      isReserved: false,
+      brand,
+      prices: {
+        hourly: Number.parseFloat(hourlyPrice),
+        daily: Number.parseFloat(dailyPrice),
+        weekly : Number.parseFloat(weeklyPrice),
+      }
+      };
+      console.log(tool);
 
-  const tool = {
-    description,
-    toolName,
-    // location:  {
-    //   lockerName,
-    //   address,
-    //   latitude,
-    //   longuitude,
-    // },
-    location: {...locations.filter(location => location.lockerName === lockerName)[0]},
-    category,
-    imageUrl,
-    reservationToolIndex,
-    size,
-    isReserved: false,
-    brand,
-    prices: {
-      hourly: Number.parseFloat(hourlyPrice),
-      daily: Number.parseFloat(dailyPrice),
-      weekly : Number.parseFloat(weeklyPrice),
+      const result = await setToolData(tool);
+      result && alert(`Success`);
+    } catch (error) {
+      alert("Fails: " + error);
     }
-    };
-    console.log(tool);
-    const result = await setToolData(tool);
-    result && alert(`Success`);
+
 });
 </script>
 
@@ -222,6 +230,10 @@ document.getElementById('submit').addEventListener('click', async () => {
   main {
     margin-left: 3rem;
     padding: 1rem;
+  }
+
+  input[type="submit"] {
+    margin: 1rem;
   }
 </style>
 

@@ -11,7 +11,7 @@ export class ToolListItem extends HTMLElement {
 
     this.classList.add('tool-list__item');
     this.innerHTML = `
-    <a href="./view-product.html?reservationToolIndex=${reservationToolIndex}" class="link-view-product">
+    <a href="./view-product.html?reservationToolIndex=${encodeURIComponent(reservationToolIndex)}" class="link-view-product">
       <div class="tool-item__image-container">
         <img src="${imageUrl}" alt="${toolName}" class="tool-item__image">
       </div>
