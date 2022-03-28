@@ -1,22 +1,28 @@
 main {
 	padding-bottom: 2rem;
+	/* margin: auto; */
 }
 
 header #toggle div {
 	display: none;
 }
 .category-wrapper {
+
 	display: grid;
+	grid-template-columns: 1fr;
+	margin: 2rem auto 0 auto;
+	padding: 0 2rem;
+	gap: 1rem;
 	justify-items: center;
 	align-items: center;
-	gap: 1rem;
-	margin: 0 auto;
-	padding-top: 2rem;
 }
-.category-item {
-	border: 1px solid grey;
-	width: 358px;
+
+.category-item.clickable {
+	box-shadow: 2px 2px 5px rgb(122 121 121 / 40%);
+	border-radius: 5px;
 }
+
+
 .category-image {
 	width: 100%;
 }
@@ -39,7 +45,12 @@ a {
 	font-size: 18px;
 	color: black;
 	padding-top: 12px;
+
+	border-top: 5px solid #fab328;
 }
+
+
+
 .input-row input {
 	border: none;
 	font-size: 24px;
@@ -64,30 +75,42 @@ form button {
 .input-row input::placeholder {
 	color: #d6d1d1;
 }
+
 h1.catalogue-title {
-	padding-top: 16px;
+	display: unset;
+	/* padding-top: 16px;
 	text-align: center;
 	font-family: "Raleway", sans-serif;
 	font-weight: 700;
 	font-size: 24px;
-	grid-column: 2/8;
+	grid-column: 2/-1; */
+
+	grid-column: 2 / span 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+
 }
 .title {
 	display: grid;
-	grid-template-columns: repeat(8, 1fr);
-	align-items: center;
-	border-bottom: solid 1px black;
-	padding-bottom: 15px;
+	grid-template-columns: repeat(4, 1fr);
+	height: var(--height-page-heading);
+	border-bottom: 1px solid #222222;
+
 }
 .title i {
 	padding-top: 17px;
 	padding-left: 27px;
 	font-size: 20px;
 }
-img.category-item__image {
-	width: 357px;
-	height: 149px;
-	border-bottom: 4px solid #fab328;
+
+.category-item__image {
+	width: 100%;
+	border-radius: 5px 5px 0px 0px;
+
 }
 
 @media screen and (min-width: 500px) {
@@ -98,20 +121,20 @@ img.category-item__image {
 	.title i {
 		display: none;
 	}
-	.title {
-		display: block;
-		border-bottom: none;
-		text-align: center;
-	}
-	h1.catalogue-title {
-		display: unset;
-		font-size: 46px;
-		margin-bottom: 30px;
-	}
 
-	.category-wrapper {
-		grid-gap: 1rem;
-		grid-template-columns: repeat(auto-fit, minmax(358px, 1fr));
-		width: 80%;
-	}
+	.category-wrapper{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .category-wrapper{
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .category-wrapper{
+    max-width: 1200px;
+  }
 }
