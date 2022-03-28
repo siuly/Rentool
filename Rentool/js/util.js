@@ -35,12 +35,10 @@ export const PATHS_PAGES = {
   // Admin
   ADD_TOOL: 'admin/addTool.html',
 
-  // UPCOMMING
-  MY_ACCOUNT: 'my-account.html',
-  LOCATIONS: 'locations.html',
+  // OTHERS
   USER_PROFILE: 'user-profile.html',
-  ABOUT_RENTOOL: 'about-rentool.html',
-  HELP: 'help.html',
+  USER_PROFILE_EDIT: 'user-profile-edit.html',
+  SERVICES: 'services.html',
   REFERENCE: 'reference.html'
 }
 
@@ -60,6 +58,8 @@ export const getUrlParams = () => {
   return params;
 };
 
+
+export const RANDOM_IMAGE_URL = 'https://picsum.photos/300/300?rand';
 
 
 
@@ -227,19 +227,41 @@ export const isAdminUser = () => {
 /**
  * @description Change page to sign-in page if the user did not sign in.
  * @param {number} durationToSendPage
- * @param {in PATHS_PAGES} pageMoveTo
+ * @param {typeof PATHS_PAGES[keyof typeof PATHS_PAGES]} pageMoveTo
  * @returns
  */
 export const filterNotSignedInUser = (durationToSendPage = 3000, pageMoveTo = PATHS_PAGES.SIGN_IN) => {
+
   if (readUserId() === null) {
-    Toastify({
-      text: 'Please Sign-in if you want to fully use this application',
-      close: true,
-      gravity: 'top',
-      position: 'center',
-      className: 'error',
-      duration: DURATION_TOAST_DISPLAY,
-    }).showToast();
+    try {
+      Toastify({
+        text: 'Please Sign-in if you want to fully use this application',
+        close: true,
+        gravity: 'top',
+        position: 'center',
+        className: 'error',
+        duration: DURATION_TOAST_DISPLAY,
+      }).showToast();
+    } catch (error) {
+      console.log('error: ', error);
+    }
+
     setTimeout(() => { movePageTo(pageMoveTo); }, durationToSendPage);
+  }
+};
+
+
+/**
+ * @description Set onDisplayPage class to the header item
+ * @param {typeof PATHS_PAGES[keyof typeof PATHS_PAGES]} pageName
+ * @returns {boolean}
+ */
+export const setOnPageClassToMenuItem = (page) => {
+  try {
+    document.querySelector(`a[href$="${page}"]`).classList.add('onDisplayPage');
+    return true;
+  } catch (error) {
+    console.log('error: ', error);
+    return false;
   }
 };
