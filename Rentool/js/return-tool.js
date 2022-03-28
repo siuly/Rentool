@@ -2,11 +2,11 @@ import { Location } from './domain/Location.js';
 import { getUrlParams, GET_PARAMS, movePageTo, PATHS_PAGES, DURATION_TOAST_DISPLAY, filterNotSignedInUser } from './util.js';
 import { LocationItem } from './components/LocationItem.js';
 
-import { getAllLocations, getReservationDataByReservationId, returnTool } from './firebase.js';
+import { getAllLocations, getReservationDataByReservationId, returnTool, uploadFileToCloudStorage } from './firebase.js';
 import { Reservation } from './domain/Reservation.js';
 
 Dynamsoft.DBR.BarcodeReader.license = 'DLS2eyJoYW5kc2hha2VDb2RlIjoiMTAwOTQ2MTk5LVRYbFhaV0pRY205cSIsIm9yZ2FuaXphdGlvbklEIjoiMTAwOTQ2MTk5In0=';
-      
+
 
 filterNotSignedInUser(500);
 
@@ -141,10 +141,22 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   submitBtn.addEventListener('click', async () => {
-    const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
-    if (returnResult === true) {
-      movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+
+    try {
+      const inputEl = document.getElementById('file-input');
+      if (inputEl.files && inputEl.files[0]) {
+        const takenPicture = inputEl.files[0];
+        const imageUrl = await uploadFileToCloudStorage(takenPicture, `${new Date()}-${reservationData.userId}-${reservationId}`, 'returns');
+      }
+
+      const returnResult = await returnTool( /** reservation*/ reservationData, /** locationToReturn */ returnLocation);
+      if (returnResult === true) {
+        movePageTo(PATHS_PAGES.RETURN_COMPLETE, `?reservationId=${reservationId}`);
+      }
+    } catch (error) {
+      console.log('error: ', error);
     }
+
   });
 
 
@@ -160,108 +172,107 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 
-  // src: https://github.com/mebjas/html5-qrcode
+// src: https://github.com/mebjas/html5-qrcode
 
-  //=================QR Code=========================
+//=================QR Code=========================
 // scanner for decoding video
 let scanner = null;
 let code = document.getElementById('user-code');
 let scanbtn = document.getElementById('btn-show-scanner');
 // decode video from camera
 
-  
+
 document.getElementById('btn-show-scanner').addEventListener('click', async () => {
-  
-    try{
-        scanner = scanner || await Dynamsoft.DBR.BarcodeScanner.createInstance();
-        scanner.onFrameRead = results => {
-            if(results.length){
-                console.log(results);
-            }
-        };
-        scanner.onUnduplicatedRead = (txt, result) => {
-          if(txt.includes('chinese')){
-            alert('Your Code is 87412');
-            code.innerHTML = 'Your Code is 87412';
-            code.classList.remove('hidden');
-            scanbtn.classList.add('hidden');
-          }
-          else{
-            alert('Incorrect QR code, please scan the code from the locker.');
-          }
-        };
 
-        await scanner.show();
-    }catch(ex){
-        alert(ex.message);
-        throw ex;
-    }
+  try {
+    scanner = scanner || await Dynamsoft.DBR.BarcodeScanner.createInstance();
+    scanner.onFrameRead = results => {
+      if (results.length) {
+        console.log(results);
+      }
+    };
+    scanner.onUnduplicatedRead = (txt, result) => {
+      if (txt.includes('chinese')) {
+        alert('Your Code is 87412');
+        code.innerHTML = 'Your Code is 87412';
+        code.classList.remove('hidden');
+        scanbtn.classList.add('hidden');
+      } else {
+        alert('Incorrect QR code, please scan the code from the locker.');
+      }
+    };
+
+    await scanner.show();
+  } catch (ex) {
+    alert(ex.message);
+    throw ex;
+  }
 });
-      const fileTypes = [
-        'image/apng',
-        'image/bmp',
-        'image/gif',
-        'image/jpeg',
-        'image/pjpeg',
-        'image/png',
-        'image/svg+xml',
-        'image/tiff',
-        'image/webp',
-        'image/x-icon'
-      ];
+const fileTypes = [
+  'image/apng',
+  'image/bmp',
+  'image/gif',
+  'image/jpeg',
+  'image/pjpeg',
+  'image/png',
+  'image/svg+xml',
+  'image/tiff',
+  'image/webp',
+  'image/x-icon'
+];
 
-      function validFileType(file) {
-        return fileTypes.includes(file.type);
+function validFileType(file) {
+  return fileTypes.includes(file.type);
+}
+
+function returnFileSize(number) {
+  if (number < 1024) {
+    return number + 'bytes';
+  } else if (number >= 1024 && number < 1048576) {
+    return (number / 1024).toFixed(1) + 'KB';
+  } else if (number >= 1048576) {
+    return (number / 1048576).toFixed(1) + 'MB';
+  }
+}
+
+const input = document.getElementById('file-input');
+const preview = document.querySelector('.preview');
+
+input.style.opacity = 0;
+
+input.addEventListener('change', updateImageDisplay);
+
+function updateImageDisplay() {
+  while (preview.firstChild) {
+    preview.removeChild(preview.firstChild);
+  }
+
+  const curFiles = input.files;
+  if (curFiles.length === 0) {
+    const para = document.createElement('p');
+    para.textContent = 'No files currently selected for upload';
+    preview.appendChild(para);
+  } else {
+    const list = document.createElement('ol');
+    preview.appendChild(list);
+    for (const file of curFiles) {
+      const listItem = document.createElement('li');
+      const para = document.createElement('p');
+      if (validFileType(file)) {
+        const image = document.createElement('img');
+        image.src = URL.createObjectURL(file);
+
+        listItem.appendChild(image);
+        listItem.appendChild(para);
+      } else {
+        para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
+        listItem.appendChild(para);
       }
 
-      function returnFileSize(number) {
-        if(number < 1024) {
-          return number + 'bytes';
-        } else if(number >= 1024 && number < 1048576) {
-          return (number/1024).toFixed(1) + 'KB';
-        } else if(number >= 1048576) {
-          return (number/1048576).toFixed(1) + 'MB';
-        }
-      }
-
-      const input = document.getElementById('file-input');
-      const preview = document.querySelector('.preview');
-
-      input.style.opacity = 0;
-
-      input.addEventListener('change', updateImageDisplay);
-
-      function updateImageDisplay() {
-        while(preview.firstChild) {
-          preview.removeChild(preview.firstChild);
-        }
-      
-        const curFiles = input.files;
-        if(curFiles.length === 0) {
-          const para = document.createElement('p');
-          para.textContent = 'No files currently selected for upload';
-          preview.appendChild(para);
-        } else {
-          const list = document.createElement('ol');
-          preview.appendChild(list);
-          for(const file of curFiles) {
-            const listItem = document.createElement('li');
-            const para = document.createElement('p');
-            if(validFileType(file)) {
-              const image = document.createElement('img');
-              image.src = URL.createObjectURL(file);
-      
-              listItem.appendChild(image);
-              listItem.appendChild(para);
-            } else {
-              para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-              listItem.appendChild(para);
-            }
-      
-            list.appendChild(listItem);
-          }
-        }
-      }
+      list.appendChild(listItem);
+    }
+  }
+}
 
 //==============================================
 
