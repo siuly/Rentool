@@ -48,3 +48,9 @@ main h3 {
 .header_title {
 	color:white;
 }
+
+@media screen and (min-width: 1000px) {
+  .container{
+    max-width: 1200px;
+  }
+}
