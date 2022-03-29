@@ -281,6 +281,9 @@ footer {
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-between;
+	padding-top: 1rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
 }
 
 .footer-logo {
