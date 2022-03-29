@@ -115,7 +115,6 @@ h1.catalogue-title {
 
 @media screen and (min-width: 500px) {
 	.logo {
-		margin-top: 20px;
 		width: 100%;
 	}
 	.title i {
