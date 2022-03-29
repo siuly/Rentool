@@ -193,7 +193,7 @@ header .fas.fa-bars {
 
 @media screen and (min-width: 500px) {
 	header {
-		grid-template-columns: 60px 1fr 1fr;
+		grid-template-columns: 100px 1fr 1fr;
 		gap: 1rem 2rem;
 		padding: 1rem 2rem;
 	}
@@ -206,7 +206,9 @@ header .fas.fa-bars {
 		height: 100%;
 	}
 	.logo {
-		display: block;
+		display: grid;
+		align-items: center;
+		justify-items: center;
 		grid-column: 1 / 2;
 		grid-row: 1 / span 2;
 	}
@@ -287,7 +289,7 @@ footer {
 }
 
 .footer-logo {
-	max-width: 70px;
+	max-width: 120px;
 }
 .social-media {
 	flex: 1 0 100%;
