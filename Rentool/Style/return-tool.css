@@ -34,7 +34,7 @@ main {
 	display: grid;
 	grid-template-columns: 1fr;
 }
-header #toggle div{
+header #toggle div {
 	display: none;
 }
 
@@ -110,7 +110,7 @@ header #toggle div{
 	padding: 1rem;
 }
 .selected-location .location-item {
-	border: 2px solid red;
+	border: 2px solid var(--color-secondary-variant);
 }
 
 .return-container {
@@ -231,53 +231,53 @@ location-item {
 div#return-instruction {
 	height: 100%;
 }
-div#return-instruction h3{
+div#return-instruction h3 {
 	margin-bottom: 37px;
 	margin-top: 61px;
 }
-div#return-instruction h4{
+div#return-instruction h4 {
 	font-family: "Roboto", sans-serif;
 	font-size: 18px;
 	font-weight: 700;
 	margin-bottom: 5px;
 	margin-top: 1rem;
 }
-div#return-instruction p{
+div#return-instruction p {
 	font-family: "Roboto", sans-serif;
 	font-size: 18px;
 	font-weight: 400;
 	margin-left: 13px;
 	margin-top: 1rem;
-  margin-bottom: 1rem;
+	margin-bottom: 1rem;
 }
-div#return-instruction .step-1 p:first-of-type:before{
-	content:"•";
+div#return-instruction .step-1 p:first-of-type:before {
+	content: "•";
 	margin-right: 10px;
 }
 button#btn-show-scanner {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	border: 2px solid #3EA8DD;
+	border: 2px solid #3ea8dd;
 	border-radius: 6px;
 	height: 43px;
 	width: 220px;
 	font-size: 1rem;
 	font-weight: 700;
-	color: #3EA8DD;
+	color: #3ea8dd;
 }
 p#user-code {
-	background-color: #FFC400;
+	background-color: #ffc400;
 	padding: 6px;
 	text-align: center;
 	font-weight: 700 !important;
 }
-div#return-instruction .step-2 p#step-2-info::before{
-	content:"•";
+div#return-instruction .step-2 p#step-2-info::before {
+	content: "•";
 	margin-right: 10px;
 }
-div#return-instruction .step-3 p:first-of-type:before{
-	content:"•";
+div#return-instruction .step-3 p:first-of-type:before {
+	content: "•";
 	margin-right: 10px;
 }
 p.no-files {
@@ -291,30 +291,29 @@ button#submit-btn {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	border: 2px solid #3EA8DD;
+	border: 2px solid #3ea8dd;
 	border-radius: 6px;
 	height: 43px;
 	width: 220px;
 	font-size: 1rem;
 	font-weight: 700;
-	color: #3EA8DD;
+	color: #3ea8dd;
 	margin-bottom: 1rem;
 }
 #photo-btn {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	border: 2px solid #3EA8DD;
+	border: 2px solid #3ea8dd;
 	border-radius: 6px;
 	height: 43px;
 	width: 220px;
 	font-size: 1rem;
 	font-weight: 700;
-	color: #3EA8DD;
+	color: #3ea8dd;
 	text-align: center;
-  padding-top: 11px;
+	padding-top: 11px;
 }
-
 
 /* =============Scanner=========== */
 button.dce-btn-close {
@@ -355,10 +354,10 @@ select.dce-sel-resolution {
 	background: white;
 	text-align: center;
 	padding: 12px;
-	border: solid 2px #3EA8DD;
+	border: solid 2px #3ea8dd;
 	margin-top: 26px;
 	width: 220px;
-	color: #3EA8DD;
+	color: #3ea8dd;
 	height: 43px;
 	margin-left: 100px;
 	margin-bottom: 25px;
@@ -369,7 +368,6 @@ select.dce-sel-resolution {
 .code {
 	font-weight: bold;
 }
-
 
 @media screen and (min-width: 500px) {
 	.location-selection {
@@ -434,7 +432,6 @@ select.dce-sel-resolution {
 .hidden {
 	display: none !important;
 }
-
 
 /* Add animation (fade in the popup) */
 @keyframes fadeIn {
