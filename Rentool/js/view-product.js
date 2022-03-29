@@ -53,6 +53,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     requestReservationButtonEl.innerText = 'Not available';
     requestReservationButtonEl.classList.add('not-available-button');
     document.getElementById('location-container').style.display = 'none';
+    document.querySelector('.available-status').classList.add('not-available');
   }
 
 
