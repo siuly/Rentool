@@ -13,7 +13,7 @@ export class RentoolFooter extends HTMLElement {
 
     this.innerHTML = `
 			<footer>
-				<img src="../images/app_icon_80x80.png" alt="footer-logo" class="footer-logo">
+				<img src="../images/logo-footer.svg" alt="footer-logo" class="footer-logo">
 				<div class="contact-information">
 					<p>Get Help 24/7</p>
 					<p class="tell">1-800-657-5861</p>
