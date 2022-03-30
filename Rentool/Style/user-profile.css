@@ -40,15 +40,21 @@ h3 {
 .profile-pic {
   text-align: center;
   margin: auto;
+
+  max-width: 200px;
+  height: 200px;
+
 }
 
 .profile-pic img {
   border-radius: 50%;
   width: 70%;
+  height: 70%;
+  object-fit: fill;
 }
 
 .profile-pic .edit {
-  padding: 2rem;
+  padding: 1rem;
   text-align: center;
   display: grid;
   grid-template-columns: 1fr;
@@ -141,7 +147,9 @@ form .address label {
 }
 
 .edit label {
+  display: block;
   text-decoration: underline;
+  margin-bottom: 1rem;
 }
 input[type="file" i]::-webkit-file-upload-button {
   display: none;
