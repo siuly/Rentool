@@ -18,7 +18,8 @@
   <!-- Font awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <title></title>
+  <title>Add Tool</title>
+  
 </head>
 
 <body>
@@ -49,16 +50,19 @@
   </header>
   <main>
 
-
-    <!-- <label for="toolId">toolId</label>
-  <input type="text" name="toolId" id="toolId"> -->
-    <label for="toolName">Tool Name</label>
-    <input type="text" name="toolName" id="toolName">
-    <label for="description">Description</label>
+    <label for="toolName">Tool Name <input type="text" name="toolName" id="toolName"></label>
+    
+    <label for="description">Description <input type="text" name="description" id="description"></label>
     <p>Use "・" as bullet point character</p>
-    <input type="text" name="description" id="description">
-    <h3>Location</h3>
-    <label for="lockerName">lockerName</label>
+    
+    <label for="lockerName">Location
+        <select name="lockerName" id="lockerName">
+        <option value="Langara College">Langara College</option>
+        <option value="Waterfront Station">Waterfront Station</option>
+        <option value="Metropolis at Metrotown">Metropolis at Metrotown</option>
+  
+      </select>
+    </label>
     <!-- <input type="text" name="lockerName" id="lockerName"> -->
     <!-- <label for="address">address</label>
     <input type="text" name="address" id="address">
@@ -67,79 +71,52 @@
     <label for="longuitude">longuitude</label>
     <input type="text" name="longuitude" id="longuitude"> -->
 
-    <select name="lockerName" id="lockerName">
-      <option value="Langara College">Langara College</option>
-      <option value="Waterfront Station">Waterfront Station</option>
-      <option value="Metropolis at Metrotown">Metropolis at Metrotown</option>
-
-    </select>
-
-
-
     <h3>Prices</h3>
-    <label for="hourlyPrice">hourlyPrice</label>
-    <input type="text" name="hourlyPrice" id="hourlyPrice">
-    <label for="dailyPrice">dailyPrice</label>
-    <input type="text" name="dailyPrice" id="dailyPrice">
-    <label for="weeklyPrice">weeklyPrice</label>
-    <input type="text" name="weeklyPrice" id="weeklyPrice">
-    <label for="category">category</label>
+    <label for="hourlyPrice">Hourly Price <input type="text" name="hourlyPrice" id="hourlyPrice"></label>
+    
+    <label for="dailyPrice">Daily Price <input type="text" name="dailyPrice" id="dailyPrice"></label>
+    
+    <label for="weeklyPrice">Weekly Price <input type="text" name="weeklyPrice" id="weeklyPrice"></label>
+    
+    <label for="category">Category
+        <select name="category" id="category">
+            <option value="Power Tools">Power Tools</option>
+            <option value="Cleaning and Floorcare">Cleaning and Floorcare</option>
+            <option value="Fans and Heater">Fans and Heater</option>
+            <option value="Ladders and Scaffold">Ladders and Scaffold</option>
+            <option value="Lifting and Moving">Lifting and Moving</option>
+            <option value="Lighting and Electrical">Lighting & Electrical</option>
+            <option value="Painting and Decoration">Painting and Decorating</option>
+            <option value="Pumps and Plumbing">Pumps and Plumbing</option>
+            <option value="Gardening">Others</option>
+          </select>
+    </label>
     <!-- <input type="text" name="category" id="category"> -->
-
-
-    <select name="category" id="category">
-      <option value="Power Tools">Power Tools</option>
-      <option value="Cleaning and Floorcare">Cleaning and Floorcare</option>
-      <option value="Fans and Heater">Fans and Heater</option>
-      <option value="Ladders and Scaffold">Ladders and Scaffold</option>
-      <option value="Lifting and Moving">Lifting and Moving</option>
-      <option value="Lighting and Electrical">Lighting & Electrical</option>
-      <option value="Painting and Decoration">Painting and Decorating</option>
-      <option value="Pumps and Plumbing">Pumps and Plumbing</option>
-      <option value="Gardening">Others</option>
-      <option value=""></option>
-      <option value=""></option>
-    </select>
-
-
-    <label for="size">size</label>
+    <label for="size">Size
+        <select name="size" id="size">
+            <option value="small">small</option>
+            <option value="medium ">medium </option>
+            <option value="large">large</option>
+          </select>
+    </label>
     <!-- <input type="text" name="size" id="size"> -->
 
-    <select name="size" id="size">
-      <option value="small">small</option>
-      <option value="medium ">medium </option>
-      <option value="large">large</option>
-    </select>
-
-    <label for="brand">brand</label>
-    <input type="text" name="brand" id="brand">
+    <label for="brand">Brand 
+        <input type="text" name="brand" id="brand">
+    </label>
 
     <!-- <label for="imageUrl">imageUrl</label>
     <input type="text" name="imageUrl" id="imageUrl"> -->
 
-    <label for="imageUrl">Image</label>
+    <label for="imageUrl">Image 
+        <input type="file" name="imageFile" id="imageFile"></label>
     <p>*Image file name does not matter</p>
-    <input type="file" name="imageFile" id="imageFile">
+    
 
     <input type="submit" value="submit" id="submit" class="clickable">
-  </main>
-  <footer>
-    <img src="" alt="">
 
-    <div class="social-media">
-      <nav>
-        <ul>
-          <li><a aria-label="Facebook" href="http://www.facebook.com" target="blank"><i class="fab fa-facebook-square"></i></a></li>
-          <li><a aria-label="Twitter" href="https://twitter.com/" target="blank"><i class="fab fa-twitter">
-              </i> </a></li>
-          <li><a aria-label="Linkedin" href="https://linkedin.com"><i class="fab fa-linkedin-in"></i></a></li>
-          <li><a aria-label="Instagram" href="https://instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-          <li><a aria-label="Youtube" href="https://youtube.com/" target="blank"><i class="fab fa-youtube"></i></a></li>
-        </ul>
-      </nav>
-    </div>
-    <p>© 2022 Rentool All Rights Reserved.</p>
-  </footer>
+  </main>
+  <rentool-footer></rentool-footer>
 
   <script src="../../js/firebase.js" type="module" defer></script>
   <script src="../../js/common.js" type="module" defer></script>
@@ -221,19 +198,50 @@ document.getElementById('submit').addEventListener('click', async () => {
 
 
 <style>
-  input,
-  label {
-    display: block;
-    padding-top: .2rem;
+  h3 {
+    font-weight: 700;
+    margin-top: 1.5rem;
   }
-
   main {
-    margin-left: 3rem;
-    padding: 1rem;
+  width: 300px;
+  margin: 0 auto;
+  } 
+  label {
+  display: flex;
+  margin-top: 1rem;
+  justify-content: space-between;
+  align-items: center;
   }
-
+  input#imageFile {
+    text-align-last: right;
+  }
   input[type="submit"] {
-    margin: 1rem;
+    width: 40%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background: white;
+    text-align: center;
+    border: solid 2px #3ea8dd;
+    color: #3ea8dd;
+    font-family: "Raleway", sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    border-radius: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  select#lockerName {
+    width: 177px;
+  }
+  select#category {
+    width: 177px;
+  }
+  select#size {
+    width: 177px;
+  }
+  p {
+    margin-top: 2px;
   }
 </style>
 
