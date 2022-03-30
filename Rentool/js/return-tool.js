@@ -192,7 +192,7 @@ document.getElementById('btn-show-scanner').addEventListener('click', async () =
       }
     };
     scanner.onUnduplicatedRead = (txt, result) => {
-      if (txt.includes('chinese')) {
+      if (txt.includes('rentool')) {
         alert('Your Code is 87412');
         code.innerHTML = 'Your Code is 87412';
         code.classList.remove('hidden');

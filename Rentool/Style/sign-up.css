@@ -131,4 +131,13 @@ footer {
     width: 476px;
     height: 302px;
   }
+  #main-image {
+    max-width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+  #main-image {
+    margin-top: 0.5rem;
+  }
 }
