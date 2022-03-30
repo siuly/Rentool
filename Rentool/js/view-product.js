@@ -92,15 +92,19 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // ============== location ================
 
-  // Pass an array of locations from the tool data
-  const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
-  // document.getElementById('nearest-location').appendChild(new LocationItem(nearestLocation));
+  try {
+    // Pass an array of locations from the tool data
+    const nearestLocation = await getNearestLocation(tools.map(tool => tool.location));
 
-  if (nearestLocation === null) {
-    document.getElementsByClassName('change-location')[0].style.display = 'none';
-  } else {
-    document.getElementById('nearest-location').innerHTML = `${nearestLocation?.address}`;
+    if (nearestLocation === null) {
+      document.getElementsByClassName('change-location')[0].style.display = 'none';
+    } else {
+      document.getElementById('nearest-location').innerHTML = `${nearestLocation?.address}`;
+    }
+  } catch (error) {
+    console.log('error: ', error);
   }
+
 
 
   requestReservationButtonEl.addEventListener('click', () => {
