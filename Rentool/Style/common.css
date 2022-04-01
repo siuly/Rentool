@@ -96,7 +96,7 @@ button div {
 	position: absolute;
 	top: var(--height-heading);
 	height: 100%;
-	padding-top: 20px;
+	/* padding-top: 20px; */
 	width: 50%;
 	left: -51%;
 	background-color: white;
@@ -110,16 +110,19 @@ button div {
 
 #menu li {
 	list-style: none;
-	color: black;
-	line-height: 2;
-	padding-left: 30px;
-	margin-right: 10px;
-	margin-top: 10px;
-	box-shadow: 0 7px 8px -7px #222;
+    color: black;
+    line-height: 2;
+    padding-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-left: 20px;
+    border-bottom: 1px solid #9e9b9b;
+    /* box-shadow: 0 7px 8px -7px #222;*/
 }
 
 #menu li:last-of-type {
 	text-align: right;
+	border-bottom: none;
 }
 #menu li:not(:last-of-type) a {
 	display: flex;
@@ -135,6 +138,8 @@ button div {
 #menu ul {
 	padding: 0;
 	background-color: white;
+
+	border-radius: 5px;
 }
 
 header .input-row {
@@ -260,6 +265,7 @@ header .fas.fa-bars {
 		padding: 0;
 		margin: 0;
 		line-height: unset;
+		border-bottom: unset;
 	}
 	#menu li:not(:last-of-type) a {
 		padding: 0;
