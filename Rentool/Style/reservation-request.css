@@ -22,7 +22,7 @@ h2 {
   font-style: normal;
   font-weight: bold;
   font-size: 24px;
-  line-height: 120%;
+  line-height: 1.5;
   text-align: center;
   color: #222222;
 }
@@ -33,19 +33,21 @@ h3 {
   font-style: normal;
   font-weight: bold;
   font-size: 18px;
-  line-height: 120%;
+  line-height: 1.5;
   text-align: center;
   color: #000000;
 }
 .tool-name {
-  margin-left: 40px;
+  /* margin-left: 40px; */
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 15px;
-  line-height: 120%;
-  text-align: center;
+  font-size: 1rem;
+  line-height: 1.5;
+  /* text-align: center; */
   color: #222222;
+
+  padding-bottom: 2rem;
 }
 .start-reservation {
   margin-left: 46px;
@@ -68,8 +70,8 @@ input {
 span#durationpg1 {
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-weight: bold;
+  font-size: 1rem;
   text-align: left;
   color: #000000;
   display: block;
@@ -82,8 +84,8 @@ span#price {
   margin-left: 49px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-weight: bold;
+  font-size: 1rem;
   text-align: left;
   color: #000000;
   margin-bottom: 10px;
@@ -93,8 +95,8 @@ span#deposit {
   margin-left: 49px;
   font-family: "Roboto", sans-serif;
   font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
+  font-weight: bold;
+  font-size: 1rem;
   text-align: left;
   color: #000000;
   margin-bottom: 25px;
@@ -186,39 +188,40 @@ input#agree-terms {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  line-height: 120%;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
   color: #000000;
   margin-bottom: 4px;
 }
 span#pricepg2 {
   display: block;
-  text-align: right;
-  margin-right: 49px;
+  margin: 2rem 0;
+  /* text-align: right; */
+  /* margin-right: 49px;
   margin-top: 8px;
-  margin-bottom: 76px;
+  margin-bottom: 76px; */
   font-family: "Raleway", sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  color: #000000;
+  /* font-style: normal;
+  font-weight: normal; */
+  font-size: 1rem;
+  /* color: #000000; */
 }
 .rental-duration {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 1rem;
   color: #000000;
 }
 .rent-dates {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 1rem;
   color: #000000;
 }
-.rental-container {
+/* .rental-container {
   position: relative;
   margin-left: 28px;
   margin-right: 46px;
@@ -229,7 +232,7 @@ span#pricepg2 {
   padding-top: 8px;
   padding-bottom: 7px;
   min-height: 79px;
-}
+} */
 div#rental-container i {
   position: absolute;
   right: 20px;
@@ -242,23 +245,30 @@ div#rental-container i {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  line-height: 120%;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
   color: #000000;
   margin-bottom: 4px;
 }
-.pick-up-container {
+.pick-up-container,
+.rental-container {
   position: relative;
-  margin-left: 28px;
-  margin-right: 46px;
+  /* margin-left: 28px;
+  margin-right: 46px; */  
+  /* margin-bottom: 10px; */
+  margin: .5rem 2rem;
   border: solid black thin;
   border-radius: 5px;
-  margin-bottom: 10px;
-  padding-left: 27px;
+  /* padding-left: 27px;
   padding-top: 8px;
-  padding-bottom: 7px;
+  padding-bottom: 7px; */
+  padding: .5rem 1.5rem;
   min-height: 79px;
+}
+
+span#tool-name-location {
+  margin-right: 2.5rem;
 }
 div#pick-up-container i {
   position: absolute;
@@ -272,8 +282,8 @@ div#pick-up-container i {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  line-height: 120%;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
   color: #000000;
   margin-top: 22px;
@@ -284,8 +294,8 @@ div#pick-up-container i {
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  line-height: 120%;
+  font-size: 1rem;
+  line-height: 1.5;
   text-align: center;
   color: #000000;
   margin-top: 23px;
@@ -308,10 +318,20 @@ div#payment-container i {
   padding-bottom: 7px;
   min-height: 79px;
 }
+#page2{
+  margin: auto;
+}
+
+.page-btn.page2 {
+  text-align: center;
+  padding-top: 2rem;
+}
+
 #page2-btn {
   margin-top: 45px;
   margin-bottom: 45px;
-  margin-left: 22%;
+  /* margin-left: 22%; */
+  margin: auto;
   width: 240px;
   height: 43px;
   border: 2px solid #3EA8DD;
@@ -332,6 +352,11 @@ div#payment-container i {
   max-width: 1000px; 
   margin-left: auto;
   margin-right: auto;
+}
+
+.tool-name-price-container{
+  padding: 0 2rem;
+  margin: auto;
 }
 
 
