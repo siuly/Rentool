@@ -29,35 +29,28 @@
   max-width: 800px;
 }
 
-.table {
-	width:100%;
+table {
+  width: 100%;
 	border:1px solid #eee;
 }
 
-.table-header {
-	display:flex;
-	width:100%;
+th {
+  border: 1px solid white;
 	background:#000;
   padding: 0.5rem 1rem;
 }
 
-.table-row {
-	display:flex;
-	width:100%;
+td {
+  border: 1px solid rgb(143, 143, 143);
   padding: 0.5rem 1rem;
 	
 
 }
-.table-row:nth-of-type(odd) {
+td:nth-of-type(odd) {
   background:#eee;
 }
 
-.table-data, .header_title {
-	flex: 1 1 20%;
-	text-align:left;
-}
-
-.header_title {
+th {
 	color:white;
 }
 
