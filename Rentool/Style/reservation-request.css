@@ -38,7 +38,7 @@ h3 {
   color: #000000;
 }
 .tool-name {
-  /* margin-left: 40px; */
+  margin-left: 40px; 
   font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: bold;
@@ -263,7 +263,7 @@ div#rental-container i {
   /* padding-left: 27px;
   padding-top: 8px;
   padding-bottom: 7px; */
-  padding: .5rem 1.5rem;
+  padding: 0.5rem 3rem 0.5rem 1.5rem;
   min-height: 79px;
 }
 
