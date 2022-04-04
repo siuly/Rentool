@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const price4Hours = document.querySelector('.price-table-four-hours');
   const price4HoursNewColumn = document.createElement('td');
   // result hourly
-  price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${Number.parseFloat((productSelected.prices.hourly)).toFixed(2)}`;
+  price4Hours.appendChild(price4HoursNewColumn).innerHTML = `$ ${Number.parseFloat((productSelected.prices.hourly)).toFixed(2) * 4}`;
 
 
   // ==per day==
