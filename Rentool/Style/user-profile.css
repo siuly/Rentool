@@ -3,13 +3,31 @@ image {
   height: auto;
 }
 
-main {
+.main-content {
   padding: 2rem 1.5rem;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.page-heading h2{
+	grid-column: 2 / span 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.page-heading{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	padding: 1rem 2rem;
+	border-bottom: 1px solid black;
 }
 
 h2,
@@ -41,8 +59,8 @@ h3 {
   text-align: center;
   margin: auto;
 
-  max-width: 200px;
-  height: 200px;
+  max-width: 500px;
+  /* height: 200px; */
 
 }
 
@@ -71,6 +89,9 @@ input[type="file"] {
   font-size: 16px;
   align-self: flex-start;
   width: 100%;
+
+  grid-column: 3/-1;
+  grid-row: 2/3;
 }
 
 form,
@@ -123,10 +144,11 @@ form .address label {
 
 .submit,
 .edit {
-  padding-top: 0.8rem;
+  padding-top: 3rem;
   grid-column: 1/-1;
   text-align: center;
   margin: auto;
+  grid-row: 3/-1;
 }
 
 .submit .save-changes,
@@ -156,14 +178,14 @@ input[type="file" i]::-webkit-file-upload-button {
 }
 
 @media screen and (min-width: 800px) {
-  main {
+  .main-content {
     display: grid;
     grid-template-columns: 1fr 10px 1fr;
     grid-template-rows: 3.5rem 1fr;
     gap: 1.5rem;
     max-width: 1200px;
     margin: auto;
-    padding: 10rem 0;
+    /* padding: 10rem 0; */
   }
 
   h2 {

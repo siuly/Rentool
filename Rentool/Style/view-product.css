@@ -79,8 +79,8 @@ div#location-container {
 }
 
 .view-product-first {
-  margin-left: 2rem;
-  margin-right: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 .product-name-location-status {
   margin-bottom: 3rem;
@@ -117,5 +117,12 @@ p.product-description__line {
 
   .product-name-price h3 {
     text-align: left;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .view-product-first{
+    max-width: 1200px;
+    margin: auto;
   }
 }

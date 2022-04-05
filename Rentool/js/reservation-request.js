@@ -110,25 +110,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (days == 0 && diffHoursMilliseconds < 4) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
       fprice = toolListForReservationSelection[0].prices.hourly * fixedhours;
-      tprice.innerHTML = `Price: $ ${fprice}`;
+      tprice.innerHTML = `Price: $ ${Number.parseFloat(fprice).toFixed(2)}`;
       fdepo = fprice * 0.5;
-      tdepo.innerHTML = `Deposit: $ ${fdepo}`;
+      tdepo.innerHTML = `Deposit: $ ${Number.parseFloat(fdepo).toFixed(2)}`;
       console.log('4 hours charged', fprice);
     } else if (days <= 7) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
       totalHours = days * 24 + diffHoursMilliseconds;
       fprice = toolListForReservationSelection[0].prices.hourly * totalHours * .9;
-      tprice.innerHTML = `Price: $ ${fprice}`;
+      tprice.innerHTML = `Price: $ ${Number.parseFloat(fprice).toFixed(2)}`;
       fdepo = fprice * 0.5;
-      tdepo.innerHTML = `Deposit: $ ${fdepo}`;
+      tdepo.innerHTML = `Deposit: $ ${Number.parseFloat(fdepo).toFixed(2)}`;
       console.log('day price charged', fprice, 'total hours:', totalHours, 'hours', diffHoursMilliseconds);
     } else if (days >= 7) {
       tduration.innerHTML = `Duration: ${days} Days ${diffHoursMilliseconds} Hours`;
       totalHours = days * 24 + diffHoursMilliseconds;
       fprice = toolListForReservationSelection[0].prices.hourly * totalHours * .8;
-      tprice.innerHTML = `Price: $ ${fprice}`;
+      tprice.innerHTML = `Price: $ ${Number.parseFloat(fprice).toFixed(2)}`;
       fdepo = fprice * 0.5;
-      tdepo.innerHTML = `Deposit: $ ${fdepo}`;
+      tdepo.innerHTML = `Deposit: $ ${Number.parseFloat(fdepo).toFixed(2)}`;
       console.log('week price charged', fprice);
     }
   }
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       page1.classList.add('shown');
       page2.classList.remove('shown');
       tname2.innerHTML = toolListForReservationSelection[0].toolName;
-      totalprice.innerHTML = `Price: $${fprice}`;
+      totalprice.innerHTML = `Price: $${Number.parseFloat(fprice).toFixed(2)}`;
       if (diffHoursMilliseconds != 0) {
         duration.innerHTML = `${days} days and ${diffHoursMilliseconds} hours`;
       } else {
